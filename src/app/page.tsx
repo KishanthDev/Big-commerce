@@ -5,6 +5,7 @@ import HeroSection from "@/components/Hero";
 import Footer from "@/components/Footer";
 import Services from "@/components/Services";
 import Minzuno from "@/components/Minzuno";
+import Contact from "@/components/Contact";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
     <Business/>
     <Services/>
     <Minzuno/>
+    <Contact/>
     <Footer/>
     </>
   );
