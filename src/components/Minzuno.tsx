@@ -5,10 +5,8 @@ import { Button } from "@/components/ui/button";
 const Mizuno = () => {
   return (
     <section className="flex flex-col md:flex-row items-stretch justify-center px-6 md:px-12 mt-12">
-      {/* Content on Left */}
       <div className="w-full md:w-1/2 flex">
         <div className="p-8 rounded-l-2xl flex flex-col justify-center items-center md:items-start text-center md:text-left w-full">
-          {/* Mizuno Logo */}
           <div className="mb-4">
             <Image src="/mizuno_logo.svg" alt="Mizuno Logo" width={150} height={50} />
           </div>
@@ -35,7 +33,6 @@ const Mizuno = () => {
         </div>
       </div>
 
-      {/* Image on Right */}
       <div className="w-full md:w-1/2 flex">
         <Image
           src="/minzuno.png"

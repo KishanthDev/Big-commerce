@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 const Business = () => {
   return (
     <section className="flex flex-col md:flex-row items-stretch justify-center px-6 md:px-12 mt-12">
-      {/* Image on Left */}
       <div className="w-full md:w-1/2 flex">
         <Image
           src="/business.png"
@@ -16,7 +15,6 @@ const Business = () => {
         />
       </div>
 
-      {/* Content on Right with Equal Height & No Gap */}
       <div className="w-full md:w-1/2 flex">
         <div className="bg-amber-50 p-8 rounded-r-2xl flex flex-col justify-center items-center md:items-start text-center md:text-left w-full">
           <h2 className="text-3xl font-bold">SMALL BUSINESS</h2>

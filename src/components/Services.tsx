@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 const Services = () => {
   return (
     <section className="flex flex-col md:flex-row items-stretch justify-center px-6 md:px-12 mt-12">
-      {/* Content on Left */}
+
       <div className="w-full md:w-1/2 flex">
         <div className="bg-blue-50 p-8 rounded-l-2xl flex flex-col justify-center items-center md:items-start text-center md:text-left w-full">
           <h2 className="text-3xl font-bold">SERVICES</h2>
@@ -21,7 +21,6 @@ const Services = () => {
         </div>
       </div>
 
-      {/* Image on Right */}
       <div className="w-full md:w-1/2 flex">
         <Image
           src="/services.png" 

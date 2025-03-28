@@ -5,13 +5,11 @@ export default function Footer() {
   return (
     <footer className="bg-gray-900 mt-10 text-gray-300 py-10">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-6">
-        {/* Logo & About */}
         <div>
           <h2 className="text-2xl font-bold text-white">Company Name</h2>
           <p className="mt-2 text-sm">Providing quality services with excellence and dedication.</p>
         </div>
         
-        {/* Quick Links */}
         <div>
           <h3 className="text-lg font-semibold text-white">Quick Links</h3>
           <ul className="mt-2 space-y-2">
@@ -21,7 +19,6 @@ export default function Footer() {
           </ul>
         </div>
         
-        {/* Customer Support */}
         <div>
           <h3 className="text-lg font-semibold text-white">Customer Support</h3>
           <ul className="mt-2 space-y-2">
@@ -31,7 +28,6 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Social Media */}
         <div>
           <h3 className="text-lg font-semibold text-white">Follow Us</h3>
           <div className="flex space-x-4 mt-2">
@@ -42,7 +38,6 @@ export default function Footer() {
         </div>
       </div>
       
-      {/* Copyright Section */}
       <div className="text-center text-sm text-gray-400 mt-8 border-t border-gray-700 pt-4">
         &copy; {new Date().getFullYear()} Company Name. All rights reserved.
       </div>
