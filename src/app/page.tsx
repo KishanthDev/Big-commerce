@@ -1,3 +1,4 @@
+import BusinessSolutions from "@/components/BusinessSolutions";
 import Header from "@/components/Header";
 import HeroSection from "@/components/Hero";
 
@@ -7,6 +8,7 @@ export default function Home() {
     <Header />
     <HeroSection/>
     <hr/>
+    <BusinessSolutions/>
     </>
   );
 }
