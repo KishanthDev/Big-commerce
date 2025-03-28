@@ -3,6 +3,8 @@ import BusinessSolutions from "@/components/BusinessSolutions";
 import Header from "@/components/Header";
 import HeroSection from "@/components/Hero";
 import Footer from "@/components/Footer";
+import Services from "@/components/Services";
+import Minzuno from "@/components/Minzuno";
 
 export default function Home() {
   return (
@@ -12,6 +14,8 @@ export default function Home() {
     <hr/>
     <BusinessSolutions/>
     <Business/>
+    <Services/>
+    <Minzuno/>
     <Footer/>
     </>
   );

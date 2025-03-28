@@ -18,7 +18,7 @@ const Business = () => {
 
       {/* Content on Right with Equal Height & No Gap */}
       <div className="w-full md:w-1/2 flex">
-        <div className="bg-amber-100 p-8 rounded-r-2xl flex flex-col justify-center items-center md:items-start text-center md:text-left w-full">
+        <div className="bg-amber-50 p-8 rounded-r-2xl flex flex-col justify-center items-center md:items-start text-center md:text-left w-full">
           <h2 className="text-3xl font-bold">SMALL BUSINESS</h2>
           <p className="mt-4 text-xl text-gray-700 leading-relaxed">
             Every small business should think big. <br />
