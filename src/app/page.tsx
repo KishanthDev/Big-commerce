@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import Services from "@/components/Services";
 import Minzuno from "@/components/Minzuno";
 import Contact from "@/components/Contact";
+import StatsSection from "@/components/Stats";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
     <Header />
     <HeroSection/>
     <hr/>
+    <StatsSection/>
     <BusinessSolutions/>
     <Business/>
     <Services/>

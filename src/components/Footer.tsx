@@ -6,7 +6,6 @@ const Footer = () => {
   return (
     <footer className="bg-blue-900 mt-10 text-white py-12 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
-        {/* First Grid Section */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
           {[
             {
@@ -37,7 +36,6 @@ const Footer = () => {
           ))}
         </div>
 
-        {/* Second Grid Section */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12 text-sm">
           {[
             {
@@ -68,14 +66,12 @@ const Footer = () => {
           ))}
         </div>
 
-        {/* Social Media Icons */}
         <div className="flex justify-center space-x-6 border-t border-gray-600 mt-12 pt-6">
           {[FaFacebookF, FaLinkedinIn, FaYoutube, FaPinterestP, FaInstagram].map((Icon, index) => (
             <Icon key={index} className="text-2xl cursor-pointer hover:text-gray-400" />
           ))}
         </div>
 
-        {/* Copyright & Legal Links */}
         <div className="text-center text-xs mt-6 text-gray-400">
           <p>© Copyright 2003 - 2025 BigCommerce Pty. Ltd.</p>
           <p className="mt-2">

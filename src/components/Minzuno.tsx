@@ -27,7 +27,7 @@ const Mizuno = () => {
           <p className="mt-2 text-lg text-gray-600">
             <span className="font-bold">↑</span> Increase in average order value (AOV)
           </p>
-          <Button className="mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl shadow-md hover:bg-blue-700 transition">
+          <Button className="mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition">
             READ THEIR STORY
           </Button>
         </div>

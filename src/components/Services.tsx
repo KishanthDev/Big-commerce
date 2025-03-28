@@ -15,7 +15,7 @@ const Services = () => {
             about your success, offering end-to-end services from migration and 
             launch to growth and expansion.
           </p>
-          <Button className="mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl shadow-md hover:bg-blue-700 transition">
+          <Button className="mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition">
             VIEW ALL SERVICES
           </Button>
         </div>
