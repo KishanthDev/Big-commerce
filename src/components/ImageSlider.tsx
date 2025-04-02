@@ -37,7 +37,7 @@ const ImageSlider = () => {
               key={index}
               className="w-52 h-32 flex-shrink-0 flex items-center justify-center bg-white border border-gray-300 rounded-lg shadow-md p-3"
             >
-              <Image src={src} alt={`Logo ${index + 1}`} width={50} height={50} className="object-contain" />
+              <Image src={src} alt={src} width={50} height={50} className="object-contain" />
             </div>
           ))}
         </motion.div>

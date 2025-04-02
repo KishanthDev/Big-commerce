@@ -48,7 +48,7 @@ const Header = () => {
           <Button variant="blue" className="px-4 py-2 text-sm">
             REQUEST A DEMO
           </Button>
-          <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-gray-700 text-2xl">
+          <button aria-label="menu" onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-gray-700 text-2xl">
             {menuOpen ? <FaTimes /> : <FaBars />}
           </button>
         </div>
