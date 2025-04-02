@@ -1,28 +1,32 @@
-import Business from "@/components/Business";
-import BusinessSolutions from "@/components/BusinessSolutions";
+"use client";
+import React from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/Hero";
-import Footer from "@/components/Footer";
-import Services from "@/components/Services";
-import Minzuno from "@/components/Minzuno";
-import Contact from "@/components/Contact";
 import StatsSection from "@/components/Stats";
-import YourCompanySection from "@/components/CompanySection";
+import dynamic from "next/dynamic";
+
+const BusinessSolutions = dynamic(() => import("@/components/BusinessSolutions"), { ssr: false });
+const Business = dynamic(() => import("@/components/Business"), { ssr: false });
+const YourCompanySection = dynamic(() => import("@/components/CompanySection"), { ssr: false });
+const Services = dynamic(() => import("@/components/Services"), { ssr: false });
+const Minzuno = dynamic(() => import("@/components/Minzuno"), { ssr: false });
+const Contact = dynamic(() => import("@/components/Contact"), { ssr: false });
+const Footer = dynamic(() => import("@/components/Footer"), { ssr: false });
 
 export default function Home() {
   return (
     <>
-    <Header />
-    <HeroSection/>
-    <hr/>
-    <StatsSection/>
-    <BusinessSolutions/>
-    <Business/>
-    <YourCompanySection/>
-    <Services/>
-    <Minzuno/>
-    <Contact/>
-    <Footer/>
+      <Header />
+      <HeroSection />
+      <hr />
+      <StatsSection />
+      <BusinessSolutions />
+      <Business />
+      <YourCompanySection />
+      <Services />
+      <Minzuno />
+      <Contact />
+      <Footer />
     </>
   );
 }
