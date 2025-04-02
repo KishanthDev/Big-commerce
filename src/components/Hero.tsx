@@ -54,7 +54,7 @@ export default function HeroSection() {
             width={900}
             height={900}
             quality={85} // Higher quality, better compression
-            priority
+            priority={false}
             loading="eager" // Ensures image loads ASAP
           />
         </div>
