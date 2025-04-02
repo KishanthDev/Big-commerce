@@ -51,24 +51,26 @@ const Footer = () => {
 
   return (
     <footer className="bg-blue-900 text-white py-12 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto">
-        {sections.map((section, index) => (
-          <div key={index} className="mb-6 md:mb-0">
-            <button
-              className="w-full flex justify-between items-center text-lg font-bold mb-2 md:mb-4 md:hidden"
-              onClick={() => toggleSection(index)}
-            >
-              {section.title}
-              {openSections[index] ? <FaChevronUp /> : <FaChevronDown />}
-            </button>
-            <h3 className="hidden md:block font-bold text-lg mb-4">{section.title}</h3>
-            <ul className={`space-y-2 ${openSections[index] ? "block " : "hidden"} md:block`}>
-              {section.links.map((link, idx) => (
-                <li key={idx}><Link href="#" className="hover:underline">{link}</Link></li>
-              ))}
-            </ul>
-          </div>
-        ))}
+      <div className="max-w-7xl mx-auto px-4 md:px-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {sections.map((section, index) => (
+            <div key={index} className="mb-6 md:mb-0">
+              <button
+                className="w-full flex justify-between items-center text-lg font-bold mb-2 md:mb-4 md:hidden px-4"
+                onClick={() => toggleSection(index)}
+              >
+                {section.title}
+                {openSections[index] ? <FaChevronUp /> : <FaChevronDown />}
+              </button>
+              <h3 className="hidden md:block font-bold text-lg mb-4 pl-4">{section.title}</h3>
+              <ul className={`space-y-2 pl-4 ${openSections[index] ? "block " : "hidden"} md:block`}>
+                {section.links.map((link, idx) => (
+                  <li key={idx}><Link href="#" className="hover:underline">{link}</Link></li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
 
         <div className="flex justify-center space-x-6 border-t border-gray-600 mt-12 pt-6">
           {[FaFacebookF, FaLinkedinIn, FaYoutube, FaPinterestP, FaInstagram].map((Icon, index) => (
