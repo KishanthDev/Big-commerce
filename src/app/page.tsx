@@ -7,6 +7,7 @@ import Services from "@/components/Services";
 import Minzuno from "@/components/Minzuno";
 import Contact from "@/components/Contact";
 import StatsSection from "@/components/Stats";
+import YourCompanySection from "@/components/CompanySection";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
     <StatsSection/>
     <BusinessSolutions/>
     <Business/>
+    <YourCompanySection/>
     <Services/>
     <Minzuno/>
     <Contact/>
