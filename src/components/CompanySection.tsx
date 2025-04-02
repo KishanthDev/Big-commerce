@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { FaArrowRight } from "react-icons/fa";
+import ImageSlider from "./ImageSlider";
 
 const YourCompanySection = () => {
   return (
@@ -16,6 +17,7 @@ const YourCompanySection = () => {
           VIEW ALL PARTNERS <FaArrowRight />
         </Button>
       </div>
+      <ImageSlider/>
     </section>
   );
 };
