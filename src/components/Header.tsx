@@ -61,7 +61,7 @@ const Header = () => {
               ))}
             </nav>
             <div className="flex items-center space-x-4">
-              <Button variant="default" className="bg-blue-500 hover:bg-blue-600 px-4 py-2 text-sm">
+              <Button variant="blue" className="px-4 py-2 text-sm">
                 REQUEST A DEMO
               </Button>
               <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-gray-700 text-2xl">

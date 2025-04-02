@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 export default function HeroSection() {
   return (
-    <section className="relative flex flex-col md:flex-row items-center justify-between min-h-screen px-8 py-16 lg:px-24 overflow-hidden">
+<section className="relative flex flex-col md:flex-row items-center justify-between min-h-screen px-8 py-24 md:py-16 lg:px-24 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-blue-500/40 via-transparent to-transparent pointer-events-none"></div>
 
       <div className="max-w-2xl text-center md:text-left z-10">
@@ -17,7 +17,7 @@ export default function HeroSection() {
           Think big — and grow bigger — with our flexible, professional-grade ecommerce platform.
         </p>
         <div className="mt-8 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6">
-          <Button className="px-8 py-6 text-xl text-white bg-blue-600 rounded-xl shadow-lg">
+          <Button variant="blue" className="px-8 py-6 text-xl rounded-xl shadow-lg">
             Explore Platform
           </Button>
           <Button variant="outline" className="px-8 py-6 text-xl border-primary text-primary rounded-xl">
