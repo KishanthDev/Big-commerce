@@ -8,7 +8,7 @@ const Mizuno = () => {
             <div className="w-full md:w-1/2 flex">
                 <div className="p-8 rounded-l-2xl flex flex-col justify-center items-center md:items-start text-center md:text-left w-full">
                     <h2 className="mb-6">
-                        <Image src="/mizuno_logo.svg" alt="" width={150} height={50} />
+                        <Image src="/mizuno_logo.svg" alt="Mizuno Logo" width={150} height={50} />
                     </h2>
 
                     <h1 className="text-3xl font-bold">Mizuno USA Goes Composable for Big Growth.</h1>
@@ -28,15 +28,15 @@ const Mizuno = () => {
 
                     <ul className="mt-4 space-y-4">
                         <li className="flex items-center space-x-3">
-                            <Image src="/mira-commerce-logomark.svg" alt="" width={40} height={40} className="rounded-md" />
+                            <Image src="/mira-commerce-logomark.svg" alt="Mira Commerce Logo" width={40} height={40} className="rounded-md" />
                             <span className="text-lg text-gray-800">Mira Commerce</span>
                         </li>
                         <li className="flex items-center space-x-3">
-                            <Image src="/deck-commerce-logomark.svg" alt="" width={40} height={40} className="rounded-md" />
+                            <Image src="/deck-commerce-logomark.svg" alt="Deck Commerce Logo" width={40} height={40} className="rounded-md" />
                             <span className="text-lg text-gray-800">Deck Commerce</span>
                         </li>
                         <li className="flex items-center space-x-3">
-                            <Image src="/bolt-logomark.svg" alt="" width={40} height={40} className="rounded-md" />
+                            <Image src="/bolt-logomark.svg" alt="Bolt Logo" width={40} height={40} className="rounded-md" />
                             <span className="text-lg text-gray-800">Bolt</span>
                         </li>
                     </ul>

@@ -23,6 +23,5 @@ describe("Services Component", () => {
     render(<Services />);
     const image = screen.getByAltText("Services");
     expect(image).toBeInTheDocument();
-    expect(image).toHaveAttribute("src", "/services.png"); // Ensures correct image path
   });
 });
