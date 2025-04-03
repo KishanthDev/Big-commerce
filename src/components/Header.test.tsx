@@ -2,7 +2,6 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import Header from "@/components/Header";
 import "@testing-library/jest-dom";
 
-// Mock Next.js Image component
 jest.mock("next/image", () => ({
   __esModule: true,
   default: (props: any) => <img {...props} />,
@@ -16,18 +15,30 @@ describe("Header Component", () => {
   test("renders header with logo and navigation links", () => {
     render(<Header />);
 
-    // Logo
     expect(screen.getByAltText("Logo")).toBeInTheDocument();
 
-    // Check if navigation links exist
     const navLinks = ["Platform", "Services", "Resources", "Pricing"];
     navLinks.forEach((link) => {
       expect(screen.getByText(link)).toBeInTheDocument();
     });
 
-    // Request a Demo Button
     expect(screen.getByText("REQUEST A DEMO")).toBeInTheDocument();
   });
+
+  test("toggles mobile menu when menu button is clicked", () => {
+    render(<Header />);
+    
+    const menuButton = screen.getByRole("button", { name: "menu" });
+  
+    expect(screen.queryByTestId("mobile-menu")).not.toBeInTheDocument();
+  
+    fireEvent.click(menuButton);
+  
+    expect(screen.getByTestId("mobile-menu")).toBeInTheDocument();
+  });
+  
+  
+  
   
   test("renders dropdown for country selection", () => {
     render(<Header />);

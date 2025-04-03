@@ -68,7 +68,7 @@ const Header = () => {
             ))}
           </div>
           <hr className="border-gray-800 w-full" />
-          <div className="flex flex-col space-y-2">
+          <div data-testid="mobile-menu" className="flex flex-col space-y-2">
             <Link href="#" className="text-gray-700 hover:text-gray-900">Help Center</Link>
             <Link href="#" className="text-gray-700 hover:text-gray-900">Developer Center</Link>
             <span className="text-gray-700">Call Sales: 1-888-248-9325</span>
