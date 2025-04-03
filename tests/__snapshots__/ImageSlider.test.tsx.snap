@@ -1,0 +1,228 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImageSlider Component should match the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="overflow-hidden w-full py-8 relative"
+  >
+    <div
+      class="w-full flex overflow-hidden relative"
+    >
+      <div
+        class="flex space-x-6 min-w-max"
+      >
+        <div
+          class="w-52 h-32 flex-shrink-0 flex items-center justify-center bg-white border border-gray-300 rounded-lg shadow-md p-3"
+        >
+          <img
+            alt="/partner/algolia-logo.svg"
+            class="object-contain"
+            data-nimg="1"
+            decoding="async"
+            height="50"
+            loading="lazy"
+            src="/partner/algolia-logo.svg"
+            style="color: transparent;"
+            width="50"
+          />
+        </div>
+        <div
+          class="w-52 h-32 flex-shrink-0 flex items-center justify-center bg-white border border-gray-300 rounded-lg shadow-md p-3"
+        >
+          <img
+            alt="/partner/bloomreach-logo.svg"
+            class="object-contain"
+            data-nimg="1"
+            decoding="async"
+            height="50"
+            loading="lazy"
+            src="/partner/bloomreach-logo.svg"
+            style="color: transparent;"
+            width="50"
+          />
+        </div>
+        <div
+          class="w-52 h-32 flex-shrink-0 flex items-center justify-center bg-white border border-gray-300 rounded-lg shadow-md p-3"
+        >
+          <img
+            alt="/partner/fdx-logo.svg"
+            class="object-contain"
+            data-nimg="1"
+            decoding="async"
+            height="50"
+            loading="lazy"
+            src="/partner/fdx-logo.svg"
+            style="color: transparent;"
+            width="50"
+          />
+        </div>
+        <div
+          class="w-52 h-32 flex-shrink-0 flex items-center justify-center bg-white border border-gray-300 rounded-lg shadow-md p-3"
+        >
+          <img
+            alt="/partner/klaviyo-logo.svg"
+            class="object-contain"
+            data-nimg="1"
+            decoding="async"
+            height="50"
+            loading="lazy"
+            src="/partner/klaviyo-logo.svg"
+            style="color: transparent;"
+            width="50"
+          />
+        </div>
+        <div
+          class="w-52 h-32 flex-shrink-0 flex items-center justify-center bg-white border border-gray-300 rounded-lg shadow-md p-3"
+        >
+          <img
+            alt="/partner/makeswift-logo.svg"
+            class="object-contain"
+            data-nimg="1"
+            decoding="async"
+            height="50"
+            loading="lazy"
+            src="/partner/makeswift-logo.svg"
+            style="color: transparent;"
+            width="50"
+          />
+        </div>
+        <div
+          class="w-52 h-32 flex-shrink-0 flex items-center justify-center bg-white border border-gray-300 rounded-lg shadow-md p-3"
+        >
+          <img
+            alt="/partner/paypal-logo.svg"
+            class="object-contain"
+            data-nimg="1"
+            decoding="async"
+            height="50"
+            loading="lazy"
+            src="/partner/paypal-logo.svg"
+            style="color: transparent;"
+            width="50"
+          />
+        </div>
+        <div
+          class="w-52 h-32 flex-shrink-0 flex items-center justify-center bg-white border border-gray-300 rounded-lg shadow-md p-3"
+        >
+          <img
+            alt="/partner/stripe-logo.svg"
+            class="object-contain"
+            data-nimg="1"
+            decoding="async"
+            height="50"
+            loading="lazy"
+            src="/partner/stripe-logo.svg"
+            style="color: transparent;"
+            width="50"
+          />
+        </div>
+        <div
+          class="w-52 h-32 flex-shrink-0 flex items-center justify-center bg-white border border-gray-300 rounded-lg shadow-md p-3"
+        >
+          <img
+            alt="/partner/algolia-logo.svg"
+            class="object-contain"
+            data-nimg="1"
+            decoding="async"
+            height="50"
+            loading="lazy"
+            src="/partner/algolia-logo.svg"
+            style="color: transparent;"
+            width="50"
+          />
+        </div>
+        <div
+          class="w-52 h-32 flex-shrink-0 flex items-center justify-center bg-white border border-gray-300 rounded-lg shadow-md p-3"
+        >
+          <img
+            alt="/partner/bloomreach-logo.svg"
+            class="object-contain"
+            data-nimg="1"
+            decoding="async"
+            height="50"
+            loading="lazy"
+            src="/partner/bloomreach-logo.svg"
+            style="color: transparent;"
+            width="50"
+          />
+        </div>
+        <div
+          class="w-52 h-32 flex-shrink-0 flex items-center justify-center bg-white border border-gray-300 rounded-lg shadow-md p-3"
+        >
+          <img
+            alt="/partner/fdx-logo.svg"
+            class="object-contain"
+            data-nimg="1"
+            decoding="async"
+            height="50"
+            loading="lazy"
+            src="/partner/fdx-logo.svg"
+            style="color: transparent;"
+            width="50"
+          />
+        </div>
+        <div
+          class="w-52 h-32 flex-shrink-0 flex items-center justify-center bg-white border border-gray-300 rounded-lg shadow-md p-3"
+        >
+          <img
+            alt="/partner/klaviyo-logo.svg"
+            class="object-contain"
+            data-nimg="1"
+            decoding="async"
+            height="50"
+            loading="lazy"
+            src="/partner/klaviyo-logo.svg"
+            style="color: transparent;"
+            width="50"
+          />
+        </div>
+        <div
+          class="w-52 h-32 flex-shrink-0 flex items-center justify-center bg-white border border-gray-300 rounded-lg shadow-md p-3"
+        >
+          <img
+            alt="/partner/makeswift-logo.svg"
+            class="object-contain"
+            data-nimg="1"
+            decoding="async"
+            height="50"
+            loading="lazy"
+            src="/partner/makeswift-logo.svg"
+            style="color: transparent;"
+            width="50"
+          />
+        </div>
+        <div
+          class="w-52 h-32 flex-shrink-0 flex items-center justify-center bg-white border border-gray-300 rounded-lg shadow-md p-3"
+        >
+          <img
+            alt="/partner/paypal-logo.svg"
+            class="object-contain"
+            data-nimg="1"
+            decoding="async"
+            height="50"
+            loading="lazy"
+            src="/partner/paypal-logo.svg"
+            style="color: transparent;"
+            width="50"
+          />
+        </div>
+        <div
+          class="w-52 h-32 flex-shrink-0 flex items-center justify-center bg-white border border-gray-300 rounded-lg shadow-md p-3"
+        >
+          <img
+            alt="/partner/stripe-logo.svg"
+            class="object-contain"
+            data-nimg="1"
+            decoding="async"
+            height="50"
+            loading="lazy"
+            src="/partner/stripe-logo.svg"
+            style="color: transparent;"
+            width="50"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

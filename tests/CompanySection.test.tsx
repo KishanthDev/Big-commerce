@@ -1,45 +1,33 @@
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import YourCompanySection from "@/components/CompanySection";
+import { render, screen } from '@testing-library/react';
+import YourCompanySection from '@/components/CompanySection';
 
-jest.mock("./ImageSlider", () => {
-    const MockImageSlider = () => <div data-testid="image-slider" />;
-    MockImageSlider.displayName = "MockImageSlider";
-    return MockImageSlider;
-  });
-  
+jest.mock('./ImageSlider', () => () => <div>Mock ImageSlider</div>);
 
-describe("YourCompanySection Component", () => {
-  it("renders heading and description correctly", () => {
+describe('YourCompanySection Component', () => {
+  test('should render the section with correct title and description', () => {
     render(<YourCompanySection />);
 
-    expect(
-      screen.getByText("Your company is in some seriously great company.")
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText("Stack your tech — with total freedom to integrate your preferred partners.")
-    ).toBeInTheDocument();
+    const title = screen.getByText(/Your company is in some seriously great company./i);
+    expect(title).toBeInTheDocument();
+
+    const description = screen.getByText(/Stack your tech — with total freedom to integrate your preferred partners./i);
+    expect(description).toBeInTheDocument();
   });
 
-  it("renders the 'VIEW ALL PARTNERS' button", () => {
+  test('should render the button with correct text and icon', () => {
     render(<YourCompanySection />);
 
-    const button = screen.getByRole("button", { name: /view all partners/i });
-    expect(button).toBeInTheDocument();
+    const buttonText = screen.getByText(/VIEW ALL PARTNERS/i);
+    expect(buttonText).toBeInTheDocument();
+
+    const icon = screen.getByTestId('fa-arrow-right-icon');
+    expect(icon).toBeInTheDocument();
   });
 
-  it("renders the ImageSlider component", () => {
-    render(<YourCompanySection />);
-    
-    expect(screen.getByTestId("image-slider")).toBeInTheDocument();
-  });
-
-  it("triggers button click event", async () => {
+  test('should render the ImageSlider component', () => {
     render(<YourCompanySection />);
 
-    const button = screen.getByRole("button", { name: /view all partners/i });
-
-    await userEvent.click(button);
-    expect(button).toBeInTheDocument(); // Ensures no errors on click
+    const imageSlider = screen.getByText(/Mock ImageSlider/i);
+    expect(imageSlider).toBeInTheDocument();
   });
 });
