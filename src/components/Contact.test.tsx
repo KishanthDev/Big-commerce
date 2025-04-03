@@ -12,7 +12,6 @@ import "@testing-library/jest-dom";
   });
    */
 
-
 describe("Contact Component", () => {
   it("renders the main heading", () => {
     render(<Contact />);
