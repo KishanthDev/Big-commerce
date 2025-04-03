@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Services from "./Services";
+import Services from "@/components/Services";
 import "@testing-library/jest-dom";
 
 describe("Services Component", () => {

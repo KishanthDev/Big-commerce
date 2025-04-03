@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import StatsSection from "./Stats";
+import StatsSection from "@/components/Stats";
 import "@testing-library/jest-dom";
 
 describe("StatsSection Component", () => {

@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import B2BSection from "./B2BSection";
+import B2BSection from "@/components/B2BSection";
 
 describe("B2BSection Component", () => {
   it("renders all headings correctly", () => {

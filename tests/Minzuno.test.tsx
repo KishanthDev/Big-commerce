@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Mizuno from "./Minzuno";
+import Mizuno from "@/components/Minzuno";
 import "@testing-library/jest-dom";
 
 describe("Mizuno Component", () => {

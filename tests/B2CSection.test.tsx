@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import B2CSection from "./B2CSection";
+import B2CSection from "@/components/B2CSection";
 
 describe("B2CSection Component", () => {
   test("renders all B2C cards with correct titles, descriptions, and images", () => {

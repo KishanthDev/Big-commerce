@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Business from "./Business";
+import Business from "@/components/Business";
 
 describe("Business Component", () => {
   test("renders image, heading, description, and button", () => {
