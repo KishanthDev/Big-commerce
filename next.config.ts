@@ -11,9 +11,6 @@ const nextConfig: NextConfig = {
     removeConsole: true, // Removes console.log in production
   },
   reactStrictMode: true,
-  experimental: {
-    optimizeCss: true,
-  }
 };
 
 export default withBundleAnalyzer(nextConfig);
