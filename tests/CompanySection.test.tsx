@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react';
-import YourCompanySection from '@/components/CompanySection';
+import CompanySection from '@/components/CompanySection';
 
-jest.mock('./ImageSlider', () => () => <div>Mock ImageSlider</div>);
+jest.mock('@components/ImageSlider', () => () => <div>Mock ImageSlider</div>);
 
-describe('YourCompanySection Component', () => {
+describe('CompanySection Component', () => {
   test('should render the section with correct title and description', () => {
-    render(<YourCompanySection />);
+    render(<CompanySection />);
 
     const title = screen.getByText(/Your company is in some seriously great company./i);
     expect(title).toBeInTheDocument();
@@ -15,7 +15,7 @@ describe('YourCompanySection Component', () => {
   });
 
   test('should render the button with correct text and icon', () => {
-    render(<YourCompanySection />);
+    render(<CompanySection />);
 
     const buttonText = screen.getByText(/VIEW ALL PARTNERS/i);
     expect(buttonText).toBeInTheDocument();
@@ -25,7 +25,7 @@ describe('YourCompanySection Component', () => {
   });
 
   test('should render the ImageSlider component', () => {
-    render(<YourCompanySection />);
+    render(<CompanySection />);
 
     const imageSlider = screen.getByText(/Mock ImageSlider/i);
     expect(imageSlider).toBeInTheDocument();

@@ -5,6 +5,7 @@ const createJestConfig = nextJest({ dir: './' });
 const customJestConfig = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   moduleNameMapper: {
+    '@components/(.*)': '<rootDir>/src/components/$1',
     '^@/(.*)$': '<rootDir>/src/$1',
     '\\.(css|scss|less)$': 'identity-obj-proxy',
   },
