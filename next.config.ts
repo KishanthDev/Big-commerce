@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
     formats: ["image/webp", "image/avif"],
   },
   compiler: {
-    removeConsole: true, // Removes console.log in production
+    removeConsole: true,
   },
   reactStrictMode: true,
 };
