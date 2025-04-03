@@ -2,7 +2,12 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import YourCompanySection from "@/components/CompanySection";
 
-jest.mock("./ImageSlider", () => () => <div data-testid="image-slider" />);
+jest.mock("./ImageSlider", () => {
+    const MockImageSlider = () => <div data-testid="image-slider" />;
+    MockImageSlider.displayName = "MockImageSlider";
+    return MockImageSlider;
+  });
+  
 
 describe("YourCompanySection Component", () => {
   it("renders heading and description correctly", () => {

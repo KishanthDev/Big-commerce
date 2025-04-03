@@ -2,10 +2,15 @@ import { render, screen } from "@testing-library/react";
 import Contact from "@/components/Contact";
 import "@testing-library/jest-dom";
 
-jest.mock("next/image", () => ({
-    __esModule: true,
-    default: (props: any) => <img {...props} />,
-  }));
+/* jest.mock("next/image", () => {
+    const MockImage = (props: any) => <img {...props} />;
+    MockImage.displayName = "NextImage";
+    return {
+      __esModule: true,
+      default: MockImage,
+    };
+  });
+   */
 
 
 describe("Contact Component", () => {
