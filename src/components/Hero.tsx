@@ -37,7 +37,7 @@ export default function HeroSection() {
             Think big — and grow bigger — with our flexible, professional-grade ecommerce platform.
           </p>
           <div className="mt-8 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6">
-            <Button variant="blue" className="px-8 py-6 text-xl rounded-xl shadow-lg">
+          <Button variant="blue" className="bg-blue-600 text-white hover:bg-blue-700">
               Explore Platform
             </Button>
             <Button variant="outline" className="px-8 py-6 text-xl border-primary text-primary rounded-xl">

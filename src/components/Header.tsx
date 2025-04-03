@@ -16,11 +16,11 @@ const Header = () => {
       transition={{ duration: 0.3, ease: "easeInOut" }}
       className="sticky top-0 left-0 w-full z-50"
     >
-      <div className="hidden md:flex bg-gray-100 text-gray-500 py-2 px-6 justify-end items-center text-sm font-medium shadow-md">
+      <div className="hidden md:flex bg-gray-50 text-gray-800 py-2 px-6 justify-end items-center text-sm font-medium shadow-md">
         <Link href="#" className="hover:text-gray-900 mr-4">Help Center</Link>
         <Link href="#" className="hover:text-gray-900 mr-4">Developer Center</Link>
         <span className="mr-4">Call Sales: 1-888-248-9325</span>
-        <Link href="#" className="hover:text-gray-900 mr-4">Log In</Link>
+        <Link href="#" className="text-gray-700 hover:text-black">Log In</Link>
         <select aria-label="Select country" className="bg-transparent text-gray-700 border-none focus:outline-none">
           <option value="us">🇺🇸 US</option>
           <option value="uk">🇬🇧 UK</option>
@@ -45,7 +45,7 @@ const Header = () => {
           ))}
         </nav>
         <div className="flex items-center space-x-4">
-          <Button variant="blue" className="px-4 py-2 text-sm">
+        <Button variant="blue" className="bg-blue-600 text-white hover:bg-blue-700">
             REQUEST A DEMO
           </Button>
           <button aria-label="menu" onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-gray-700 text-2xl">
