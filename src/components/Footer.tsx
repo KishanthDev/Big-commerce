@@ -127,7 +127,9 @@ const Footer = () => {
                 {section.title}
                 {openSections[index] ? <FaChevronUp /> : <FaChevronDown />}
               </button>
-              <h2 className="hidden md:block font-bold text-xl mb-4 pl-4">
+              <h2
+                data-testid={`section-title-${section.title}`}
+                className="hidden md:block font-bold text-xl mb-4 pl-4">
                 {section.title}
               </h2>
               <ul
