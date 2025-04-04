@@ -14,7 +14,10 @@ const Contact = () => {
             Our numbers speak for themselves (but we'd rather speak with you).  
             Connect with our team, and let's talk about your unique goals.
           </p>
-          <Link href="#" className="bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700">
+          <Link 
+          data-testid="contact-us-main"
+          href="#" 
+          className="bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700">
             Contact Us
           </Link>
         </div>
