@@ -1,4 +1,3 @@
-// e2e/contact-section.spec.ts
 import { test, expect } from "@playwright/test";
 
 test.describe("Contact Section", () => {

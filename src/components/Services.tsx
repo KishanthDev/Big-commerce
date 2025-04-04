@@ -23,7 +23,7 @@ const Services = () => {
       <div className="w-full md:w-1/2 flex">
         <Image
           src="/services.png" 
-          alt="Services"
+          alt="Our expert ecommerce services visual"
           width={600}
           height={600}
           className="rounded-b-2xl md:rounded-r-2xl md:rounded-bl-none object-cover w-full h-auto"
