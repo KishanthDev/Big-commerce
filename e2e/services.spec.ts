@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test.describe("Services Section", () => {
   test("renders all elements correctly", async ({ page }) => {
-    await page.goto("http://localhost:3000"); // ✅ Update if needed
+    await page.goto("http://localhost:3000");
 
     const servicesSection = page.locator("section", { hasText: "Our experts at your service." });
 
@@ -25,6 +25,6 @@ test.describe("Services Section", () => {
 
     await expect(
       servicesSection.getByAltText(/our expert ecommerce services visual/i)
-    ).toBeVisible(); // Make sure the `alt` matches this
+    ).toBeVisible();
   });
 });
