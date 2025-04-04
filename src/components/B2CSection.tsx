@@ -32,13 +32,18 @@ export default function B2CSection() {
       <div className="container mx-auto flex flex-col mt-8 items-center text-center max-w-[1200px]">
         <div className="flex flex-col md:flex-row justify-center items-start w-full gap-8">
           {B2C_CARDS.map((card, index) => (
-            <div key={index} className="flex-1 flex flex-col items-center md:items-start text-left max-w-sm">
+            <div
+              key={index}
+              data-testid="b2c-card"
+              className="flex-1 flex flex-col items-center md:items-start text-left max-w-sm"
+            >
               <div className="w-full">
                 <Image
                   src={card.image}
                   alt={card.alt}
                   width={600}
                   height={600}
+                  loading="eager"
                   className="w-full h-auto rounded-2xl object-cover"
                 />
               </div>
