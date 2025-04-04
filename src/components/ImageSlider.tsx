@@ -18,6 +18,7 @@ const ImageSlider = () => {
 
   return (
     <div
+      data-testid="hover-slider"
       className="overflow-hidden w-full py-8 relative"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
