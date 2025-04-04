@@ -13,7 +13,7 @@ const YourCompanySection = () => {
         Stack your tech — with total freedom to integrate your preferred partners.
       </p>
       <div className="flex justify-center">
-        <Button variant="default" className="mt-6 px-32 py-6 text-white font-semibold rounded-lg sm:rounded-xl shadow-md transition flex items-center gap-2">
+        <Button variant="default" className="mt-6 px-32 py-6 text-black font-semibold rounded-lg sm:rounded-xl shadow-md transition flex items-center gap-2">
           VIEW ALL PARTNERS <FaArrowRight />
         </Button>
       </div>

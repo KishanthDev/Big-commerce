@@ -24,8 +24,9 @@ export default function BusinessSolutions() {
 
         <div className="mt-8 flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-6">
           <Button
-            className={`px-8 py-4 text-xl text-white rounded-xl shadow-lg ${
-              activeSection === "B2B" ? "bg-primary" : "bg-gray-300"
+            variant="outline"
+            className={`px-8 py-4 text-xl rounded-xl shadow-lg ${
+              activeSection === "B2B" ? "bg-gray-300" : "bg-primary"
             }`}
             onClick={() => setActiveSection("B2B")}
           >
@@ -33,8 +34,8 @@ export default function BusinessSolutions() {
           </Button>
           <Button
             variant="outline"
-            className={`px-8 py-4 text-xl border-primary rounded-xl ${
-              activeSection === "B2C" ? "text-white bg-primary" : "text-primary"
+            className={`px-8 py-4 text-xl rounded-xl shadow-lg ${
+              activeSection === "B2C" ? "bg-gray-300" : "bg-primary"
             }`}
             onClick={() => setActiveSection("B2C")}
           >
