@@ -34,7 +34,10 @@ export default function HeroSection() {
             Think big — and grow bigger — with our flexible, professional-grade ecommerce platform.
           </p>
           <div className="mt-8 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6">
-          <Button variant="blue" className="px-8 py-6 text-xl border-primary rounded-xl">
+            <Button
+              variant="blue"
+              className="px-8 py-6 text-xl border-primary rounded-xl"
+            >
               Explore Platform
             </Button>
             <Button variant="outline" className="px-8 py-6 text-xl border-primary text-primary rounded-xl">
@@ -49,9 +52,9 @@ export default function HeroSection() {
             alt="Cube"
             width={900}
             height={900}
-            quality={85} 
+            quality={85}
             priority={false}
-            loading="eager" 
+            loading="eager"
           />
         </div>
       </section>
