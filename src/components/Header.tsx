@@ -38,8 +38,9 @@ const Header = () => {
         className="bg-white dark:bg-blue-950 shadow-md p-4 w-full flex items-center justify-between transition-all"
       >
         <Image src="/logo.png" alt="Logo" width={115} height={115} className="ml-4" />
+
         <nav className="hidden md:flex space-x-6">
-          {["Platform", "Services", "Resources", "Pricing"].map((item) => (
+          {["Home", "Sellers", "Buyers", "Advertising", "Blog", "Contact"].map((item) => (
             <Link
               href="#"
               key={item}
@@ -50,16 +51,22 @@ const Header = () => {
             </Link>
           ))}
         </nav>
-        <div className="flex items-center space-x-4">
+
+        <div className="hidden md:flex items-center space-x-4">
           <Button variant="blue" className="bg-blue-600 text-white hover:bg-blue-700">
-            REQUEST A DEMO
+            Sign Up / Sign In
           </Button>
+          <FullScreenToggle />
+          <DarkModeToggle />
+        </div>
+
+        <div className="md:hidden flex items-center space-x-2">
           <FullScreenToggle />
           <DarkModeToggle />
           <button
             aria-label="menu"
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden text-gray-700 dark:text-white text-2xl"
+            className="text-gray-700 dark:text-white text-2xl"
           >
             {menuOpen ? <FaTimes /> : <FaBars />}
           </button>
@@ -75,7 +82,7 @@ const Header = () => {
           className="md:hidden bg-white dark:bg-blue-950 shadow-md py-4 px-6 flex flex-col space-y-4"
         >
           <div className="flex flex-col space-y-4">
-            {["Platform", "Services", "Resources", "Pricing"].map((item) => (
+            {["Home", "Sellers", "Buyers", "Advertising", "Blog", "Contact"].map((item) => (
               <Link
                 href="#"
                 key={item}
@@ -85,14 +92,22 @@ const Header = () => {
               </Link>
             ))}
           </div>
+
           <hr className="border-gray-800 dark:border-gray-600 w-full" />
+
           <div data-testid="mobile-menu" className="flex flex-col space-y-2">
             <Link href="#" className="text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-300">Help Center</Link>
             <Link href="#" className="text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-300">Developer Center</Link>
             <span className="text-gray-700 dark:text-white">Call Sales: 1-888-248-9325</span>
             <Link href="#" className="text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-300">Log In</Link>
+
+            <Button className="bg-blue-600 text-white hover:bg-blue-700 w-full text-sm">
+              Sign Up / Sign In
+            </Button>
           </div>
+
           <hr className="border-gray-800 dark:border-gray-600 w-full" />
+
           <select
             aria-label="Select country"
             className="bg-background text-foreground border border-border rounded px-2 py-1 focus:outline-none transition-colors"
