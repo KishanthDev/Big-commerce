@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import Header from "@/components/Header";
 import HeroSection from "@/components/Hero";
 import StatsSection from "@/components/Stats";
+import BigCommerceBenefits from "@/components/BigCommerceBenefits";
 
 const BusinessSolutions = dynamic(() => import("@/components/BusinessSolutions"));
 const Business = dynamic(() => import("@/components/Business"));
@@ -28,6 +29,7 @@ export default function Home() {
       <Services />
       <Minzuno />
       <Contact />
+      <BigCommerceBenefits />
       <Footer />
     </>
   );
