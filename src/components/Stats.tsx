@@ -15,12 +15,13 @@ const StatsSection = () => {
   return (
     <section
       data-testid="stats-section"
-      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6 py-12">
+      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6 py-12 bg-white dark:bg-gray-950 transition-colors"
+    >
       {stats.map((item, index) => (
         <div
           data-testid="stat-card"
           key={index}
-          className="flex flex-col items-center text-center border p-6 rounded-lg shadow-lg bg-white"
+          className="flex flex-col items-center text-center border border-gray-200 dark:border-gray-700 p-6 rounded-lg shadow-lg bg-white dark:bg-gray-900 transition-colors"
         >
           {item.img ? (
             <Image
@@ -31,9 +32,9 @@ const StatsSection = () => {
               className="mb-4"
             />
           ) : (
-            <h2 className="text-3xl font-bold">{item.value}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">{item.value}</h2>
           )}
-          <p className="mt-2 text-lg text-gray-900">{item.text}</p>
+          <p className="mt-2 text-lg text-gray-800 dark:text-gray-300">{item.text}</p>
         </div>
       ))}
     </section>
