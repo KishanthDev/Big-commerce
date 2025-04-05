@@ -47,8 +47,12 @@ export default function B2CSection() {
                   className="w-full h-auto rounded-2xl object-cover"
                 />
               </div>
-              <h3 className="text-3xl mt-6 font-bold">{card.title}</h3>
-              <p className="mt-4 text-lg text-gray-700">{card.description}</p>
+              <h3 className="text-3xl mt-6 font-bold text-gray-900 dark:text-white">
+                {card.title}
+              </h3>
+              <p className="mt-4 text-lg text-gray-700 dark:text-gray-300">
+                {card.description}
+              </p>
             </div>
           ))}
         </div>
