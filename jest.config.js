@@ -13,6 +13,8 @@ const customJestConfig = {
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!src/**/*.d.ts'],
   coverageReporters: ['text', 'lcov'],
+  testPathIgnorePatterns: ['/node_modules/', '/tests/e2e/'],
+  testMatch: ['**/__tests__/**/*.test.[jt]s?(x)', '**/?(*.)test.[jt]s?(x)'],
 };
 
 module.exports = createJestConfig(customJestConfig);
