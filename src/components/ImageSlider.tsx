@@ -36,9 +36,15 @@ const ImageSlider = () => {
           {images.concat(images).map((src, index) => (
             <div
               key={index}
-              className="w-52 h-32 flex-shrink-0 flex items-center justify-center bg-white border border-gray-300 rounded-lg shadow-md p-3"
+              className="w-52 h-32 flex-shrink-0 flex items-center justify-center bg-white dark:bg-neutral-800 border border-gray-300 dark:border-neutral-700 rounded-xl shadow-sm p-3 transition-all duration-300"
             >
-              <Image src={src} alt={src} width={50} height={50} className="object-contain" />
+              <Image
+                src={src}
+                alt={src}
+                width={50}
+                height={50}
+                className="object-contain grayscale-[40%] hover:grayscale-0 transition duration-300"
+              />
             </div>
           ))}
         </motion.div>
