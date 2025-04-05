@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { DarkModeToggle } from "./ModeToggle";
+import FullScreenToggle from "./FullScreenToggle";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -53,6 +54,7 @@ const Header = () => {
           <Button variant="blue" className="bg-blue-600 text-white hover:bg-blue-700">
             REQUEST A DEMO
           </Button>
+          <FullScreenToggle />
           <DarkModeToggle />
           <button
             aria-label="menu"
