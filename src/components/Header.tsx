@@ -17,12 +17,12 @@ const Header = () => {
       transition={{ duration: 0.3, ease: "easeInOut" }}
       className="sticky top-0 left-0 w-full z-50"
     >
-      <div className="hidden md:flex bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 py-2 px-6 justify-end items-center text-sm font-medium shadow-md">
+      <div className="hidden md:flex bg-gray-50 dark:bg-blue-900 text-gray-800 dark:text-gray-100 py-2 px-6 justify-end items-center text-sm font-medium shadow-md">
         <Link href="#" className="hover:text-gray-900 dark:hover:text-white mr-4">Help Center</Link>
         <Link href="#" className="hover:text-gray-900 dark:hover:text-white mr-4">Developer Center</Link>
         <span className="mr-4">Call Sales: 1-888-248-9325</span>
-        <Link href="#" className="text-gray-700 dark:text-gray-200 hover:text-black dark:hover:text-white">Log In</Link>
-        <select aria-label="Select country" className="bg-transparent text-gray-700 dark:text-white border-none focus:outline-none">
+        <Link href="#" className="text-gray-700 dark:text-gray-100 hover:text-black dark:hover:text-white">Log In</Link>
+        <select aria-label="Select country" className="bg-transparent text-gray-700 dark:text-white border-none focus:outline-none ml-2">
           <option value="us">🇺🇸 US</option>
           <option value="uk">🇬🇧 UK</option>
           <option value="in">🇮🇳 India</option>
@@ -34,7 +34,7 @@ const Header = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="bg-white dark:bg-gray-950 shadow-md p-4 w-full flex items-center justify-between transition-all"
+        className="bg-white dark:bg-blue-950 shadow-md p-4 w-full flex items-center justify-between transition-all"
       >
         <Image src="/logo.png" alt="Logo" width={115} height={115} className="ml-4" />
         <nav className="hidden md:flex space-x-6">
@@ -70,7 +70,7 @@ const Header = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3 }}
-          className="md:hidden bg-white dark:bg-gray-950 shadow-md py-4 px-6 flex flex-col space-y-4"
+          className="md:hidden bg-white dark:bg-blue-950 shadow-md py-4 px-6 flex flex-col space-y-4"
         >
           <div className="flex flex-col space-y-4">
             {["Platform", "Services", "Resources", "Pricing"].map((item) => (
