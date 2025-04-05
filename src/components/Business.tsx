@@ -1,7 +1,7 @@
-import React from 'react';
-import Image from 'next/image';
-import { Button } from '@/components/ui/button';
-
+"use client";
+import React from "react";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 const Business = () => {
   return (
@@ -17,9 +17,9 @@ const Business = () => {
       </div>
 
       <div className="w-full md:w-1/2 flex">
-        <div className="bg-amber-50 p-8 rounded-b-2xl md:rounded-r-2xl md:rounded-bl-none flex flex-col justify-center items-center md:items-start text-center md:text-left w-full shadow-lg">
-          <h2 className="text-3xl font-bold">SMALL BUSINESS</h2>
-          <p className="mt-4 text-xl text-gray-700 leading-relaxed">
+        <div className="bg-amber-50 dark:bg-[#2a1e14] p-8 rounded-b-2xl md:rounded-r-2xl md:rounded-bl-none flex flex-col justify-center items-center md:items-start text-center md:text-left w-full shadow-lg dark:shadow-none">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-amber-100">SMALL BUSINESS</h2>
+          <p className="mt-4 text-xl text-gray-700 dark:text-amber-200 leading-relaxed">
             Every small business should think big. <br />
             The right tools make the difference.
           </p>
@@ -31,6 +31,5 @@ const Business = () => {
     </section>
   );
 };
-
 
 export default Business;
