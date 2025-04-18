@@ -7,6 +7,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { DarkModeToggle } from "./ModeToggle";
 import FullScreenToggle from "./FullScreenToggle";
+import CategoryButton from "./CategoryButton";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -53,7 +54,8 @@ const Header = () => {
         </nav>
 
         <div className="hidden md:flex items-center space-x-4">
-          <Button variant="blue" className="bg-blue-600 text-white hover:bg-blue-700">
+        <CategoryButton/>
+        <Button variant="blue" className="bg-blue-600 text-white hover:bg-blue-700">
             Sign Up / Sign In
           </Button>
           <FullScreenToggle />
