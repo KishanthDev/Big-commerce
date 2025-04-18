@@ -15,7 +15,6 @@ export default function Breadcrumb({ category, subcategory }: BreadcrumbProps) {
   if (!category) {
     return (
       <nav aria-label="Breadcrumb" className="flex items-center text-sm mb-6">
-        <span className="mx-2 text-gray-400">›</span>
         <span
           className="flex items-center gap-2 text-gray-900 dark:text-white"
           aria-current="page"
@@ -30,7 +29,6 @@ export default function Breadcrumb({ category, subcategory }: BreadcrumbProps) {
   const isCategoryPage = pathname === `/subcategory/${categorySlug}`;
   return (
     <nav aria-label="Breadcrumb" className="flex items-center text-sm mb-6">
-      <span className="mx-2 text-gray-400">›</span>
       <Link
         href="/category"
         className="flex items-center gap-2 hover:underline text-blue-600 dark:text-blue-400"

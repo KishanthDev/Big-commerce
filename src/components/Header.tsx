@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -24,6 +24,19 @@ const Header = ({ onToggleCategory, isCategoryOpen }: HeaderProps) => {
       transition={{ duration: 0.3, ease: "easeInOut" }}
       className="sticky top-0 left-0 w-full z-50"
     >
+      <div className="hidden md:flex bg-gray-50 dark:bg-blue-900 text-gray-800 dark:text-gray-100 py-2 px-6 justify-end items-center text-sm font-medium shadow-md">
+        <Link href="#" className="hover:text-gray-900 dark:hover:text-white mr-4">Help Center</Link>
+        <Link href="#" className="hover:text-gray-900 dark:hover:text-white mr-4">Developer Center</Link>
+        <span className="mr-4">Call Sales: 1-888-248-9325</span>
+        <Link href="#" className="text-gray-700 dark:text-gray-100 hover:text-black dark:hover:text-white">Log In</Link>
+        <select aria-label="Select country" className="bg-transparent text-gray-700 dark:text-white border-none focus:outline-none ml-2">
+          <option value="us">🇺🇸 US</option>
+          <option value="uk">🇬🇧 UK</option>
+          <option value="in">🇮🇳 India</option>
+          <option value="ca">🇨🇦 Canada</option>
+        </select>
+      </div>
+
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -38,7 +51,18 @@ const Header = ({ onToggleCategory, isCategoryOpen }: HeaderProps) => {
           className="ml-4"
         />
 
-        <nav className="hidden md:flex space-x-6"></nav>
+        <nav className="hidden md:flex space-x-6">
+          {["Home", "Sellers", "Buyers", "Advertising", "Blog", "Contact"].map((item) => (
+            <Link
+              href="#"
+              key={item}
+              className="relative flex text-black dark:text-white font-medium transition-all group cursor-pointer"
+            >
+              {item}
+              <span className="absolute left-0 bottom-[-3px] w-full h-[2px] bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            </Link>
+          ))}
+        </nav>
 
         <div className="hidden md:flex items-center space-x-4">
           <LayoutList
@@ -79,14 +103,7 @@ const Header = ({ onToggleCategory, isCategoryOpen }: HeaderProps) => {
           className="md:hidden bg-white dark:bg-blue-950 shadow-md py-4 px-6 flex flex-col space-y-4"
         >
           <div className="flex flex-col space-y-4">
-            {[
-              "Home",
-              "Sellers",
-              "Buyers",
-              "Advertising",
-              "Blog",
-              "Contact",
-            ].map((item) => (
+            {["Home", "Sellers", "Buyers", "Advertising", "Blog", "Contact"].map((item) => (
               <Link
                 href="#"
                 key={item}
@@ -100,27 +117,10 @@ const Header = ({ onToggleCategory, isCategoryOpen }: HeaderProps) => {
           <hr className="border-gray-800 dark:border-gray-600 w-full" />
 
           <div data-testid="mobile-menu" className="flex flex-col space-y-2">
-            <Link
-              href="#"
-              className="text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-300"
-            >
-              Help Center
-            </Link>
-            <Link
-              href="#"
-              className="text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-300"
-            >
-              Developer Center
-            </Link>
-            <span className="text-gray-700 dark:text-white">
-              Call Sales: 1-888-248-9325
-            </span>
-            <Link
-              href="#"
-              className="text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-300"
-            >
-              Log In
-            </Link>
+            <Link href="#" className="text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-300">Help Center</Link>
+            <Link href="#" className="text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-300">Developer Center</Link>
+            <span className="text-gray-700 dark:text-white">Call Sales: 1-888-248-9325</span>
+            <Link href="#" className="text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-300">Log In</Link>
 
             <Button className="bg-blue-600 text-white hover:bg-blue-700 w-full text-sm">
               Sign Up / Sign In
