@@ -11,9 +11,7 @@ import {
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const Footer = () => {
-  const [openSections, setOpenSections] = useState<Record<number, boolean>>(
-    {}
-  );
+  const [openSections, setOpenSections] = useState<Record<number, boolean>>({});
 
   const toggleSection = (index: number) => {
     setOpenSections((prev) => ({
@@ -129,16 +127,22 @@ const Footer = () => {
               </button>
               <h2
                 data-testid={`section-title-${section.title}`}
-                className="hidden md:block font-bold text-xl mb-4 pl-4">
+                className="hidden md:block font-bold text-xl mb-4 pl-4"
+              >
                 {section.title}
               </h2>
               <ul
-                className={`space-y-2 pl-4 ${openSections[index] ? "block " : "hidden"
-                  } md:block`}
+                className={`space-y-2 pl-4 ${
+                  openSections[index] ? "block " : "hidden"
+                } md:block`}
               >
                 {section.links.map((link, idx) => (
                   <li key={idx}>
-                    <Link href="#" data-testid={`link-${link}`} className="hover:underline hover:text-gray-300">
+                    <Link
+                      href="#"
+                      data-testid={`link-${link}`}
+                      className="hover:underline hover:text-gray-300"
+                    >
                       {link}
                     </Link>
                   </li>
@@ -149,11 +153,26 @@ const Footer = () => {
         </div>
 
         <div className="flex justify-center space-x-6 border-t border-gray-600 mt-12 pt-6">
-          <FaFacebookF data-testid="facebook-icon" className="text-2xl cursor-pointer hover:text-gray-400" />
-          <FaLinkedinIn data-testid="linkedin-icon" className="text-2xl cursor-pointer hover:text-gray-400" />
-          <FaYoutube data-testid="youtube-icon" className="text-2xl cursor-pointer hover:text-gray-400" />
-          <FaPinterestP data-testid="pinterest-icon" className="text-2xl cursor-pointer hover:text-gray-400" />
-          <FaInstagram data-testid="instagram-icon" className="text-2xl cursor-pointer hover:text-gray-400" />
+          <FaFacebookF
+            data-testid="facebook-icon"
+            className="text-2xl cursor-pointer hover:text-gray-400"
+          />
+          <FaLinkedinIn
+            data-testid="linkedin-icon"
+            className="text-2xl cursor-pointer hover:text-gray-400"
+          />
+          <FaYoutube
+            data-testid="youtube-icon"
+            className="text-2xl cursor-pointer hover:text-gray-400"
+          />
+          <FaPinterestP
+            data-testid="pinterest-icon"
+            className="text-2xl cursor-pointer hover:text-gray-400"
+          />
+          <FaInstagram
+            data-testid="instagram-icon"
+            className="text-2xl cursor-pointer hover:text-gray-400"
+          />
         </div>
 
         <div className="text-center text-xs mt-6 text-gray-300">

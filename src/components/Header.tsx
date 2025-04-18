@@ -30,10 +30,15 @@ const Header = ({ onToggleCategory, isCategoryOpen }: HeaderProps) => {
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className="bg-white dark:bg-blue-950 shadow-md p-4 w-full flex items-center justify-between transition-all"
       >
-        <Image src="/logo.png" alt="Logo" width={115} height={115} className="ml-4" />
+        <Image
+          src="/logo.png"
+          alt="Logo"
+          width={115}
+          height={115}
+          className="ml-4"
+        />
 
-        <nav className="hidden md:flex space-x-6">
-        </nav>
+        <nav className="hidden md:flex space-x-6"></nav>
 
         <div className="hidden md:flex items-center space-x-4">
           <LayoutList
@@ -42,13 +47,15 @@ const Header = ({ onToggleCategory, isCategoryOpen }: HeaderProps) => {
             } border-blue-500 p-1.5 w-8 h-8 rounded-md cursor-pointer`}
             onClick={onToggleCategory}
           />
-          <Button variant="blue" className="bg-blue-600 text-white hover:bg-blue-700">
+          <Button
+            variant="blue"
+            className="bg-blue-600 text-white hover:bg-blue-700"
+          >
             Sign Up / Sign In
           </Button>
           <FullScreenToggle />
           <DarkModeToggle />
         </div>
-
 
         <div className="md:hidden flex items-center space-x-2">
           <FullScreenToggle />
@@ -72,7 +79,14 @@ const Header = ({ onToggleCategory, isCategoryOpen }: HeaderProps) => {
           className="md:hidden bg-white dark:bg-blue-950 shadow-md py-4 px-6 flex flex-col space-y-4"
         >
           <div className="flex flex-col space-y-4">
-            {["Home", "Sellers", "Buyers", "Advertising", "Blog", "Contact"].map((item) => (
+            {[
+              "Home",
+              "Sellers",
+              "Buyers",
+              "Advertising",
+              "Blog",
+              "Contact",
+            ].map((item) => (
               <Link
                 href="#"
                 key={item}
@@ -86,10 +100,27 @@ const Header = ({ onToggleCategory, isCategoryOpen }: HeaderProps) => {
           <hr className="border-gray-800 dark:border-gray-600 w-full" />
 
           <div data-testid="mobile-menu" className="flex flex-col space-y-2">
-            <Link href="#" className="text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-300">Help Center</Link>
-            <Link href="#" className="text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-300">Developer Center</Link>
-            <span className="text-gray-700 dark:text-white">Call Sales: 1-888-248-9325</span>
-            <Link href="#" className="text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-300">Log In</Link>
+            <Link
+              href="#"
+              className="text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-300"
+            >
+              Help Center
+            </Link>
+            <Link
+              href="#"
+              className="text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-300"
+            >
+              Developer Center
+            </Link>
+            <span className="text-gray-700 dark:text-white">
+              Call Sales: 1-888-248-9325
+            </span>
+            <Link
+              href="#"
+              className="text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-300"
+            >
+              Log In
+            </Link>
 
             <Button className="bg-blue-600 text-white hover:bg-blue-700 w-full text-sm">
               Sign Up / Sign In

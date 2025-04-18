@@ -32,9 +32,13 @@ const StatsSection = () => {
               className="mb-4"
             />
           ) : (
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">{item.value}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+              {item.value}
+            </h2>
           )}
-          <p className="mt-2 text-lg text-gray-800 dark:text-gray-300">{item.text}</p>
+          <p className="mt-2 text-lg text-gray-800 dark:text-gray-300">
+            {item.text}
+          </p>
         </div>
       ))}
     </section>

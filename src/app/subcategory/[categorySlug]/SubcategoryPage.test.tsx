@@ -10,12 +10,24 @@ jest.mock("next/link", () => {
 });
 
 jest.mock("lucide-react", () => ({
-  GridIcon: ({ className, onClick }: { className: string; onClick: () => void }) => (
+  GridIcon: ({
+    className,
+    onClick,
+  }: {
+    className: string;
+    onClick: () => void;
+  }) => (
     <span data-testid="grid-icon" className={className} onClick={onClick}>
       Grid
     </span>
   ),
-  ListIcon: ({ className, onClick }: { className: string; onClick: () => void }) => (
+  ListIcon: ({
+    className,
+    onClick,
+  }: {
+    className: string;
+    onClick: () => void;
+  }) => (
     <span data-testid="list-icon" className={className} onClick={onClick}>
       List
     </span>
@@ -28,9 +40,11 @@ jest.mock("../../lib/slugify", () => ({
 
 // Mock Breadcrumb component
 jest.mock("../../../components/breadcrumb/Breadcrumb", () => {
-  return function Breadcrumb({ category }: { category: any }) {
+  const Breadcrumb = ({ category }: { category: any }) => {
     return <div data-testid="breadcrumb">{category.category}</div>;
   };
+  Breadcrumb.displayName = "Breadcrumb";
+  return Breadcrumb;
 });
 
 describe("SubcategoryPage", () => {
@@ -44,14 +58,7 @@ describe("SubcategoryPage", () => {
 
   const specialCategory = {
     category: "Electronics & Gadgets",
-    subcategories: [
-      { name: "Smart Watches & Bands", businesses: [] },
-    ],
-  };
-
-  const emptyCategory = {
-    category: "Empty Category",
-    subcategories: [],
+    subcategories: [{ name: "Smart Watches & Bands", businesses: [] }],
   };
 
   beforeEach(() => {
@@ -64,7 +71,10 @@ describe("SubcategoryPage", () => {
     expect(links).toHaveLength(2);
     expect(links[0]).toHaveAttribute("href", "/subcategory/electronics/phones");
     expect(links[0]).toHaveTextContent("Phones");
-    expect(links[1]).toHaveAttribute("href", "/subcategory/electronics/laptops");
+    expect(links[1]).toHaveAttribute(
+      "href",
+      "/subcategory/electronics/laptops",
+    );
     expect(links[1]).toHaveTextContent("Laptops");
     expect(slugify).toHaveBeenCalledWith("Electronics");
     expect(slugify).toHaveBeenCalledWith("Phones");
@@ -103,7 +113,7 @@ describe("SubcategoryPage", () => {
     const link = screen.getByRole("link");
     expect(link).toHaveAttribute(
       "href",
-      "/subcategory/electronics-&-gadgets/smart-watches-&-bands"
+      "/subcategory/electronics-&-gadgets/smart-watches-&-bands",
     );
     expect(link).toHaveTextContent("Smart Watches & Bands");
     expect(slugify).toHaveBeenCalledWith("Electronics & Gadgets");
@@ -115,7 +125,9 @@ describe("SubcategoryPage", () => {
     const container = screen.getByRole("list").parentElement;
     expect(container).toHaveClass("dark:bg-black dark:text-white");
     const subcategoryItem = screen.getAllByRole("listitem")[0];
-    expect(subcategoryItem).toHaveClass("dark:border-gray-700 dark:bg-gray-800");
+    expect(subcategoryItem).toHaveClass(
+      "dark:border-gray-700 dark:bg-gray-800",
+    );
     const description = screen.getByText("Browse local Phones businesses");
     expect(description).toHaveClass("dark:text-gray-400");
   });

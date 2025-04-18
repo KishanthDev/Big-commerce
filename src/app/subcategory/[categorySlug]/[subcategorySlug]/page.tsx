@@ -7,6 +7,7 @@ import Breadcrumb from "@/components/breadcrumb/Breadcrumb";
 import { FiltersBar } from "@/components/filter/FiltersBar";
 import { Share2, Heart, Phone, Globe, MapPin } from "lucide-react";
 import StarRating from "@/components/icons/StarRating";
+import Image from "next/image";
 
 export async function generateStaticParams() {
   const params: { categorySlug: string; subcategorySlug: string }[] = [];
@@ -27,9 +28,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { categorySlug: string; subcategorySlug: string };
+  params: Promise<{ categorySlug: string; subcategorySlug: string }>;
 }): Promise<Metadata> {
-  const { categorySlug, subcategorySlug } = params; // No need to await
+  const { categorySlug, subcategorySlug } = await params;
   const category = categoriesData.find(
     (cat: Category) => slugify(cat.category) === categorySlug,
   );
@@ -47,9 +48,9 @@ export async function generateMetadata({
 export default async function SubcategoryBusinessesPage({
   params,
 }: {
-  params: { categorySlug: string; subcategorySlug: string };
+  params: Promise<{ categorySlug: string; subcategorySlug: string }>;
 }) {
-  const { categorySlug, subcategorySlug } = params;
+  const { categorySlug, subcategorySlug } = await params;
 
   const category = categoriesData.find(
     (cat: Category) => slugify(cat.category) === categorySlug,
@@ -98,10 +99,12 @@ export default async function SubcategoryBusinessesPage({
 
               {/* Left: Image */}
               <div className="sm:w-1/3 w-full h-56 sm:h-auto relative">
-                <img
+                <Image
                   src={business.gallery[0]}
                   alt={business.businessName}
                   className="object-cover w-full h-full"
+                  fill
+                  sizes="(max-width: 640px) 100vw, 33vw"
                 />
               </div>
 

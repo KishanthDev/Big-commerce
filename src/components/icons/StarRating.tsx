@@ -17,7 +17,7 @@ const StarRating: FC<StarRatingProps> = ({ rating }) => {
       {/* Full Stars */}
       {Array(fullStars)
         .fill(0)
-        .map((_, i) => (
+        .map(() => (
           <Star
             key={`full-${Math.random()}`}
             className="w-5 h-5 fill-yellow-500 text-yellow-500"
@@ -32,8 +32,11 @@ const StarRating: FC<StarRatingProps> = ({ rating }) => {
       {/* Empty Stars */}
       {Array(emptyStars)
         .fill(0)
-        .map((_, i) => (
-          <Star key={`empty-${Math.random()}`} className="w-5 h-5 text-yellow-500" />
+        .map(() => (
+          <Star
+            key={`empty-${Math.random()}`}
+            className="w-5 h-5 text-yellow-500"
+          />
         ))}
 
       {/* Rating Number */}

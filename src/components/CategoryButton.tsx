@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import SidebarLayout from "@/app/subcategory/layout"; 
+import SidebarLayout from "@/app/subcategory/layout";
 import { LayoutList } from "lucide-react";
-import Categories from "../components/CategoryPage" // assuming you're using lucide-react for the icon
+import Categories from "../components/CategoryPage"; // assuming you're using lucide-react for the icon
 
 const CategoryButton = () => {
   // State to control the visibility of the LayoutList component

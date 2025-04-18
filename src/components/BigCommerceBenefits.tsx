@@ -8,17 +8,20 @@ const benefits = [
   },
   {
     title: "Convert more shoppers.",
-    description: "An industry-leading checkout turns website visitors into customers.",
+    description:
+      "An industry-leading checkout turns website visitors into customers.",
     icon: "🛍️",
   },
   {
     title: "Save on rates.",
-    description: "Preferred payment providers offer competitive rates — and no additional fees.",
+    description:
+      "Preferred payment providers offer competitive rates — and no additional fees.",
     icon: "💲",
   },
   {
     title: "Build your way.",
-    description: "Platform flexibility means you have the freedom to customize.",
+    description:
+      "Platform flexibility means you have the freedom to customize.",
     icon: "⚙️",
   },
   {

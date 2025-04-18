@@ -3,7 +3,6 @@ import { slugify } from "@/app/lib/slugify";
 import categoriesData from "../../data/detailed_categories_with_subcategories.json";
 import Breadcrumb from "./breadcrumb/Breadcrumb";
 
-
 interface Subcategory {
   name: string;
   businesses: any[];

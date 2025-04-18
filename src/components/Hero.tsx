@@ -23,11 +23,17 @@ export default function HeroSection() {
 
         <div className="max-w-2xl text-center md:text-left z-10">
           <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-            It's your future.<br /> Shape it on
-            <span className="text-blue-600 dark:text-blue-400"> your <br />terms.</span>
+            It's your future.
+            <br /> Shape it on
+            <span className="text-blue-600 dark:text-blue-400">
+              {" "}
+              your <br />
+              terms.
+            </span>
           </h1>
           <p className="mt-6 text-xl text-gray-700 dark:text-gray-300">
-            Think big — and grow bigger — with our flexible, professional-grade ecommerce platform.
+            Think big — and grow bigger — with our flexible, professional-grade
+            ecommerce platform.
           </p>
           <div className="mt-8 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6">
             <Button
