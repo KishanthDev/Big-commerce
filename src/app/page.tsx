@@ -16,6 +16,7 @@ const Minzuno = dynamic(() => import("@/components/Minzuno"));
 const Contact = dynamic(() => import("@/components/Contact"));
 const Footer = dynamic(() => import("@/components/Footer"));
 
+///commit
 export default function Home() {
   return (
     <>
