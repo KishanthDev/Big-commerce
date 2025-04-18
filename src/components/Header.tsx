@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -7,10 +7,15 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { DarkModeToggle } from "./ModeToggle";
 import FullScreenToggle from "./FullScreenToggle";
-import CategoryButton from "./CategoryButton";
+import { LayoutList } from "lucide-react";
 
-const Header = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+type HeaderProps = {
+  onToggleCategory: () => void;
+  isCategoryOpen: boolean;
+};
+
+const Header = ({ onToggleCategory, isCategoryOpen }: HeaderProps) => {
+  const [menuOpen, setMenuOpen] = React.useState(false);
 
   return (
     <motion.div
@@ -19,19 +24,6 @@ const Header = () => {
       transition={{ duration: 0.3, ease: "easeInOut" }}
       className="sticky top-0 left-0 w-full z-50"
     >
-      <div className="hidden md:flex bg-gray-50 dark:bg-blue-900 text-gray-800 dark:text-gray-100 py-2 px-6 justify-end items-center text-sm font-medium shadow-md">
-        <Link href="#" className="hover:text-gray-900 dark:hover:text-white mr-4">Help Center</Link>
-        <Link href="#" className="hover:text-gray-900 dark:hover:text-white mr-4">Developer Center</Link>
-        <span className="mr-4">Call Sales: 1-888-248-9325</span>
-        <Link href="#" className="text-gray-700 dark:text-gray-100 hover:text-black dark:hover:text-white">Log In</Link>
-        <select aria-label="Select country" className="bg-transparent text-gray-700 dark:text-white border-none focus:outline-none ml-2">
-          <option value="us">🇺🇸 US</option>
-          <option value="uk">🇬🇧 UK</option>
-          <option value="in">🇮🇳 India</option>
-          <option value="ca">🇨🇦 Canada</option>
-        </select>
-      </div>
-
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -41,26 +33,22 @@ const Header = () => {
         <Image src="/logo.png" alt="Logo" width={115} height={115} className="ml-4" />
 
         <nav className="hidden md:flex space-x-6">
-          {["Home", "Sellers", "Buyers", "Advertising", "Blog", "Contact"].map((item) => (
-            <Link
-              href="#"
-              key={item}
-              className="relative flex text-black dark:text-white font-medium transition-all group cursor-pointer"
-            >
-              {item}
-              <span className="absolute left-0 bottom-[-3px] w-full h-[2px] bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-            </Link>
-          ))}
         </nav>
 
         <div className="hidden md:flex items-center space-x-4">
-        <CategoryButton/>
-        <Button variant="blue" className="bg-blue-600 text-white hover:bg-blue-700">
+          <LayoutList
+            className={`border ${
+              isCategoryOpen ? "bg-blue-800" : "bg-blue-600"
+            } border-blue-500 p-1.5 w-8 h-8 rounded-md cursor-pointer`}
+            onClick={onToggleCategory}
+          />
+          <Button variant="blue" className="bg-blue-600 text-white hover:bg-blue-700">
             Sign Up / Sign In
           </Button>
           <FullScreenToggle />
           <DarkModeToggle />
         </div>
+
 
         <div className="md:hidden flex items-center space-x-2">
           <FullScreenToggle />

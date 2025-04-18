@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { Category, Subcategory } from "@/types/category";
+import { Category, Subcategory } from "../../../types/category";
 import { slugify } from "@/app/lib/slugify";
 import { usePathname } from "next/navigation";
 import { LayoutList } from "lucide-react";
@@ -15,12 +15,6 @@ export default function Breadcrumb({ category, subcategory }: BreadcrumbProps) {
   if (!category) {
     return (
       <nav aria-label="Breadcrumb" className="flex items-center text-sm mb-6">
-        <Link
-          href="/"
-          className="hover:underline text-blue-600 dark:text-blue-400"
-        >
-          🏡 Home
-        </Link>
         <span className="mx-2 text-gray-400">›</span>
         <span
           className="flex items-center gap-2 text-gray-900 dark:text-white"
@@ -36,12 +30,6 @@ export default function Breadcrumb({ category, subcategory }: BreadcrumbProps) {
   const isCategoryPage = pathname === `/subcategory/${categorySlug}`;
   return (
     <nav aria-label="Breadcrumb" className="flex items-center text-sm mb-6">
-      <Link
-        href="/"
-        className="hover:underline text-blue-600 dark:text-blue-400"
-      >
-        🏡 Home
-      </Link>
       <span className="mx-2 text-gray-400">›</span>
       <Link
         href="/category"

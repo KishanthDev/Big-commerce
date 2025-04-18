@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Breadcrumb from './Breadcrumb';
-import { Category, Subcategory } from '@/types/category';
+import { Category, Subcategory } from '../../../types/category';
 import { usePathname } from 'next/navigation';
 
 // Mock next/navigation
