@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,6 +9,7 @@ import { DarkModeToggle } from "./ModeToggle";
 import FullScreenToggle from "./FullScreenToggle";
 import { LayoutList } from "lucide-react";
 import { usePathname } from "next/navigation";
+import styles from "./Link.module.css"
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = React.useState(false);
@@ -58,18 +59,23 @@ const Header = () => {
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className="bg-white dark:bg-blue-950 shadow-md p-4 h-16 w-full flex items-center justify-between transition-all"
       >
-        <Image
-          src="/logo.png"
-          alt="Logo"
-          width={115}
-          height={115}
-          className="ml-4"
-        />
+        <Link href="/">
+          <Image
+            src="/logo.png"
+            alt="Logo"
+            width={115}
+            height={115}
+            className="ml-4"
+          />
+        </Link>
 
-        <nav className="hidden md:flex space-x-6">
+        <nav className="hidden md:flex items-center space-x-6">
           <Link
             href="/"
-            className="text-black dark:text-white font-medium hover:text-blue-500"
+            className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${pathname === "/"
+                ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
+                : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
+              }`}
           >
             Home
           </Link>
@@ -90,8 +96,7 @@ const Header = () => {
         <div className="hidden md:flex items-center space-x-4">
           <Link href={pathname === "/" ? "/categories" : "/"}>
             <LayoutList
-              className={`border ${pathname !== "/" ? "bg-blue-800" : "bg-blue-600"
-                } border-blue-500 p-1.5 w-8 h-8 rounded-md cursor-pointer`}
+              className={`border ${pathname !== "/" ? "bg-blue-800" : "bg-blue-600"} border-blue-500 p-1.5 w-8 h-8 rounded-md cursor-pointer`}
             />
           </Link>
           <Button
@@ -132,21 +137,17 @@ const Header = () => {
             >
               Home
             </Link>
-            {[
-              "Sellers",
-              "Buyers",
-              "Advertising",
-              "Blog",
-              "Contact",
-            ].map((item) => (
-              <Link
-                href="#"
-                key={item}
-                className="text-black dark:text-white font-medium hover:text-blue-500"
-              >
-                {item}
-              </Link>
-            ))}
+            {["Sellers", "Buyers", "Advertising", "Blog", "Contact"].map(
+              (item) => (
+                <Link
+                  href="#"
+                  key={item}
+                  className="text-black dark:text-white font-medium hover:text-blue-500"
+                >
+                  {item}
+                </Link>
+              ),
+            )}
           </div>
 
           <hr className="border-gray-800 dark:border-gray-600 w-full" />
