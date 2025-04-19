@@ -3,8 +3,8 @@ import { Button } from "../ui/button";
 
 export default function Hero() {
   return (
-    <section className="bg-gradient-to-br from-blue-500/40 dark:from-blue-700/30 via-transparent to-transparent text-white py-28">
-      <div className="container mx-auto px-5">
+    <section className="bg-gradient-to-br from-blue-500/40 dark:from-blue-700/30 via-transparent to-transparent text-white p-28">
+      <div className="container mx-auto">
         <div className="flex flex-col md:flex-row items-center gap-10">
           <div className="flex-1">
             <h1 className="text-4xl md:text-5xl text-primary font-bold mb-4">
@@ -23,7 +23,6 @@ export default function Hero() {
             </Button>
           </div>
           <div className="flex-1 bg-gray-200 h-80 rounded-lg flex items-center justify-center text-gray-500">
-            {/* Replace with actual image */}
             <span>Shopping Experience Image</span>
           </div>
         </div>
