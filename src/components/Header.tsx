@@ -67,7 +67,13 @@ const Header = () => {
         />
 
         <nav className="hidden md:flex space-x-6">
-          {["Home", "Sellers", "Buyers", "Advertising", "Blog", "Contact"].map(
+          <Link
+            href="/"
+            className="text-black dark:text-white font-medium hover:text-blue-500"
+          >
+            Home
+          </Link>
+          {["Sellers", "Buyers", "Advertising", "Blog", "Contact"].map(
             (item) => (
               <Link
                 href="#"
@@ -84,9 +90,8 @@ const Header = () => {
         <div className="hidden md:flex items-center space-x-4">
           <Link href={pathname === "/" ? "/categories" : "/"}>
             <LayoutList
-              className={`border ${
-                pathname !== "/" ? "bg-blue-800" : "bg-blue-600"
-              } border-blue-500 p-1.5 w-8 h-8 rounded-md cursor-pointer`}
+              className={`border ${pathname !== "/" ? "bg-blue-800" : "bg-blue-600"
+                } border-blue-500 p-1.5 w-8 h-8 rounded-md cursor-pointer`}
             />
           </Link>
           <Button
@@ -121,8 +126,13 @@ const Header = () => {
           className="md:hidden bg-white dark:bg-blue-950 shadow-md py-4 px-6 flex flex-col space-y-4"
         >
           <div className="flex flex-col space-y-4">
+            <Link
+              href="/"
+              className="text-black dark:text-white font-medium hover:text-blue-500"
+            >
+              Home
+            </Link>
             {[
-              "Home",
               "Sellers",
               "Buyers",
               "Advertising",
