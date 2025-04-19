@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,7 +9,7 @@ import { DarkModeToggle } from "./ModeToggle";
 import FullScreenToggle from "./FullScreenToggle";
 import { LayoutList } from "lucide-react";
 import { usePathname } from "next/navigation";
-import styles from "./Link.module.css"
+import styles from "./Link.module.css";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = React.useState(false);
@@ -72,33 +72,37 @@ const Header = () => {
         <nav className="hidden md:flex items-center space-x-6">
           <Link
             href="/"
-            className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${pathname === "/"
-              ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
-              : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
-              }`}
+            className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
+              pathname === "/"
+                ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
+                : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
+            }`}
           >
             Home
           </Link>
-          {["Sellers", "Buyers", "Advertising", "Blog", "Contact"].map((item) => {
-            const path = `/${item.toLowerCase()}`;
-            const isActive = pathname === path;
+          {["Sellers", "Buyers", "Advertising", "Blog", "Contact"].map(
+            (item) => {
+              const path = `/${item.toLowerCase()}`;
+              const isActive = pathname === path;
 
-            return (
-              <Link
-                href={path}
-                key={item}
-                className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${isActive
-                    ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
-                    : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer relative group`
+              return (
+                <Link
+                  href={path}
+                  key={item}
+                  className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
+                    isActive
+                      ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
+                      : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer relative group`
                   }`}
-              >
-                {item}
-                {!isActive && (
-                  <span className="absolute left-2 right-2 bottom-0 h-[2px] bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                )}
-              </Link>
-            );
-          })}
+                >
+                  {item}
+                  {!isActive && (
+                    <span className="absolute left-2 right-2 bottom-0 h-[2px] bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                  )}
+                </Link>
+              );
+            },
+          )}
         </nav>
 
         <div className="hidden md:flex items-center space-x-4">
@@ -139,35 +143,39 @@ const Header = () => {
           className="md:hidden bg-white dark:bg-blue-950 shadow-md py-4 px-6 flex flex-col space-y-4"
         >
           <div className="flex flex-col space-y-4">
-          <Link
-            href="/"
-            className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${pathname === "/"
-              ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
-              : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
+            <Link
+              href="/"
+              className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
+                pathname === "/"
+                  ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
+                  : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
               }`}
-          >
-            Home
-          </Link>
-            {["Sellers", "Buyers", "Advertising", "Blog", "Contact"].map((item) => {
-            const path = `/${item.toLowerCase()}`;
-            const isActive = pathname === path;
+            >
+              Home
+            </Link>
+            {["Sellers", "Buyers", "Advertising", "Blog", "Contact"].map(
+              (item) => {
+                const path = `/${item.toLowerCase()}`;
+                const isActive = pathname === path;
 
-            return (
-              <Link
-                href={path}
-                key={item}
-                className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${isActive
-                    ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
-                    : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer relative group`
-                  }`}
-              >
-                {item}
-                {!isActive && (
-                  <span className="absolute left-2 right-2 bottom-0 h-[2px] bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                )}
-              </Link>
-            );
-          })}
+                return (
+                  <Link
+                    href={path}
+                    key={item}
+                    className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
+                      isActive
+                        ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
+                        : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer relative group`
+                    }`}
+                  >
+                    {item}
+                    {!isActive && (
+                      <span className="absolute left-2 right-2 bottom-0 h-[2px] bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                    )}
+                  </Link>
+                );
+              },
+            )}
           </div>
 
           <hr className="border-gray-800 dark:border-gray-600 w-full" />

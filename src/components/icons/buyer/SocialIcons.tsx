@@ -1,6 +1,10 @@
-import { SocialIconProps } from '../../../../types/social-icons';
+import { SocialIconProps } from "../../../../types/social-icons";
 
-export function FacebookIcon({ size = 24, color = 'currentColor', ...props }: SocialIconProps) {
+export function FacebookIcon({
+  size = 24,
+  color = "currentColor",
+  ...props
+}: SocialIconProps) {
   return (
     <svg
       width={size}
@@ -15,7 +19,11 @@ export function FacebookIcon({ size = 24, color = 'currentColor', ...props }: So
   );
 }
 
-export function InstagramIcon({ size = 24, color = 'currentColor', ...props }: SocialIconProps) {
+export function InstagramIcon({
+  size = 24,
+  color = "currentColor",
+  ...props
+}: SocialIconProps) {
   return (
     <svg
       width={size}
@@ -30,7 +38,11 @@ export function InstagramIcon({ size = 24, color = 'currentColor', ...props }: S
   );
 }
 
-export function TwitterIcon({ size = 24, color = 'currentColor', ...props }: SocialIconProps) {
+export function TwitterIcon({
+  size = 24,
+  color = "currentColor",
+  ...props
+}: SocialIconProps) {
   return (
     <svg
       width={size}
@@ -45,7 +57,11 @@ export function TwitterIcon({ size = 24, color = 'currentColor', ...props }: Soc
   );
 }
 
-export function YoutubeIcon({ size = 24, color = 'currentColor', ...props }: SocialIconProps) {
+export function YoutubeIcon({
+  size = 24,
+  color = "currentColor",
+  ...props
+}: SocialIconProps) {
   return (
     <svg
       width={size}

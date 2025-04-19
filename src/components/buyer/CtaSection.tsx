@@ -1,12 +1,12 @@
-import { ArrowRight, Play, Check } from 'lucide-react';
+import { ArrowRight, Play, Check } from "lucide-react";
 
 export default function CtaSection() {
   const benefits = [
-    'Free shipping on orders over $30',
-    'Easy returns within 30 days',
-    'Secure payment processing',
-    'Direct communication with sellers',
-    '24/7 customer support'
+    "Free shipping on orders over $30",
+    "Easy returns within 30 days",
+    "Secure payment processing",
+    "Direct communication with sellers",
+    "24/7 customer support",
   ];
 
   return (
@@ -14,9 +14,13 @@ export default function CtaSection() {
       <div className="container mx-auto px-5">
         <div className="flex flex-col lg:flex-row gap-10">
           <div className="lg:w-2/3">
-            <h2 className="text-3xl font-semibold mb-4">Ready to Discover Amazing Products?</h2>
+            <h2 className="text-3xl font-semibold mb-4">
+              Ready to Discover Amazing Products?
+            </h2>
             <p className="text-lg opacity-90 mb-6 max-w-2xl">
-              Join thousands of shoppers finding unique items from independent creators. Start shopping today with our 30-day satisfaction guarantee.
+              Join thousands of shoppers finding unique items from independent
+              creators. Start shopping today with our 30-day satisfaction
+              guarantee.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button className="bg-white dark:bg-gray-300 text-blue-600 px-5 py-3 rounded-md font-medium hover:bg-gray-300 transition flex items-center justify-center">
