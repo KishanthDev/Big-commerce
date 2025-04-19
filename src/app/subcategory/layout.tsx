@@ -25,7 +25,7 @@ export default function SidebarLayout({
     <div className="min-h-screen flex h-[calc(100vh-64px)]">
       <aside className="sticky top-0 h-full w-48 overflow-y-auto border-r border-gray-300 bg-white shadow-md no-scrollbar scroll-smooth dark:border-gray-700 dark:bg-black md:w-64">
         <div className="sticky top-0 z-10 bg-white pb-2 dark:bg-black">
-          <h2 className="px-4 text-xl font-bold tracking-tight md:text-2xl">
+          <h2 className="px-4 pt-4 text-xl font-bold tracking-tight md:text-2xl">
             Categories
           </h2>
         </div>

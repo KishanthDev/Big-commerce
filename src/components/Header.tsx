@@ -8,14 +8,12 @@ import { motion } from "framer-motion";
 import { DarkModeToggle } from "./ModeToggle";
 import FullScreenToggle from "./FullScreenToggle";
 import { LayoutList } from "lucide-react";
+import { usePathname } from "next/navigation";
 
-type HeaderProps = {
-  onToggleCategory: () => void;
-  isCategoryOpen: boolean;
-};
 
-const Header = ({ onToggleCategory, isCategoryOpen }: HeaderProps) => {
+const Header = () => {
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const pathname = usePathname()
 
   return (
     <motion.div
@@ -65,12 +63,13 @@ const Header = ({ onToggleCategory, isCategoryOpen }: HeaderProps) => {
         </nav>
 
         <div className="hidden md:flex items-center space-x-4">
-          <LayoutList
-            className={`border ${
-              isCategoryOpen ? "bg-blue-800" : "bg-blue-600"
-            } border-blue-500 p-1.5 w-8 h-8 rounded-md cursor-pointer`}
-            onClick={onToggleCategory}
+          <Link href={pathname==="/"?"/categories":"/"}>
+          <LayoutList 
+          className={`border ${
+            pathname!=="/" ? "bg-blue-800" : "bg-blue-600"
+          } border-blue-500 p-1.5 w-8 h-8 rounded-md cursor-pointer`} 
           />
+          </Link>
           <Button
             variant="blue"
             className="bg-blue-600 text-white hover:bg-blue-700"
