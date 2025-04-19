@@ -58,7 +58,7 @@ export default function SidebarLayout({
                     }`}
                 >
                   <Link
-                    className="flex-1 min-h-[44px] flex items-center"
+                    className="flex-1 min-h-[40px] flex items-center"
                     href={`/subcategory/${categorySlug}`}
                     onClick={(e) => e.stopPropagation()}
                   >
