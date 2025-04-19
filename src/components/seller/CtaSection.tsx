@@ -2,11 +2,11 @@ import { ArrowRight, Play, Check } from 'lucide-react';
 
 export default function CtaSection() {
   const benefits = [
-    'Free shipping on orders over $30',
-    'Easy returns within 30 days',
+    'No commision fees',
+    'Easy-to-use dashboard',
+    'local customers targeting',
     'Secure payment processing',
-    'Direct communication with sellers',
-    '24/7 customer support'
+    '24/7 seller support'
   ];
 
   return (
@@ -16,13 +16,13 @@ export default function CtaSection() {
           <div className="lg:w-2/3">
             <h2 className="text-3xl font-semibold mb-4">Ready to Discover Amazing Products?</h2>
             <p className="text-lg opacity-90 mb-6 max-w-2xl">
-              Join thousands of shoppers finding unique items from independent creators. Start shopping today with our 30-day satisfaction guarantee.
+              Join thousands of sellers who are thriving on our platform.Start selling today with our risk-free 30-day trail
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button className="bg-white dark:bg-gray-300 text-blue-600 px-5 py-3 rounded-md font-medium hover:bg-gray-300 transition flex items-center justify-center">
-                Start Shopping Today <ArrowRight className="w-4 h-4 ml-2" />
+                Start Selling Today <ArrowRight className="w-4 h-4 ml-2" />
               </button>
-              <button className="bg-transparent border border-white px-5 py-3 rounded-md font-medium dark:hover:bg-gray-600 hover:bg-gary-300 hover:bg-opacity-10 transition flex items-center justify-center">
+              <button className="bg-transparent border border-white px-5 py-3 rounded-md font-medium dark:hover:bg-gray-600 hover:bg-gray-300 hover:bg-opacity-10 transition flex items-center justify-center">
                 <Play className="w-4 h-4 mr-2" /> Watch Demo
               </button>
             </div>
