@@ -73,24 +73,32 @@ const Header = () => {
           <Link
             href="/"
             className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${pathname === "/"
-                ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
-                : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
+              ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
+              : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
               }`}
           >
             Home
           </Link>
-          {["Sellers", "Buyers", "Advertising", "Blog", "Contact"].map(
-            (item) => (
+          {["Sellers", "Buyers", "Advertising", "Blog", "Contact"].map((item) => {
+            const path = `/${item.toLowerCase()}`;
+            const isActive = pathname === path;
+
+            return (
               <Link
-                href="#"
+                href={path}
                 key={item}
-                className="relative flex text-black dark:text-white font-medium transition-all group cursor-pointer"
+                className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${isActive
+                    ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
+                    : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer relative group`
+                  }`}
               >
                 {item}
-                <span className="absolute left-0 bottom-[-3px] w-full h-[2px] bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                {!isActive && (
+                  <span className="absolute left-2 right-2 bottom-0 h-[2px] bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                )}
               </Link>
-            ),
-          )}
+            );
+          })}
         </nav>
 
         <div className="hidden md:flex items-center space-x-4">
