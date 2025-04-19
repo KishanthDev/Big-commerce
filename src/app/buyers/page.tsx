@@ -1,4 +1,3 @@
-import Header from '../../components/buyer/Header';
 import Hero from '../../components/buyer/Hero';
 import WhyShop from '../../components/buyer/WhyShop';
 import HowItWorks from '../../components/buyer/HowItWorks';
