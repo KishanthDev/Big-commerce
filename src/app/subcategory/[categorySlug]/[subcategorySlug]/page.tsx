@@ -64,7 +64,7 @@ export default async function SubcategoryBusinessesPage({
   }
 
   return (
-    <div className="min-h-screen p-5 bg-gray-100 dark:bg-black">
+    <div className="h-[calc(100vh-100px)] p-5 bg-gray-100 dark:bg-black">
       <Breadcrumb category={category} subcategory={subcategory} />
       <h1 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
         {subcategory.name} Businesses in {category.category}

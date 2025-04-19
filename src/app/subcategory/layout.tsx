@@ -22,7 +22,7 @@ export default function SidebarLayout({
   };
 
   return (
-    <div className="flex h-[calc(100vh-65px)]">
+    <div className="flex h-[calc(100vh-100px)]">
       <aside className="sticky top-0 h-full w-48 overflow-y-auto border-r border-gray-300 bg-white shadow-md scrollbar-hide scroll-smooth dark:border-gray-700 dark:bg-black md:w-64">
         <div className="sticky top-0 z-10 bg-white pb-2 dark:bg-black">
           <h2 className="px-4 pt-4 text-xl font-bold tracking-tight md:text-2xl">
