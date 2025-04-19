@@ -76,9 +76,7 @@ export default function SidebarLayout({
                   )}
                 </div>
                 {isOpen && category.subcategories.length > 0 && (
-                  <ul
-                    className="animate-slideDown ml-4 mt-1 space-y-1 animateSlideDown"
-                  >
+                  <ul className="animate-slideDown ml-4 mt-1 space-y-1 animateSlideDown">
                     {category.subcategories.map((subcategory, subIndex) => {
                       const subcategorySlug = slugify(subcategory.name);
                       const isSubActive = pathname.includes(
