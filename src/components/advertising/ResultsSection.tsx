@@ -1,31 +1,7 @@
+import advertising from "../../../data/advertising.json"
+
 export default function ResultsSection() {
-    const stats = [
-      { number: "85%", label: "Average increase in store visits" },
-      { number: "63%", label: "Boost in product views" },
-      { number: "47%", label: "Growth in monthly sales" },
-    ];
-  
-    const testimonials = [
-      {
-        text: `"Our banner ads generated more traffic in one month than we'd seen in the previous quarter. The ROI has been incredible for our small business."`,
-        author: "Jane Davis",
-        company: "Woodland Crafts",
-        avatar: "JD",
-      },
-      {
-        text: `"Being featured as a spotlight store increased our customer base by 40%. The exposure to new buyers has transformed our business."`,
-        author: "Michael Rodriguez",
-        company: "Modern Threads",
-        avatar: "MR",
-      },
-      {
-        text: `"Sponsored listings have been a game changer. Our products now reach buyers who might never have found us otherwise."`,
-        author: "Sarah Lin",
-        company: "Tech Innovations",
-        avatar: "SL",
-      },
-    ];
-  
+    const { stats, testimonials } = advertising;
     return (
       <section className="bg-white dark:bg-black py-20">
         <div className="container mx-auto px-5">

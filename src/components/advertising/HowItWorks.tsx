@@ -1,25 +1,7 @@
+import advertising from "../../../data/advertising.json"
+
 export default function HowItWorks() {
-    const steps = [
-      {
-        number: "1",
-        title: "Choose Your Plan",
-        description:
-          "Select the advertising option that best fits your goals and budget.",
-      },
-      {
-        number: "2",
-        title: "Set Up Your Campaign",
-        description:
-          "Upload your creative assets or work with our team to create effective ads.",
-      },
-      {
-        number: "3",
-        title: "Track Results",
-        description:
-          "Monitor performance using our detailed analytics dashboard and optimize as needed.",
-      },
-    ];
-  
+    const {steps} = advertising
     return (
       <section className="bg-gray-50 dark:bg-black py-16">
         <div className="container mx-auto px-5">

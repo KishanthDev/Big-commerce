@@ -1,0 +1,85 @@
+{
+    "stats": [
+      { "number": "85%", "label": "Average increase in store visits" },
+      { "number": "63%", "label": "Boost in product views" },
+      { "number": "47%", "label": "Growth in monthly sales" }
+    ],
+    "testimonials": [
+      {
+        "text": "Our banner ads generated more traffic in one month than we'd seen in the previous quarter. The ROI has been incredible for our small business.",
+        "author": "Jane Davis",
+        "company": "Woodland Crafts",
+        "avatar": "JD"
+      },
+      {
+        "text": "Being featured as a spotlight store increased our customer base by 40%. The exposure to new buyers has transformed our business.",
+        "author": "Michael Rodriguez",
+        "company": "Modern Threads",
+        "avatar": "MR"
+      },
+      {
+        "text": "Sponsored listings have been a game changer. Our products now reach buyers who might never have found us otherwise.",
+        "author": "Sarah Lin",
+        "company": "Tech Innovations",
+        "avatar": "SL"
+      }
+    ],
+    "adOptions":[{
+        "icon": "📢",
+        "title": "Banner Ads",
+        "description":
+          "Display your ad on our homepage or category pages. Catch buyers' attention with visually appealing banners.",
+        "price": "$299",
+        "features": [
+          "Premium placement on high-traffic pages",
+          "Custom banner design assistance",
+          "Performance analytics dashboard"
+        ]
+      },
+      {
+        "icon": "🔝",
+        "title": "Sponsored Listings",
+        "description":
+          "Feature your products at the top of search results. Boost visibility for your most popular items.",
+        "price": "$199",
+        "features": [
+          "Priority placement in search results",
+          "Highlight up to 10 products",
+          "Detailed click and conversion tracking"
+        ]
+      },
+      {
+        "icon": "🌟",
+        "title": "Featured Stores",
+        "description":
+          "Get a spotlight on our Sellers page. Showcase your entire store to potential customers.",
+        "price": "$349",
+        "features": [
+          "Featured placement on Sellers page",
+          "Social media promotion",
+          "Store spotlight in weekly newsletter"
+        ]
+      }
+    ],
+    "steps":[
+        {
+          "number": "1",
+          "title": "Choose Your Plan",
+          "description":
+            "Select the advertising option that best fits your goals and budget."
+        },
+        {
+          "number": "2",
+          "title": "Set Up Your Campaign",
+          "description":
+            "Upload your creative assets or work with our team to create effective ads."
+        },
+        {
+          "number": "3",
+          "title": "Track Results",
+          "description":
+            "Monitor performance using our detailed analytics dashboard and optimize as needed."
+        }
+      ]    
+  }
+  
