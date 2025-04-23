@@ -29,6 +29,10 @@ export async function generateMetadata({
     title: foundCategory
       ? `${foundCategory.category} Subcategories`
       : "Category Not Found",
+    description: foundCategory
+      ? `SubCategory was found ${foundCategory.category}.`
+      : "Category not found",
+
   };
 }
 

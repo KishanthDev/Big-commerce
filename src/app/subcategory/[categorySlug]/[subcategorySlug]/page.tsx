@@ -42,6 +42,10 @@ export async function generateMetadata({
     title: subcategory
       ? `${subcategory.name} Businesses - ${category!.category}`
       : "Businesses Not Found",
+    description: subcategory
+      ? `Discover the best ${subcategory.name} businesses in ${category!.category}.`
+      : "Browse top-rated local businesses near you.",
+
   };
 }
 
