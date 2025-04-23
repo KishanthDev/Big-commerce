@@ -13,9 +13,11 @@ import { FiSearch, FiMapPin, FiChevronDown, FiX } from "react-icons/fi";
 export default function LocationModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedLocation, setSelectedLocation] = useState("");
+  const [pincode, setPincode] = useState("");
 
   const handleSelectLocation = () => {
-    setSelectedLocation("Bengaluru, 560072");
+    setSelectedLocation("Bengaluru");
+    setPincode("560072");
     onClose();
   };
 
@@ -27,6 +29,11 @@ export default function LocationModal() {
         className="text-sm font-medium flex items-center gap-1 px-3 py-2"
       >
         {selectedLocation || "Select Location"}
+        {selectedLocation && pincode && (
+          <span className="text-xs text-gray-500 dark:text-gray-300 ml-1">
+            {pincode}
+          </span>
+        )}
         <FiChevronDown className="h-4 w-4" />
       </Button>
 
@@ -66,27 +73,23 @@ export default function LocationModal() {
                 </div>
               </ModalHeader>
 
-              <ModalBody className="py-4 px-0">
+              <ModalBody className="py-4 px-0 space-y-1">
+
                 <div
-                  className="flex items-center gap-2 mb-4 cursor-pointer"
+                  className="flex items-center gap-2 cursor-pointer text-sm text-red-500"
                   onClick={handleSelectLocation}
                 >
-                  <FiMapPin className="text-red-500 h-5 w-5" />
-                  <span className="font-medium text-red-500 text-sm sm:text-base">
-                    Current Location
-                  </span>
+                  <FiMapPin className="h-4 w-4" />
+                  <span className="font-medium">Current Location</span>
                 </div>
-
-                <div className="space-y-3 text-sm sm:text-base text-gray-800 dark:text-gray-200 pl-7">
-                  <p className="flex items-center gap-2">
-                    <span className="font-semibold min-w-[60px]">City:</span>
-                    <span>Bengaluru</span>
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <span className="font-semibold min-w-[60px]">Pincode:</span>
-                    <span>560072</span>
-                  </p>
+                <div className="pl-6 text-xl font-semibold text-gray-900 dark:text-white">
+                  Bengaluru
                 </div>
+                {pincode && (
+                  <div className="text-xs text-gray-700 dark:text-gray-300 pl-6">
+                    {pincode}
+                  </div>
+                )}
               </ModalBody>
             </>
           )}
