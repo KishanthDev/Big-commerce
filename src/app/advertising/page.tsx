@@ -1,4 +1,5 @@
 import AdOptions from '@/components/advertising/AdOptions'
+import CTA from '@/components/advertising/Cta'
 import Hero from '@/components/advertising/Hero'
 import HowItWorks from '@/components/advertising/HowItWorks'
 import ResultsSection from '@/components/advertising/ResultsSection'
@@ -11,6 +12,7 @@ function page() {
         <AdOptions/>
         <HowItWorks/>
         <ResultsSection/>
+        <CTA/>
     </div>
   )
 }
