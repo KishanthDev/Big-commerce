@@ -10,6 +10,7 @@ import FullScreenToggle from "./FullScreenToggle";
 import { LayoutList } from "lucide-react";
 import { usePathname } from "next/navigation";
 import styles from "./Link.module.css";
+import LocationModal from "./LocationModal";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = React.useState(false);
@@ -104,6 +105,7 @@ const Header = () => {
             },
           )}
         </nav>
+        <LocationModal/>
 
         <div className="hidden md:flex items-center space-x-4">
           <Link href={pathname === "/" ? "/categories" : "/"}>
