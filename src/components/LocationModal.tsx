@@ -1,11 +1,11 @@
 "use client";
 import React, { useState } from "react";
+import { Button } from "./ui/button";
 import {
   Modal,
   ModalBody,
   ModalContent,
   ModalHeader,
-  Button,
   useDisclosure,
 } from "@heroui/react";
 import { FiSearch, FiMapPin, FiChevronDown, FiX } from "react-icons/fi";
@@ -25,7 +25,6 @@ export default function LocationModal() {
     <>
       <Button
         onClick={onOpen}
-        variant="flat"
         className="text-sm font-medium flex items-center gap-1 px-3 py-2"
       >
         {selectedLocation || "Select Location"}
@@ -52,9 +51,7 @@ export default function LocationModal() {
                 <div className="flex justify-between items-center w-full">
                   <span className="text-base sm:text-lg font-semibold">Your Location</span>
                   <Button
-                    isIconOnly
                     size="sm"
-                    variant="light"
                     onClick={onClose}
                     aria-label="Close"
                     className="rounded-full bg-gray-200 dark:bg-red-500 text-gray-600 dark:text-white w-6 h-6 min-w-6"
