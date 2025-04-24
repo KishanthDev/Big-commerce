@@ -9,13 +9,13 @@ describe("CTA Component", () => {
 
   test("renders the main heading", () => {
     expect(
-      screen.getByRole("heading", { name: /advertise your store/i })
+      screen.getByRole("heading", { name: /advertise your store/i }),
     ).toBeInTheDocument();
   });
 
   test("renders the supporting paragraph", () => {
     expect(
-      screen.getByText(/Join hundreds of successful sellers/i)
+      screen.getByText(/Join hundreds of successful sellers/i),
     ).toBeInTheDocument();
   });
 

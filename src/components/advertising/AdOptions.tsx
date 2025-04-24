@@ -1,7 +1,7 @@
-import advertising from "../../../data/advertising.json"
+import advertising from "../../../data/advertising.json";
 
 export default function AdOptions() {
-    const {adOptions} = advertising
+  const { adOptions } = advertising;
   return (
     <section className="bg-gray-50 dark:bg-black py-20">
       <div className="container mx-auto px-5">
@@ -30,8 +30,12 @@ export default function AdOptions() {
               <div className="text-left w-full space-y-3 mb-6">
                 {option.features.map((feature, i) => (
                   <div key={i} className="flex items-start gap-2">
-                    <span className="text-green-600 dark:text-green-400 text-lg">✓</span>
-                    <span className="text-gray-700 dark:text-gray-200 text-sm">{feature}</span>
+                    <span className="text-green-600 dark:text-green-400 text-lg">
+                      ✓
+                    </span>
+                    <span className="text-gray-700 dark:text-gray-200 text-sm">
+                      {feature}
+                    </span>
                   </div>
                 ))}
               </div>

@@ -11,13 +11,13 @@ describe("Hero Component", () => {
     expect(
       screen.getByRole("heading", {
         name: /Promote Your Store to Thousands of Buyers/i,
-      })
+      }),
     ).toBeInTheDocument();
   });
 
   test("renders the description paragraph", () => {
     expect(
-      screen.getByText(/Get noticed with our affordable advertising options/i)
+      screen.getByText(/Get noticed with our affordable advertising options/i),
     ).toBeInTheDocument();
   });
 
@@ -29,9 +29,7 @@ describe("Hero Component", () => {
   });
 
   test("renders the campaign image placeholder", () => {
-    expect(
-      screen.getByText(/Advertising Campaign Image/i)
-    ).toBeInTheDocument();
+    expect(screen.getByText(/Advertising Campaign Image/i)).toBeInTheDocument();
   });
 
   test("renders the arrow icon inside the button", () => {

@@ -32,7 +32,6 @@ export default function Breadcrumb({ category, subcategory }: BreadcrumbProps) {
 
   return (
     <nav aria-label="Breadcrumb" className="flex items-center text-sm mb-6">
-     
       <Link
         href="/categories"
         className="flex items-center gap-2 hover:underline text-blue-600 dark:text-blue-400"

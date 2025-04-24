@@ -32,7 +32,6 @@ export async function generateMetadata({
     description: foundCategory
       ? `SubCategory was found ${foundCategory.category}.`
       : "Category not found",
-
   };
 }
 

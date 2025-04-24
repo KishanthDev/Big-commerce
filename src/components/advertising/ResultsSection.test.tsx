@@ -38,7 +38,7 @@ describe("ResultsSection Component", () => {
 
   test("renders section title", () => {
     expect(
-      screen.getByRole("heading", { name: /Results Our Advertisers See/i })
+      screen.getByRole("heading", { name: /Results Our Advertisers See/i }),
     ).toBeInTheDocument();
   });
 
@@ -53,19 +53,19 @@ describe("ResultsSection Component", () => {
 
   test("renders all testimonials with text, author, and company", () => {
     expect(
-      screen.getByText(/We saw amazing growth in traffic and sales/i)
+      screen.getByText(/We saw amazing growth in traffic and sales/i),
     ).toBeInTheDocument();
     expect(screen.getByText("Alice Doe")).toBeInTheDocument();
     expect(screen.getByText("Trendify")).toBeInTheDocument();
 
     expect(
-      screen.getByText(/Highly recommend MarketHub's ad services/i)
+      screen.getByText(/Highly recommend MarketHub's ad services/i),
     ).toBeInTheDocument();
     expect(screen.getByText("Bob Smith")).toBeInTheDocument();
     expect(screen.getByText("ShopMore")).toBeInTheDocument();
 
     expect(
-      screen.getByText(/Easy to set up and the results were almost immediate/i)
+      screen.getByText(/Easy to set up and the results were almost immediate/i),
     ).toBeInTheDocument();
     expect(screen.getByText("Cathy Wu")).toBeInTheDocument();
     expect(screen.getByText("GadgetPro")).toBeInTheDocument();

@@ -17,14 +17,23 @@ jest.mock("../../../data/advertising.json", () => ({
       title: "Pro Ad",
       description: "For serious sellers",
       price: "$25",
-      features: ["3 featured listings", "2 weeks duration", "Priority placement"],
+      features: [
+        "3 featured listings",
+        "2 weeks duration",
+        "Priority placement",
+      ],
     },
     {
       icon: "🚀",
       title: "Elite Ad",
       description: "Maximum visibility",
       price: "$50",
-      features: ["Unlimited listings", "1 month duration", "Top placement", "Social media shoutout"],
+      features: [
+        "Unlimited listings",
+        "1 month duration",
+        "Top placement",
+        "Social media shoutout",
+      ],
     },
   ],
 }));
@@ -36,7 +45,7 @@ describe("AdOptions Component", () => {
 
   test("renders section heading", () => {
     expect(
-      screen.getByRole("heading", { name: /advertising options/i })
+      screen.getByRole("heading", { name: /advertising options/i }),
     ).toBeInTheDocument();
   });
 

@@ -49,7 +49,9 @@ export default function LocationModal() {
             <>
               <ModalHeader className="flex flex-col gap-4 border-b border-gray-200 dark:border-gray-700 p-0 pb-4">
                 <div className="flex justify-between items-center w-full">
-                  <span className="text-base sm:text-lg font-semibold">Your Location</span>
+                  <span className="text-base sm:text-lg font-semibold">
+                    Your Location
+                  </span>
                   <Button
                     size="sm"
                     onClick={onClose}
@@ -71,7 +73,6 @@ export default function LocationModal() {
               </ModalHeader>
 
               <ModalBody className="py-4 px-0 space-y-1">
-
                 <div
                   className="flex items-center gap-2 cursor-pointer text-sm text-red-500"
                   onClick={handleSelectLocation}

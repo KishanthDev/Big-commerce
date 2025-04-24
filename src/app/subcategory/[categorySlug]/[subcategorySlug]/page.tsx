@@ -45,7 +45,6 @@ export async function generateMetadata({
     description: subcategory
       ? `Discover the best ${subcategory.name} businesses in ${category!.category}.`
       : "Browse top-rated local businesses near you.",
-
   };
 }
 

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { ThemeProvider } from "@/components/theme-provider";
 import { HeroUIProvider } from "@heroui/react";
 import Header from "@/components/header/Header";

@@ -2,7 +2,6 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import Footer from "@/components/footer/Footer";
 import "@testing-library/jest-dom";
 
-
 jest.mock("react-icons/fa", () => ({
   FaFacebookF: () => <svg data-testid="facebook-icon" />,
   FaLinkedinIn: () => <svg data-testid="linkedin-icon" />,
@@ -86,7 +85,7 @@ describe("Footer Component", () => {
   it("renders the copyright text", () => {
     render(<Footer />);
     expect(
-      screen.getByText(/© Copyright 2003 - 2025 BigCommerce Pty. Ltd./i)
+      screen.getByText(/© Copyright 2003 - 2025 BigCommerce Pty. Ltd./i),
     ).toBeInTheDocument();
   });
 
@@ -103,7 +102,9 @@ describe("Footer Component", () => {
     ];
 
     links.forEach((link) => {
-      expect(screen.getByRole("link", { name: new RegExp(link, "i") })).toBeInTheDocument();
+      expect(
+        screen.getByRole("link", { name: new RegExp(link, "i") }),
+      ).toBeInTheDocument();
     });
   });
 

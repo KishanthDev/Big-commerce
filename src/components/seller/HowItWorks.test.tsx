@@ -9,7 +9,7 @@ describe("HowItWorks component", () => {
 
   test("renders section heading", () => {
     expect(
-      screen.getByRole("heading", { name: /How It Works: 3 Simple Steps/i })
+      screen.getByRole("heading", { name: /How It Works: 3 Simple Steps/i }),
     ).toBeInTheDocument();
   });
 

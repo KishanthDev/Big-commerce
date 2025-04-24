@@ -1,10 +1,13 @@
-import { ArrowRight,Play,Check } from "lucide-react";
+import { ArrowRight, Play, Check } from "lucide-react";
 interface CtaSectionProps {
   onShopClick?: () => void;
   onDemoClick?: () => void;
 }
 
-export default function CtaSection({ onShopClick, onDemoClick }: CtaSectionProps) {
+export default function CtaSection({
+  onShopClick,
+  onDemoClick,
+}: CtaSectionProps) {
   const benefits = [
     "Free shipping on orders over $30",
     "Easy returns within 30 days",
@@ -27,13 +30,13 @@ export default function CtaSection({ onShopClick, onDemoClick }: CtaSectionProps
               guarantee.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button 
+              <button
                 onClick={onShopClick}
                 className="bg-white dark:bg-gray-300 text-blue-600 px-5 py-3 rounded-md font-medium hover:bg-gray-300 transition flex items-center justify-center"
               >
                 Start Shopping Today <ArrowRight className="w-4 h-4 ml-2" />
               </button>
-              <button 
+              <button
                 onClick={onDemoClick}
                 className="bg-transparent border border-white px-5 py-3 rounded-md font-medium dark:hover:bg-gray-600 hover:bg-gary-300 hover:bg-opacity-10 transition flex items-center justify-center"
               >

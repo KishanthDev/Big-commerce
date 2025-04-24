@@ -5,7 +5,7 @@ import { Category, Subcategory } from "../../../types/category";
 describe("Breadcrumb Component", () => {
   const mockCategory: Category = {
     category: "Electronics",
-    subcategories: [{ name: "Laptops", businesses: [] }] // Added subcategories
+    subcategories: [{ name: "Laptops", businesses: [] }], // Added subcategories
   };
   const mockSubcategory: Subcategory = { name: "Laptops", businesses: [] };
 
@@ -19,15 +19,14 @@ describe("Breadcrumb Component", () => {
     expect(screen.getByText("Categories")).toBeInTheDocument();
     expect(screen.getByText(mockCategory.category)).toHaveAttribute(
       "href",
-      "/subcategory/electronics"
+      "/subcategory/electronics",
     );
   });
 
   it("should render subcategory name if provided", () => {
     render(
-      <Breadcrumb category={mockCategory} subcategory={mockSubcategory} />
+      <Breadcrumb category={mockCategory} subcategory={mockSubcategory} />,
     );
     expect(screen.getByText(mockSubcategory.name)).toBeInTheDocument();
   });
-
 });

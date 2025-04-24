@@ -8,7 +8,9 @@ describe("WhyShop component", () => {
   });
 
   test("renders section heading", () => {
-    expect(screen.getByRole("heading", { name: /Why Sell With Us\?/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /Why Sell With Us\?/i }),
+    ).toBeInTheDocument();
   });
 
   test("renders all feature titles", () => {

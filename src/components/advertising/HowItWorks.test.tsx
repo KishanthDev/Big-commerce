@@ -8,7 +8,8 @@ jest.mock("../../../data/advertising.json", () => ({
     {
       number: 1,
       title: "Choose Your Plan",
-      description: "Pick the advertising plan that best suits your store's goals.",
+      description:
+        "Pick the advertising plan that best suits your store's goals.",
     },
     {
       number: 2,
@@ -30,7 +31,7 @@ describe("HowItWorks Component", () => {
 
   test("renders the section title", () => {
     expect(
-      screen.getByRole("heading", { name: /How Advertising Works/i })
+      screen.getByRole("heading", { name: /How Advertising Works/i }),
     ).toBeInTheDocument();
   });
 
@@ -50,13 +51,13 @@ describe("HowItWorks Component", () => {
 
   test("renders all step descriptions", () => {
     expect(
-      screen.getByText(/Pick the advertising plan that best suits/i)
+      screen.getByText(/Pick the advertising plan that best suits/i),
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/Provide the visuals and messaging/i)
+      screen.getByText(/Provide the visuals and messaging/i),
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/Start reaching customers and track/i)
+      screen.getByText(/Start reaching customers and track/i),
     ).toBeInTheDocument();
   });
 });

@@ -7,9 +7,7 @@
   "headers": [
     {
       "source": "/(.*)",
-      "headers": [
-        { "key": "x-robots-tag", "value": "index, follow" }
-      ]
+      "headers": [{ "key": "x-robots-tag", "value": "index, follow" }]
     }
   ]
 }
