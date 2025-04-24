@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FeaturedStores matches snapshot 1`] = `
+<DocumentFragment>
+  <section
+    class="dark:bg-black py-16"
+  >
+    <div
+      class="container mx-auto px-5"
+    >
+      <h2
+        class="text-3xl font-semibold dark:text-white text-center mb-12"
+      >
+        Featured Stores
+      </h2>
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-6"
+      >
+        <div
+          class="bg-white dark:bg-gray-300 rounded-lg overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-300"
+        >
+          <div
+            class="bg-gray-200 dark:bg-gray-500 h-48 flex items-center justify-center text-gray-500"
+          >
+            <span
+              class="dark:text-gray-900"
+            >
+              Store Preview
+            </span>
+          </div>
+          <div
+            class="p-5"
+          >
+            <h3
+              class="text-lg font-semibold mb-2"
+            >
+              Woodland Crafts
+            </h3>
+            <p
+              class="text-gray-600 text-sm mb-4"
+            >
+              Handcrafted wooden home accessories made from sustainable materials.
+            </p>
+            <div
+              class="flex justify-between text-gray-500 text-xs"
+            >
+              <span>
+                ⭐ 4.9 (128 reviews)
+              </span>
+              <span>
+                🏠 Portland, OR
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="bg-white dark:bg-gray-300 rounded-lg overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-300"
+        >
+          <div
+            class="bg-gray-200 dark:bg-gray-500 h-48 flex items-center justify-center text-gray-500"
+          >
+            <span
+              class="dark:text-gray-900"
+            >
+              Store Preview
+            </span>
+          </div>
+          <div
+            class="p-5"
+          >
+            <h3
+              class="text-lg font-semibold mb-2"
+            >
+              Modern Threads
+            </h3>
+            <p
+              class="text-gray-600 text-sm mb-4"
+            >
+              Minimalist clothing with a focus on quality fabrics and ethical production.
+            </p>
+            <div
+              class="flex justify-between text-gray-500 text-xs"
+            >
+              <span>
+                ⭐ 4.7 (93 reviews)
+              </span>
+              <span>
+                🏠 Austin, TX
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="bg-white dark:bg-gray-300 rounded-lg overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-300"
+        >
+          <div
+            class="bg-gray-200 dark:bg-gray-500 h-48 flex items-center justify-center text-gray-500"
+          >
+            <span
+              class="dark:text-gray-900"
+            >
+              Store Preview
+            </span>
+          </div>
+          <div
+            class="p-5"
+          >
+            <h3
+              class="text-lg font-semibold mb-2"
+            >
+              Tech Innovations
+            </h3>
+            <p
+              class="text-gray-600 text-sm mb-4"
+            >
+              Unique tech accessories and gadgets for the modern lifestyle.
+            </p>
+            <div
+              class="flex justify-between text-gray-500 text-xs"
+            >
+              <span>
+                ⭐ 4.8 (215 reviews)
+              </span>
+              <span>
+                🏠 San Francisco, CA
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</DocumentFragment>
+`;

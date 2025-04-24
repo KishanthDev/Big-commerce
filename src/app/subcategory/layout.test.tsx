@@ -7,7 +7,7 @@ import SidebarLayout from "./layout";
 jest.mock("next/navigation", () => ({
   usePathname: jest.fn(),
 }));
-jest.mock("../../data/detailed_categories_with_subcategories.json", () => [
+jest.mock("../../../data/detailed_categories_with_subcategories.json", () => [
   {
     category: "Electronics",
     subcategories: [{ name: "Phones" }, { name: "Laptops" }],
