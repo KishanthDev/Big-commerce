@@ -125,7 +125,7 @@ const Header = () => {
           <FullScreenToggle />
           <DarkModeToggle />
           <button
-            aria-label="menu"
+            aria-label="Toggle menu"
             onClick={() => setMenuOpen(!menuOpen)}
             className="text-gray-700 dark:text-white text-2xl"
           >
@@ -136,6 +136,8 @@ const Header = () => {
 
       {menuOpen && (
         <motion.div
+          id="mobile-menu"
+          data-testid="mobile-menu"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}

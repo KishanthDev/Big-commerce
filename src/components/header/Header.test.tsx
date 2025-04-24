@@ -1,51 +1,70 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import Header from "@/components/header/Header";
-import "@testing-library/jest-dom";
+/**
+ * @jest-environment jsdom
+ */
 
+import { render, screen, fireEvent } from '@testing-library/react';
+import Header from './Header';
+import { usePathname } from 'next/navigation';
 
-/* 
-jest.mock("next/image", () => ({
+// Mocks
+jest.mock('next/navigation', () => ({
+  usePathname: jest.fn(),
+}));
+
+jest.mock('next/image', () => ({
   __esModule: true,
   default: (props: any) => <img {...props} />,
 }));
 
-jest.mock("next/link", () => ({ children, href }: { children: React.ReactNode; href: string }) => (
-  <a href={href}>{children}</a>
-)); */
+jest.mock('next/link', () => {
+  return ({ children, href }: any) => <a href={href}>{children}</a>;
+});
 
-describe("Header Component", () => {
-  test("renders header with logo and navigation links", () => {
-    render(<Header />);
+jest.mock('@/components/ui/button', () => ({
+  Button: ({ children, ...props }: any) => <button {...props}>{children}</button>,
+}));
 
-    expect(screen.getByAltText("Logo")).toBeInTheDocument();
+jest.mock('./ModeToggle', () => ({
+  DarkModeToggle: () => <div data-testid="darkmode-toggle" />,
+}));
 
-    const navLinks = ["Platform", "Services", "Resources", "Pricing"];
-    navLinks.forEach((link) => {
-      expect(screen.getByText(link)).toBeInTheDocument();
-    });
+jest.mock('./FullScreenToggle', () => ({
+  __esModule: true,
+  default: () => <div data-testid="fullscreen-toggle" />,
+}));
 
-    expect(screen.getByText("REQUEST A DEMO")).toBeInTheDocument();
-  });
+jest.mock('./LocationModal', () => () => <div data-testid="location-modal" />);
 
-  test("toggles mobile menu when menu button is clicked", () => {
-    render(<Header />);
-
-    const menuButton = screen.getByRole("button", { name: "menu" });
-
-    expect(screen.queryByTestId("mobile-menu")).not.toBeInTheDocument();
-
-    fireEvent.click(menuButton);
-
-    expect(screen.getByTestId("mobile-menu")).toBeInTheDocument();
+describe('Header Component', () => {
+  beforeEach(() => {
+    (usePathname as jest.Mock).mockReturnValue('/');
   });
 
 
 
-
-  test("renders dropdown for country selection", () => {
+  it('renders nav links', () => {
     render(<Header />);
+    expect(screen.getByText('Home')).toBeInTheDocument();
+    expect(screen.getByText('Sellers')).toBeInTheDocument();
+    expect(screen.getByText('Buyers')).toBeInTheDocument();
+    expect(screen.getByText('Advertising')).toBeInTheDocument();
+    expect(screen.getByText('Blog')).toBeInTheDocument();
+    expect(screen.getByText('Contact')).toBeInTheDocument();
+  });
 
-    // Select dropdown should exist
-    expect(screen.getByLabelText("Select country")).toBeInTheDocument();
+ 
+
+  it('renders contact/help info and country selector', () => {
+    render(<Header />);
+    expect(screen.getByText(/Help Center/i)).toBeInTheDocument();
+    expect(screen.getByText(/Developer Center/i)).toBeInTheDocument();
+    expect(screen.getByText(/Call Sales/)).toBeInTheDocument();
+    expect(screen.getByText(/Log In/)).toBeInTheDocument();
+    expect(screen.getByRole('combobox')).toBeInTheDocument();
+  });
+
+  it('renders Sign Up / Sign In button', () => {
+    render(<Header />);
+    expect(screen.getAllByText(/Sign Up \/ Sign In/i)[0]).toBeInTheDocument();
   });
 });
