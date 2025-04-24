@@ -17,7 +17,7 @@ export default function Hero() {
                             variant="outline"
                             className="px-6 py-4 sm:px-8 sm:py-6 text-base sm:text-lg border-primary text-primary rounded-xl"
                         >
-                            Advertise Today <ArrowRight className="w-4 h-4 ml-2" />
+                            Advertise Today <ArrowRight data-testid="hero-icon" className="w-4 h-4 ml-2" />
                         </Button>
                     </div>
 
