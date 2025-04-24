@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WhyShop Component matches snapshot 1`] = `
+<DocumentFragment>
+  <section
+    class="py-16 dark:bg-black"
+  >
+    <div
+      class="container mx-auto px-5"
+    >
+      <h2
+        class="text-3xl font-semibold dark:text-white text-center mb-12"
+      >
+        Why Shop With Us?
+      </h2>
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-6"
+      >
+        <div
+          class="bg-white dark:bg-gray-300 p-8 rounded-lg shadow-sm text-center"
+        >
+          <div
+            class="bg-blue-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5 text-blue-600 text-2xl"
+          >
+            🔍
+          </div>
+          <h3
+            class="text-xl font-semibold mb-3"
+          >
+            Unique Products
+          </h3>
+          <p
+            class="text-gray-600 text-sm"
+          >
+            Discover one-of-a-kind items you won't find in big box stores. Every product has a story.
+          </p>
+        </div>
+        <div
+          class="bg-white dark:bg-gray-300 p-8 rounded-lg shadow-sm text-center"
+        >
+          <div
+            class="bg-blue-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5 text-blue-600 text-2xl"
+          >
+            🤝
+          </div>
+          <h3
+            class="text-xl font-semibold mb-3"
+          >
+            Support Local
+          </h3>
+          <p
+            class="text-gray-600 text-sm"
+          >
+            Your purchases directly support independent creators and small business owners in your community.
+          </p>
+        </div>
+        <div
+          class="bg-white dark:bg-gray-300 p-8 rounded-lg shadow-sm text-center"
+        >
+          <div
+            class="bg-blue-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5 text-blue-600 text-2xl"
+          >
+            ⭐
+          </div>
+          <h3
+            class="text-xl font-semibold mb-3"
+          >
+            Verified Quality
+          </h3>
+          <p
+            class="text-gray-600 text-sm"
+          >
+            Every seller is vetted for quality and service. Shop with confidence knowing we stand behind them.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</DocumentFragment>
+`;
