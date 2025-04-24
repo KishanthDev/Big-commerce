@@ -1,6 +1,7 @@
 import React from "react";
 import BlogPostCard from "./BlogPostCard";
 import contactData from "../../../data/content_section_data.json";
+import Image from "next/image";
 
 const ContentSection = () => {
   const { blogPosts, categories, featuredPosts } = contactData;
@@ -57,7 +58,7 @@ const ContentSection = () => {
                   >
                     <div className="w-14 h-14 bg-gray-200 dark:bg-gray-600 rounded flex-shrink-0 flex items-center justify-center text-gray-400 dark:text-gray-300">
                       {post.image ? (
-                        <img
+                        <Image
                           src={post.image}
                           alt={post.title}
                           className="w-full h-full object-cover rounded"

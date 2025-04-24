@@ -1,6 +1,6 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import CtaSection from "./CtaSection";
-import { ArrowRight, Play, Check } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 
 // Mock lucide-react icons
 jest.mock("lucide-react", () => ({
