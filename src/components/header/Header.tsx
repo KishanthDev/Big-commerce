@@ -110,7 +110,7 @@ const Header = () => {
         <div className="hidden md:flex items-center space-x-4">
           <Link href={pathname === "/" ? "/categories" : "/"}>
             <LayoutList
-              className={`border ${pathname !== "/" ? "bg-blue-800" : "bg-blue-600"} border-blue-500 p-1.5 w-8 h-8 rounded-md cursor-pointer`}
+              className={`border ${pathname !== "/" ? "bg-blue-700" : "bg-blue-600"} text-white border-blue-500 p-1.5 w-8 h-8 rounded-md cursor-pointer`}
             />
           </Link>
           <Button
