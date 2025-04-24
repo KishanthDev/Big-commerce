@@ -1,0 +1,59 @@
+{
+  "blogPosts": [
+    {
+      "image": "/images/blog-post-1.jpg",
+      "date": "April 18, 2025",
+      "author": "By Sarah Miller",
+      "category": "Selling Tips",
+      "title": "How to Set Up Your Online Store",
+      "excerpt": "Creating a successful online store requires careful planning and execution. From choosing the right products to setting up your shop profile, this guide covers everything you need to know to get started on MarketHub.",
+      "link": "#"
+    },
+    {
+      "image": "/images/blog-post-2.jpg",
+      "date": "April 15, 2025",
+      "author": "By Michael Chang",
+      "category": "Selling Tips",
+      "title": "5 Tips for Boosting Sales on MarketHub",
+      "excerpt": "Struggling to increase your store's visibility and sales? These five proven strategies will help you optimize your product listings, improve customer engagement, and leverage MarketHub's tools to maximize your revenue.",
+      "link": "#"
+    },
+    {
+      "image": "/images/blog-post-3.jpg",
+      "date": "April 10, 2025",
+      "author": "By Jessica Brown",
+      "category": "Advertising Insights",
+      "title": "The Benefits of Advertising for Small Businesses",
+      "excerpt": "Discover how MarketHub's advertising solutions can help small businesses reach a wider audience, increase brand recognition, and drive more sales. Learn which ad formats work best for different types of products and businesses.",
+      "link": "#"
+    }
+  ],
+  "categories": [
+    { "name": "Selling Tips", "count": 24 },
+    { "name": "Buying Guides", "count": 18 },
+    { "name": "Advertising Insights", "count": 12 },
+    { "name": "Success Stories", "count": 9 },
+    { "name": "Product Photography", "count": 7 },
+    { "name": "Market Trends", "count": 16 }
+  ],
+  "featuredPosts": [
+    {
+      "title": "Product Photography Tips for Beginners",
+      "date": "April 5, 2025",
+      "image": "/images/featured-1.jpg",
+      "link": "#"
+    },
+    {
+      "title": "How to Price Your Products Effectively",
+      "date": "March 29, 2025",
+      "image": "/images/featured-2.jpg",
+      "link": "#"
+    },
+    {
+      "title": "Customer Service Best Practices",
+      "date": "March 22, 2025",
+      "image": "/images/featured-3.jpg",
+      "link": "#"
+    }
+  ]
+}
