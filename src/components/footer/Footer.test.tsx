@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import Footer from "@/components/Footer";
+import Footer from "@/components/footer/Footer";
 import "@testing-library/jest-dom";
 
 
@@ -75,7 +75,7 @@ describe("Footer Component", () => {
 
   it("renders social media icons", () => {
     render(<Footer />);
-    
+
     expect(screen.getByTestId("facebook-icon")).toBeInTheDocument();
     expect(screen.getByTestId("linkedin-icon")).toBeInTheDocument();
     expect(screen.getByTestId("youtube-icon")).toBeInTheDocument();
@@ -121,7 +121,7 @@ describe("Footer Component", () => {
 
     render(<Footer />);
 
-    const productButton = screen.getByTestId("toggle-0"); 
+    const productButton = screen.getByTestId("toggle-0");
     fireEvent.click(productButton);
 
     expect(screen.getByTestId("link-Features")).toBeVisible();

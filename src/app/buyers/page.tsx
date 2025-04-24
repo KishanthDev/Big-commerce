@@ -3,7 +3,7 @@ import WhyShop from "../../components/buyer/WhyShop";
 import HowItWorks from "../../components/buyer/HowItWorks";
 import FeaturedStores from "../../components/buyer/FeaturedStores";
 import CtaSection from "../../components/buyer/CtaSection";
-import Footer from "../../components/Footer";
+import Footer from "../../components/footer/Footer";
 
 export default function Page() {
   return (

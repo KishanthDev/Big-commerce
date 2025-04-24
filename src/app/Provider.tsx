@@ -1,7 +1,7 @@
 "use client"
 import { ThemeProvider } from "@/components/theme-provider";
 import { HeroUIProvider } from "@heroui/react";
-import Header from "@/components/Header";
+import Header from "@/components/header/Header";
 
 interface ProviderProps {
   children: React.ReactNode;
