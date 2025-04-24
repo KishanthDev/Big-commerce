@@ -25,7 +25,7 @@ export default function LocationModal() {
     <>
       <Button
         onClick={onOpen}
-        className="text-sm font-medium flex dark:bg-blue-600 bg-white text-primary hover:bg-gray-100 dark:hover:bg-blue-700 items-center gap-1 px-3 py-2 transition-colors"
+        className="text-sm font-medium flex dark:bg-transparent bg-white text-primary hover:bg-gray-100 dark:hover:bg-blue-700 items-center gap-1 px-3 py-2 transition-colors"
       >
         {selectedLocation || "Select Location"}
         {selectedLocation && pincode && (

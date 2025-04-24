@@ -61,23 +61,25 @@ const Header = () => {
         className="bg-white dark:bg-blue-950 shadow-md p-4 h-16 w-full flex items-center justify-between transition-all"
       >
         <Link href="/">
-          <Image
-            src="/logo.png"
-            alt="Logo"
-            width={115}
-            height={115}
-            className="ml-4"
-          />
+          <div className="hidden md:block">
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={115}
+              height={115}
+              className="ml-4"
+            />
+          </div>
         </Link>
+
 
         <nav className="hidden md:flex items-center space-x-6">
           <Link
             href="/"
-            className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
-              pathname === "/"
-                ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
-                : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
-            }`}
+            className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${pathname === "/"
+              ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
+              : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
+              }`}
           >
             Home
           </Link>
@@ -90,11 +92,10 @@ const Header = () => {
                 <Link
                   href={path}
                   key={item}
-                  className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
-                    isActive
-                      ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
-                      : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer relative group`
-                  }`}
+                  className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${isActive
+                    ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
+                    : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer relative group`
+                    }`}
                 >
                   {item}
                   {!isActive && (
@@ -105,7 +106,11 @@ const Header = () => {
             },
           )}
         </nav>
-        <LocationModal />
+
+        <div className="block md:hidden absolute top-0 left-0 p-4 z-50">
+          <LocationModal />
+        </div>
+
 
         <div className="hidden md:flex items-center space-x-4">
           <Link href={pathname === "/" ? "/categories" : "/"}>
@@ -149,11 +154,10 @@ const Header = () => {
           <div className="flex flex-col space-y-4">
             <Link
               href="/"
-              className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
-                pathname === "/"
-                  ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
-                  : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
-              }`}
+              className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${pathname === "/"
+                ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
+                : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
+                }`}
             >
               Home
             </Link>
@@ -166,11 +170,10 @@ const Header = () => {
                   <Link
                     href={path}
                     key={item}
-                    className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
-                      isActive
-                        ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
-                        : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer relative group`
-                    }`}
+                    className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${isActive
+                      ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
+                      : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer relative group`
+                      }`}
                   >
                     {item}
                     {!isActive && (
