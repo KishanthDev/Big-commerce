@@ -6,7 +6,7 @@ const ContactPage = () => {
             <div className="max-w-6xl mx-auto px-5">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                     {/* Contact Form */}
-                    <div className="md:col-span-2 bg-white dark:bg-gray-800 rounded-lg shadow-sm p-8">
+                    <div className="md:col-span-2 bg-white shadow-xl border-black dark:bg-gray-800 rounded-lg p-8">
                         <h2 className="text-2xl font-semibold mb-6">Contact Form</h2>
                         <form>
                             <div className="mb-6">
@@ -74,7 +74,7 @@ const ContactPage = () => {
                     </div>
 
                     {/* Contact Info */}
-                    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-8">
+                    <div className="bg-white shadow-xl  dark:bg-gray-800 rounded-lg p-8">
                         <h2 className="text-2xl font-semibold mb-6">Contact Information</h2>
 
                         <div className="flex items-start mb-6">
