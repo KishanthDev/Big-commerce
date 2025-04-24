@@ -107,10 +107,8 @@ const Header = () => {
           )}
         </nav>
 
-        <div className="block md:hidden absolute top-0 left-0 p-4 z-50">
+       
           <LocationModal />
-        </div>
-
 
         <div className="hidden md:flex items-center space-x-4">
           <Link href={pathname === "/" ? "/categories" : "/"}>
