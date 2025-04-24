@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HowItWorks Component matches snapshot 1`] = `
+<DocumentFragment>
+  <section
+    class="bg-gray-50 dark:bg-black py-16"
+  >
+    <div
+      class="container mx-auto px-5"
+    >
+      <h2
+        class="text-3xl font-semibold dark:text-white text-center mb-12"
+      >
+        How It Works: 3 Simple Steps
+      </h2>
+      <div
+        class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8"
+      >
+        <div
+          class="text-center"
+        >
+          <div
+            class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-5 font-bold"
+          >
+            1
+          </div>
+          <h3
+            class="text-xl dark:text-white font-semibold mb-3"
+          >
+            Sign Up
+          </h3>
+          <p
+            class="text-gray-600 dark:text-white text-sm"
+          >
+            Create your free account in minutes to start browsing our curated marketplace.
+          </p>
+        </div>
+        <div
+          class="text-center"
+        >
+          <div
+            class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-5 font-bold"
+          >
+            2
+          </div>
+          <h3
+            class="text-xl dark:text-white font-semibold mb-3"
+          >
+            Browse Products
+          </h3>
+          <p
+            class="text-gray-600 dark:text-white text-sm"
+          >
+            Explore categories and discover sellers offering unique products in your area.
+          </p>
+        </div>
+        <div
+          class="text-center"
+        >
+          <div
+            class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-5 font-bold"
+          >
+            3
+          </div>
+          <h3
+            class="text-xl dark:text-white font-semibold mb-3"
+          >
+            Start Shopping
+          </h3>
+          <p
+            class="text-gray-600 dark:text-white text-sm"
+          >
+            Purchase directly from sellers with secure checkout and local delivery options.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</DocumentFragment>
+`;
