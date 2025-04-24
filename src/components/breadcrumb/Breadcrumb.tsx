@@ -12,6 +12,7 @@ interface BreadcrumbProps {
 
 export default function Breadcrumb({ category, subcategory }: BreadcrumbProps) {
   const pathname = usePathname();
+
   if (!category) {
     return (
       <nav aria-label="Breadcrumb" className="flex items-center text-sm mb-6">
@@ -25,10 +26,13 @@ export default function Breadcrumb({ category, subcategory }: BreadcrumbProps) {
       </nav>
     );
   }
+
   const categorySlug = slugify(category.category);
   const isCategoryPage = pathname === `/subcategory/${categorySlug}`;
+
   return (
     <nav aria-label="Breadcrumb" className="flex items-center text-sm mb-6">
+     
       <Link
         href="/categories"
         className="flex items-center gap-2 hover:underline text-blue-600 dark:text-blue-400"
