@@ -12,7 +12,7 @@ const ContactPage = () => {
               <div className="mb-6">
                 <label
                   htmlFor="name"
-                  className="block font-medium mb-2 text-sm dark:text-gray-400"
+                  className="block font-medium mb-2 text-sm dark:text-white"
                 >
                   Name
                 </label>
@@ -29,7 +29,7 @@ const ContactPage = () => {
               <div className="mb-6">
                 <label
                   htmlFor="email"
-                  className="block font-medium mb-2 text-sm dark:text-gray-400"
+                  className="block font-medium mb-2 text-sm dark:text-white"
                 >
                   Email
                 </label>
@@ -46,7 +46,7 @@ const ContactPage = () => {
               <div className="mb-6">
                 <label
                   htmlFor="subject"
-                  className="block font-medium mb-2 text-sm dark:text-gray-400"
+                  className="block font-medium mb-2 text-sm dark:text-white"
                 >
                   Subject
                 </label>
@@ -63,7 +63,7 @@ const ContactPage = () => {
               <div className="mb-6">
                 <label
                   htmlFor="message"
-                  className="block font-medium mb-2 text-sm dark:text-gray-400"
+                  className="block font-medium mb-2 text-sm dark:text-white"
                 >
                   Message
                 </label>
