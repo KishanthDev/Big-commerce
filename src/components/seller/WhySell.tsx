@@ -1,5 +1,5 @@
 import { DollarSign, Award, Users } from "lucide-react";
-export default function WhyShop() {
+export default function WhySell() {
   const features = [
     {
       title: "No Commissions",

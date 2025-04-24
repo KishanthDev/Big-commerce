@@ -10,8 +10,10 @@ export default function CtaSection() {
   ];
 
   return (
-    <section className="bg-blue-600 dark:bg-black text-white py-16">
-      <div className="container mx-auto px-5">
+    <section role="region"
+      data-testid="cta-section" className="bg-blue-600 dark:bg-black text-white py-16">
+      <div data-testid="cta-container"
+        className="container mx-auto px-5">
         <div className="flex flex-col lg:flex-row gap-10">
           <div className="lg:w-2/3">
             <h2 className="text-3xl font-semibold mb-4">
@@ -30,7 +32,8 @@ export default function CtaSection() {
               </button>
             </div>
           </div>
-          <div className="lg:w-1/3 bg-white dark:bg-gray-300 rounded-lg p-6 text-gray-900">
+          <div data-testid="benefits-card"
+            className="lg:w-1/3 bg-white dark:bg-gray-300 rounded-lg p-6 text-gray-900">
             <h3 className="text-lg font-semibold mb-5">Shopper Benefits</h3>
             <ul className="space-y-3">
               {benefits.map((benefit, index) => (
