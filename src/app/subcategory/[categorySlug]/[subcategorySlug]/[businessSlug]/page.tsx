@@ -32,12 +32,7 @@ interface Business {
       website: string;
     };
     ratings: number;
-    reviews: {
-      reviewer: string;
-      rating: number;
-      comment: string;
-      date: string;
-    }[];
+    reviews:[];
     highlights: string[];
     cta: { getDirections: string };
     gallery: string[];
@@ -45,6 +40,7 @@ interface Business {
       question: string;
       answer: string;
     }[];
+    services:[]
   }
   
 
@@ -98,18 +94,18 @@ export default async function BusinessPage({ params }: Props) {
     notFound();
   }
 
-  const { businessHours, certifications, images, reviews, services } = data;
+  const { businessHours, certifications, images } = data;
 
   return (
     <>
       <Navbar businessName={business.businessName} />
       <div className="font-sans text-[#333] leading-relaxed">
-        <HeroSection />
+        <HeroSection title={business.businessName} description={business.description}/>
         <main className="max-w-6xl mx-auto p-4 md:p-6 grid md:grid-cols-3 gap-6 md:gap-8">
           <div className="md:col-span-2 space-y-10 md:space-y-12">
-            <ServicesSection services={services} />
+            <ServicesSection services={business.services} />
             <CertificationsSection certifications={certifications} />
-            <ReviewsSection reviews={reviews} />
+            <ReviewsSection reviews={business.reviews} />
             <GallerySection images={images} />
           </div>
           <div className="space-y-10 md:space-y-12">

@@ -31,7 +31,7 @@ export default function ReviewsSection({ reviews }: ReviewsSectionProps) {
                   {"★".repeat(review.rating)}
                 </div>
               </div>
-              <p>{review.content}</p>
+              <p>{review.comment}</p>
             </CardBody>
           </Card>
         ))}

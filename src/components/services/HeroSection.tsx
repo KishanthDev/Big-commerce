@@ -1,7 +1,12 @@
 import { Button } from "@heroui/button";
 import React from "react";
 
-const HeroSection = () => {
+interface HeadingProps {
+  title: string;
+  description: string;
+}
+
+const HeroSection: React.FC<HeadingProps> = ({ title, description }) => {
   return (
     <section className="h-[400px] md:h-[400px] bg-cover bg-center relative flex flex-col justify-center items-center text-white text-center p-4 dark:text-gray-200">
       <div
@@ -10,11 +15,11 @@ const HeroSection = () => {
       />
       <div className="relative z-10 max-w-4xl px-4">
         <h1 className="text-3xl text-primary sm:text-4xl md:text-5xl font-bold mb-2 md:mb-4">
-          Mike&apos;s Auto Service
+          {title || "Welcome to Our Auto Repair Shop"}
         </h1>
         <p className="text-base text-primary sm:text-lg md:text-xl max-w-[800px]">
-          Full-service auto repair shop specializing in domestic and foreign
-          vehicles since 1985
+          {description ||
+            "We provide top-notch auto repair services to keep your vehicle running smoothly. Our experienced technicians are here to help you with all your automotive needs."}
         </p>
         <div className="flex flex-col sm:flex-row justify-center items-center mt-4 md:mt-6 gap-2">
           <span className="text-yellow-400 text-2xl mr-2">★★★★★</span>

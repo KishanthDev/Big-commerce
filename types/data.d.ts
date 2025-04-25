@@ -10,11 +10,11 @@ export type GalleryImage = string;
 export interface Review {
   author: string;
   rating: number;
-  content: string;
+  comment: string;
 }
 
 export interface Service {
-  title: string;
+  name: string;
   description: string;
   price: string;
 }

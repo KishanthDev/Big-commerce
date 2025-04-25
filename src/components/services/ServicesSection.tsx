@@ -23,13 +23,10 @@ export default function ServicesSection({ services }: ServicesSectionProps) {
           >
             <CardHeader className="p-4 md:p-6 flex dark:bg-gray-900 flex-col rounded-2xl justify-between h-full">
               <h3 className="text-lg mb-3 md:text-xl font-semibold text-[#2765c3]">
-                {service.title}
+                {service.name}
               </h3>
 
               <div className="flex-grow" />
-
-              <p className="text-sm mb-3 md:text-base">{service.description}</p>
-
               <p className="font-bold mt-2 md:mt-3 text-red-600">
                 {service.price}
               </p>
