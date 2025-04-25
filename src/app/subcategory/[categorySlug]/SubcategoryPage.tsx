@@ -17,7 +17,7 @@ export default function SubcategoryPage({ category }: SubcategoryPageProps) {
   const categorySlug = slugify(category.category);
 
   return (
-    <div className="h-[calc(100vh-110px)] bg-white p-6 text-gray-900 dark:bg-black dark:text-white">
+    <div className="h-[calc(100vh-110px)] overflow-auto bg-white p-6 text-gray-900 dark:bg-black dark:text-white">
       <Breadcrumb category={category} />
 
       <div className="mb-6 flex items-center justify-between">
