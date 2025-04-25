@@ -61,6 +61,7 @@ const ContentSection = () => {
                         <Image
                           src={post.image}
                           alt={post.title}
+                          fill
                           className="w-full h-full object-cover rounded"
                         />
                       ) : (
