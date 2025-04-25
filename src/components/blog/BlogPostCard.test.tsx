@@ -48,7 +48,7 @@ describe("BlogPostCard Component", () => {
     });
 
     it("renders placeholder when image is not provided", () => {
-        const { image, ...rest } = mockProps;
+        const { ...rest } = mockProps;
         render(<BlogPostCard {...rest} />);
 
 
