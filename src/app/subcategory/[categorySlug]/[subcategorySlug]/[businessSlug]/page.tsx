@@ -15,29 +15,38 @@ import Footer from "@/components/services/Footer";
 
 // Define types for businessesData`
 interface Business {
-  id: string;
-  businessName: string;
-  description: string;
-  location: {
-    address: string;
-    city: string;
-    state: string;
-    postalCode: string;
-    latitude: number;
-    longitude: number;
-  };
-  contact: {
-    phone: string;
-    email: string;
-    website: string;
-  };
-  ratings: number;
-  reviews: any[]; // Replace with proper review type if known
-  highlights: string[];
-  cta: { getDirections: string };
-  gallery: string[];
-  faqs: any[]; // Replace with proper FAQ type if known
-}
+    id: string;
+    businessName: string;
+    description: string;
+    location: {
+      address: string;
+      city: string;
+      state: string;
+      postalCode: string;
+      latitude: number;
+      longitude: number;
+    };
+    contact: {
+      phone: string;
+      email: string;
+      website: string;
+    };
+    ratings: number;
+    reviews: {
+      reviewer: string;
+      rating: number;
+      comment: string;
+      date: string;
+    }[];
+    highlights: string[];
+    cta: { getDirections: string };
+    gallery: string[];
+    faqs: {
+      question: string;
+      answer: string;
+    }[];
+  }
+  
 
 interface Subcategory {
   name: string;
@@ -50,7 +59,7 @@ interface Category {
 }
 
 // Cast businessesData to the correct type
-const typedBusinessesData = businessesData as Category[];
+const typedBusinessesData = businessesData as unknown as Category[];
 
 type Props = {
   params: Promise<{
