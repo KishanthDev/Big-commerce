@@ -13,7 +13,7 @@ import { notFound } from "next/navigation";
 import { slugify } from "@lib/slugify";
 import Footer from "@/components/services/Footer";
 import { Business } from "types/business";
-  
+
 
 interface Subcategory {
   name: string;
@@ -25,7 +25,6 @@ interface Category {
   subcategories: Subcategory[];
 }
 
-// Cast businessesData to the correct type
 const typedBusinessesData = businessesData as unknown as Category[];
 
 type Props = {
@@ -52,7 +51,6 @@ export async function generateStaticParams() {
 }
 
 export default async function BusinessPage({ params }: Props) {
-  console.log("Params:", await params); // Debug: Log params
   const { categorySlug, businessSlug } = await params;
 
   const category = typedBusinessesData.find(
@@ -67,7 +65,7 @@ export default async function BusinessPage({ params }: Props) {
     .subcategories.flatMap((sub) => sub.businesses)
     .find((b) => slugify(b.businessName) === businessSlug);
 
-  if (!business) { 
+  if (!business) {
     notFound();
   }
 
@@ -77,7 +75,7 @@ export default async function BusinessPage({ params }: Props) {
     <>
       <Navbar businessName={category.category} />
       <div className="font-sans text-[#333] leading-relaxed">
-        <HeroSection title={business.businessName} description={business.description}/>
+        <HeroSection title={business.businessName} description={business.description} />
         <main className="max-w-6xl mx-auto p-4 md:p-6 grid md:grid-cols-3 gap-6 md:gap-8">
           <div className="md:col-span-2 space-y-10 md:space-y-12">
             <ServicesSection services={business.services} />
@@ -86,12 +84,19 @@ export default async function BusinessPage({ params }: Props) {
             <GallerySection images={images} />
           </div>
           <div className="space-y-10 md:space-y-12">
-            <ContactSection />
+            <ContactSection
+              address={business.location.address}
+              city={business.location.city}
+              state={business.location.state}
+              postalCode={business.location.postalCode}
+              phone={business.contact.phone}
+              email={business.contact.email}
+              website={business.contact.website} />
             <BusinessHoursSection businessHours={businessHours} />
             <AdditionalInfoSection />
           </div>
         </main>
-        <Footer/>
+        <Footer />
       </div>
     </>
   );

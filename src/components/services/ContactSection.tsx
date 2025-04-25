@@ -3,7 +3,25 @@
 import Image from "next/image";
 import React from "react";
 
-export default function ContactSection() {
+interface ContactSectionProps {
+  address: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  phone: string;
+  email: string;
+  website: string;
+}
+
+export default function ContactSection({
+  address,
+  city,
+  state,
+  postalCode,
+  phone,
+  email,
+  website,
+}: ContactSectionProps) {
   return (
     <section>
       <h2 className="text-2xl md:text-3xl font-bold border-b-2 border-red-600 pb-2 text-[#1a3c6e] dark:text-white">
@@ -14,9 +32,9 @@ export default function ContactSection() {
         <p>
           <strong>Address:</strong>
           <br />
-          1234 Auto Drive
+          {address}
           <br />
-          Springfield, IL 62701
+          {city}, {state} {postalCode}
         </p>
 
         <div className="w-full h-[200px] md:h-[250px] bg-gray-200 dark:bg-gray-700 rounded mt-3 overflow-hidden">
@@ -30,22 +48,22 @@ export default function ContactSection() {
         </div>
 
         <p className="mt-3">
-          <strong>Phone:</strong> (555) 123-4567
+          <strong>Phone:</strong> {phone}
         </p>
 
         <p>
-          <strong>Email:</strong> service@mikesauto.com
+          <strong>Email:</strong> {email}
         </p>
 
         <p>
           <strong>Website:</strong>{" "}
           <a
             className="text-blue-600 dark:text-blue-400 hover:underline"
-            href="https://www.mikesauto.com"
+            href={website}
             rel="noopener noreferrer"
             target="_blank"
           >
-            www.mikesauto.com
+            {website}
           </a>
         </p>
       </div>
