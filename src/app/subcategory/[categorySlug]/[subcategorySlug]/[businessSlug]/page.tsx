@@ -82,15 +82,21 @@ export async function generateStaticParams() {
 
 export default async function BusinessPage({ params }: Props) {
   console.log("Params:", await params); // Debug: Log params
-  const { businessSlug } = await params;
+  const { categorySlug, businessSlug } = await params;
 
-  const business = typedBusinessesData
-    .flatMap((cat) => cat.subcategories)
-    .flatMap((sub) => sub.businesses)
+  const category = typedBusinessesData.find(
+    (cat) => slugify(cat.category) === categorySlug
+  );
+
+  if (!category) {
+    notFound();
+  }
+
+  const business = category
+    .subcategories.flatMap((sub) => sub.businesses)
     .find((b) => slugify(b.businessName) === businessSlug);
 
-  if (!business) {
-    console.log("Business not found for slug:", businessSlug); // Debug: Log missing business
+  if (!business) { 
     notFound();
   }
 
@@ -98,7 +104,7 @@ export default async function BusinessPage({ params }: Props) {
 
   return (
     <>
-      <Navbar businessName={business.businessName} />
+      <Navbar businessName={category.category} />
       <div className="font-sans text-[#333] leading-relaxed">
         <HeroSection title={business.businessName} description={business.description}/>
         <main className="max-w-6xl mx-auto p-4 md:p-6 grid md:grid-cols-3 gap-6 md:gap-8">
