@@ -21,10 +21,10 @@ const HeroSection = () => {
           <span>4.8/5 based on 127 reviews</span>
         </div>
         <div className="flex flex-col sm:flex-row gap-4 mt-6 justify-center">
-          <Button className="bg-red-600 text-white w-full sm:w-auto">
+          <Button className="bg-red-600 rounded-2xl text-white w-full sm:w-auto">
             Schedule Service
           </Button>
-          <Button className="bg-white text-[#333] dark:bg-gray-100 dark:text-black w-full sm:w-auto">
+          <Button className="bg-white rounded-2xl text-[#333] dark:bg-gray-100 dark:text-black w-full sm:w-auto">
             Request Quote
           </Button>
         </div>

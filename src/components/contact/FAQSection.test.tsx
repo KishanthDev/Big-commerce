@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import FAQSection from "./FAQSection";
 import '@testing-library/jest-dom';
-import faqs from "../../../data/faq.json";
 
 // Mock data for testing
 jest.mock("../../../data/faq.json", () => [

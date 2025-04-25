@@ -2,18 +2,26 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import ContentSection from "./ContentSection";
 import contactData from "../../../data/content_section_data.json";
-import '@testing-library/jest-dom';
+import "@testing-library/jest-dom";
+
+// ✅ Mock Next.js Image without triggering lint
+const MockNextImage = ({ src, alt }: { src: string; alt: string }) => (
+  <img src={src} alt={alt} />
+);
+MockNextImage.displayName = "MockNextImage";
 
 jest.mock("next/image", () => ({
   __esModule: true,
-  default: ({ src, alt }: { src: string; alt: string }) => (
-    <img src={src} alt={alt} />
-  ),
+  default: MockNextImage,
 }));
 
-jest.mock("./BlogPostCard", () => ({ title }: { title: string }) => (
+// ✅ Mock BlogPostCard with displayName
+const MockBlogPostCard = ({ title }: { title: string }) => (
   <div data-testid="blog-post-card">{title}</div>
-));
+);
+MockBlogPostCard.displayName = "MockBlogPostCard";
+
+jest.mock("./BlogPostCard", () => MockBlogPostCard);
 
 describe("ContentSection", () => {
   it("renders all blog posts", () => {
@@ -29,20 +37,16 @@ describe("ContentSection", () => {
   it("renders categories with correct name and count", () => {
     render(<ContentSection />);
     contactData.categories.forEach((cat) => {
-      const categoryLink = screen.getByText(cat.name);
-      expect(categoryLink).toBeInTheDocument();
-      const count = screen.getByText(cat.count.toString());
-      expect(count).toBeInTheDocument();
+      expect(screen.getByText(cat.name)).toBeInTheDocument();
+      expect(screen.getByText(cat.count.toString())).toBeInTheDocument();
     });
   });
 
   it("renders popular articles with title and date", () => {
     render(<ContentSection />);
     contactData.featuredPosts.forEach((post) => {
-      const title = screen.getByText(post.title);
-      expect(title).toBeInTheDocument();
-      const date = screen.getByText(post.date);
-      expect(date).toBeInTheDocument();
+      expect(screen.getByText(post.title)).toBeInTheDocument();
+      expect(screen.getByText(post.date)).toBeInTheDocument();
     });
   });
 
@@ -57,7 +61,7 @@ describe("ContentSection", () => {
     });
   });
 
-  it("renders fallback 'Pic' when featured post image is missing", () => {
+  it("renders fallback 'Pic' when featured post image is missing", async () => {
     const modifiedData = {
       ...contactData,
       featuredPosts: [
@@ -65,15 +69,13 @@ describe("ContentSection", () => {
         { ...contactData.featuredPosts[0], image: null },
       ],
     };
-  
+
     jest.resetModules();
     jest.doMock("../../../data/content_section_data.json", () => modifiedData);
-  
-    const ModifiedContentSection = require("./ContentSection").default;
+
+    const { default: ModifiedContentSection } = await import("./ContentSection");
     render(<ModifiedContentSection />);
-  
+
     expect(screen.getByText("Pic")).toBeInTheDocument();
   });
-  
-
 });

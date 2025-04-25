@@ -21,7 +21,7 @@ export default function ServicesSection({ services }: ServicesSectionProps) {
             key={idx}
             className="hover:shadow-lg transition-transform hover:-translate-y-1"
           >
-            <CardHeader className="p-4 md:p-6 flex flex-col justify-between h-full">
+            <CardHeader className="p-4 md:p-6 flex dark:bg-gray-900 flex-col rounded-2xl justify-between h-full">
               <h3 className="text-lg mb-3 md:text-xl font-semibold text-[#2765c3]">
                 {service.title}
               </h3>

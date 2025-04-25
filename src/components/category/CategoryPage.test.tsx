@@ -2,22 +2,26 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import Home from "./CategoryPage";
 
-jest.mock("next/link", () => {
-  return ({ children, href }: any) => <a href={href}>{children}</a>;
-});
+type LinkProps = { children: React.ReactNode; href: string };
+const LinkMock = ({ children, href }: LinkProps) => <a href={href}>{children}</a>;
+LinkMock.displayName = "LinkMock";
+
+jest.mock("next/link", () => LinkMock);
 
 jest.mock("@/app/lib/slugify", () => ({
   slugify: (str: string) => str.toLowerCase().replace(/\s+/g, "-"),
 }));
 
-jest.mock("../breadcrumb/Breadcrumb", () => () => <div data-testid="breadcrumb">Breadcrumb</div>);
+jest.mock("../breadcrumb/Breadcrumb", () => {
+  const MockBreadcrumb = () => <div data-testid="breadcrumb">Breadcrumb</div>;
+  MockBreadcrumb.displayName = "MockBreadcrumb";
+  return MockBreadcrumb;
+});
 
-describe("Home", () => {
+describe("CategoryPage", () => {
   it("renders the search input", () => {
     render(<Home />);
-    const input = screen.getByPlaceholderText(
-      /search categories, businesses, or services/i
-    );
+    const input = screen.getByPlaceholderText(/search categories, businesses, or services/i);
     expect(input).toBeInTheDocument();
   });
 
@@ -30,5 +34,4 @@ describe("Home", () => {
     render(<Home />);
     expect(screen.getByText("Explore Categories")).toBeInTheDocument();
   });
-
 });
