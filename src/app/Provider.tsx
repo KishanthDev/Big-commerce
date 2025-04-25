@@ -14,9 +14,7 @@ export default function Provider({ children }: ProviderProps) {
       enableSystem
       disableTransitionOnChange
     >
-      <HeroUIProvider>
-        {children}
-      </HeroUIProvider>
+      <HeroUIProvider>{children}</HeroUIProvider>
     </ThemeProvider>
   );
 }

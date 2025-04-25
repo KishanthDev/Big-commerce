@@ -5,9 +5,7 @@ import FeatureSection from "./FeatureSection";
 describe("FeatureSection", () => {
   it("renders the section title", () => {
     render(<FeatureSection />);
-    expect(
-      screen.getByText("Explore Blog Categories")
-    ).toBeInTheDocument();
+    expect(screen.getByText("Explore Blog Categories")).toBeInTheDocument();
   });
 
   it("renders all feature cards", () => {

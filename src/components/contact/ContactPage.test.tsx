@@ -1,9 +1,8 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import ContactPage from "./ContactPage";
-import '@testing-library/jest-dom';
+import "@testing-library/jest-dom";
 
 describe("ContactPage", () => {
-
   it("submits the form with correct values", () => {
     render(<ContactPage />);
 
@@ -16,7 +15,9 @@ describe("ContactPage", () => {
     fireEvent.change(nameInput, { target: { value: "John Doe" } });
     fireEvent.change(emailInput, { target: { value: "john@example.com" } });
     fireEvent.change(subjectInput, { target: { value: "Inquiry" } });
-    fireEvent.change(messageInput, { target: { value: "I need help with my order." } });
+    fireEvent.change(messageInput, {
+      target: { value: "I need help with my order." },
+    });
 
     fireEvent.click(submitButton);
 

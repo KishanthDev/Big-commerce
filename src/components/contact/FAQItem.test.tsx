@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import FAQItem from "./FAQItem";
-import '@testing-library/jest-dom';
+import "@testing-library/jest-dom";
 
 describe("FAQItem", () => {
   it("renders the question and answer", () => {

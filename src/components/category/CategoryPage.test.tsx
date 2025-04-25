@@ -3,7 +3,9 @@ import { render, screen } from "@testing-library/react";
 import Home from "./CategoryPage";
 
 type LinkProps = { children: React.ReactNode; href: string };
-const LinkMock = ({ children, href }: LinkProps) => <a href={href}>{children}</a>;
+const LinkMock = ({ children, href }: LinkProps) => (
+  <a href={href}>{children}</a>
+);
 LinkMock.displayName = "LinkMock";
 
 jest.mock("next/link", () => LinkMock);
@@ -21,7 +23,9 @@ jest.mock("../breadcrumb/Breadcrumb", () => {
 describe("CategoryPage", () => {
   it("renders the search input", () => {
     render(<Home />);
-    const input = screen.getByPlaceholderText(/search categories, businesses, or services/i);
+    const input = screen.getByPlaceholderText(
+      /search categories, businesses, or services/i,
+    );
     expect(input).toBeInTheDocument();
   });
 

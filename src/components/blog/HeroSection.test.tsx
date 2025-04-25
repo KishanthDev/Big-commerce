@@ -6,16 +6,14 @@ describe("HeroSection", () => {
   it("renders the main heading", () => {
     render(<HeroSection />);
     expect(
-      screen.getByText("Insights and Tips for Sellers and Buyers")
+      screen.getByText("Insights and Tips for Sellers and Buyers"),
     ).toBeInTheDocument();
   });
 
   it("renders the description paragraph", () => {
     render(<HeroSection />);
     expect(
-      screen.getByText(
-        /Stay informed with the latest marketplace trends/i
-      )
+      screen.getByText(/Stay informed with the latest marketplace trends/i),
     ).toBeInTheDocument();
   });
 

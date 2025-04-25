@@ -5,15 +5,13 @@ import Newsletter from "./NewsLetter";
 describe("Newsletter", () => {
   it("renders the heading", () => {
     render(<Newsletter />);
-    expect(
-      screen.getByText("Subscribe to Our Newsletter")
-    ).toBeInTheDocument();
+    expect(screen.getByText("Subscribe to Our Newsletter")).toBeInTheDocument();
   });
 
   it("renders the description text", () => {
     render(<Newsletter />);
     expect(
-      screen.getByText(/Get the latest marketplace insights/i)
+      screen.getByText(/Get the latest marketplace insights/i),
     ).toBeInTheDocument();
   });
 
@@ -26,12 +24,16 @@ describe("Newsletter", () => {
 
   it("renders the subscribe button", () => {
     render(<Newsletter />);
-    expect(screen.getByRole("button", { name: /Subscribe/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /Subscribe/i }),
+    ).toBeInTheDocument();
   });
 
   it("submits the form (simulated)", () => {
     render(<Newsletter />);
-    const input = screen.getByPlaceholderText("Enter your email") as HTMLInputElement;
+    const input = screen.getByPlaceholderText(
+      "Enter your email",
+    ) as HTMLInputElement;
     const button = screen.getByRole("button", { name: /Subscribe/i });
 
     fireEvent.change(input, { target: { value: "test@example.com" } });

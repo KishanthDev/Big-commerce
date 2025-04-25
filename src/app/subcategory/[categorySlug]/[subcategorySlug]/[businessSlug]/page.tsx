@@ -14,7 +14,6 @@ import { slugify } from "@lib/slugify";
 import Footer from "@/components/services/Footer";
 import { Business } from "types/business";
 
-
 interface Subcategory {
   name: string;
   businesses: Business[];
@@ -36,16 +35,15 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-  const params = typedBusinessesData
-    .flatMap((cat) =>
-      cat.subcategories.flatMap((sub) =>
-        sub.businesses.map((b) => ({
-          categorySlug: slugify(cat.category),
-          subcategorySlug: slugify(sub.name),
-          businessSlug: slugify(b.businessName),
-        }))
-      )
-    );
+  const params = typedBusinessesData.flatMap((cat) =>
+    cat.subcategories.flatMap((sub) =>
+      sub.businesses.map((b) => ({
+        categorySlug: slugify(cat.category),
+        subcategorySlug: slugify(sub.name),
+        businessSlug: slugify(b.businessName),
+      })),
+    ),
+  );
 
   return params;
 }
@@ -54,15 +52,15 @@ export default async function BusinessPage({ params }: Props) {
   const { categorySlug, businessSlug } = await params;
 
   const category = typedBusinessesData.find(
-    (cat) => slugify(cat.category) === categorySlug
+    (cat) => slugify(cat.category) === categorySlug,
   );
 
   if (!category) {
     notFound();
   }
 
-  const business = category
-    .subcategories.flatMap((sub) => sub.businesses)
+  const business = category.subcategories
+    .flatMap((sub) => sub.businesses)
     .find((b) => slugify(b.businessName) === businessSlug);
 
   if (!business) {
@@ -75,7 +73,10 @@ export default async function BusinessPage({ params }: Props) {
     <>
       <Navbar businessName={category.category} />
       <div className="font-sans text-[#333] leading-relaxed">
-        <HeroSection title={business.businessName} description={business.description} />
+        <HeroSection
+          title={business.businessName}
+          description={business.description}
+        />
         <main className="max-w-6xl mx-auto p-4 md:p-6 grid md:grid-cols-3 gap-6 md:gap-8">
           <div className="md:col-span-2 space-y-10 md:space-y-12">
             <ServicesSection services={business.services} />
@@ -91,7 +92,8 @@ export default async function BusinessPage({ params }: Props) {
               postalCode={business.location.postalCode}
               phone={business.contact.phone}
               email={business.contact.email}
-              website={business.contact.website} />
+              website={business.contact.website}
+            />
             <BusinessHoursSection businessHours={businessHours} />
             <AdditionalInfoSection />
           </div>

@@ -73,7 +73,9 @@ describe("ContentSection", () => {
     jest.resetModules();
     jest.doMock("../../../data/content_section_data.json", () => modifiedData);
 
-    const { default: ModifiedContentSection } = await import("./ContentSection");
+    const { default: ModifiedContentSection } = await import(
+      "./ContentSection"
+    );
     render(<ModifiedContentSection />);
 
     expect(screen.getByText("Pic")).toBeInTheDocument();

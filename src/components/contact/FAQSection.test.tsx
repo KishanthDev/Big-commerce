@@ -1,17 +1,17 @@
 import { render, screen } from "@testing-library/react";
 import FAQSection from "./FAQSection";
-import '@testing-library/jest-dom';
+import "@testing-library/jest-dom";
 
 // Mock data for testing
 jest.mock("../../../data/faq.json", () => [
   {
     question: "What is your return policy?",
-    answer: "You can return items within 30 days for a full refund."
+    answer: "You can return items within 30 days for a full refund.",
   },
   {
     question: "How do I contact support?",
-    answer: "You can contact support via email at support@markethub.com."
-  }
+    answer: "You can contact support via email at support@markethub.com.",
+  },
 ]);
 
 describe("FAQSection", () => {
@@ -23,11 +23,17 @@ describe("FAQSection", () => {
     expect(screen.getByText("How do I contact support?")).toBeInTheDocument();
 
     // Check if the FAQ answers are rendered
-    expect(screen.getByText("You can return items within 30 days for a full refund.")).toBeInTheDocument();
-    expect(screen.getByText("You can contact support via email at support@markethub.com.")).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "You can return items within 30 days for a full refund.",
+      ),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "You can contact support via email at support@markethub.com.",
+      ),
+    ).toBeInTheDocument();
   });
-
-
 
   it("displays the section title correctly", () => {
     render(<FAQSection />);
