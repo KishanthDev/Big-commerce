@@ -28,7 +28,7 @@ export default function SidebarLayout({
     <>
       {/* Conditionally render the Header and Sidebar */}
       {!isBusinessPage && <Header />}
-      <div className="flex h-[calc(100vh-100px)]">
+      <div className="flex h-[calc(100vh-110px)]">
         {/* Conditionally render the sidebar */}
         {!isBusinessPage && (
           <aside className="sticky top-0 h-full w-48 overflow-y-auto border-r border-gray-300 bg-white shadow-md scrollbar-hide scroll-smooth dark:border-gray-700 dark:bg-black md:w-64">
