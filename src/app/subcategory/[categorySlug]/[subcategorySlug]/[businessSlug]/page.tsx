@@ -1,47 +1,18 @@
-import businessesData from "../../../../../../data/detailed_categories_with_subcategories.json";
-import { Navbar } from "../../../../../components/services/navbar";
-import HeroSection from "../../../../../components/services/HeroSection";
-import ServicesSection from "../../../../../components/services/ServicesSection";
-import CertificationsSection from "../../../../../components/services/CertificationsSection";
-import ReviewsSection from "../../../../../components/services/ReviewsSection";
-import GallerySection from "../../../../../components/services/GallerySection";
-import ContactSection from "../../../../../components/services/ContactSection";
-import BusinessHoursSection from "../../../../../components/services/BusinessHoursSection";
-import AdditionalInfoSection from "../../../../../components/services/AdditionalInfoSection";
-import data from "../../../../../../data/data.json";
+import businessesData from "@data/detailed_categories_with_subcategories.json";
+import { Navbar } from "@components/services/navbar";
+import HeroSection from "@components/services/HeroSection";
+import ServicesSection from "@components/services/ServicesSection";
+import CertificationsSection from "@components/services/CertificationsSection";
+import ReviewsSection from "@components/services/ReviewsSection";
+import GallerySection from "@components/services/GallerySection";
+import ContactSection from "@components/services/ContactSection";
+import BusinessHoursSection from "@components/services/BusinessHoursSection";
+import AdditionalInfoSection from "@components/services/AdditionalInfoSection";
+import data from "@data/data.json";
 import { notFound } from "next/navigation";
-import { slugify } from "../../../../lib/slugify";
+import { slugify } from "@lib/slugify";
 import Footer from "@/components/services/Footer";
-
-// Define types for businessesData`
-interface Business {
-    id: string;
-    businessName: string;
-    description: string;
-    location: {
-      address: string;
-      city: string;
-      state: string;
-      postalCode: string;
-      latitude: number;
-      longitude: number;
-    };
-    contact: {
-      phone: string;
-      email: string;
-      website: string;
-    };
-    ratings: number;
-    reviews:[];
-    highlights: string[];
-    cta: { getDirections: string };
-    gallery: string[];
-    faqs: {
-      question: string;
-      answer: string;
-    }[];
-    services:[]
-  }
+import { Business } from "types/business";
   
 
 interface Subcategory {
