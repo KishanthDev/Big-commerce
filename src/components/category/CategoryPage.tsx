@@ -11,7 +11,7 @@ interface CategoryType {
 
 const MAX_VISIBLE_SUBCATS = 4;
 
-const Home = () => {
+const CategoryPage = () => {
   return (
     <div className="flex min-h-screen bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-100">
       <main className="flex-1 p-6 overflow-y-auto scrollbar-hide">
@@ -68,4 +68,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default CategoryPage;
