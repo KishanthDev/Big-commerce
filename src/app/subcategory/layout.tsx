@@ -8,6 +8,7 @@ import { ChevronDownIcon, ChevronRightIcon } from "lucide-react";
 import { Category } from "../../../types/category";
 import { slugify } from "../lib/slugify";
 import categoriesData from "../../../data/detailed_categories_with_subcategories.json";
+import Header from "@/components/header/Header";
 
 export default function SidebarLayout({
   children,
@@ -22,6 +23,8 @@ export default function SidebarLayout({
   };
 
   return (
+    <>
+    <Header/>
     <div className="flex h-[calc(100vh-100px)]">
       <aside className="sticky top-0 h-full w-48 overflow-y-auto border-r border-gray-300 bg-white shadow-md scrollbar-hide scroll-smooth dark:border-gray-700 dark:bg-black md:w-64">
         <div className="sticky top-0 z-10 bg-white pb-2 dark:bg-black">
@@ -107,5 +110,6 @@ export default function SidebarLayout({
       </aside>
       <main className="flex-1 overflow-y-auto scrollbar-hide">{children}</main>
     </div>
+    </>
   );
 }

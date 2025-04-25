@@ -16,7 +16,6 @@ export default function Provider({ children }: ProviderProps) {
       disableTransitionOnChange
     >
       <HeroUIProvider>
-        <Header />
         {children}
       </HeroUIProvider>
     </ThemeProvider>
