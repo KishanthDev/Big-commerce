@@ -8,6 +8,7 @@ import { FiltersBar } from "@/components/filter/FiltersBar";
 import { Share2, Heart, Phone, Globe, MapPin } from "lucide-react";
 import StarRating from "@/components/icons/StarRating";
 import Image from "next/image";
+import Link from "next/link";
 
 export async function generateStaticParams() {
   const params: { categorySlug: string; subcategorySlug: string }[] = [];
@@ -174,6 +175,14 @@ export default async function SubcategoryBusinessesPage({
                       <MapPin className="w-4 h-4" />
                       Directions
                     </a>
+                    <Link
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={`/subcategory/${categorySlug}/${subcategorySlug}/${slugify(business.businessName)}`}
+                      className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition"
+                    >
+                      Visit
+                    </Link>
                   </div>
                 </div>
               </div>
