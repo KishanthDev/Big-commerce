@@ -1,6 +1,6 @@
 [
   {
-    "category": "🚗 Automotive",
+    "category": "Automotive",
     "subcategories": [
       {
         "name": "Car Repair",
@@ -293,7 +293,7 @@
     ]
   },
   {
-    "category": "🏥 Health & Medical",
+    "category": "Health & Medical",
     "subcategories": [
       {
         "name": "Hospitals",
@@ -730,7 +730,7 @@
     ]
   },
   {
-    "category": "📚 Education",
+    "category": "Education",
     "subcategories": [
       {
         "name": "Schools (Primary, Secondary)",
@@ -1023,7 +1023,7 @@
     ]
   },
   {
-    "category": "🍽️ Restaurants & Food",
+    "category": "Restaurants & Food",
     "subcategories": [
       {
         "name": "Fast Food",
@@ -1388,7 +1388,7 @@
     ]
   },
   {
-    "category": "🛍️ Shopping & Retail",
+    "category": "Shopping & Retail",
     "subcategories": [
       {
         "name": "Clothing Stores",
@@ -1897,7 +1897,7 @@
     ]
   },
   {
-    "category": "💼 Professional Business Services",
+    "category": "Professional Business Services",
     "subcategories": [
       {
         "name": "Chartered Accountants",
@@ -2190,7 +2190,7 @@
     ]
   },
   {
-    "category": "🏠 Home Services",
+    "category": "Home Services",
     "subcategories": [
       {
         "name": "Interior Designers",
@@ -2699,7 +2699,7 @@
     ]
   },
   {
-    "category": "✈️ Travel & Transportation",
+    "category": "Travel & Transportation",
     "subcategories": [
       {
         "name": "Airlines",
@@ -3064,7 +3064,7 @@
     ]
   },
   {
-    "category": "🏢 Real Estate",
+    "category": "Real Estate",
     "subcategories": [
       {
         "name": "Builders and Developers",
@@ -3357,7 +3357,7 @@
     ]
   },
   {
-    "category": "💳 Financial Services",
+    "category": "Financial Services",
     "subcategories": [
       {
         "name": "Banks",
@@ -3722,7 +3722,7 @@
     ]
   },
   {
-    "category": "🏛️ Government & Community",
+    "category": "Government & Community",
     "subcategories": [
       {
         "name": "Local Government Offices",
@@ -4015,7 +4015,7 @@
     ]
   },
   {
-    "category": "🎬 Entertainment & Media",
+    "category": "Entertainment & Media",
     "subcategories": [
       {
         "name": "Movie Theaters",
@@ -4380,7 +4380,7 @@
     ]
   },
   {
-    "category": "🏋️ Sports & Recreation",
+    "category": "Sports & Recreation",
     "subcategories": [
       {
         "name": "Gyms",
@@ -4745,7 +4745,7 @@
     ]
   },
   {
-    "category": "🐾 Pets & Animals",
+    "category": "Pets & Animals",
     "subcategories": [
       {
         "name": "Pet Stores",
@@ -5110,7 +5110,7 @@
     ]
   },
   {
-    "category": "💻 Computers & Mobile",
+    "category": "Computers & Mobile",
     "subcategories": [
       {
         "name": "Internet Service Providers",
@@ -5475,7 +5475,7 @@
     ]
   },
   {
-    "category": "🛡️ Safety & Security",
+    "category": "Safety & Security",
     "subcategories": [
       {
         "name": "Private Security Services",
