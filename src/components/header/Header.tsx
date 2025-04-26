@@ -18,9 +18,6 @@ const Header = () => {
 
   return (
     <motion.div
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
       className="sticky top-0 left-0 w-full z-50"
     >
       <div className="hidden md:flex bg-gray-50 dark:bg-blue-900 text-gray-800 dark:text-gray-100 h-10 py-2 px-6 justify-end items-center text-sm font-medium shadow-md">
@@ -55,9 +52,6 @@ const Header = () => {
       </div>
 
       <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
         className="bg-white dark:bg-blue-950 shadow-md p-4 h-16 w-full flex items-center justify-between transition-all"
       >
         <Link href="/">

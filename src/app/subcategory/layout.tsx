@@ -7,6 +7,7 @@ import { ChevronDownIcon, ChevronRightIcon } from "lucide-react";
 import { Category } from "../../../types/category";
 import { slugify } from "../lib/slugify";
 import categoriesData from "../../../data/detailed_categories_with_subcategories.json";
+import Header from "@/components/header/Header";
 import { categoryIconMap } from "@/components/icons/IconMap";
 
 export default function SidebarLayout({
@@ -25,6 +26,8 @@ export default function SidebarLayout({
 
   return (
     <>
+      {/* Conditionally render the Header and Sidebar */}
+      {!isBusinessPage && <Header />}
       <div className="flex h-[calc(100vh-110px)]">
         {/* Conditionally render the sidebar */}
         {!isBusinessPage && (
