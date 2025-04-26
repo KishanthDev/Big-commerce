@@ -1,0 +1,38 @@
+import {
+    Car,
+    Hospital,
+    Book,
+    Utensils,
+    ShoppingCart,
+    Briefcase,
+    Home,
+    Plane,
+    Building2,
+    CreditCard,
+    Landmark,
+    Film,
+    Dumbbell,
+    PawPrint,
+    Laptop,
+    Shield
+  } from "lucide-react";
+  
+  export const categoryIconMap: Record<string, React.ElementType> = {
+    "Automotive": Car,
+    "Health & Medical": Hospital,
+    "Education": Book,
+    "Restaurants & Food": Utensils,
+    "Shopping & Retail": ShoppingCart,
+    "Professional Business Services": Briefcase,
+    "Home Services": Home,
+    "Travel & Transportation": Plane,
+    "Real Estate": Building2,
+    "Financial Services": CreditCard,
+    "Government & Community": Landmark,
+    "Entertainment & Media": Film,
+    "Sports & Recreation": Dumbbell,
+    "Pets & Animals": PawPrint,
+    "Computers & Mobile": Laptop,
+    "Safety & Security": Shield
+  };
+  

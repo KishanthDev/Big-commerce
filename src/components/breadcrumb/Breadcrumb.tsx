@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Category, Subcategory } from "../../../types/category";
 import { slugify } from "@/app/lib/slugify";
 import { usePathname } from "next/navigation";
+import { categoryIconMap } from "@/components/icons/IconMap";
 import { LayoutList } from "lucide-react";
 
 interface BreadcrumbProps {
@@ -30,6 +31,17 @@ export default function Breadcrumb({ category, subcategory }: BreadcrumbProps) {
   const categorySlug = slugify(category.category);
   const isCategoryPage = pathname === `/subcategory/${categorySlug}`;
 
+  const RenderCategoryIconWithName = () => {
+    const name = category.category.trim();
+    const Icon = categoryIconMap[name];
+    return (
+      <>
+        {Icon && <Icon className="h-4 w-4 shrink-0" />}
+        {name}
+      </>
+    );
+  };
+
   return (
     <nav aria-label="Breadcrumb" className="flex items-center text-sm mb-6">
       <Link
@@ -41,15 +53,15 @@ export default function Breadcrumb({ category, subcategory }: BreadcrumbProps) {
       </Link>
       <span className="mx-2 text-gray-400">›</span>
       {isCategoryPage ? (
-        <span className="text-gray-900 dark:text-white" aria-current="page">
-          {category.category}
+        <span className="flex items-center gap-2 text-gray-900 dark:text-white" aria-current="page">
+          <RenderCategoryIconWithName />
         </span>
       ) : (
         <Link
           href={`/subcategory/${categorySlug}`}
-          className="hover:underline text-blue-600 dark:text-blue-400"
+          className="flex items-center gap-2 hover:underline text-blue-600 dark:text-blue-400"
         >
-          {category.category}
+          <RenderCategoryIconWithName />
         </Link>
       )}
       {subcategory && (
