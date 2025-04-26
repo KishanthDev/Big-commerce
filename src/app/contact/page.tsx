@@ -3,13 +3,17 @@ import HeroSection from "@/components/contact/HeroSection";
 import ContactPage from "@/components/contact/ContactPage";
 import FAQSection from "@/components/contact/FAQSection";
 import React from "react";
+import Header from "@/components/header/Header";
+import Footer from "@/components/footer/Footer";
 
 const Page = () => {
   return (
-    <div className="font-sans text-gray-800 dark:text-gray-200 leading-normal">
+    <div>
+      <Header />
       <HeroSection />
       <ContactPage />
       <FAQSection />
+      <Footer />
     </div>
   );
 };

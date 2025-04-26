@@ -4,10 +4,12 @@ import HowItWorks from "../../components/buyer/HowItWorks";
 import FeaturedStores from "../../components/buyer/FeaturedStores";
 import CtaSection from "../../components/buyer/CtaSection";
 import Footer from "../../components/footer/Footer";
+import Header from "@/components/header/Header";
 
 export default function Page() {
   return (
-    <div className="font-sans text-gray-900">
+    <div>
+      <Header />
       <main>
         <Hero />
         <WhyShop />
