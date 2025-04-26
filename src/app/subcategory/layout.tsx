@@ -95,7 +95,7 @@ export default function SidebarLayout({
                       )}
                     </div>
                     {isOpen && category.subcategories.length > 0 && (
-                      <ul className="animate-slideDown ml-4 mt-1 space-y-1 animateSlideDown">
+                      <ul className="animate-slideDown ml-4 mt-1 space-y-2 animateSlideDown">
                         {category.subcategories.map((subcategory, subIndex) => {
                           const subcategorySlug = slugify(subcategory.name);
                           const isSubActive = pathname.includes(
@@ -105,7 +105,7 @@ export default function SidebarLayout({
                           return (
                             <li key={subIndex}>
                               <Link
-                                className={`block rounded-md px-3 py-1 text-sm ${
+                                className={`block rounded-md p-3 text-sm ${
                                   isSubActive
                                     ? "bg-blue-50 text-blue-600 dark:bg-blue-950 dark:text-blue-400"
                                     : "hover:bg-gray-100 dark:hover:bg-gray-800"
