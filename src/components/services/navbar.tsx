@@ -1,7 +1,15 @@
-import { Navbar as HeroUINavbar, NavbarBrand, NavbarContent ,NavbarItem,NavbarMenu,NavbarMenuItem ,NavbarMenuToggle} from "@heroui/navbar";
+import {
+  Navbar as HeroUINavbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  NavbarMenu,
+  NavbarMenuItem,
+  NavbarMenuToggle,
+} from "@heroui/navbar";
 import NextLink from "next/link";
 import { DarkModeToggle } from "../header/ModeToggle";
-import { categoryIconMap } from "../icons/IconMap"; 
+import { categoryIconMap } from "../icons/IconMap";
 
 type NavbarProps = {
   businessName: string;
@@ -27,8 +35,11 @@ export const Navbar = ({ businessName }: NavbarProps) => {
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full" justify="end" />
-      
+      <NavbarContent
+        className="hidden sm:flex basis-1/5 sm:basis-full"
+        justify="end"
+      />
+
       <NavbarItem className="hidden sm:flex gap-2">
         <DarkModeToggle />
       </NavbarItem>

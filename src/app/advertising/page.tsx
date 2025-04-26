@@ -16,7 +16,7 @@ function page() {
       <HowItWorks />
       <ResultsSection />
       <CTA />
-      <Footer/>
+      <Footer />
     </div>
   );
 }

@@ -53,7 +53,10 @@ export default function Breadcrumb({ category, subcategory }: BreadcrumbProps) {
       </Link>
       <span className="mx-2 text-gray-400">›</span>
       {isCategoryPage ? (
-        <span className="flex items-center gap-2 text-gray-900 dark:text-white" aria-current="page">
+        <span
+          className="flex items-center gap-2 text-gray-900 dark:text-white"
+          aria-current="page"
+        >
           <RenderCategoryIconWithName />
         </span>
       ) : (

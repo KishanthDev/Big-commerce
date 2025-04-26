@@ -10,7 +10,6 @@ interface CategoryType {
   subcategories: Subcategory[];
 }
 
-
 const CategoryPage = () => {
   return (
     <div className="flex min-h-screen bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-100">
@@ -30,7 +29,7 @@ const CategoryPage = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {categoriesData.map((category: CategoryType) => {
-            const visibleSubcats = category.subcategories
+            const visibleSubcats = category.subcategories;
             return (
               <Link
                 key={slugify(category.category)} // Use slugified category name as a unique key
@@ -43,7 +42,9 @@ const CategoryPage = () => {
                     const Icon = categoryIconMap[name];
                     return (
                       <>
-                        {Icon && <Icon className="mr-2 text-blue-500 h-4 w-4 shrink-0" />}
+                        {Icon && (
+                          <Icon className="mr-2 text-blue-500 h-4 w-4 shrink-0" />
+                        )}
                         {name}
                       </>
                     );
