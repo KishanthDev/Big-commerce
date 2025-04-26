@@ -43,7 +43,7 @@ const CategoryPage = () => {
                     const Icon = categoryIconMap[name];
                     return (
                       <>
-                        {Icon && <Icon className="mr-2 h-4 w-4 shrink-0" />}
+                        {Icon && <Icon className="mr-2 text-blue-500 h-4 w-4 shrink-0" />}
                         {name}
                       </>
                     );

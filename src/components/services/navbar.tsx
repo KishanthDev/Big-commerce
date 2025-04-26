@@ -20,7 +20,7 @@ export const Navbar = ({ businessName }: NavbarProps) => {
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
             <p className="flex items-center font-bold text-inherit text-lg">
-              {Icon && <Icon className="mr-2 h-5 w-5" />}
+              {Icon && <Icon className="mr-2 h-5 w-5 text-blue-500" />}
               {businessName}
             </p>
           </NextLink>
