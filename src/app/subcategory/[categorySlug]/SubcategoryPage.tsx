@@ -56,7 +56,7 @@ export default function SubcategoryPage({ category }: SubcategoryPageProps) {
           return (
             <li
               key={idx}
-              className="rounded-lg border border-gray-300 bg-gray-50 p-6 transition-all hover:shadow-md dark:border-gray-700 dark:bg-gray-800"
+              className="rounded-lg border border-gray-400 bg-gradient-to-br from-blue-500/40 dark:from-blue-700/30 via-transparent to-transparent p-6 transition-all hover:shadow-md"
             >
               <Link
                 className="block"
