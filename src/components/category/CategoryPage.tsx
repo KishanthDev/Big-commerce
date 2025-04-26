@@ -9,7 +9,6 @@ interface CategoryType {
   subcategories: Subcategory[];
 }
 
-const MAX_VISIBLE_SUBCATS = 4;
 
 const CategoryPage = () => {
   return (
@@ -30,13 +29,7 @@ const CategoryPage = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {categoriesData.map((category: CategoryType) => {
-            const visibleSubcats = category.subcategories.slice(
-              0,
-              MAX_VISIBLE_SUBCATS,
-            );
-            const remainingCount =
-              category.subcategories.length - visibleSubcats.length;
-
+            const visibleSubcats = category.subcategories
             return (
               <Link
                 key={slugify(category.category)} // Use slugified category name as a unique key
@@ -53,11 +46,6 @@ const CategoryPage = () => {
                       {subcat.name}
                     </span>
                   ))}
-                  {remainingCount > 0 && (
-                    <span className="text-xs bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-300 px-2 py-1 rounded-full">
-                      +{remainingCount}
-                    </span>
-                  )}
                 </div>
               </Link>
             );
