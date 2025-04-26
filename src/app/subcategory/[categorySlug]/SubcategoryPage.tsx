@@ -3,10 +3,12 @@
 import { useState } from "react";
 import Link from "next/link";
 import { GridIcon, ListIcon } from "lucide-react";
+import { ElementType } from "react";
 
 import Breadcrumb from "../../../components/breadcrumb/Breadcrumb";
 import { slugify } from "../../lib/slugify";
 import { Category } from "../../../../types/category";
+import { subCategoryIconMap } from "@/components/icons/subCategoryIconMap";
 
 interface SubcategoryPageProps {
   category: Category;
@@ -48,22 +50,31 @@ export default function SubcategoryPage({ category }: SubcategoryPageProps) {
             : "flex flex-col"
         }`}
       >
-        {category.subcategories.map((sub, idx) => (
-          <li
-            key={idx}
-            className="rounded-lg border border-gray-300 bg-gray-50 p-6 transition-all hover:shadow-md dark:border-gray-700 dark:bg-gray-800"
-          >
-            <Link
-              className="block"
-              href={`/subcategory/${categorySlug}/${slugify(sub.name)}`}
+        {category.subcategories.map((sub, idx) => {
+          const IconComponent: ElementType | undefined = subCategoryIconMap[sub.name]; // Get the component
+
+          return (
+            <li
+              key={idx}
+              className="rounded-lg border border-gray-300 bg-gray-50 p-6 transition-all hover:shadow-md dark:border-gray-700 dark:bg-gray-800"
             >
-              <div className="font-bold">{sub.name}</div>
-              <div className="mt-3 text-sm text-gray-500 dark:text-gray-400">
-                Browse local {sub.name} businesses
-              </div>
-            </Link>
-          </li>
-        ))}
+              <Link
+                className="block"
+                href={`/subcategory/${categorySlug}/${slugify(sub.name)}`}
+              >
+                <div className="flex items-center gap-2 font-bold">
+                  {IconComponent && (
+                    <IconComponent className="w-5 h-5 text-blue-500" />
+                  )}
+                  <span>{sub.name}</span>
+                </div>
+                <div className="mt-3 text-sm text-gray-500 dark:text-gray-400">
+                  Browse local {sub.name} businesses
+                </div>
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
