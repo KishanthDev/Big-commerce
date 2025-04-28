@@ -8,12 +8,12 @@ interface HeadingProps {
 
 const HeroSection: React.FC<HeadingProps> = ({ title, description }) => {
   return (
-    <section className="h-[400px] md:h-[400px] bg-cover bg-center relative flex flex-col justify-center items-center text-white text-center p-4 dark:text-gray-200">
+    <section data-testid="hero-section" className="h-[400px] md:h-[400px] bg-cover bg-center relative flex flex-col justify-center items-center text-white text-center p-4 dark:text-gray-200">
       <div
         data-testid="hero-overlay"
         className="dark:bg-gray-900 bg-gray-400 bg-opacity-50 absolute inset-0 z-0"
       />
-      <div className="relative z-10 max-w-4xl px-4">
+      <div data-testid="hero-content" className="relative z-10 max-w-4xl px-4">
         <h1 className="text-3xl text-primary sm:text-4xl md:text-5xl font-bold mb-2 md:mb-4">
           {title || "Welcome to Our Auto Repair Shop"}
         </h1>

@@ -36,6 +36,7 @@ export const Navbar = ({ businessName }: NavbarProps) => {
       </NavbarContent>
 
       <NavbarContent
+        data-testid="desktop-items"
         className="hidden sm:flex basis-1/5 sm:basis-full"
         justify="end"
       />
@@ -44,7 +45,9 @@ export const Navbar = ({ businessName }: NavbarProps) => {
         <DarkModeToggle />
       </NavbarItem>
 
-      <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
+      <NavbarContent
+      data-testid="mobile-toggle" 
+      className="sm:hidden basis-1 pl-4" justify="end">
         <NavbarMenuToggle />
       </NavbarContent>
 
