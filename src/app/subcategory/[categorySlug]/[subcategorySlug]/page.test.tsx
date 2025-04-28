@@ -41,16 +41,22 @@ jest.mock('@/app/lib/slugify', () => ({
 }));
 
 // Define proper types
-interface Business {
-  businessName: string;
-  description: string;
-  ratings: number;
-  reviews: any[];
-  contact: {
-    phone: string;
-    website: string;
-  };
-}
+interface Review {
+    rating: number;
+    comment: string;
+  }
+  
+  interface Business {
+    businessName: string;
+    description: string;
+    ratings: number;
+    reviews: Review[];
+    contact: {
+      phone: string;
+      website: string;
+    };
+  }
+  
 
 interface Subcategory {
   name: string;
