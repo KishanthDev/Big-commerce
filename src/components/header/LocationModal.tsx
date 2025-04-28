@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "../ui/button";
 import {
   Modal,
@@ -10,16 +10,68 @@ import {
 } from "@heroui/react";
 import { FiSearch, FiMapPin, FiChevronDown, FiX } from "react-icons/fi";
 
+const GEOCODING_API_URL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
+const API_KEY = "AIzaSyCQNqAUkIYa-5HS5iPypurBC6QCT-YjKS8"; 
+
 export default function LocationModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedLocation, setSelectedLocation] = useState("");
   const [pincode, setPincode] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const handleSelectLocation = () => {
-    setSelectedLocation("Bengaluru");
-    setPincode("560072");
+  const getCurrentLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const { latitude, longitude } = position.coords;
+        fetch(`${GEOCODING_API_URL}${latitude},${longitude}&key=${API_KEY}`)
+          .then((response) => response.json())
+          .then((data) => {
+            const location = data.results[0].formatted_address;
+            const pincode = data.results[0].address_components.find((component: { types: string[]; long_name: string }) =>
+              component.types.includes("postal_code")
+            ).long_name;
+
+            setSelectedLocation(location);
+            setPincode(pincode);
+          })
+          .catch((error) => console.error("Error fetching location:", error));
+      });
+    }
+  };
+
+  // Handle search query input
+  const handleSearchChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
+    setSearchQuery(e.target.value);
+  };
+
+  // Handle location selection from search result
+  const handleSelectLocation = (location: React.SetStateAction<string>, pincode: React.SetStateAction<string>) => {
+    setSelectedLocation(location);
+    setPincode(pincode);
     onClose();
   };
+
+  // Fetch location data based on search query
+  const handleSearchLocation = () => {
+    fetch(`${GEOCODING_API_URL}${searchQuery}&key=${API_KEY}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.results.length > 0) {
+          const location = data.results[0].formatted_address;
+          const pincode = data.results[0].address_components.find((component: { types: string | string[]; }) =>
+            component.types.includes("postal_code")
+          ).long_name;
+          handleSelectLocation(location, pincode);
+        }
+      })
+      .catch((error) => console.error("Error searching location:", error));
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      getCurrentLocation();
+    }
+  }, [isOpen]);
 
   return (
     <>
@@ -67,26 +119,35 @@ export default function LocationModal() {
                   <input
                     type="text"
                     placeholder="Search a new address"
+                    value={searchQuery}
+                    onChange={handleSearchChange}
                     className="pl-10 pr-4 py-2 w-full border rounded-md text-sm bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
+                  <Button onClick={handleSearchLocation} className="absolute right-0 top-1/2 transform -translate-y-1/2">
+                    Search
+                  </Button>
                 </div>
               </ModalHeader>
 
               <ModalBody className="py-4 px-0 space-y-1">
                 <div
                   className="flex items-center gap-2 cursor-pointer text-sm text-red-500"
-                  onClick={handleSelectLocation}
+                  onClick={getCurrentLocation}
                 >
                   <FiMapPin className="h-4 w-4" />
-                  <span className="font-medium">Current Location</span>
+                  <span className="font-medium">Use Current Location</span>
                 </div>
-                <div className="pl-6 text-xl font-semibold text-gray-900 dark:text-white">
-                  Bengaluru
-                </div>
-                {pincode && (
-                  <div className="text-xs text-gray-700 dark:text-gray-300 pl-6">
-                    {pincode}
-                  </div>
+                {selectedLocation && (
+                  <>
+                    <div className="pl-6 text-xl font-semibold text-gray-900 dark:text-white">
+                      {selectedLocation}
+                    </div>
+                    {pincode && (
+                      <div className="text-xs text-gray-700 dark:text-gray-300 pl-6">
+                        {pincode}
+                      </div>
+                    )}
+                  </>
                 )}
               </ModalBody>
             </>
