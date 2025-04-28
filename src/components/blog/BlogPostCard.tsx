@@ -36,7 +36,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({
           <span className="flex items-center">👤 {author}</span>
           <span className="flex items-center">📂 {category}</span>
         </div>
-        <h2 className="text-2xl font-semibold mb-4">
+        <h2 className="text-2xl dark:text-black  font-semibold mb-4">
           <a href={link} className="hover:text-blue-600 transition-colors">
             {title}
           </a>

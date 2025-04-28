@@ -36,7 +36,7 @@ export default function WhySell() {
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5 text-blue-600 text-2xl">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
+              <h3 className="text-xl dark:text-black   font-semibold mb-3">{feature.title}</h3>
               <p className="text-gray-600 text-sm">{feature.description}</p>
             </div>
           ))}
