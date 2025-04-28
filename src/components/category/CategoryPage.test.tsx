@@ -2,14 +2,11 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import CategoryPage from './CategoryPage';
 import categoriesData from '../../../data/detailed_categories_with_subcategories.json';
-import Breadcrumb from '../breadcrumb/Breadcrumb';
 import { categoryIconMap } from '@/components/icons/IconMap';
-import Link from 'next/link';
 
-// Mock the child components and dependencies
 jest.mock('next/link', () => ({
   __esModule: true,
-  default: ({ children, href, className }: any) => (
+  default: ({ children, href, className }: { children: React.ReactNode; href: string; className: string }) => (
     <a href={href} className={className} data-testid="category-link">
       {children}
     </a>
@@ -29,7 +26,6 @@ jest.mock('@/app/lib/slugify', () => ({
 jest.mock('@/components/icons/IconMap', () => ({
   categoryIconMap: {
     'Auto Repair': jest.fn(() => <svg data-testid="category-icon" />),
-    // Add other category icons as needed
   },
 }));
 
@@ -39,7 +35,6 @@ describe('CategoryPage Component', () => {
 
   test('renders the main layout with correct structure', () => {
     render(<CategoryPage />);
-    
     expect(screen.getByTestId('category-page')).toBeInTheDocument();
     expect(screen.getByTestId('main-content')).toBeInTheDocument();
   });
@@ -69,7 +64,6 @@ describe('CategoryPage Component', () => {
 
   test('renders category names and icons when available', () => {
     render(<CategoryPage />);
-    
     categoriesData.forEach(category => {
       expect(screen.getByText(category.category.trim())).toBeInTheDocument();
       
@@ -82,7 +76,6 @@ describe('CategoryPage Component', () => {
 
   test('renders subcategories for each category', () => {
     render(<CategoryPage />);
-    
     categoriesData.forEach(category => {
       category.subcategories.forEach(subcat => {
         expect(screen.getByText(subcat.name)).toBeInTheDocument();
@@ -104,7 +97,6 @@ describe('CategoryPage Component', () => {
 
   test('applies dark mode classes correctly', () => {
     render(<CategoryPage />);
-    
     const mainContainer = screen.getByTestId('category-page');
     expect(mainContainer).toHaveClass('dark:bg-black', 'dark:text-gray-100');
     
@@ -131,7 +123,6 @@ describe('CategoryPage Component', () => {
   test('applies correct styling to category cards', () => {
     render(<CategoryPage />);
     const firstCategoryLink = screen.getAllByTestId('category-link')[0];
-    
     expect(firstCategoryLink).toHaveClass(
       'bg-gradient-to-tl',
       'from-blue-500/40',
@@ -148,7 +139,6 @@ describe('CategoryPage Component', () => {
   test('applies correct styling to subcategory badges', () => {
     render(<CategoryPage />);
     const subcategoryBadge = screen.getByText(firstSubcategory.name);
-    
     expect(subcategoryBadge).toHaveClass(
       'text-xs',
       'bg-gray-200',
