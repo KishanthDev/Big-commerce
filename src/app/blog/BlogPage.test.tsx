@@ -1,21 +1,43 @@
 import { render, screen } from '@testing-library/react';
-import Page from './page'; // Update with the correct path to your Page component
+import Page from './page';
 import '@testing-library/jest-dom';
 
-// Mocking the components used in the Page
-jest.mock('@/components/header/Header', () => () => <div>Header</div>);
-jest.mock('@/components/blog/HeroSection', () => () => <div>HeroSection</div>);
-jest.mock('@/components/blog/ContentSection', () => () => <div>ContentSection</div>);
-jest.mock('@/components/blog/FeatureSection', () => () => <div>FeatureSection</div>);
-jest.mock('@/components/blog/NewsLetter', () => () => <div>NewsLetter</div>);
-jest.mock('@/components/footer/Footer', () => () => <div>Footer</div>);
+// Mocking the components used in the Page (with display names)
+jest.mock('@/components/header/Header', () => {
+  const HeaderMock = () => <div>Header</div>;
+  HeaderMock.displayName = 'HeaderMock';
+  return HeaderMock;
+});
+jest.mock('@/components/blog/HeroSection', () => {
+  const HeroSectionMock = () => <div>HeroSection</div>;
+  HeroSectionMock.displayName = 'HeroSectionMock';
+  return HeroSectionMock;
+});
+jest.mock('@/components/blog/ContentSection', () => {
+  const ContentSectionMock = () => <div>ContentSection</div>;
+  ContentSectionMock.displayName = 'ContentSectionMock';
+  return ContentSectionMock;
+});
+jest.mock('@/components/blog/FeatureSection', () => {
+  const FeatureSectionMock = () => <div>FeatureSection</div>;
+  FeatureSectionMock.displayName = 'FeatureSectionMock';
+  return FeatureSectionMock;
+});
+jest.mock('@/components/blog/NewsLetter', () => {
+  const NewsLetterMock = () => <div>NewsLetter</div>;
+  NewsLetterMock.displayName = 'NewsLetterMock';
+  return NewsLetterMock;
+});
+jest.mock('@/components/footer/Footer', () => {
+  const FooterMock = () => <div>Footer</div>;
+  FooterMock.displayName = 'FooterMock';
+  return FooterMock;
+});
 
 describe('BlogPage Component', () => {
   it('should render all child components', () => {
-    // Render the Page component
     render(<Page />);
 
-    // Check if each child component is rendered by checking their text content
     expect(screen.getByText('Header')).toBeInTheDocument();
     expect(screen.getByText('HeroSection')).toBeInTheDocument();
     expect(screen.getByText('ContentSection')).toBeInTheDocument();

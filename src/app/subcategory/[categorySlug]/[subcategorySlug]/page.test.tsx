@@ -1,4 +1,3 @@
-// __tests__/app/[categorySlug]/[subcategorySlug]/page.test.tsx
 import { render, screen } from '@testing-library/react';
 import SubcategoryBusinessesPage, {
   generateStaticParams,
@@ -13,7 +12,7 @@ jest.mock('next/navigation', () => ({
   notFound: jest.fn(),
 }));
 
-jest.mock('@/components/breadcrumb/Breadcrumb', () => 
+jest.mock('@/components/breadcrumb/Breadcrumb', () =>
   jest.fn(({ category, subcategory }) => (
     <div data-testid="breadcrumb">
       {category.category} &gt; {subcategory.name}
@@ -21,11 +20,11 @@ jest.mock('@/components/breadcrumb/Breadcrumb', () =>
   ))
 );
 
-jest.mock('@/components/filter/FiltersBar', () => 
+jest.mock('@/components/filter/FiltersBar', () =>
   jest.fn(() => <div data-testid="filters-bar">Filters Bar</div>)
 );
 
-jest.mock('@/components/icons/StarRating', () => 
+jest.mock('@/components/icons/StarRating', () =>
   jest.fn(({ rating }) => <div data-testid="star-rating">{rating} stars</div>)
 );
 
@@ -41,9 +40,31 @@ jest.mock('@/app/lib/slugify', () => ({
   slugify: jest.fn((str) => str.toLowerCase().replace(/\s+/g, '-')),
 }));
 
+// Define proper types
+interface Business {
+  businessName: string;
+  description: string;
+  ratings: number;
+  reviews: any[];
+  contact: {
+    phone: string;
+    website: string;
+  };
+}
+
+interface Subcategory {
+  name: string;
+  businesses: Business[];
+}
+
+interface Category {
+  category: string;
+  subcategories: Subcategory[];
+}
+
 describe('SubcategoryBusinessesPage', () => {
-  const mockCategory = categoriesData[0];
-  const mockSubcategory = mockCategory.subcategories[0];
+  const mockCategory: Category = categoriesData[0];  // Typed category
+  const mockSubcategory: Subcategory = mockCategory.subcategories[0];  // Typed subcategory
   const mockParams = {
     categorySlug: slugify(mockCategory.category),
     subcategorySlug: slugify(mockSubcategory.name),
@@ -94,7 +115,7 @@ describe('SubcategoryBusinessesPage', () => {
   describe('Page Component', () => {
     it('should render correctly with businesses', async () => {
       const Page = await SubcategoryBusinessesPage({ params: Promise.resolve(mockParams) });
-      const { container } = render(Page);
+      render(Page);
 
       // Verify main elements
       expect(screen.getByTestId('breadcrumb')).toBeInTheDocument();
@@ -120,18 +141,18 @@ describe('SubcategoryBusinessesPage', () => {
 
     it('should render empty state when no businesses exist', async () => {
       // Create a mock subcategory with no businesses
-      const emptySubcategory = {
+      const emptySubcategory: Subcategory = {
         ...mockSubcategory,
         businesses: []
       };
-      const emptyCategory = {
+      const emptyCategory: Category = {
         ...mockCategory,
         subcategories: [emptySubcategory]
       };
 
       // Mock the data find methods
-      jest.spyOn(categoriesData, 'find').mockReturnValue(emptyCategory as any);
-      jest.spyOn(emptyCategory.subcategories, 'find').mockReturnValue(emptySubcategory as any);
+      jest.spyOn(categoriesData as Category[], 'find').mockReturnValue(emptyCategory);
+      jest.spyOn(emptyCategory.subcategories as Subcategory[], 'find').mockReturnValue(emptySubcategory);
 
       const Page = await SubcategoryBusinessesPage({ 
         params: Promise.resolve({ 
@@ -147,7 +168,7 @@ describe('SubcategoryBusinessesPage', () => {
     });
 
     it('should call notFound when category does not exist', async () => {
-      jest.spyOn(categoriesData, 'find').mockReturnValue(undefined);
+      jest.spyOn(categoriesData as Category[], 'find').mockReturnValue(undefined);
       
       await SubcategoryBusinessesPage({ 
         params: Promise.resolve({ 
@@ -160,8 +181,8 @@ describe('SubcategoryBusinessesPage', () => {
     });
 
     it('should call notFound when subcategory does not exist', async () => {
-      jest.spyOn(categoriesData, 'find').mockReturnValue(mockCategory as any);
-      jest.spyOn(mockCategory.subcategories, 'find').mockReturnValue(undefined);
+      jest.spyOn(categoriesData as Category[], 'find').mockReturnValue(mockCategory);
+      jest.spyOn(mockCategory.subcategories as Subcategory[], 'find').mockReturnValue(undefined);
       
       await SubcategoryBusinessesPage({ 
         params: Promise.resolve({ 

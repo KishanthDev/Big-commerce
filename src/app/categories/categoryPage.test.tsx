@@ -1,18 +1,25 @@
 import { render, screen } from '@testing-library/react';
-import Page from './page'; // Adjust the import path according to your project structure
+import Page from './page';
 import '@testing-library/jest-dom';
 
-// Mocking the components used in the Page
-jest.mock('../../components/category/CategoryPage', () => () => <div>Categories</div>);
-jest.mock('../subcategory/layout', () => ({ children }: { children: React.ReactNode }) => <div>{children}</div>);
+// Mocking the components used in the Page (with display names)
+jest.mock('../../components/category/CategoryPage', () => {
+  const CategoryPageMock = () => <div>Categories</div>;
+  CategoryPageMock.displayName = 'CategoryPageMock';
+  return CategoryPageMock;
+});
+
+jest.mock('../subcategory/layout', () => {
+  const SidebarLayoutMock = ({ children }: { children: React.ReactNode }) => <div>{children}</div>;
+  SidebarLayoutMock.displayName = 'SidebarLayoutMock';
+  return SidebarLayoutMock;
+});
 
 describe('CategoryPage Component', () => {
   it('should render SidebarLayout and Categories', () => {
-    // Render the Page component
     render(<Page />);
 
-    // Check if SidebarLayout and Categories are rendered by checking their text content
+    // Verify that "Categories" text is present
     expect(screen.getByText('Categories')).toBeInTheDocument();
-    expect(screen.getByText('Categories')).toBeInTheDocument();  // Ensure the component is wrapped in SidebarLayout
   });
 });

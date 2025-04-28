@@ -1,4 +1,3 @@
-import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { render } from "@testing-library/react";
 import Page, { generateMetadata, generateStaticParams } from "./page";

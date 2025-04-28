@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import BusinessPage, { generateStaticParams } from './page';
 import { notFound } from 'next/navigation';
 import { slugify } from '@lib/slugify';

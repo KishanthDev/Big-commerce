@@ -28,10 +28,13 @@ jest.mock("../../lib/slugify", () => ({
 
 // Mock Breadcrumb component
 jest.mock("../../../components/breadcrumb/Breadcrumb", () => {
-  return function Breadcrumb({ category }: { category: any }) {
-    return <div data-testid="breadcrumb">{category.category}</div>;
-  };
-});
+    const BreadcrumbMock = ({ category }: { category: { category: string } }) => (
+      <div data-testid="breadcrumb">{category.category}</div>
+    );
+    BreadcrumbMock.displayName = 'BreadcrumbMock';
+    return BreadcrumbMock;
+  });
+  
 
 describe("SubcategoryPage", () => {
   const mockCategory = {

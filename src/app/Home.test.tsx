@@ -1,27 +1,47 @@
-// Home.test.tsx
 import { render, screen } from "@testing-library/react";
-import Home from "./page";  // Adjust the import path as needed
+import Home from "./page";
 import React from "react";
 
-// Mock the components to simplify the test
-jest.mock("@/components/hero/Hero", () => () => <div data-testid="hero-section">HeroSection</div>);
-jest.mock("@/components/header/Header", () => () => <div data-testid="header">Header</div>);
-jest.mock("@/components/Stats", () => () => <div data-testid="stats-section">StatsSection</div>);
-jest.mock("@/components/BigCommerceBenefits", () => () => <div data-testid="big-commerce-benefits">BigCommerceBenefits</div>);
-jest.mock("@/components/footer/Footer", () => () => <div data-testid="footer">Footer</div>);
+jest.mock("@/components/hero/Hero", () => {
+  const HeroMock = () => <div data-testid="hero-section">HeroSection</div>;
+  HeroMock.displayName = "HeroMock";
+  return HeroMock;
+});
+
+jest.mock("@/components/header/Header", () => {
+  const HeaderMock = () => <div data-testid="header">Header</div>;
+  HeaderMock.displayName = "HeaderMock";
+  return HeaderMock;
+});
+
+jest.mock("@/components/Stats", () => {
+  const StatsMock = () => <div data-testid="stats-section">StatsSection</div>;
+  StatsMock.displayName = "StatsMock";
+  return StatsMock;
+});
+
+jest.mock("@/components/BigCommerceBenefits", () => {
+  const BigCommerceBenefitsMock = () => <div data-testid="big-commerce-benefits">BigCommerceBenefits</div>;
+  BigCommerceBenefitsMock.displayName = "BigCommerceBenefitsMock";
+  return BigCommerceBenefitsMock;
+});
+
+jest.mock("@/components/footer/Footer", () => {
+  const FooterMock = () => <div data-testid="footer">Footer</div>;
+  FooterMock.displayName = "FooterMock";
+  return FooterMock;
+});
 
 describe("Home Component", () => {
   it("renders all child components correctly", () => {
     render(<Home />);
 
-    // Check if all mocked components are rendered
     expect(screen.getByTestId("header")).toBeInTheDocument();
     expect(screen.getByTestId("hero-section")).toBeInTheDocument();
     expect(screen.getByTestId("stats-section")).toBeInTheDocument();
     expect(screen.getByTestId("big-commerce-benefits")).toBeInTheDocument();
     expect(screen.getByTestId("footer")).toBeInTheDocument();
 
-    // Optionally, check for some specific content if you want more detailed tests
     expect(screen.getByTestId("hero-section")).toHaveTextContent("HeroSection");
     expect(screen.getByTestId("stats-section")).toHaveTextContent("StatsSection");
     expect(screen.getByTestId("big-commerce-benefits")).toHaveTextContent("BigCommerceBenefits");
