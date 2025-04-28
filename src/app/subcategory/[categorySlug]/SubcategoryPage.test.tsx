@@ -4,10 +4,15 @@ import { slugify } from "../../lib/slugify";
 
 // Mock dependencies
 jest.mock("next/link", () => {
-  return ({ children, href }: { children: React.ReactNode; href: string }) => (
-    <a href={href}>{children}</a>
-  );
-});
+    const LinkMock = ({ children, href }: { children: React.ReactNode; href: string }) => (
+      <a href={href}>{children}</a>
+    );
+  
+    LinkMock.displayName = "LinkMock";
+  
+    return LinkMock;
+  });
+  
 
 jest.mock("lucide-react", () => ({
   GridIcon: ({ className, onClick }: { className: string; onClick: () => void }) => (

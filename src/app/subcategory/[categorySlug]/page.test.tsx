@@ -18,8 +18,9 @@ jest.mock("../../../../data/detailed_categories_with_subcategories.json", () => 
 ]);
 
 jest.mock("../../lib/slugify", () => ({
-  slugify: jest.fn((str) => str.toLowerCase()),
-}));
+    slugify: jest.fn((str: string): string => str.toLowerCase()), // Explicit type
+  }));
+  
 
 jest.mock("./SubcategoryPage", () => ({
   __esModule: true,
@@ -49,6 +50,7 @@ describe("Subcategory Page", () => {
       expect(mockedSlugify).toHaveBeenCalledTimes(2);
     });
   });
+  
 
   describe("generateMetadata", () => {
     it("should return correct metadata for found category", async () => {
