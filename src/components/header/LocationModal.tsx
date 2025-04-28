@@ -16,6 +16,7 @@ const API_KEY = "AIzaSyCQNqAUkIYa-5HS5iPypurBC6QCT-YjKS8";
 export default function LocationModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedLocation, setSelectedLocation] = useState("");
+  const [city, setCity] = useState("");
   const [pincode, setPincode] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -43,8 +44,13 @@ export default function LocationModal() {
                 (component: { types: string[] }) =>
                   component.types.includes("postal_code")
               );
+              const cityComponent = data.results[0].address_components.find(
+                (component: { types: string[] }) =>
+                  component.types.includes("locality")
+              );
               
               setSelectedLocation(location);
+              setCity(cityComponent?.long_name || "");
               setPincode(pincodeComponent?.long_name || "");
             } else {
               setError("No address found for your location");
@@ -69,8 +75,9 @@ export default function LocationModal() {
     setError("");
   };
 
-  const handleSelectLocation = (location: string, pincode: string) => {
+  const handleSelectLocation = (location: string, city: string, pincode: string) => {
     setSelectedLocation(location);
+    setCity(city);
     setPincode(pincode);
     setError("");
     onClose();
@@ -92,7 +99,11 @@ export default function LocationModal() {
             (component: { types: string[] }) =>
               component.types.includes("postal_code")
           );
-          handleSelectLocation(location, pincodeComponent?.long_name || "");
+          const cityComponent = data.results[0].address_components.find(
+            (component: { types: string[] }) =>
+              component.types.includes("locality")
+          );
+          handleSelectLocation(location, cityComponent?.long_name || "", pincodeComponent?.long_name || "");
         } else {
           setError("No results found for your search");
         }
@@ -124,9 +135,9 @@ export default function LocationModal() {
         <span className="truncate">
           {selectedLocation ? truncateLocation(selectedLocation) : "Select Location"}
         </span>
-        {selectedLocation && pincode && (
+        {selectedLocation && city && pincode && (
           <span className="text-xs text-gray-500 dark:text-gray-300 ml-1 whitespace-nowrap">
-            {pincode}
+            {city}, {pincode}
           </span>
         )}
         <FiChevronDown className="h-4 w-4 flex-shrink-0" />
@@ -200,6 +211,11 @@ export default function LocationModal() {
                     <div className="text-lg font-semibold text-gray-900 dark:text-white break-words">
                       {selectedLocation}
                     </div>
+                    {city && (
+                      <div className="text-xs text-gray-700 dark:text-gray-300 mt-1">
+                        City: {city}
+                      </div>
+                    )}
                     {pincode && (
                       <div className="text-xs text-gray-700 dark:text-gray-300 mt-1">
                         Pincode: {pincode}
