@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Subcategory Page Page Component should handle params promise correctly 1`] = `
+<div>
+  <div>
+    Mocked SubcategoryPage
+  </div>
+</div>
+`;
+
+exports[`Subcategory Page Page Component should render SubcategoryPage for valid category 1`] = `
+<div>
+  <div>
+    Mocked SubcategoryPage
+  </div>
+</div>
+`;
