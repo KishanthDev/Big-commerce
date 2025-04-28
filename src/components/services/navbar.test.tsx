@@ -4,23 +4,23 @@ import { Navbar } from './navbar';
 
 // Mock the HeroUI navbar components
 jest.mock('@heroui/navbar', () => ({
-  Navbar: ({ children, className, maxWidth, position }: any) => (
+  Navbar: ({ children, className, maxWidth, position }: { children?: React.ReactNode; className?: string; maxWidth?: string; position?: string }) => (
     <nav className={className} data-maxwidth={maxWidth} data-position={position}>
       {children}
     </nav>
   ),
-  NavbarBrand: ({ children, as: As, className }: any) => (
+  NavbarBrand: ({ children, as: As, className }: { children?: React.ReactNode; as: React.ElementType; className?: string }) => (
     <As className={className}>{children}</As>
   ),
-  NavbarContent: ({ children, className, justify }: any) => (
+  NavbarContent: ({ children, className, justify }: { children?: React.ReactNode; className?: string; justify?: string }) => (
     <div className={className} data-justify={justify}>
       {children}
     </div>
   ),
-  NavbarItem: ({ children, className }: any) => (
+  NavbarItem: ({ children, className }: { children?: React.ReactNode; className?: string }) => (
     <div className={className}>{children}</div>
   ),
-  NavbarMenu: ({ children }: any) => <div data-testid="navbar-menu">{children}</div>,
+  NavbarMenu: ({ children }: { children?: React.ReactNode }) => <div data-testid="navbar-menu">{children}</div>,
   NavbarMenuItem: () => <div data-testid="navbar-menu-item" />,
   NavbarMenuToggle: () => <button data-testid="navbar-menu-toggle">Toggle</button>,
 }));
@@ -28,7 +28,7 @@ jest.mock('@heroui/navbar', () => ({
 // Mock NextLink
 jest.mock('next/link', () => ({
   __esModule: true,
-  default: ({ children, href, className }: any) => (
+  default: ({ children, href, className }: { children?: React.ReactNode; href: string; className?: string }) => (
     <a href={href} className={className}>
       {children}
     </a>
@@ -42,13 +42,11 @@ jest.mock('../header/ModeToggle', () => ({
 
 describe('Navbar Component', () => {
   const mockBusinessName = 'Auto Repair Pro';
-  const mockBusinessNameWithIcon = 'Car Wash';
 
   test('renders with business name', () => {
     render(<Navbar businessName={mockBusinessName} />);
     expect(screen.getByText(mockBusinessName)).toBeInTheDocument();
   });
-
 
   test('does not render icon when not in categoryIconMap', () => {
     render(<Navbar businessName="Unknown Business" />);
@@ -58,7 +56,7 @@ describe('Navbar Component', () => {
   test('has correct navbar styling', () => {
     render(<Navbar businessName={mockBusinessName} />);
     const navbar = screen.getByRole('navigation');
-    
+
     expect(navbar).toHaveClass(
       'h-16',
       'z-50',
@@ -69,7 +67,7 @@ describe('Navbar Component', () => {
       'border-gray-200',
       'dark:border-gray-800'
     );
-    
+
     expect(navbar).toHaveAttribute('data-maxwidth', 'xl');
     expect(navbar).toHaveAttribute('data-position', 'sticky');
   });
@@ -77,7 +75,7 @@ describe('Navbar Component', () => {
   test('renders NavbarBrand with correct link', () => {
     render(<Navbar businessName={mockBusinessName} />);
     const link = screen.getByRole('link');
-    
+
     expect(link).toHaveAttribute('href', '/');
     expect(link).toHaveClass('flex', 'justify-start', 'items-center', 'gap-1');
   });
@@ -98,12 +96,10 @@ describe('Navbar Component', () => {
     expect(screen.getByTestId('navbar-menu-item')).toBeInTheDocument();
   });
 
-
-
   test('applies dark mode classes', () => {
     render(<Navbar businessName={mockBusinessName} />);
     const navbar = screen.getByRole('navigation');
-    
+
     expect(navbar).toHaveClass('dark:bg-black/30', 'dark:border-gray-800');
   });
 });

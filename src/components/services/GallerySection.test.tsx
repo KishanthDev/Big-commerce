@@ -1,13 +1,12 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import GallerySection from './GallerySection'; // adjust import path as needed
+import GallerySection from './GallerySection'; // adjust import path if needed
 import { GalleryImage } from '../../../types/data';
 
 // Mock the next/image component
 jest.mock('next/image', () => ({
   __esModule: true,
-  default: (props: any) => {
-    // Custom mock implementation that includes props for testing
+  default: (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
     return <img {...props} />;
   },
 }));
@@ -22,10 +21,12 @@ describe('GallerySection Component', () => {
 
   test('renders the component with title', () => {
     render(<GallerySection images={mockImages} />);
-    expect(screen.getByRole('heading', { 
-      level: 2, 
-      name: 'Our Shop Gallery' 
-    })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', {
+        level: 2,
+        name: 'Our Shop Gallery',
+      })
+    ).toBeInTheDocument();
   });
 
   test('renders all gallery images', () => {
@@ -51,8 +52,8 @@ describe('GallerySection Component', () => {
   test('each image container has correct styling', () => {
     render(<GallerySection images={mockImages} />);
     const containers = screen.getAllByTestId('image-container');
-    
-    containers.forEach(container => {
+
+    containers.forEach((container) => {
       expect(container).toHaveClass(
         'aspect-square',
         'overflow-hidden',
@@ -67,7 +68,7 @@ describe('GallerySection Component', () => {
   test('images have correct props and styling', () => {
     render(<GallerySection images={mockImages} />);
     const images = screen.getAllByRole('img');
-    
+
     images.forEach((img, idx) => {
       expect(img).toHaveAttribute('alt', `Gallery ${idx + 1}`);
       expect(img).toHaveAttribute('src', mockImages[idx]);
@@ -83,17 +84,15 @@ describe('GallerySection Component', () => {
 
   test('applies dark mode classes correctly', () => {
     render(<GallerySection images={mockImages} />);
-    
     const title = screen.getByRole('heading', { level: 2 });
     expect(title).toHaveClass('dark:text-white');
-    
+
     const containers = screen.getAllByTestId('image-container');
     expect(containers[0]).toHaveClass('dark:bg-gray-700');
   });
 
   test('renders empty state when no images provided', () => {
     render(<GallerySection images={[]} />);
-    
     expect(screen.getByRole('heading', { level: 2 })).toBeInTheDocument();
     expect(screen.queryAllByTestId('image-container')).toHaveLength(0);
   });
@@ -101,8 +100,8 @@ describe('GallerySection Component', () => {
   test('images have correct dimensions', () => {
     render(<GallerySection images={mockImages} />);
     const images = screen.getAllByRole('img');
-    
-    images.forEach(img => {
+
+    images.forEach((img) => {
       expect(img).toHaveAttribute('height', '200');
       expect(img).toHaveAttribute('width', '200');
     });

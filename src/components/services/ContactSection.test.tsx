@@ -5,8 +5,7 @@ import ContactSection from './ContactSection';
 // Mock the next/image component
 jest.mock('next/image', () => ({
   __esModule: true,
-  default: (props: any) => {
-    // Custom mock implementation that includes props for testing
+  default: (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
     return <img {...props} />;
   },
 }));
@@ -22,19 +21,19 @@ describe('ContactSection', () => {
     website: 'https://example.com',
   };
 
-
-
   test('renders the component with title', () => {
     render(<ContactSection {...mockProps} />);
-    
-    expect(screen.getByRole('heading', { 
-      level: 2, 
-      name: 'Contact & Location' 
-    })).toBeInTheDocument();
-  })
+    expect(
+      screen.getByRole('heading', {
+        level: 2,
+        name: 'Contact & Location',
+      })
+    ).toBeInTheDocument();
+  });
+
   test('renders the map image with correct props', () => {
     render(<ContactSection {...mockProps} />);
-    
+
     const mapImage = screen.getByAltText('Map');
     expect(mapImage).toBeInTheDocument();
     expect(mapImage).toHaveClass('w-full h-full object-cover');
