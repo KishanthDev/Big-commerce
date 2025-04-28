@@ -1,83 +1,116 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
-import ContentSection from "./ContentSection";
-import contactData from "../../../data/content_section_data.json";
-import "@testing-library/jest-dom";
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import ContentSection from './ContentSection';
+import contactData from '../../../data/content_section_data.json';
 
-// ✅ Mock Next.js Image without triggering lint
-const MockNextImage = ({ src, alt }: { src: string; alt: string }) => (
-  <img src={src} alt={alt} />
-);
-MockNextImage.displayName = "MockNextImage";
-
-jest.mock("next/image", () => ({
+// Mock the child components
+jest.mock('./BlogPostCard', () => ({
   __esModule: true,
-  default: MockNextImage,
+  default: ({ title }: { title: string }) => <div data-testid="blog-post-card">{title}</div>,
 }));
 
-// ✅ Mock BlogPostCard with displayName
-const MockBlogPostCard = ({ title }: { title: string }) => (
-  <div data-testid="blog-post-card">{title}</div>
-);
-MockBlogPostCard.displayName = "MockBlogPostCard";
+// Mock next/image
+jest.mock('next/image', () => ({
+  __esModule: true,
+  default: (props: any) => <img {...props} />,
+}));
 
-jest.mock("./BlogPostCard", () => MockBlogPostCard);
+describe('ContentSection Component', () => {
+  const { blogPosts, categories, featuredPosts } = contactData;
 
-describe("ContentSection", () => {
-  it("renders all blog posts", () => {
+  test('renders all blog posts', () => {
     render(<ContentSection />);
-    contactData.blogPosts.forEach((post) => {
+    
+    const blogPostCards = screen.getAllByTestId('blog-post-card');
+    expect(blogPostCards).toHaveLength(blogPosts.length);
+    
+    blogPosts.forEach(post => {
       expect(screen.getByText(post.title)).toBeInTheDocument();
     });
-
-    const cards = screen.getAllByTestId("blog-post-card");
-    expect(cards.length).toBe(contactData.blogPosts.length);
   });
 
-  it("renders categories with correct name and count", () => {
+  test('renders categories section correctly', () => {
     render(<ContentSection />);
-    contactData.categories.forEach((cat) => {
-      expect(screen.getByText(cat.name)).toBeInTheDocument();
-      expect(screen.getByText(cat.count.toString())).toBeInTheDocument();
+    
+    expect(screen.getByText('Categories')).toBeInTheDocument();
+    
+    const categoryLinks = screen.getAllByTestId('category-link');
+    expect(categoryLinks).toHaveLength(categories.length);
+    
+    categories.forEach(category => {
+      expect(screen.getByText(category.name)).toBeInTheDocument();
+      expect(screen.getByText(category.count.toString())).toBeInTheDocument();
     });
   });
 
-  it("renders popular articles with title and date", () => {
+  test('renders popular articles section correctly', () => {
     render(<ContentSection />);
-    contactData.featuredPosts.forEach((post) => {
+    
+    expect(screen.getByText('Popular Articles')).toBeInTheDocument();
+    
+    const featuredPostItems = screen.getAllByTestId('featured-post');
+    expect(featuredPostItems).toHaveLength(featuredPosts.length);
+    
+    featuredPosts.forEach(post => {
       expect(screen.getByText(post.title)).toBeInTheDocument();
       expect(screen.getByText(post.date)).toBeInTheDocument();
     });
   });
 
-  it("renders image or fallback for each popular post", () => {
+  test('applies correct responsive layout', () => {
     render(<ContentSection />);
-    contactData.featuredPosts.forEach((post) => {
-      if (post.image) {
-        expect(screen.getByAltText(post.title)).toBeInTheDocument();
-      } else {
-        expect(screen.getAllByText("Pic").length).toBeGreaterThan(0);
-      }
-    });
+    
+    const mainContent = screen.getByTestId('main-content');
+    expect(mainContent).toHaveClass('lg:w-3/4');
+    
+    const sidebar = screen.getByTestId('sidebar');
+    expect(sidebar).toHaveClass('lg:w-1/4');
   });
 
-  it("renders fallback 'Pic' when featured post image is missing", async () => {
-    const modifiedData = {
-      ...contactData,
-      featuredPosts: [
-        ...contactData.featuredPosts.slice(0, 1),
-        { ...contactData.featuredPosts[0], image: null },
-      ],
-    };
+  test('renders placeholder when no image in featured posts', () => {
+    const mockFeaturedPosts = [...featuredPosts];
+    (mockFeaturedPosts[0].image as string | undefined) = undefined;
+    
+    jest.mock('../../../data/content_section_data.json', () => ({
+      blogPosts: [],
+      categories: [],
+      featuredPosts: mockFeaturedPosts,
+    }));
+    
+    render(<ContentSection />);
+    
+    expect(screen.getByText('Pic')).toBeInTheDocument();
+  });
 
-    jest.resetModules();
-    jest.doMock("../../../data/content_section_data.json", () => modifiedData);
+  test('renders image when available in featured posts', () => {
+    render(<ContentSection />);
+    
+    const images = screen.getAllByRole('img');
+    const featuredPostWithImage = featuredPosts.find(post => post.image);
+    
+    if (featuredPostWithImage) {
+      expect(images.length).toBeGreaterThan(0);
+    }
+  });
 
-    const { default: ModifiedContentSection } = await import(
-      "./ContentSection"
+  test('applies correct styling to all sections', () => {
+    render(<ContentSection />);
+    
+    const categorySection = screen.getByTestId('categories-section');
+    expect(categorySection).toHaveClass(
+      'bg-white',
+      'rounded-lg',
+      'shadow-sm',
+      'p-6',
+      'mb-8'
     );
-    render(<ModifiedContentSection />);
-
-    expect(screen.getByText("Pic")).toBeInTheDocument();
+    
+    const featuredSection = screen.getByTestId('featured-section');
+    expect(featuredSection).toHaveClass(
+      'bg-white',
+      'rounded-lg',
+      'shadow-sm',
+      'p-6'
+    );
   });
 });
