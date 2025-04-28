@@ -11,7 +11,7 @@ export default function Footer() {
 
       <p className="mt-2 md:mt-3 text-sm md:text-base">We accept:</p>
 
-      <div className="flex justify-center gap-4 mt-2 md:mt-3">
+      <div data-testid="payment-icons-container" className="flex justify-center gap-4 mt-2 md:mt-3">
         {["V", "M", "A"].map((card, idx) => (
           <div
             key={idx}

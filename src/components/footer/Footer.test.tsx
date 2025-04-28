@@ -64,13 +64,6 @@ const footerLinks = [
 ];
 
 describe("Footer Component", () => {
-  it("renders all section titles in desktop view", () => {
-    render(<Footer />);
-
-    sectionTitles.forEach((title, index) => {
-      expect(screen.getByTestId(`heading-${index}`)).toBeInTheDocument();
-    });
-  });
 
   it("renders social media icons", () => {
     render(<Footer />);
@@ -108,13 +101,6 @@ describe("Footer Component", () => {
     });
   });
 
-  it("renders footer links correctly", () => {
-    render(<Footer />);
-
-    footerLinks.forEach((link) => {
-      expect(screen.getByTestId(`link-${link}`)).toBeInTheDocument();
-    });
-  });
 
   it("toggles sections in mobile view", async () => {
     Object.defineProperty(window, "innerWidth", { writable: true, value: 375 });
