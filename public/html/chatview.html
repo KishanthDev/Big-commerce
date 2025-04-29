@@ -14,37 +14,14 @@
         }
 
         @keyframes wave {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            10% {
-                transform: rotate(14deg);
-            }
-
-            20% {
-                transform: rotate(-8deg);
-            }
-
-            30% {
-                transform: rotate(14deg);
-            }
-
-            40% {
-                transform: rotate(-4deg);
-            }
-
-            50% {
-                transform: rotate(10deg);
-            }
-
-            60% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(0deg);
-            }
+            0% { transform: rotate(0deg); }
+            10% { transform: rotate(14deg); }
+            20% { transform: rotate(-8deg); }
+            30% { transform: rotate(14deg); }
+            40% { transform: rotate(-4deg); }
+            50% { transform: rotate(10deg); }
+            60% { transform: rotate(0deg); }
+            100% { transform: rotate(0deg); }
         }
 
         /* Bubble preview styles */
@@ -73,14 +50,120 @@
             justify-content: center;
             cursor: pointer;
         }
+
+        /* Chat Widget styles */
+        .chat-widget {
+            width: 300px;
+            height: 400px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #075e54;
+            color: white;
+        }
+
+        .chat-header-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-header-actions button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            background-color: #e5ddd5;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%239C92AC' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        .message {
+            max-width: 70%;
+            padding: 8px 12px;
+            border-radius: 7.5px;
+            margin-bottom: 45px;
+            position: relative;
+            word-wrap: break-word;
+        }
+
+        .incoming {
+            background-color: white;
+            align-self: flex-start;
+            border-top-left-radius: 0;
+        }
+
+        .outgoing {
+            background-color: #dcf8c6;
+            align-self: flex-end;
+            border-top-right-radius: 0;
+        }
+
+        .message-time {
+            font-size: 11px;
+            color: #666;
+            text-align: right;
+            margin-top: 2px;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 10px;
+            background-color: #f0f0f0;
+            align-items: center;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 8px 12px;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+        }
+
+        .chat-input-actions {
+            display: flex;
+            gap: 10px;
+            margin-left: 10px;
+        }
+
+        .chat-input-actions button {
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .user-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
     </style>
 </head>
 
 <body class="min-h-screen">
-
     <div class="w-fit mx-auto p-6 rounded-md space-y-8">
-
-        <!-- Save Button (Top Left) -->
+        <!-- Save Button -->
         <div class="absolute top-6 right-6">
             <button id="saveBtn" class="bg-orange-500 text-white p-2 rounded-sm hover:bg-orange-600">
                 <i class="fas fa-save"></i> Save
@@ -91,11 +174,9 @@
         <form>
             <fieldset class="mb-4">
                 <legend class="text-lg font-semibold mb-6 text-center">Choose a chat option:</legend>
-
                 <div class="flex flex-wrap justify-start gap-14">
                     <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="radio" name="chat_option" value="eyecatcher" class="accent-blue-500"
-                            id="eyecatcherRadio">
+                        <input type="radio" name="chat_option" value="eyecatcher" class="accent-blue-500" id="eyecatcherRadio">
                         <span>Eyecatcher</span>
                     </label>
                     <label class="flex items-center gap-2 cursor-pointer">
@@ -118,9 +199,8 @@
             </fieldset>
         </form>
 
-        <!-- Eyecatcher, Bubble and Chat Bar Customization Section -->
+        <!-- Customization Section -->
         <div class="p-6 flex w-full max-w-6xl gap-10">
-
             <!-- Left Side: Form Inputs -->
             <div class="flex-1 space-y-6 border-r pr-6">
                 <h2 class="text-2xl font-bold mb-6 text-center">Customize Chat Options</h2>
@@ -128,37 +208,25 @@
                 <!-- Eyecatcher Inputs -->
                 <div id="eyecatcherInputs">
                     <div>
-                        <label for="titleInput" class="block text-sm font-medium text-gray-700 mb-2">Welcome
-                            Message:</label>
-                        <input id="titleInput" type="text" placeholder="Hello"
-                            class="w-100 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
+                        <label for="titleInput" class="block text-sm font-medium text-gray-700 mb-2">Welcome Message:</label>
+                        <input id="titleInput" type="text" placeholder="Hello" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
                     </div>
-
                     <div>
-                        <label for="textInput" class="block text-sm font-medium text-gray-700 mb-2">Invitation
-                            Text:</label>
-                        <input id="textInput" type="text" placeholder="Click to chat"
-                            class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
+                        <label for="textInput" class="block text-sm font-medium text-gray-700 mb-2">Invitation Text:</label>
+                        <input id="textInput" type="text" placeholder="Click to chat" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
                     </div>
-
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Eye catcher background
-                            color:</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Eye catcher background color:</label>
                         <div class="flex items-center border rounded-md overflow-hidden">
-                            <input type="text" placeholder="#FFFFFF" class="w-full px-2 py-2 text-sm focus:outline-none"
-                                id="bgColorInput" value="#007bff" />
-                            <input type="color" class="w-12 h-12 cursor-pointer border-l" id="bgColorPicker"
-                                value="#007bff" />
+                            <input type="text" placeholder="#FFFFFF" class="w-full px-2 py-2 text-sm focus:outline-none" id="bgColorInput" value="#007bff" />
+                            <input type="color" class="w-12 h-12 cursor-pointer border-l" id="bgColorPicker" value="#007bff" />
                         </div>
                     </div>
-
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Eye catcher text color:</label>
                         <div class="flex items-center border rounded-md overflow-hidden">
-                            <input type="text" placeholder="#000000" class="w-full px-2 py-2 text-sm focus:outline-none"
-                                id="textColorInput" value="#ffffff" />
-                            <input type="color" class="w-12 h-12 cursor-pointer border-l" id="textColorPicker"
-                                value="#ffffff" />
+                            <input type="text" placeholder="#000000" class="w-full px-2 py-2 text-sm focus:outline-none" id="textColorInput" value="#ffffff" />
+                            <input type="color" class="w-12 h-12 cursor-pointer border-l" id="textColorPicker" value="#ffffff" />
                         </div>
                     </div>
                 </div>
@@ -168,20 +236,15 @@
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Bubble Background Color:</label>
                         <div class="flex items-center border rounded-md overflow-hidden">
-                            <input type="text" placeholder="#007bff" class="w-full px-2 py-2 text-sm focus:outline-none"
-                                id="bubbleBgColorText" value="#007bff" />
-                            <input type="color" class="w-12 h-12 cursor-pointer border-l" id="bubbleBgColorInput"
-                                value="#007bff" />
+                            <input type="text" placeholder="#007bff" class="w-full px-2 py-2 text-sm focus:outline-none" id="bubbleBgColorText" value="#007bff" />
+                            <input type="color" class="w-12 h-12 cursor-pointer border-l" id="bubbleBgColorInput" value="#007bff" />
                         </div>
                     </div>
-
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Bubble Icon Color:</label>
                         <div class="flex items-center border rounded-md overflow-hidden">
-                            <input type="text" placeholder="#ffffff" class="w-full px-2 py-2 text-sm focus:outline-none"
-                                id="bubbleIconColorText" value="#ffffff" />
-                            <input type="color" class="w-12 h-12 cursor-pointer border-l" id="bubbleIconColorInput"
-                                value="#ffffff" />
+                            <input type="text" placeholder="#ffffff" class="w-full px-2 py-2 text-sm focus:outline-none" id="bubbleIconColorText" value="#ffffff" />
+                            <input type="color" class="w-12 h-12 cursor-pointer border-l" id="bubbleIconColorInput" value="#ffffff" />
                         </div>
                     </div>
                 </div>
@@ -190,27 +253,77 @@
                 <div id="chatBarInputs" style="display: none;">
                     <div>
                         <label for="chatBarTextInput" class="block text-sm font-medium text-gray-700 mb-2">Chat Bar Text:</label>
-                        <input id="chatBarTextInput" type="text" placeholder="Chat with us"
-                            class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
+                        <input id="chatBarTextInput" type="text" placeholder="Chat with us" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
                     </div>
-
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Chat Bar Background Color:</label>
                         <div class="flex items-center border rounded-md overflow-hidden">
-                            <input type="text" placeholder="#007bff" class="w-full px-2 py-2 text-sm focus:outline-none"
-                                id="chatBarBgColorText" value="#007bff" />
-                            <input type="color" class="w-12 h-12 cursor-pointer border-l" id="chatBarBgColorInput"
-                                value="#007bff" />
+                            <input type="text" placeholder="#007bff" class="w-full px-2 py-2 text-sm focus:outline-none" id="chatBarBgColorText" value="#007bff" />
+                            <input type="color" class="w-12 h-12 cursor-pointer border-l" id="chatBarBgColorInput" value="#007bff" />
                         </div>
                     </div>
-
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Chat Bar Text Color:</label>
                         <div class="flex items-center border rounded-md overflow-hidden">
-                            <input type="text" placeholder="#ffffff" class="w-full px-2 py-2 text-sm focus:outline-none"
-                                id="chatBarTextColorText" value="#ffffff" />
-                            <input type="color" class="w-12 h-12 cursor-pointer border-l" id="chatBarTextColorInput"
-                                value="#ffffff" />
+                            <input type="text" placeholder="#ffffff" class="w-full px-2 py-2 text-sm focus:outline-none" id="chatBarTextColorText" value="#ffffff" />
+                            <input type="color" class="w-12 h-12 cursor-pointer border-l" id="chatBarTextColorInput" value="#ffffff" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Widget Inputs -->
+                <div id="chatWidgetInputs" style="display: none;">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Header Background Color:</label>
+                        <div class="flex items-center border rounded-md overflow-hidden">
+                            <input type="text" placeholder="#075e54" class="w-full px-2 py-2 text-sm focus:outline-none" id="widgetHeaderBgColorText" value="#075e54" />
+                            <input type="color" class="w-12 h-12 cursor-pointer border-l" id="widgetHeaderBgColorInput" value="#075e54" />
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Header Text Color:</label>
+                        <div class="flex items-center border rounded-md overflow-hidden">
+                            <input type="text" placeholder="#ffffff" class="w-full px-2 py-2 text-sm focus:outline-none" id="widgetHeaderTextColorText" value="#ffffff" />
+                            <input type="color" class="w-12 h-12 cursor-pointer border-l" id="widgetHeaderTextColorInput" value="#ffffff" />
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Agent Name:</label>
+                        <input id="widgetAgentName" type="text" placeholder="Support Agent" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Incoming Message Background:</label>
+                        <div class="flex items-center border rounded-md overflow-hidden">
+                            <input type="text" placeholder="#ffffff" class="w-full px-2 py-2 text-sm focus:outline-none" id="widgetIncomingMsgBgText" value="#ffffff" />
+                            <input type="color" class="w-12 h-12 cursor-pointer border-l" id="widgetIncomingMsgBgInput" value="#ffffff" />
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Outgoing Message Background:</label>
+                        <div class="flex items-center border rounded-md overflow-hidden">
+                            <input type="text" placeholder="#dcf8c6" class="w-full px-2 py-2 text-sm focus:outline-none" id="widgetOutgoingMsgBgText" value="#dcf8c6" />
+                            <input type="color" class="w-12 h-12 cursor-pointer border-l" id="widgetOutgoingMsgBgInput" value="#dcf8c6" />
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Message Text Color:</label>
+                        <div class="flex items-center border rounded-md overflow-hidden">
+                            <input type="text" placeholder="#000000" class="w-full px-2 py-2 text-sm focus:outline-none" id="widgetMsgTextColorText" value="#000000" />
+                            <input type="color" class="w-12 h-12 cursor-pointer border-l" id="widgetMsgTextColorInput" value="#000000" />
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Chat Background Color:</label>
+                        <div class="flex items-center border rounded-md overflow-hidden">
+                            <input type="text" placeholder="#e5ddd5" class="w-full px-2 py-2 text-sm focus:outline-none" id="widgetChatBgColorText" value="#e5ddd5" />
+                            <input type="color" class="w-12 h-12 cursor-pointer border-l" id="widgetChatBgColorInput" value="#e5ddd5" />
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Input Area Background:</label>
+                        <div class="flex items-center border rounded-md overflow-hidden">
+                            <input type="text" placeholder="#f0f0f0" class="w-full px-2 py-2 text-sm focus:outline-none" id="widgetInputBgColorText" value="#f0f0f0" />
+                            <input type="color" class="w-12 h-12 cursor-pointer border-l" id="widgetInputBgColorInput" value="#f0f0f0" />
                         </div>
                     </div>
                 </div>
@@ -218,13 +331,9 @@
 
             <!-- Right Side: Preview Box -->
             <div class="flex-1 flex flex-col items-center justify-center space-y-4">
-
                 <!-- Eyecatcher Preview -->
-                <div id="eyecatcherPreviewBox"
-                    class="w-72 h-40 flex flex-col justify-center items-center rounded-lg shadow-md text-center transition-all duration-300"
-                    style="background-color: #007bff; color: #ffffff;">
-                    <h3 id="eyecatcherPreviewTitle" class="text-lg font-bold mb-2">Hello <span class="wave">👋</span>
-                    </h3>
+                <div id="eyecatcherPreviewBox" class="w-72 h-40 flex flex-col justify-center items-center rounded-lg shadow-md text-center transition-all duration-300" style="background-color: #007bff; color: #ffffff;">
+                    <h3 id="eyecatcherPreviewTitle" class="text-lg font-bold mb-2">Hello <span class="wave">👋</span></h3>
                     <p id="eyecatcherPreviewText">Click to chat</p>
                 </div>
 
@@ -238,10 +347,43 @@
                     <span id="chatBarPreviewText">Chat with us</span>
                 </div>
 
+                <!-- Chat Widget Preview -->
+                <div id="chatWidgetPreviewBox" class="chat-widget" style="display: none;">
+                    <div class="chat-header" id="widgetHeaderPreview">
+                        <div style="display: flex; align-items: center;">
+                            <div class="user-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <div id="widgetAgentNamePreview">Support Agent</div>
+                                <div style="font-size: 11px;">Online</div>
+                            </div>
+                        </div>
+                        <div class="chat-header-actions">
+                            <button><i class="fas fa-minus"></i></button>
+                            <button><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div class="chat-messages" id="widgetMessagesPreview">
+                        <div class="message incoming" id="widgetIncomingMsgPreview">
+                            Hello! How can I help you today?
+                            <div class="message-time">10:30 AM</div>
+                        </div>
+                        <div class="message outgoing" id="widgetOutgoingMsgPreview">
+                            I need help with my order
+                            <div class="message-time">10:32 AM</div>
+                        </div>
+                    </div>
+                    <div class="chat-input" id="widgetInputPreview">
+                        <input type="text" placeholder="Type a message">
+                        <div class="chat-input-actions">
+                            <button><i class="far fa-smile"></i></button>
+                            <button><i class="fas fa-paperclip"></i></button>
+                        </div>
+                    </div>
+                </div>
             </div>
-
         </div>
-
     </div>
 
     <!-- Script Section -->
@@ -267,23 +409,50 @@
         const chatBarTextColorInput = document.getElementById("chatBarTextColorInput");
         const chatBarTextColorText = document.getElementById("chatBarTextColorText");
 
+        // Chat Widget Inputs
+        const widgetHeaderBgColorInput = document.getElementById("widgetHeaderBgColorInput");
+        const widgetHeaderBgColorText = document.getElementById("widgetHeaderBgColorText");
+        const widgetHeaderTextColorInput = document.getElementById("widgetHeaderTextColorInput");
+        const widgetHeaderTextColorText = document.getElementById("widgetHeaderTextColorText");
+        const widgetAgentName = document.getElementById("widgetAgentName");
+        const widgetIncomingMsgBgInput = document.getElementById("widgetIncomingMsgBgInput");
+        const widgetIncomingMsgBgText = document.getElementById("widgetIncomingMsgBgText");
+        const widgetOutgoingMsgBgInput = document.getElementById("widgetOutgoingMsgBgInput");
+        const widgetOutgoingMsgBgText = document.getElementById("widgetOutgoingMsgBgText");
+        const widgetMsgTextColorInput = document.getElementById("widgetMsgTextColorInput");
+        const widgetMsgTextColorText = document.getElementById("widgetMsgTextColorText");
+        const widgetChatBgColorInput = document.getElementById("widgetChatBgColorInput");
+        const widgetChatBgColorText = document.getElementById("widgetChatBgColorText");
+        const widgetInputBgColorInput = document.getElementById("widgetInputBgColorInput");
+        const widgetInputBgColorText = document.getElementById("widgetInputBgColorText");
+
         // Preview Elements
         const eyecatcherPreviewBox = document.getElementById("eyecatcherPreviewBox");
         const eyecatcherPreviewTitle = document.getElementById("eyecatcherPreviewTitle");
         const eyecatcherPreviewText = document.getElementById("eyecatcherPreviewText");
-
         const bubblePreviewBox = document.getElementById("bubblePreviewBox");
         const bubbleIcon = document.getElementById("bubbleIcon");
-
         const chatBarPreviewBox = document.getElementById("chatBarPreviewBox");
         const chatBarPreviewText = document.getElementById("chatBarPreviewText");
+        const chatWidgetPreviewBox = document.getElementById("chatWidgetPreviewBox");
+        const widgetHeaderPreview = document.getElementById("widgetHeaderPreview");
+        const widgetAgentNamePreview = document.getElementById("widgetAgentNamePreview");
+        const widgetMessagesPreview = document.getElementById("widgetMessagesPreview");
+        const widgetIncomingMsgPreview = document.getElementById("widgetIncomingMsgPreview");
+        const widgetOutgoingMsgPreview = document.getElementById("widgetOutgoingMsgPreview");
+        const widgetInputPreview = document.getElementById("widgetInputPreview");
 
-        // Update Eyecatcher Title in Real Time
+        // Update Eyecatcher Title
         titleInput.addEventListener("input", () => {
             eyecatcherPreviewTitle.textContent = titleInput.value || "Hello";
+            if (titleInput.value) {
+                eyecatcherPreviewTitle.innerHTML = `${titleInput.value} <span class="wave">👋</span>`;
+            } else {
+                eyecatcherPreviewTitle.innerHTML = `Hello <span class="wave">👋</span>`;
+            }
         });
 
-        // Update Eyecatcher Invitation Text in Real Time
+        // Update Eyecatcher Invitation Text
         textInput.addEventListener("input", () => {
             eyecatcherPreviewText.textContent = textInput.value || "Click to chat";
         });
@@ -359,42 +528,118 @@
             chatBarTextColorInput.value = chatBarTextColorText.value;
         });
 
+        // Chat Widget Event Listeners
+        widgetHeaderBgColorInput.addEventListener("input", () => {
+            widgetHeaderPreview.style.backgroundColor = widgetHeaderBgColorInput.value;
+            widgetHeaderBgColorText.value = widgetHeaderBgColorInput.value;
+        });
+
+        widgetHeaderBgColorText.addEventListener("input", () => {
+            widgetHeaderPreview.style.backgroundColor = widgetHeaderBgColorText.value;
+            widgetHeaderBgColorInput.value = widgetHeaderBgColorText.value;
+        });
+
+        widgetHeaderTextColorInput.addEventListener("input", () => {
+            widgetHeaderPreview.style.color = widgetHeaderTextColorInput.value;
+            widgetHeaderTextColorText.value = widgetHeaderTextColorInput.value;
+        });
+
+        widgetHeaderTextColorText.addEventListener("input", () => {
+            widgetHeaderPreview.style.color = widgetHeaderTextColorText.value;
+            widgetHeaderTextColorInput.value = widgetHeaderTextColorText.value;
+        });
+
+        widgetAgentName.addEventListener("input", () => {
+            widgetAgentNamePreview.textContent = widgetAgentName.value || "Support Agent";
+        });
+
+        widgetIncomingMsgBgInput.addEventListener("input", () => {
+            widgetIncomingMsgPreview.style.backgroundColor = widgetIncomingMsgBgInput.value;
+            widgetIncomingMsgBgText.value = widgetIncomingMsgBgInput.value;
+        });
+
+        widgetIncomingMsgBgText.addEventListener("input", () => {
+            widgetIncomingMsgPreview.style.backgroundColor = widgetIncomingMsgBgText.value;
+            widgetIncomingMsgBgInput.value = widgetIncomingMsgBgText.value;
+        });
+
+        widgetOutgoingMsgBgInput.addEventListener("input", () => {
+            widgetOutgoingMsgPreview.style.backgroundColor = widgetOutgoingMsgBgInput.value;
+            widgetOutgoingMsgBgText.value = widgetOutgoingMsgBgInput.value;
+        });
+
+        widgetOutgoingMsgBgText.addEventListener("input", () => {
+            widgetOutgoingMsgPreview.style.backgroundColor = widgetOutgoingMsgBgText.value;
+            widgetOutgoingMsgBgInput.value = widgetOutgoingMsgBgText.value;
+        });
+
+        widgetMsgTextColorInput.addEventListener("input", () => {
+            const color = widgetMsgTextColorInput.value;
+            widgetIncomingMsgPreview.style.color = color;
+            widgetOutgoingMsgPreview.style.color = color;
+            widgetMsgTextColorText.value = color;
+        });
+
+        widgetMsgTextColorText.addEventListener("input", () => {
+            const color = widgetMsgTextColorText.value;
+            widgetIncomingMsgPreview.style.color = color;
+            widgetOutgoingMsgPreview.style.color = color;
+            widgetMsgTextColorInput.value = color;
+        });
+
+        widgetChatBgColorInput.addEventListener("input", () => {
+            widgetMessagesPreview.style.backgroundColor = widgetChatBgColorInput.value;
+            widgetChatBgColorText.value = widgetChatBgColorInput.value;
+        });
+
+        widgetChatBgColorText.addEventListener("input", () => {
+            widgetMessagesPreview.style.backgroundColor = widgetChatBgColorText.value;
+            widgetChatBgColorInput.value = widgetChatBgColorText.value;
+        });
+
+        widgetInputBgColorInput.addEventListener("input", () => {
+            widgetInputPreview.style.backgroundColor = widgetInputBgColorInput.value;
+            widgetInputBgColorText.value = widgetInputBgColorInput.value;
+        });
+
+        widgetInputBgColorText.addEventListener("input", () => {
+            widgetInputPreview.style.backgroundColor = widgetInputBgColorText.value;
+            widgetInputBgColorInput.value = widgetInputBgColorText.value;
+        });
+
         // Radio Button Functionality
         const radioButtons = document.querySelectorAll('input[name="chat_option"]');
         radioButtons.forEach(radio => {
             radio.addEventListener("change", (event) => {
                 const selectedValue = event.target.value;
 
-                // Show/Hide the appropriate inputs and previews
+                // Hide all inputs and previews
+                document.getElementById('eyecatcherInputs').style.display = 'none';
+                document.getElementById('bubbleInputs').style.display = 'none';
+                document.getElementById('chatBarInputs').style.display = 'none';
+                document.getElementById('chatWidgetInputs').style.display = 'none';
+                eyecatcherPreviewBox.style.display = 'none';
+                bubblePreviewBox.style.display = 'none';
+                chatBarPreviewBox.style.display = 'none';
+                chatWidgetPreviewBox.style.display = 'none';
+
+                // Show selected option
                 if (selectedValue === "eyecatcher") {
                     document.getElementById('eyecatcherInputs').style.display = 'block';
-                    document.getElementById('bubbleInputs').style.display = 'none';
-                    document.getElementById('chatBarInputs').style.display = 'none';
                     eyecatcherPreviewBox.style.display = 'flex';
-                    bubblePreviewBox.style.display = 'none';
-                    chatBarPreviewBox.style.display = 'none';
                 } else if (selectedValue === "bubble") {
-                    document.getElementById('eyecatcherInputs').style.display = 'none';
                     document.getElementById('bubbleInputs').style.display = 'block';
-                    document.getElementById('chatBarInputs').style.display = 'none';
-                    eyecatcherPreviewBox.style.display = 'none';
                     bubblePreviewBox.style.display = 'flex';
-                    chatBarPreviewBox.style.display = 'none';
                 } else if (selectedValue === "chat_bar") {
-                    document.getElementById('eyecatcherInputs').style.display = 'none';
-                    document.getElementById('bubbleInputs').style.display = 'none';
                     document.getElementById('chatBarInputs').style.display = 'block';
-                    eyecatcherPreviewBox.style.display = 'none';
-                    bubblePreviewBox.style.display = 'none';
                     chatBarPreviewBox.style.display = 'flex';
-                } else {
-                    // For other options, hide all previews
-                    document.getElementById('eyecatcherInputs').style.display = 'none';
-                    document.getElementById('bubbleInputs').style.display = 'none';
-                    document.getElementById('chatBarInputs').style.display = 'none';
-                    eyecatcherPreviewBox.style.display = 'none';
-                    bubblePreviewBox.style.display = 'none';
-                    chatBarPreviewBox.style.display = 'none';
+                } else if (selectedValue === "chat_widget") {
+                    document.getElementById('chatWidgetInputs').style.display = 'block';
+                    chatWidgetPreviewBox.style.display = 'block';
+                } else if (selectedValue === "chat_widget_cbse") {
+                    // Chat Widget Close option - no preview implemented
+                    document.getElementById('chatWidgetInputs').style.display = 'block';
+                    // Optionally, show a minimized version or placeholder
                 }
             });
         });
@@ -402,7 +647,6 @@
         // Save functionality
         document.getElementById("saveBtn").addEventListener("click", () => {
             const selectedOption = document.querySelector('input[name="chat_option"]:checked').value;
-            
             const settings = {
                 selectedOption: selectedOption,
                 eyecatcher: {
@@ -419,6 +663,16 @@
                     text: chatBarTextInput.value,
                     bgColor: chatBarBgColorText.value,
                     textColor: chatBarTextColorText.value
+                },
+                chatWidget: {
+                    headerBgColor: widgetHeaderBgColorText.value,
+                    headerTextColor: widgetHeaderTextColorText.value,
+                    agentName: widgetAgentName.value,
+                    incomingMsgBg: widgetIncomingMsgBgText.value,
+                    outgoingMsgBg: widgetOutgoingMsgBgText.value,
+                    msgTextColor: widgetMsgTextColorText.value,
+                    chatBgColor: widgetChatBgColorText.value,
+                    inputBgColor: widgetInputBgColorText.value
                 }
             };
 
@@ -431,10 +685,10 @@
             const savedSettings = localStorage.getItem('chatSettings');
             if (savedSettings) {
                 const settings = JSON.parse(savedSettings);
-                
+
                 // Set radio button
                 document.querySelector(`input[name="chat_option"][value="${settings.selectedOption}"]`).checked = true;
-                
+
                 // Set eyecatcher values
                 titleInput.value = settings.eyecatcher.title || "Hello";
                 textInput.value = settings.eyecatcher.text || "Click to chat";
@@ -442,44 +696,71 @@
                 textColorInput.value = settings.eyecatcher.textColor || "#ffffff";
                 bgColorPicker.value = settings.eyecatcher.bgColor || "#007bff";
                 textColorPicker.value = settings.eyecatcher.textColor || "#ffffff";
-                
+
                 // Set bubble values
                 bubbleBgColorText.value = settings.bubble.bgColor || "#007bff";
                 bubbleIconColorText.value = settings.bubble.iconColor || "#ffffff";
                 bubbleBgColorInput.value = settings.bubble.bgColor || "#007bff";
                 bubbleIconColorInput.value = settings.bubble.iconColor || "#ffffff";
-                
+
                 // Set chat bar values
-                chatBarTextInput.value = settings.chatBar?.text || "Chat with us";
-                chatBarBgColorText.value = settings.chatBar?.bgColor || "#007bff";
-                chatBarTextColorText.value = settings.chatBar?.textColor || "#ffffff";
-                chatBarBgColorInput.value = settings.chatBar?.bgColor || "#007bff";
-                chatBarTextColorInput.value = settings.chatBar?.textColor || "#ffffff";
-                
+                chatBarTextInput.value = settings.chatBar.text || "Chat with us";
+                chatBarBgColorText.value = settings.chatBar.bgColor || "#007bff";
+                chatBarTextColorText.value = settings.chatBar.textColor || "#ffffff";
+                chatBarBgColorInput.value = settings.chatBar.bgColor || "#007bff";
+                chatBarTextColorInput.value = settings.chatBar.textColor || "#ffffff";
+
+                // Set chat widget values
+                if (settings.chatWidget) {
+                    widgetHeaderBgColorText.value = settings.chatWidget.headerBgColor || "#075e54";
+                    widgetHeaderBgColorInput.value = settings.chatWidget.headerBgColor || "#075e54";
+                    widgetHeaderTextColorText.value = settings.chatWidget.headerTextColor || "#ffffff";
+                    widgetHeaderTextColorInput.value = settings.chatWidget.headerTextColor || "#ffffff";
+                    widgetAgentName.value = settings.chatWidget.agentName || "Support Agent";
+                    widgetIncomingMsgBgText.value = settings.chatWidget.incomingMsgBg || "#ffffff";
+                    widgetIncomingMsgBgInput.value = settings.chatWidget.incomingMsgBg || "#ffffff";
+                    widgetOutgoingMsgBgText.value = settings.chatWidget.outgoingMsgBg || "#dcf8c6";
+                    widgetOutgoingMsgBgInput.value = settings.chatWidget.outgoingMsgBg || "#dcf8c6";
+                    widgetMsgTextColorText.value = settings.chatWidget.msgTextColor || "#000000";
+                    widgetMsgTextColorInput.value = settings.chatWidget.msgTextColor || "#000000";
+                    widgetChatBgColorText.value = settings.chatWidget.chatBgColor || "#e5ddd5";
+                    widgetChatBgColorInput.value = settings.chatWidget.chatBgColor || "#e5ddd5";
+                    widgetInputBgColorText.value = settings.chatWidget.inputBgColor || "#f0f0f0";
+                    widgetInputBgColorInput.value = settings.chatWidget.inputBgColor || "#f0f0f0";
+
+                    // Update widget preview
+                    widgetHeaderPreview.style.backgroundColor = settings.chatWidget.headerBgColor || "#075e54";
+                    widgetHeaderPreview.style.color = settings.chatWidget.headerTextColor || "#ffffff";
+                    widgetAgentNamePreview.textContent = settings.chatWidget.agentName || "Support Agent";
+                    widgetIncomingMsgPreview.style.backgroundColor = settings.chatWidget.incomingMsgBg || "#ffffff";
+                    widgetOutgoingMsgPreview.style.backgroundColor = settings.chatWidget.outgoingMsgBg || "#dcf8c6";
+                    widgetIncomingMsgPreview.style.color = settings.chatWidget.msgTextColor || "#000000";
+                    widgetOutgoingMsgPreview.style.color = settings.chatWidget.msgTextColor || "#000000";
+                    widgetMessagesPreview.style.backgroundColor = settings.chatWidget.chatBgColor || "#e5ddd5";
+                    widgetInputPreview.style.backgroundColor = settings.chatWidget.inputBgColor || "#f0f0f0";
+                }
+
                 // Update previews
-                eyecatcherPreviewTitle.textContent = settings.eyecatcher.title || "Hello";
+                eyecatcherPreviewTitle.innerHTML = (settings.eyecatcher.title || "Hello") + ` <span class="wave">👋</span>`;
                 eyecatcherPreviewText.textContent = settings.eyecatcher.text || "Click to chat";
                 eyecatcherPreviewBox.style.backgroundColor = settings.eyecatcher.bgColor || "#007bff";
                 eyecatcherPreviewBox.style.color = settings.eyecatcher.textColor || "#ffffff";
-                
                 bubblePreviewBox.style.backgroundColor = settings.bubble.bgColor || "#007bff";
                 bubbleIcon.style.color = settings.bubble.iconColor || "#ffffff";
-                
-                chatBarPreviewBox.style.backgroundColor = settings.chatBar?.bgColor || "#007bff";
-                chatBarPreviewBox.style.color = settings.chatBar?.textColor || "#ffffff";
-                chatBarPreviewText.textContent = settings.chatBar?.text || "Chat with us";
-                
-                // Trigger change event to show correct preview
+                chatBarPreviewBox.style.backgroundColor = settings.chatBar.bgColor || "#007bff";
+                chatBarPreviewBox.style.color = settings.chatBar.textColor || "#ffffff";
+                chatBarPreviewText.textContent = settings.chatBar.text || "Chat with us";
+
+                // Trigger change event
                 document.querySelector(`input[name="chat_option"][value="${settings.selectedOption}"]`).dispatchEvent(new Event('change'));
             } else {
-                // Set default radio selection if no saved settings
                 document.getElementById('eyecatcherRadio').checked = true;
+                document.getElementById('eyecatcherRadio').dispatchEvent(new Event('change'));
             }
         }
 
-        // Load settings when page loads
+        // Load settings on page load
         window.addEventListener('DOMContentLoaded', loadSettings);
     </script>
 </body>
-
 </html>
