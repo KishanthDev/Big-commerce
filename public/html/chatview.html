@@ -62,6 +62,17 @@
         .bubble-preview i {
             font-size: 20px;
         }
+
+        /* Chat Bar preview styles */
+        .chat-bar-preview {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -107,7 +118,7 @@
             </fieldset>
         </form>
 
-        <!-- Eyecatcher and Bubble Customization Section -->
+        <!-- Eyecatcher, Bubble and Chat Bar Customization Section -->
         <div class="p-6 flex w-full max-w-6xl gap-10">
 
             <!-- Left Side: Form Inputs -->
@@ -174,6 +185,35 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Chat Bar Inputs -->
+                <div id="chatBarInputs" style="display: none;">
+                    <div>
+                        <label for="chatBarTextInput" class="block text-sm font-medium text-gray-700 mb-2">Chat Bar Text:</label>
+                        <input id="chatBarTextInput" type="text" placeholder="Chat with us"
+                            class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Chat Bar Background Color:</label>
+                        <div class="flex items-center border rounded-md overflow-hidden">
+                            <input type="text" placeholder="#007bff" class="w-full px-2 py-2 text-sm focus:outline-none"
+                                id="chatBarBgColorText" value="#007bff" />
+                            <input type="color" class="w-12 h-12 cursor-pointer border-l" id="chatBarBgColorInput"
+                                value="#007bff" />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Chat Bar Text Color:</label>
+                        <div class="flex items-center border rounded-md overflow-hidden">
+                            <input type="text" placeholder="#ffffff" class="w-full px-2 py-2 text-sm focus:outline-none"
+                                id="chatBarTextColorText" value="#ffffff" />
+                            <input type="color" class="w-12 h-12 cursor-pointer border-l" id="chatBarTextColorInput"
+                                value="#ffffff" />
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Right Side: Preview Box -->
@@ -191,6 +231,11 @@
                 <!-- Bubble Preview -->
                 <div id="bubblePreviewBox" class="bubble-preview" style="display: none; background-color: #007bff; color: #ffffff;">
                     <i id="bubbleIcon" class="fas fa-comment-alt" style="color: #ffffff;"></i>
+                </div>
+
+                <!-- Chat Bar Preview -->
+                <div id="chatBarPreviewBox" class="chat-bar-preview" style="display: none; background-color: #007bff; color: #ffffff;">
+                    <span id="chatBarPreviewText">Chat with us</span>
                 </div>
 
             </div>
@@ -215,6 +260,13 @@
         const bubbleIconColorInput = document.getElementById("bubbleIconColorInput");
         const bubbleIconColorText = document.getElementById("bubbleIconColorText");
 
+        // Chat Bar Inputs
+        const chatBarTextInput = document.getElementById("chatBarTextInput");
+        const chatBarBgColorInput = document.getElementById("chatBarBgColorInput");
+        const chatBarBgColorText = document.getElementById("chatBarBgColorText");
+        const chatBarTextColorInput = document.getElementById("chatBarTextColorInput");
+        const chatBarTextColorText = document.getElementById("chatBarTextColorText");
+
         // Preview Elements
         const eyecatcherPreviewBox = document.getElementById("eyecatcherPreviewBox");
         const eyecatcherPreviewTitle = document.getElementById("eyecatcherPreviewTitle");
@@ -222,6 +274,9 @@
 
         const bubblePreviewBox = document.getElementById("bubblePreviewBox");
         const bubbleIcon = document.getElementById("bubbleIcon");
+
+        const chatBarPreviewBox = document.getElementById("chatBarPreviewBox");
+        const chatBarPreviewText = document.getElementById("chatBarPreviewText");
 
         // Update Eyecatcher Title in Real Time
         titleInput.addEventListener("input", () => {
@@ -277,6 +332,33 @@
             bubbleIconColorInput.value = bubbleIconColorText.value;
         });
 
+        // Update Chat Bar Text
+        chatBarTextInput.addEventListener("input", () => {
+            chatBarPreviewText.textContent = chatBarTextInput.value || "Chat with us";
+        });
+
+        // Update Chat Bar Background Color
+        chatBarBgColorInput.addEventListener("input", () => {
+            chatBarPreviewBox.style.backgroundColor = chatBarBgColorInput.value;
+            chatBarBgColorText.value = chatBarBgColorInput.value;
+        });
+
+        chatBarBgColorText.addEventListener("input", () => {
+            chatBarPreviewBox.style.backgroundColor = chatBarBgColorText.value;
+            chatBarBgColorInput.value = chatBarBgColorText.value;
+        });
+
+        // Update Chat Bar Text Color
+        chatBarTextColorInput.addEventListener("input", () => {
+            chatBarPreviewBox.style.color = chatBarTextColorInput.value;
+            chatBarTextColorText.value = chatBarTextColorInput.value;
+        });
+
+        chatBarTextColorText.addEventListener("input", () => {
+            chatBarPreviewBox.style.color = chatBarTextColorText.value;
+            chatBarTextColorInput.value = chatBarTextColorText.value;
+        });
+
         // Radio Button Functionality
         const radioButtons = document.querySelectorAll('input[name="chat_option"]');
         radioButtons.forEach(radio => {
@@ -287,17 +369,32 @@
                 if (selectedValue === "eyecatcher") {
                     document.getElementById('eyecatcherInputs').style.display = 'block';
                     document.getElementById('bubbleInputs').style.display = 'none';
+                    document.getElementById('chatBarInputs').style.display = 'none';
                     eyecatcherPreviewBox.style.display = 'flex';
                     bubblePreviewBox.style.display = 'none';
+                    chatBarPreviewBox.style.display = 'none';
                 } else if (selectedValue === "bubble") {
                     document.getElementById('eyecatcherInputs').style.display = 'none';
                     document.getElementById('bubbleInputs').style.display = 'block';
+                    document.getElementById('chatBarInputs').style.display = 'none';
                     eyecatcherPreviewBox.style.display = 'none';
                     bubblePreviewBox.style.display = 'flex';
-                } else {
-                    // For other options, hide both previews
+                    chatBarPreviewBox.style.display = 'none';
+                } else if (selectedValue === "chat_bar") {
+                    document.getElementById('eyecatcherInputs').style.display = 'none';
+                    document.getElementById('bubbleInputs').style.display = 'none';
+                    document.getElementById('chatBarInputs').style.display = 'block';
                     eyecatcherPreviewBox.style.display = 'none';
                     bubblePreviewBox.style.display = 'none';
+                    chatBarPreviewBox.style.display = 'flex';
+                } else {
+                    // For other options, hide all previews
+                    document.getElementById('eyecatcherInputs').style.display = 'none';
+                    document.getElementById('bubbleInputs').style.display = 'none';
+                    document.getElementById('chatBarInputs').style.display = 'none';
+                    eyecatcherPreviewBox.style.display = 'none';
+                    bubblePreviewBox.style.display = 'none';
+                    chatBarPreviewBox.style.display = 'none';
                 }
             });
         });
@@ -317,6 +414,11 @@
                 bubble: {
                     bgColor: bubbleBgColorText.value,
                     iconColor: bubbleIconColorText.value
+                },
+                chatBar: {
+                    text: chatBarTextInput.value,
+                    bgColor: chatBarBgColorText.value,
+                    textColor: chatBarTextColorText.value
                 }
             };
 
@@ -347,6 +449,13 @@
                 bubbleBgColorInput.value = settings.bubble.bgColor || "#007bff";
                 bubbleIconColorInput.value = settings.bubble.iconColor || "#ffffff";
                 
+                // Set chat bar values
+                chatBarTextInput.value = settings.chatBar?.text || "Chat with us";
+                chatBarBgColorText.value = settings.chatBar?.bgColor || "#007bff";
+                chatBarTextColorText.value = settings.chatBar?.textColor || "#ffffff";
+                chatBarBgColorInput.value = settings.chatBar?.bgColor || "#007bff";
+                chatBarTextColorInput.value = settings.chatBar?.textColor || "#ffffff";
+                
                 // Update previews
                 eyecatcherPreviewTitle.textContent = settings.eyecatcher.title || "Hello";
                 eyecatcherPreviewText.textContent = settings.eyecatcher.text || "Click to chat";
@@ -355,6 +464,10 @@
                 
                 bubblePreviewBox.style.backgroundColor = settings.bubble.bgColor || "#007bff";
                 bubbleIcon.style.color = settings.bubble.iconColor || "#ffffff";
+                
+                chatBarPreviewBox.style.backgroundColor = settings.chatBar?.bgColor || "#007bff";
+                chatBarPreviewBox.style.color = settings.chatBar?.textColor || "#ffffff";
+                chatBarPreviewText.textContent = settings.chatBar?.text || "Chat with us";
                 
                 // Trigger change event to show correct preview
                 document.querySelector(`input[name="chat_option"][value="${settings.selectedOption}"]`).dispatchEvent(new Event('change'));
