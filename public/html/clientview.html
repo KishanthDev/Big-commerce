@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Live Chat Button</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <style>
+    @keyframes slideUp {
+      0% {
+        transform: translateY(60px) scale(0.2);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideDown {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(60px) scale(0.2);
+        opacity: 0;
+      }
+    }
+
+    @keyframes pop {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .animate-slideUp {
+      animation: slideUp 0.4s ease-out forwards;
+    }
+
+    .animate-slideDown {
+      animation: slideDown 0.4s ease-in forwards;
+    }
+
+    .group-hover\:animate-pop {
+      animation: pop 0.3s ease-in-out;
+    }
+
+    @keyframes bounce {
+      0%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-8px);
+      }
+    }
+
+    .dot-loader span {
+      animation: bounce 0.6s infinite ease-in-out;
+    }
+
+    .dot-loader span:nth-child(2) {
+      animation-delay: 0.1s;
+    }
+
+    .dot-loader span:nth-child(3) {
+      animation-delay: 0.2s;
+    }
+  </style>
+</head>
+<body>
+  <!-- Chat Button -->
+  <button type="button" aria-label="Open LiveChat chat widget" class="fixed bottom-5 right-5 bg-[#ff5101] border-none rounded-full w-16 h-16 flex items-center justify-center cursor-pointer shadow-lg z-[1000] hover:bg-white transition-colors duration-300 overflow-hidden chat-button">
+    <!-- Chat SVG icon -->
+    <div class="absolute transition-opacity duration-300 chat-icon">
+      <svg viewBox="0 0 32 32" width="28" height="28" fill="none">
+        <path fill="#FFFFFF" d="M12.63,26.46H8.83a6.61,6.61,0,0,1-6.65-6.07,89.05,89.05,0,0,1,0-11.2A6.5,6.5,0,0,1,8.23,3.25a121.62,121.62,0,0,1,15.51,0A6.51,6.51,0,0,1,29.8,9.19a77.53,77.53,0,0,1,0,11.2,6.61,6.61,0,0,1-6.66,6.07H19.48L12.63,31V26.46Z"/>
+        <path fill="#FF5101" d="M19.57,21.68h3.67a2.08,2.08,0,0,0,2.11-1.81,89.86,89.86,0,0,0,0-10.38,1.9,1.9,0,0,0-1.84-1.74,113.15,113.15,0,0,0-15,0A1.9,1.9,0,0,0,6.71,9.49a74.92,74.92,0,0,0-.06,10.38,2,2,0,0,0,2.1,1.81h3.81V26.5Z"/>
+      </svg>
+    </div>
+    <!-- Dots Loader -->
+    <div class="flex gap-1 opacity-0 absolute items-end h-3.5 dot-loader hover:opacity-100 transition-opacity duration-300">
+      <span class="block w-1.5 h-1.5 bg-[#ff5101] rounded-full"></span>
+      <span class="block w-1.5 h-1.5 bg-[#ff5101] rounded-full"></span>
+      <span class="block w-1.5 h-1.5 bg-[#ff5101] rounded-full"></span>
+    </div>
+  </button>
+
+  <!-- Modal -->
+  <div class="fixed inset-0 bg-black/50 z-[2000] hidden" id="chatModal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="fixed bottom-20 right-5 bg-gradient-to-b from-[#d3d3d3] to-[#e8e8e8] rounded-lg w-[90%] max-w-[320px] p-5 shadow-xl transform-origin-bottom-right sm:max-w-[280px] sm:bottom-16 sm:right-2.5" id="modalContent">
+      <button class="absolute top-2.5 right-2.5 bg-transparent border-none text-gray-600 text-xl cursor-pointer close-button" aria-label="Close modal">×</button>
+      <h2 id="modalTitle" class="text-2xl text-[#ff5101] mb-4 sm:text-xl">Chat with us!</h2>
+      <div class="border border-gray-300 bg-gray-100 rounded-lg p-4 mb-4">
+        <div class="font-bold text-gray-800 mb-1">LiveChat Bot</div>
+        <div class="text-xs text-gray-600 mb-2.5">07:41 PM</div>
+        <p class="text-base text-gray-800 mb-4 sm:text-sm">Engage your customers effortlessly with our powerful LiveChat tools. Interested in...</p>
+        <button class="bg-black text-white border-none w-full p-2.5 rounded-md text-sm flex items-center justify-center gap-2 hover:bg-gray-800 transition-colors duration-300 sm:text-xs sm:p-2 chat-now-btn">
+          Chat now
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+      <div class="mb-4 content-list">
+        <div class="border border-gray-300 bg-gray-100 rounded-lg p-2.5 mb-2 flex items-center justify-between hover:bg-[#e8e8e8] transition-colors duration-300 group content-item">
+          <a href="#pricing" class="text-gray-800 no-underline text-sm flex items-center gap-2 flex-1 sm:text-xs">
+            <i class="fas fa-dollar-sign"></i>
+            Pricing
+          </a>
+          <span class="w-6 h-6 bg-gray-500 border border-gray-300 rounded-full flex items-center justify-center group-hover:bg-black group-hover:border-black transition-colors duration-300 arrow-container">
+            <i class="fas fa-arrow-right text-white text-xs arrow"></i>
+          </span>
+        </div>
+        <div class="border border-gray-300 bg-gray-100 rounded-lg p-2.5 mb-2 flex items-center justify-between hover:bg-[#e8e8e8] transition-colors duration-300 group content-item">
+          <a href="#tour" class="text-gray-800 no-underline text-sm flex items-center gap-2 flex-1 sm:text-xs">
+            <i class="fas fa-glasses"></i>
+            Take a tour
+          </a>
+          <span class="w-6 h-6 bg-gray-500 border border-gray-300 rounded-full flex items-center justify-center group-hover:bg-black group-hover:border-black transition-colors duration-300 arrow-container">
+            <i class="fas fa-arrow-right text-white text-xs arrow"></i>
+          </span>
+        </div>
+        <div class="border border-gray-300 bg-gray-100 rounded-lg p-2.5 mb-2 flex items-center justify-between hover:bg-[#e8e8e8] transition-colors duration-300 group content-item">
+          <a href="#hire" class="text-gray-800 no-underline text-sm flex items-center gap-2 flex-1 sm:text-xs">
+            <i class="fas fa-robot"></i>
+            Hire AI-powered Chatbot
+          </a>
+          <span class="w-6 h-6 bg-gray-500 border border-gray-300 rounded-full flex items-center justify-center group-hover:bg-black group-hover:border-black transition-colors duration-300 arrow-container">
+            <i class="fas fa-arrow-right text-white text-xs arrow"></i>
+          </span>
+        </div>
+      </div>
+      <div class="border border-gray-300 rounded-lg p-2.5 flex justify-between items-center footer-box">
+        <a href="#home" class="text-white no-underline text-sm flex flex-col items-center gap-1.5 bg-black py-2 px-3 rounded-md w-20 text-center hover:bg-gray-800 transition-colors duration-300 font-bold sm:text-xs sm:py-1.5 sm:px-2.5 sm:w-[70px] active">
+          <span class="w-6 h-6 bg-black border border-black rounded-full flex items-center justify-center icon-container">
+            <i class="fas fa-home text-white text-xs"></i>
+          </span>
+          Home
+        </a>
+        <a href="#livechat" class="text-white no-underline text-sm flex flex-col items-center gap-1.5 bg-black py-2 px-3 rounded-md w-20 text-center hover:bg-gray-800 transition-colors duration-300 sm:text-xs sm:py-1.5 sm:px-2.5 sm:w-[70px]">
+          <span class="w-6 h-6 bg-transparent border border-gray-300 rounded-full flex items-center justify-center icon-container">
+            <i class="fas fa-comment text-white text-xs"></i>
+          </span>
+          LiveChat
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const chatButton = document.querySelector('.chat-button');
+    const modal = document.getElementById('chatModal');
+    const modalContent = document.getElementById('modalContent');
+    const closeButton = document.querySelector('.close-button');
+
+    // Open modal on chat button click
+    chatButton.addEventListener('click', () => {
+      modal.style.display = 'block';
+      modal.setAttribute('aria-hidden', 'false');
+      modalContent.classList.remove('animate-slideDown');
+      modalContent.classList.add('animate-slideUp');
+      modalContent.focus();
+    });
+
+    // Close modal with animation
+    function closeModal() {
+      modalContent.classList.remove('animate-slideUp');
+      modalContent.classList.add('animate-slideDown');
+      modalContent.addEventListener('animationend', () => {
+        if (modalContent.classList.contains('animate-slideDown')) {
+          modal.style.display = 'none';
+          modal.setAttribute('aria-hidden', 'true');
+          chatButton.focus();
+        }
+      }, { once: true });
+    }
+
+    // Close modal on close button click
+    closeButton.addEventListener('click', closeModal);
+
+    // Close modal when clicking outside the modal content
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+
+    // Close modal on Escape key press
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && modal.style.display === 'block') {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>

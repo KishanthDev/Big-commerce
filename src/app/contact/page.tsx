@@ -17,6 +17,9 @@ const Page = () => {
       <Link className="inline-block p-3 bg-blue-400 cursor-pointer rounded-2xl" href="/html/chatview.html">
         Chat
       </Link>
+      <Link className="inline-block p-3 bg-blue-400 cursor-pointer rounded-2xl" href="/html/clientview.html">
+        client
+      </Link>
       <Footer />
     </div>
   );
