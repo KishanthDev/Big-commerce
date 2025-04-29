@@ -1,4 +1,3 @@
-
 // Input Elements
 const titleInput = document.getElementById("titleInput");
 const textInput = document.getElementById("textInput");
@@ -103,13 +102,17 @@ bubbleBgColorText.addEventListener("input", () => {
 
 // Update Bubble Icon Color
 bubbleIconColorInput.addEventListener("input", () => {
+    bubbleIcon.style.backgroundColor = bubbleIconColorInput.value;
     bubbleIcon.style.color = bubbleIconColorInput.value;
     bubbleIconColorText.value = bubbleIconColorInput.value;
+    bubbleIcon.style.setProperty('--dot-color', bubbleIconColorInput.value);
 });
 
 bubbleIconColorText.addEventListener("input", () => {
+    bubbleIcon.style.backgroundColor = bubbleIconColorText.value;
     bubbleIcon.style.color = bubbleIconColorText.value;
     bubbleIconColorInput.value = bubbleIconColorText.value;
+    bubbleIcon.style.setProperty('--dot-color', bubbleIconColorText.value);
 });
 
 // Update Chat Bar Text
@@ -241,6 +244,8 @@ radioButtons.forEach(radio => {
         } else if (selectedValue === "bubble") {
             document.getElementById('bubbleInputs').style.display = 'block';
             bubblePreviewBox.style.display = 'flex';
+            // Ensure background color is applied
+            bubblePreviewBox.style.backgroundColor = bubbleBgColorInput.value;
         } else if (selectedValue === "chat_bar") {
             document.getElementById('chatBarInputs').style.display = 'block';
             chatBarPreviewBox.style.display = 'flex';
@@ -355,7 +360,9 @@ function loadSettings() {
         eyecatcherPreviewBox.style.backgroundColor = settings.eyecatcher.bgColor || "#007bff";
         eyecatcherPreviewBox.style.color = settings.eyecatcher.textColor || "#ffffff";
         bubblePreviewBox.style.backgroundColor = settings.bubble.bgColor || "#007bff";
+        bubbleIcon.style.backgroundColor = settings.bubble.iconColor || "#ffffff";
         bubbleIcon.style.color = settings.bubble.iconColor || "#ffffff";
+        bubbleIcon.style.setProperty('--dot-color', settings.bubble.iconColor || "#ffffff");
         chatBarPreviewBox.style.backgroundColor = settings.chatBar.bgColor || "#007bff";
         chatBarPreviewBox.style.color = settings.chatBar.textColor || "#ffffff";
         chatBarPreviewText.textContent = settings.chatBar.text || "Chat with us";
@@ -365,9 +372,10 @@ function loadSettings() {
     } else {
         document.getElementById('eyecatcherRadio').checked = true;
         document.getElementById('eyecatcherRadio').dispatchEvent(new Event('change'));
+        // Set default bubble preview background
+        bubblePreviewBox.style.backgroundColor = bubbleBgColorInput.value;
     }
 }
 
 // Load settings on page load
 window.addEventListener('DOMContentLoaded', loadSettings);
-// Reset settings functionality
