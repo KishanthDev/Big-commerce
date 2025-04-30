@@ -7,6 +7,10 @@
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     @keyframes slideUp {
       0% { transform: translateY(100%); opacity: 0; }
       100% { transform: translateY(0); opacity: 1; }
@@ -65,6 +69,141 @@
       stroke-linecap: round;
       stroke-linejoin: round;
     }
+
+    /* Modal Content */
+    #modalContent {
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    #homeContent, #liveChatContent {
+      display: none;
+      flex-direction: column;
+      overflow-y: auto;
+      overflow-x: hidden;
+      flex: 1;
+    }
+
+    #homeContent.active, #liveChatContent.active {
+      display: flex;
+    }
+
+    /* Home Content Specific */
+    #homeContent {
+      padding-bottom: 8px;
+    }
+
+    /* Hide footer in LiveChat section */
+    #liveChatContent.active ~ .footer-box {
+      display: none;
+    }
+
+    /* Chat Box Styles */
+    .chat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding: 8px 0;
+    }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px;
+      font-size: small;
+    }
+
+    .chat-message {
+      margin-bottom: 8px;
+      padding: 6px 10px;
+      background-color: #f3f4f6;
+      border-radius: 8px;
+      max-width: 80%;
+      word-wrap: break-word;
+    }
+
+    .chat-message .sender {
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .input-container {
+      display: flex;
+      align-items: center;
+      padding: 8px;
+      gap: 8px;
+      border-top: 1px solid #d1d5db;
+      background-color: #fff;
+      box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .input-container input[type="text"] {
+      flex: 1;
+      padding: 6px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    .input-container .button-group {
+      display: flex;
+      gap: 6px;
+    }
+
+    .input-container button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      color: #374151;
+    }
+
+    .input-container button:hover {
+      color: #000;
+    }
+
+    .emoji-picker {
+      position: absolute;
+      bottom: 50px;
+      right: 10px;
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      padding: 8px;
+      display: none;
+      flex-wrap: wrap;
+      gap: 4px;
+      width: 140px;
+    }
+
+    .emoji-picker span {
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .emoji-picker span:hover {
+      background: #f3f4f6;
+      border-radius: 4px;
+    }
+
+    /* Content Item Specific */
+    .content-item {
+      max-width: 100%;
+      padding: 6px;
+    }
+
+    .content-item a {
+      overflow-wrap: break-word;
+      word-break: break-word;
+      max-width: 100%;
+    }
+
+    .content-list {
+      padding: 0 4px;
+    }
   </style>
 </head>
 <body>
@@ -83,54 +222,101 @@
     </div>
   </button>
 
-  <!-- Modal -->
-  <div class="fixed inset-0 bg-black/50 z-[2000] hidden" id="chatModal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+  <!-- Main Modal -->
+  <div class="fixed inset-0 bg-black/50 z-[2000] hidden" id="chatModal" role="dialog" aria-labelledby="modalTitle liveChatTitle" aria-hidden="true">
     <div class="bg-gradient-to-b from-[#d3d3d3] to-[#e8e8e8] rounded-2xl w-[100%] max-w-[400px] p-5 shadow-xl sm:max-w-[340px] fixed bottom-5 right-5" id="modalContent">
-      <button class="absolute top-2.5 right-2.5 bg-transparent border-none text-gray-600 text-xl cursor-pointer close-button" aria-label="Close modal">×</button>
-      <h2 id="modalTitle" class="text-4xl text-black mt-5 mb-4 font-bold sm:text-4xl">Chat with us!</h2>
-      <div class="border border-gray-300 bg-gray-100 rounded-lg p-4 mb-4">
-        <div class="font-bold text-gray-800 mb-1">LiveChat Bot</div>
-        <div class="text-xs text-gray-600 mb-2.5">07:41 PM</div>
-        <p class="text-base text-gray-800 mb-4 sm:text-sm">Engage your customers effortlessly with our powerful LiveChat tools. Interested in...</p>
-        <button class="bg-black text-white border-none w-full p-2.5 rounded-md text-sm flex items-center justify-center gap-2 hover:bg-gray-800 transition-colors duration-300 sm:text-xs sm:p-2 chat-now-btn">
-          Chat now
-          <i class="fas fa-paper-plane"></i>
-        </button>
+      <!-- Home Content -->
+      <div id="homeContent" class="active">
+        <button class="absolute top-2.5 right-2.5 bg-transparent border-none text-gray-600 text-xl cursor-pointer close-button" aria-label="Close modal">×</button>
+        <h2 id="modalTitle" class="text-4xl text-black mt-5 mb-2 font-bold sm:text-4xl">Chat with us!</h2>
+        <div class="border border-gray-300 bg-gray-100 rounded-lg p-3 mb-3">
+          <div class="font-bold text-gray-800 mb-1">LiveChat Bot</div>
+          <div class="text-xs text-gray-600 mb-2">07:41 PM</div>
+          <p class="text-base text-gray-800 mb-3 sm:text-sm">Engage your customers effortlessly with our powerful LiveChat tools. Interested in...</p>
+          <button class="bg-black text-white border-none w-full p-2 rounded-md text-sm flex items-center justify-center gap-2 hover:bg-gray-800 transition-colors duration-300 sm:text-xs sm:p-1.5 chat-now-btn">
+            Chat now
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+        <div class="content-list">
+          <div class="border border-gray-300 bg-gray-100 rounded-lg p-2 mb-2 flex items-center justify-between hover:bg-[#e8e8e8] transition-colors duration-300 group content-item">
+            <a href="#pricing" class="text-gray-800 no-underline text-sm flex items-center gap-2 flex-1 sm:text-xs">
+              <i class="fas fa-dollar-sign"></i>
+              Pricing
+            </a>
+            <span class="w-6 h-6 bg-gray-500 border border-gray-300 rounded-full flex items-center justify-center group-hover:bg-black group-hover:border-black transition-colors duration-300 arrow-container">
+              <i class="fas fa-arrow-right text-white text-xs arrow"></i>
+            </span>
+          </div>
+          <div class="border border-gray-300 bg-gray-100 rounded-lg p-2 mb-2 flex items-center justify-between hover:bg-[#e8e8e8] transition-colors duration-300 group content-item">
+            <a href="#tour" class="text-gray-800 no-underline text-sm flex items-center gap-2 flex-1 sm:text-xs">
+              <i class="fas fa-glasses"></i>
+              Take a tour
+            </a>
+            <span class="w-6 h-6 bg-gray-500 border border-gray-300 rounded-full flex items-center justify-center group-hover:bg-black group-hover:border-black transition-colors duration-300 arrow-container">
+              <i class="fas fa-arrow-right text-white text-xs arrow"></i>
+            </span>
+          </div>
+          <div class="border border-gray-300 bg-gray-100 rounded-lg p-2 mb-2 flex items-center justify-between hover:bg-[#e8e8e8] transition-colors duration-300 group content-item">
+            <a href="#hire" class="text-gray-800 no-underline text-sm flex items-center gap-2 flex-1 sm:text-xs">
+              <i class="fas fa-robot"></i>
+              Hire AI-powered Chatbot
+            </a>
+            <span class="w-6 h-6 bg-gray-500 border border-gray-300 rounded-full flex items-center justify-center group-hover:bg-black group-hover:border-black transition-colors duration-300 arrow-container">
+              <i class="fas fa-arrow-right text-white text-xs arrow"></i>
+            </span>
+          </div>
+        </div>
       </div>
-      <div class="mb-4 content-list">
-        <div class="border border-gray-300 bg-gray-100 rounded-lg p-2.5 mb-2 flex items-center justify-between hover:bg-[#e8e8e8] transition-colors duration-300 group content-item">
-          <a href="#pricing" class="text-gray-800 no-underline text-sm flex items-center gap-2 flex-1 sm:text-xs">
-            <i class="fas fa-dollar-sign"></i>
-            Pricing
-          </a>
-          <span class="w-6 h-6 bg-gray-500 border border-gray-300 rounded-full flex items-center justify-center group-hover:bg-black group-hover:border-black transition-colors duration-300 arrow-container">
-            <i class="fas fa-arrow-right text-white text-xs arrow"></i>
-          </span>
+      <!-- LiveChat Content -->
+      <div id="liveChatContent">
+        <div class="chat-header">
+          <button class="bg-transparent border-none text-gray-600 text-xl cursor-pointer back-button" aria-label="Back to home section">
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          <h2 id="liveChatTitle" class="text-2xl text-black font-bold">LiveChat</h2>
+          <button class="bg-transparent border-none text-gray-600 text-xl cursor-pointer close-button" aria-label="Close modal">×</button>
         </div>
-        <div class="border border-gray-300 bg-gray-100 rounded-lg p-2.5 mb-2 flex items-center justify-between hover:bg-[#e8e8e8] transition-colors duration-300 group content-item">
-          <a href="#tour" class="text-gray-800 no-underline text-sm flex items-center gap-2 flex-1 sm:text-xs">
-            <i class="fas fa-glasses"></i>
-            Take a tour
-          </a>
-          <span class="w-6 h-6 bg-gray-500 border border-gray-300 rounded-full flex items-center justify-center group-hover:bg-black group-hover:border-black transition-colors duration-300 arrow-container">
-            <i class="fas fa-arrow-right text-white text-xs arrow"></i>
-          </span>
+        <div class="chat-messages" id="chatMessages">
+          <div class="chat-message">
+            <div class="sender">LiveChat Bot</div>
+            <div class="timestamp">07:41 PM</div>
+            <div>Engage your customers effortlessly with our powerful LiveChat tools. Interested in exploring more?</div>
+          </div>
+          <div class="chat-message">
+            <div class="sender">LiveChat Bot</div>
+            <div class="timestamp">07:41 PM</div>
+            <div>I'm your AI assistant, and I'm ready to help. You can pick an option below or just type your question like you're chatting with a person. The more specific you are, the better I can help!</div>
+          </div>
         </div>
-        <div class="border border-gray-300 bg-gray-100 rounded-lg p-2.5 mb-2 flex items-center justify-between hover:bg-[#e8e8e8] transition-colors duration-300 group content-item">
-          <a href="#hire" class="text-gray-800 no-underline text-sm flex items-center gap-2 flex-1 sm:text-xs">
-            <i class="fas fa-robot"></i>
-            Hire AI-powered Chatbot
-          </a>
-          <span class="w-6 h-6 bg-gray-500 border border-gray-300 rounded-full flex items-center justify-center group-hover:bg-black group-hover:border-black transition-colors duration-300 arrow-container">
-            <i class="fas fa-arrow-right text-white text-xs arrow"></i>
-          </span>
+        <div class="input-container">
+          <input type="text" id="messageInput" placeholder="Type a message..." aria-label="Type a message" />
+          <div class="button-group">
+            <button class="emoji-button" aria-label="Open emoji picker">
+              <i class="fas fa-smile"></i>
+            </button>
+            <button class="attachment-button" aria-label="Attach file">
+              <i class="fas fa-paperclip"></i>
+            </button>
+            <button class="send-button" aria-label="Send message">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+          <input type="file" id="attachmentInput" style="display: none;" />
+          <div class="emoji-picker" id="emojiPicker">
+            <span data-emoji="😊">😊</span>
+            <span data-emoji="👍">👍</span>
+            <span data-emoji="🚀">🚀</span>
+            <span data-emoji="❤️">❤️</span>
+            <span data-emoji="😂">😂</span>
+          </div>
         </div>
       </div>
       <!-- Footer -->
       <div class="border border-gray-300 rounded-3xl shadow-2xl p-2.5 flex justify-between items-center bg-gray-100 footer-box">
         <a href="#home" class="text-gray-800 no-underline text-sm flex flex-col items-center gap-1.5 py-2 px-3 w-20 text-center hover:text-gray-500 transition-colors duration-300 font-bold sm:text-xs sm:py-1.5 sm:px-2.5 sm:w-[70px] selected" id="homeButton">
           <svg viewBox="0 0 24 24" width="25" height="25" class="home-icon">
-            <path d="M9.74999977,20.25 L9.74999977,14.25 L14.2499998,14.25 L14.2499998,20.25 L20.2499998,20.25 L20.2499998,11.25 C20.2499998,11.0510278 20.1712414,10.8601478 20.030625,10.719375 L12.530625,3.219375 C12.3899488,3.07854222 12.1990569,2.99941001 12,2.99941001 C11.8009431,2.99941001 11.6100512,3.07854222 11.469375,3.219375 L3.969375,10.719375 C3.82875857,10.8601478 3.74999977,11.0510278 3.74999977,11.25 L3.74999977,20.25 L9.74999977,20.25 Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M3 12l9-9 9 9v9a2 2 0 0 1-2 2h-4v-6h-6v6H5a2 2 0 0 1-2-2v-9z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
           Home
         </a>
@@ -149,20 +335,51 @@
     const chatButton = document.querySelector('.chat-button');
     const modal = document.getElementById('chatModal');
     const modalContent = document.getElementById('modalContent');
-    const closeButton = document.querySelector('.close-button');
+    const closeButtons = document.querySelectorAll('.close-button');
     const homeButton = document.getElementById('homeButton');
     const liveChatButton = document.getElementById('liveChatButton');
+    const homeContent = document.getElementById('homeContent');
+    const liveChatContent = document.getElementById('liveChatContent');
+    const backButton = document.querySelector('.back-button');
+    const messageInput = document.getElementById('messageInput');
+    const sendButton = document.querySelector('.send-button');
+    const chatMessages = document.getElementById('chatMessages');
+    const emojiButton = document.querySelector('.emoji-button');
+    const emojiPicker = document.getElementById('emojiPicker');
+    const attachmentButton = document.querySelector('.attachment-button');
+    const attachmentInput = document.getElementById('attachmentInput');
 
+    // Store chat history
+    let chatHistory = [];
+
+    // Predefined messages
+    const predefinedMessages = [
+      {
+        sender: 'LiveChat Bot',
+        timestamp: '07:41 PM',
+        text: 'Engage your customers effortlessly with our powerful LiveChat tools. Interested in exploring more?'
+      },
+      {
+        sender: 'LiveChat Bot',
+        timestamp: '07:41 PM',
+        text: 'I\'m your AI assistant, and I\'m ready to help. You can pick an option below or just type your question like you\'re chatting with a person. The more specific you are, the better I can help!'
+      }
+    ];
+
+    // Open main modal
     chatButton.addEventListener('click', () => {
       modal.style.display = 'block';
       modal.setAttribute('aria-hidden', 'false');
       modalContent.classList.remove('animate-slideDown');
       modalContent.classList.add('animate-slideUp');
+      homeContent.classList.add('active');
+      liveChatContent.classList.remove('active');
       homeButton.classList.add('selected');
       liveChatButton.classList.remove('selected');
       modalContent.focus();
     });
 
+    // Close modal
     function closeModal() {
       modalContent.classList.remove('animate-slideUp');
       modalContent.classList.add('animate-slideDown');
@@ -175,7 +392,9 @@
       }, { once: true });
     }
 
-    closeButton.addEventListener('click', closeModal);
+    closeButtons.forEach(button => {
+      button.addEventListener('click', closeModal);
+    });
 
     modal.addEventListener('click', (event) => {
       if (event.target === modal) {
@@ -189,14 +408,93 @@
       }
     });
 
-    homeButton.addEventListener('click', () => {
-      homeButton.classList.add('selected');
-      liveChatButton.classList.remove('selected');
-    });
+    // Render messages
+    function renderMessages() {
+      chatMessages.innerHTML = '';
+      [...predefinedMessages, ...chatHistory].forEach(msg => {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'chat-message';
+        messageDiv.innerHTML = `
+          <div class="sender">${msg.sender}</div>
+          <div class="timestamp">${msg.timestamp}</div>
+          <div>${msg.text}</div>
+        `;
+        chatMessages.appendChild(messageDiv);
+      });
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
 
-    liveChatButton.addEventListener('click', () => {
+    // Switch to LiveChat
+    function showLiveChatContent() {
+      homeContent.classList.remove('active');
+      liveChatContent.classList.add('active');
       liveChatButton.classList.add('selected');
       homeButton.classList.remove('selected');
+      renderMessages();
+      messageInput.focus();
+    }
+
+    liveChatButton.addEventListener('click', showLiveChatContent);
+    document.querySelector('.chat-now-btn').addEventListener('click', showLiveChatContent);
+
+    // Switch to Home
+    function showHomeContent() {
+      liveChatContent.classList.remove('active');
+      homeContent.classList.add('active');
+      homeButton.classList.add('selected');
+      liveChatButton.classList.remove('selected');
+      modalContent.focus();
+    }
+
+    homeButton.addEventListener('click', showHomeContent);
+    backButton.addEventListener('click', showHomeContent);
+
+    // Send message
+    function sendMessage() {
+      const messageText = messageInput.value.trim();
+      if (messageText) {
+        const newMessage = {
+          sender: 'You',
+          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          text: messageText
+        };
+        chatHistory.push(newMessage);
+        messageInput.value = '';
+        renderMessages();
+      }
+    }
+
+    sendButton.addEventListener('click', sendMessage);
+
+    messageInput.addEventListener('keypress', (event) => {
+      if (event.key === 'Enter') {
+        sendMessage();
+      }
+    });
+
+    // Emoji picker
+    emojiButton.addEventListener('click', () => {
+      emojiPicker.style.display = emojiPicker.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+    emojiPicker.addEventListener('click', (event) => {
+      if (event.target.dataset.emoji) {
+        messageInput.value += event.target.dataset.emoji;
+        emojiPicker.style.display = 'none';
+        messageInput.focus();
+      }
+    });
+
+    // Close emoji picker when clicking outside
+    document.addEventListener('click', (event) => {
+      if (!emojiButton.contains(event.target) && !emojiPicker.contains(event.target)) {
+        emojiPicker.style.display = 'none';
+      }
+    });
+
+    // Attachment button
+    attachmentButton.addEventListener('click', () => {
+      attachmentInput.click();
     });
   </script>
 </body>
