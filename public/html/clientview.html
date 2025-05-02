@@ -132,7 +132,8 @@
       padding: 8px 0;
       position: relative;
       z-index: 10;
-      min-height: 60px; /* Ensure header has enough space for bubble */
+      min-height: 60px;
+      /* Ensure header has enough space for bubble */
     }
 
     .chat-messages {
@@ -421,7 +422,8 @@
     /* Updated chat bubble styles */
     .chat-bubble {
       position: absolute;
-      top: 10px; /* Start near the top of the header */
+      top: 10px;
+      /* Start near the top of the header */
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -658,10 +660,9 @@
               </div>
             </div>
           </div>
-        <button
-  class="absolute top-0 right-1 bg-transparent border-none text-gray-600 font-bold text-4xl cursor-pointer hover:text-black transition-colors duration-200 flex items-center justify-center close-button"
-  aria-label="Close modal"
->_</button>
+          <button
+            class="absolute top-0 right-1 bg-transparent border-none text-gray-600 font-bold text-4xl cursor-pointer hover:text-black transition-colors duration-200 flex items-center justify-center close-button"
+            aria-label="Close modal">_</button>
         </div>
         <div class="chat-messages" id="chatMessages"></div>
         <div class="relative w-full max-w-md">
