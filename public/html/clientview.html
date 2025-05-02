@@ -36,16 +36,10 @@
     .dot-loader span:nth-child(2) { animation-delay: 0.1s; }
     .dot-loader span:nth-child(3) { animation-delay: 0.2s; }
 
-    /* Pop effect for content items on hover */
     .content-item {
-      transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+      transition: background-color 0.3s ease-in-out;
     }
 
-    .content-item:hover {
-      transform: scale(1.05);
-    }
-
-    /* Selected state for footer buttons */
     .footer-box a.selected {
       color: black;
     }
@@ -55,13 +49,11 @@
       stroke: none !important;
     }
 
-    /* Hover state for footer buttons */
     .footer-box a:hover svg {
       stroke: black;
       fill: #5f5f5f;
     }
 
-    /* Default SVG styles */
     .footer-box svg {
       stroke: currentColor;
       fill: none;
@@ -70,9 +62,8 @@
       stroke-linejoin: round;
     }
 
-    /* Modal Content */
     #modalContent {
-      height: 505px;
+      height: 600px;
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
@@ -90,17 +81,14 @@
       display: flex;
     }
 
-    /* Home Content Specific */
     #homeContent {
       padding-bottom: 8px;
     }
 
-    /* Hide footer in LiveChat section */
     #liveChatContent.active ~ .footer-box {
       display: none;
     }
 
-    /* Chat Box Styles */
     .chat-header {
       display: flex;
       justify-content: space-between;
@@ -189,7 +177,6 @@
       border-radius: 4px;
     }
 
-    /* Content Item Specific */
     .content-item {
       max-width: 100%;
       padding: 6px;
@@ -204,11 +191,25 @@
     .content-list {
       padding: 0 4px;
     }
+
+    .arrow-container {
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .content-item:hover .arrow-container {
+      transform: translateX(5px);
+    }
   </style>
 </head>
 <body>
+  <!-- Sample Page Content -->
+  <div class="container" style="padding: 20px; max-width: 1200px; margin: 0 auto;">
+    <h1>Welcome to Our Website</h1>
+    <button onclick="alert('Button clicked!')">Click Me</button>
+  </div>
+
   <!-- Chat Button -->
-  <button type="button" aria-label="Open LiveChat chat widget" class="fixed bottom-5 right-5 bg-[#ff5101] border-none rounded-full w-16 h-16 flex items-center justify-center cursor-pointer shadow-lg z-[1000] hover:bg-white transition-colors duration-300 overflow-hidden chat-button">
+  <button type="button" aria-label="Open LiveChat chat widget" class="fixed bottom-5 right-5 bg-[#ff5101] border-none rounded-full w-16 h-16 flex items-center justify-center cursor-pointer shadow-lg z-50 hover:bg-white transition-colors duration-300 overflow-hidden chat-button">
     <div class="absolute transition-opacity duration-300 chat-icon">
       <svg viewBox="0 0 32 32" width="28" height="28" fill="none">
         <path fill="#FFFFFF" d="M12.63,26.46H8.83a6.61,6.61,0,0,1-6.65-6.07,89.05,89.05,0,0,1,0-11.2A6.5,6.5,0,0,1,8.23,3.25a121.62,121.62,0,0,1,15.51,0A6.51,6.51,0,0,1,29.8,9.19a77.53,77.53,0,0,1,0,11.2,6.61,6.61,0,0,1-6.66,6.07H19.48L12.63,31V26.46Z"/>
@@ -223,46 +224,55 @@
   </button>
 
   <!-- Main Modal -->
-  <div class="fixed inset-0 bg-black/50 z-[2000] hidden" id="chatModal" role="dialog" aria-labelledby="modalTitle liveChatTitle" aria-hidden="true">
-    <div class="bg-gradient-to-b from-[#d3d3d3] to-[#e8e8e8] rounded-2xl w-[100%] max-w-[400px] p-5 shadow-xl sm:max-w-[340px] fixed bottom-5 right-5" id="modalContent">
+  <div class="fixed bottom-5 right-5 z-50 hidden" id="chatModal" role="dialog" aria-labelledby="modalTitle liveChatTitle" aria-hidden="true">
+    <div class="bg-gradient-to-b from-[#d3d3d3] to-[#e8e8e8] rounded-2xl w-[100%] max-w-[400px] p-5 shadow-xl sm:max-w-[370px]" id="modalContent">
       <!-- Home Content -->
       <div id="homeContent" class="active">
         <button class="absolute top-2.5 right-2.5 bg-transparent border-none text-gray-600 text-xl cursor-pointer close-button" aria-label="Close modal">×</button>
-        <h2 id="modalTitle" class="text-4xl text-black mt-5 mb-2 font-bold sm:text-4xl">Chat with us!</h2>
-        <div class="border border-gray-300 bg-gray-100 rounded-lg p-3 mb-3">
-          <div class="font-bold text-gray-800 mb-1">LiveChat Bot</div>
-          <div class="text-xs text-gray-600 mb-2">07:41 PM</div>
-          <p class="text-base text-gray-800 mb-3 sm:text-sm">Engage your customers effortlessly with our powerful LiveChat tools. Interested in...</p>
-          <button class="bg-black text-white border-none w-full p-2 rounded-md text-sm flex items-center justify-center gap-2 hover:bg-gray-800 transition-colors duration-300 sm:text-xs sm:p-1.5 chat-now-btn">
-            Chat now
-            <i class="fas fa-paper-plane"></i>
-          </button>
+        <h2 id="modalTitle" class="text-4xl text-black mt-9 mb-5 font-bold sm:text-5xl">Chat with us!</h2>
+        <div class="border border-gray-300 bg-gray-100 rounded-lg p-3 mb-3 flex items-start gap-4">
+          <div class="relative bg-[#ff5101] rounded-full p-2">
+            <svg viewBox="0 0 32 32" aria-hidden="true" class="w-6 h-6 fill-white">
+              <path fill="#FFFFFF" d="M12.63,26.46H8.83a6.61,6.61,0,0,1-6.65-6.07,89.05,89.05,0,0,1,0-11.2A6.5,6.5,0,0,1,8.23,3.25a121.62,121.62,0,0,1,15.51,0A6.51,6.51,0,0,1,29.8,9.19a77.53,77.53,0,0,1,0,11.2,6.61,6.61,0,0,1-6.66,6.07H19.48L12.63,31V26.46Z" />
+            </svg>
+            <span class="absolute top-0 right-0 w-2 h-2 bg-green-500 rounded-full border-2 border-white"></span>
+          </div>
+          <div class="flex-1">
+            <div class="font-bold text-gray-800 mb-1">LiveChat Bot · 07:41 PM</div>
+            <p class="text-base text-gray-800 mb-3 sm:text-sm">Engage your customers effortlessly with our powerful LiveChat tools. Interested in...</p>
+            <button type="button" class="chat-now-btn bg-black text-white w-full p-2 rounded-md text-lg font-bold flex items-center justify-center gap-1 hover:bg-gray-800 transition-colors duration-300 sm:text-sm sm:p-3.5">
+              Chat now
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="w-5 h-5 fill-current">
+                <path d="M4.3880707,3.17638951 L20.4789623,11.1029371 C20.9743965,11.3469933 21.1781786,11.9464687 20.9341223,12.4419029 C20.8367142,12.6396414 20.6767008,12.7996548 20.4789623,12.8970629 L4.3743554,20.8303668 C3.87892124,21.074423 3.27944584,20.870641 3.03538961,20.3752068 C2.90852242,20.1176664 2.89846393,19.8180217 3.00777474,19.5525533 L6.12545221,11.9794521 L6.12845221,11.9204521 L3.02294371,4.4577144 C2.81072167,3.94783182 3.05202321,3.36245036 3.56190579,3.15022831 C3.82818088,3.03939996 4.12934099,3.04893645 4.3880707,3.17638951 Z M5.892,6.146 L7.91045221,10.9964521 L11.0011069,11.0000006 C11.5533913,11.0006119 12.0006107,11.4488225 12,12.0011069 C11.9993881,12.5533913 11.5511775,13.0006107 10.9988931,13 L7.86945221,12.9964521 L5.865,17.866 L17.773,12 L5.892,6.146 Z" />
+              </svg>
+            </button>
+          </div>
         </div>
         <div class="content-list">
           <div class="border border-gray-300 bg-gray-100 rounded-lg p-2 mb-2 flex items-center justify-between hover:bg-[#e8e8e8] transition-colors duration-300 group content-item">
             <a href="#pricing" class="text-gray-800 no-underline text-sm flex items-center gap-2 flex-1 sm:text-xs">
-              <i class="fas fa-dollar-sign"></i>
+              <span>💰</span>
               Pricing
             </a>
-            <span class="w-6 h-6 bg-gray-500 border border-gray-300 rounded-full flex items-center justify-center group-hover:bg-black group-hover:border-black transition-colors duration-300 arrow-container">
+            <span class="w-6 h-6 bg-gray-500 border border-gray-300 rounded-full flex items-center justify-center arrow-container">
               <i class="fas fa-arrow-right text-white text-xs arrow"></i>
             </span>
           </div>
           <div class="border border-gray-300 bg-gray-100 rounded-lg p-2 mb-2 flex items-center justify-between hover:bg-[#e8e8e8] transition-colors duration-300 group content-item">
             <a href="#tour" class="text-gray-800 no-underline text-sm flex items-center gap-2 flex-1 sm:text-xs">
-              <i class="fas fa-glasses"></i>
+              <span>👓</span>
               Take a tour
             </a>
-            <span class="w-6 h-6 bg-gray-500 border border-gray-300 rounded-full flex items-center justify-center group-hover:bg-black group-hover:border-black transition-colors duration-300 arrow-container">
+            <span class="w-6 h-6 bg-gray-500 border border-gray-300 rounded-full flex items-center justify-center arrow-container">
               <i class="fas fa-arrow-right text-white text-xs arrow"></i>
             </span>
           </div>
           <div class="border border-gray-300 bg-gray-100 rounded-lg p-2 mb-2 flex items-center justify-between hover:bg-[#e8e8e8] transition-colors duration-300 group content-item">
             <a href="#hire" class="text-gray-800 no-underline text-sm flex items-center gap-2 flex-1 sm:text-xs">
-              <i class="fas fa-robot"></i>
+              <span>🤖</span>
               Hire AI-powered Chatbot
             </a>
-            <span class="w-6 h-6 bg-gray-500 border border-gray-300 rounded-full flex items-center justify-center group-hover:bg-black group-hover:border-black transition-colors duration-300 arrow-container">
+            <span class="w-6 h-6 bg-gray-500 border border-gray-300 rounded-full flex items-center justify-center arrow-container">
               <i class="fas fa-arrow-right text-white text-xs arrow"></i>
             </span>
           </div>
@@ -349,10 +359,8 @@
     const attachmentButton = document.querySelector('.attachment-button');
     const attachmentInput = document.getElementById('attachmentInput');
 
-    // Store chat history
     let chatHistory = [];
 
-    // Predefined messages
     const predefinedMessages = [
       {
         sender: 'LiveChat Bot',
@@ -366,7 +374,7 @@
       }
     ];
 
-    // Open main modal
+    // Open modal
     chatButton.addEventListener('click', () => {
       modal.style.display = 'block';
       modal.setAttribute('aria-hidden', 'false');
@@ -396,12 +404,8 @@
       button.addEventListener('click', closeModal);
     });
 
-    modal.addEventListener('click', (event) => {
-      if (event.target === modal) {
-        closeModal();
-      }
-    });
-
+    // Remove backdrop click-to-close since backdrop is removed
+    // Optionally, keep this for other interactions if needed
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && modal.style.display === 'block') {
         closeModal();
@@ -485,7 +489,6 @@
       }
     });
 
-    // Close emoji picker when clicking outside
     document.addEventListener('click', (event) => {
       if (!emojiButton.contains(event.target) && !emojiPicker.contains(event.target)) {
         emojiPicker.style.display = 'none';
