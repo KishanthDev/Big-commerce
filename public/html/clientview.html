@@ -100,7 +100,7 @@
     .chat-messages {
       flex: 1;
       overflow-y: auto;
-      padding: 8px 48px 8px 48px; /* Increased left and right padding for icons */
+      padding: 8px 48px 8px 48px;
       font-size: small;
       margin-bottom: 8px;
     }
@@ -116,27 +116,21 @@
     }
 
     .chat-message.user {
-      margin-left: auto; /* Align user messages to the right */
-      background-color: #e0f2fe; /* Light blue for user messages */
-    }
-
-    .chat-message .sender {
-      font-weight: bold;
-      margin-bottom: 4px;
+      margin-left: auto;
+      background-color: #fef08a;
     }
 
     .chat-message .message-icon {
       position: absolute;
-      top: 0; /* Align at top edge */
-      left: -40px; /* Default: outside left border for bot */
+      top: 0;
+      left: -40px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .chat-message.user .message-icon {
-      left: auto; /* Override for user messages */
-      right: -40px; /* Position outside right border */
+      display: none;
     }
 
     .chat-message .message-icon.bot svg {
@@ -145,14 +139,6 @@
       background-color: #ff5101;
       border-radius: 50%;
       padding: 4px;
-    }
-
-    .chat-message .message-icon.user i {
-      font-size: 24px; /* Match bot SVG size */
-      color: #fff;
-      background-color: #374151; /* Dark gray for user icon */
-      border-radius: 50%;
-      padding: 4px; /* Match bot SVG padding */
     }
 
     .input-container {
@@ -234,63 +220,173 @@
       background-color: #000;
     }
 
-    /* Updated styles for input box */
     .relative.w-full.max-w-md {
-      margin-top: -8px; /* Maintains upward shift */
-      padding-bottom: 10px; /* Balanced spacing */
-      max-width: 95%; /* Wide input box */
-      margin-left: auto; /* Center horizontally */
-      margin-right: auto; /* Center horizontally */
+      margin-top: -8px;
+      padding-bottom: 10px;
+      max-width: 95%;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     #liveChatContent .relative.w-full.max-w-md input[type="text"] {
-      padding: 10px 70px 10px 12px; /* Increased padding for larger size */
+      padding: 10px 70px 10px 12px;
       border: 1px solid #d1d5db;
       border-radius: 8px;
       outline: none;
-      font-size: 16px; /* Larger text */
-      min-height: 40px; /* Taller input box */
+      font-size: 16px;
+      min-height: 40px;
       transition: border-color 0.2s ease-in-out;
     }
 
     #liveChatContent .relative.w-full.max-w-md input[type="text"]:focus {
-      border-color: #000; /* Subtle border change on focus, no ring */
+      border-color: #000;
     }
 
     #liveChatContent .relative.w-full.max-w-md .absolute.right-2 {
-      right: 10px; /* Adjusted icon positioning */
-      display: flex; /* Ensure vertical centering */
-      align-items: center; /* Center icons vertically */
-      gap: 6px; /* Consistent spacing between icons */
+      right: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     #liveChatContent .relative.w-full.max-w-md .absolute.right-2 button {
-      font-size: 18px; /* Larger icons to match input box */
+      font-size: 18px;
     }
 
-    /* Fix chat button icon rendering */
     .chat-button .chat-icon {
-      opacity: 1; /* Ensure icon is visible on load */
-      transition: none; /* Remove transition to avoid rendering issues */
+      opacity: 1;
+      transition: none;
     }
 
     .chat-button:hover .chat-icon {
-      opacity: 0; /* Hide icon on hover to show dot-loader */
+      opacity: 0;
     }
 
     .chat-button:hover .dot-loader {
-      opacity: 1; /* Show dot-loader on hover */
+      opacity: 1;
+    }
+
+    .more-options-button {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .more-options-button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 30px;
+      height: 30px;
+      background-color: #e5e7eb;
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.2s ease-in-out;
+      z-index: -1;
+    }
+
+    .more-options-button:hover::before {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      display: none;
+      flex-direction: column;
+      width: 200px;
+      z-index: 100;
+      margin-top: 8px;
+    }
+
+    .dropdown-menu.active {
+      display: flex;
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      cursor: pointer;
+      gap: 8px;
+      font-size: 14px;
+      color: #374151;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .dropdown-item:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    .dropdown-item:hover svg {
+      fill: #fff;
+    }
+
+    .dropdown-item svg {
+      width: 20px;
+      height: 20px;
+      fill: #374151;
+      transition: fill 0.2s ease;
+    }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 34px;
+      height: 20px;
+      margin-left: auto;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 20px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #ff5101;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(14px);
     }
   </style>
 </head>
 <body>
-  <!-- Sample Page Content -->
   <div class="container" style="padding: 20px; max-width: 1200px; margin: 0 auto;">
     <h1>Welcome to Our Website</h1>
     <button onclick="alert('Button clicked!')">Click Me</button>
   </div>
 
-  <!-- Chat Button -->
   <button type="button" aria-label="Open LiveChat chat widget" class="fixed bottom-5 right-5 bg-[#ff5101] border-none rounded-full w-16 h-16 flex items-center justify-center cursor-pointer shadow-lg z-50 hover:bg-white transition-colors duration-300 overflow-hidden chat-button">
     <div class="absolute chat-icon">
       <svg viewBox="0 0 32 32" width="28" height="28" fill="none">
@@ -305,10 +401,8 @@
     </div>
   </button>
 
-  <!-- Main Modal -->
   <div class="fixed bottom-5 right-5 z-50 hidden" id="chatModal" role="dialog" aria-labelledby="modalTitle liveChatTitle" aria-hidden="true">
     <div class="bg-gradient-to-b from-[#d3d3d3] to-[#e8e8e8] rounded-2xl w-[100%] max-w-[400px] p-5 shadow-xl sm:max-w-[370px]" id="modalContent">
-      <!-- Home Content -->
       <div id="homeContent" class="active">
         <button class="absolute top-0 right-0 bg-transparent font-bold text-5xl border-none text-gray-600 cursor-pointer close-button" aria-label="Close modal">_</button>
         <h2 id="modalTitle" class="text-4xl pl-2 text-black mt-9 mb-5 font-bold sm:text-5xl">Chat with us!</h2>
@@ -327,8 +421,6 @@
               </p>
             </div>
           </div>
-        
-          <!-- Full-width button below -->
           <button type="button" class="chat-now-btn bg-black text-white w-full mt-4 p-2 rounded-lg text-lg font-bold flex items-center justify-center gap-1 hover:bg-gray-800 transition-colors duration-300 sm:text-sm sm:p-3.5">
             Chat now
             <svg viewBox="0 0 24 24" aria-hidden="true" class="w-5 h-5 fill-current">
@@ -336,7 +428,6 @@
             </svg>
           </button>
         </div>
-        
         <div>
           <div class="border border-gray-300 bg-gray-100 rounded-xl p-2 mb-2 flex items-center justify-between hover:bg-[#e8e8e8] transition-colors duration-300 group content-item">
             <a href="#pricing" class="text-gray-800 no-underline text-sm flex items-center gap-2 flex-1 sm:text-sm">
@@ -367,20 +458,45 @@
           </div>
         </div>
       </div>
-      <!-- LiveChat Content -->
       <div id="liveChatContent">
         <div class="chat-header">
-          <button class="bg-transparent border-none text-gray-600 text-xl cursor-pointer back-button" aria-label="Back to home section">
-            <i class="fas fa-arrow-left"></i>
-          </button>
+          <div class="flex items-center gap-2 relative">
+            <button class="bg-transparent border-none text-gray-600 text-xl cursor-pointer back-button" aria-label="Back to home section">
+              <i class="fas fa-arrow-left"></i>
+            </button>
+            <button class="bg-transparent border-none text-gray-600 text-xl cursor-pointer more-options-button" aria-label="More options">
+              <i class="fas fa-ellipsis-h"></i>
+            </button>
+            <div class="dropdown-menu" id="dropdownMenu">
+              <div class="dropdown-item" onclick="alert('Send transcript clicked')">
+                <svg color="inherit" viewBox="0 0 24 24" aria-hidden="true" class="lc-uz8pkq">
+                  <path d="M5.5,6l6.5,5.7L18.5,6H5.5z M20,7.3l-7.3,6.4c-0.4,0.3-0.9,0.3-1.3,0L4,7.3V17c0,0.6,0.4,1,1,1h14 c0.6,0,1-0.4,1-1V7.3z M5,4h14c1.7,0,3,1.3,3,3v10c0,1.7-1.3,3-3,3H5c-1.7,0-3-1.3-3-3V7C2,5.3,3.3,4,5,4z"></path>
+                </svg>
+                Send transcript
+              </div>
+              <div class="dropdown-item" onclick="alert('Move chat to mobile clicked')">
+                <svg viewBox="0 0 24 24" aria-hidden="true" class="lc-uz8pkq">
+                  <path d="M17 2H7c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 18H7V4h10v16zm-5-3c.6 0 1 .4 1 1s-.4 1-1 1-1-.4-1-1 .4-1 1-1z"/>
+                </svg>
+                Move chat to mobile
+              </div>
+              <div class="dropdown-item">
+                <svg color="inherit" viewBox="0 0 24 24" aria-hidden="true" class="lc-uz8pkq">
+                  <path d="M15,19v-2c2.8,0,5-2.2,5-5s-2.2-5-5-5V5c3.9,0,7,3.1,7,7S18.9,19,15,19z M15,16v-2c1.1,0,2-0.9,2-2s-0.9-2-2-2 V8c2.2,0,4,1.8,4,4S17.2,16,15,16z M7,8l4.3-3.7C11.9,3.7,13,4.1,13,5v14c0,0.9-1.1,1.3-1.7,0.7L7.2,16H4c-0.6,0-1-0.4-1-1V9 c0-0.6,0.4-1,1-1H7z M11,7.4L8.3,9.7C8.1,9.9,7.9,10,7.6,10H5v4h2.6c0.3,0,0.5,0.1,0.7,0.3l2.7,2.3V7.4z"></path>
+                </svg>
+                Sounds
+                <label class="toggle-switch">
+                  <input type="checkbox" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
           <h2 id="liveChatTitle" class="text-2xl text-black font-bold">LiveChat</h2>
           <button class="bg-transparent border-none text-gray-600 text-xl cursor-pointer close-button" aria-label="Close modal">×</button>
         </div>
-        <div class="chat-messages" id="chatMessages">
-          <!-- Messages will be rendered dynamically -->
-        </div>
+        <div class="chat-messages" id="chatMessages"></div>
         <div class="relative w-full max-w-md">
-          <!-- Input Field -->
           <input 
             type="text"
             id="messageInput"
@@ -388,8 +504,6 @@
             class="w-full"
             aria-label="Type a message"
           />
-        
-          <!-- Icons inside input -->
           <div class="absolute right-2 top-2/5 -translate-y-1/2 flex items-center space-x-2">
             <button class="emoji-button text-gray-500 hover:text-black" aria-label="Open emoji picker">
               <i class="fas fa-smile"></i>
@@ -401,11 +515,7 @@
               <i class="fas fa-paper-plane"></i>
             </button>
           </div>
-        
-          <!-- Hidden file input -->
           <input type="file" id="attachmentInput" class="hidden" />
-        
-          <!-- Emoji Picker Dropdown -->
           <div class="emoji-picker hidden absolute bottom-full mb-2 bg-white border rounded shadow-md p-2" id="emojiPicker">
             <span data-emoji="😊">😊</span>
             <span data-emoji="👍">👍</span>
@@ -415,7 +525,6 @@
           </div>
         </div>
       </div>
-      <!-- Footer -->
       <div class="border border-gray-300 rounded-3xl shadow-2xl p-2.5 flex justify-between items-center bg-gray-100 footer-box">
         <a href="#home" class="text-gray-800 ml-7 no-underline text-sm flex flex-col items-center gap-1.5 py-2 px-3 w-20 text-center hover:text-gray-500 transition-colors duration-300 font-bold sm:text-xs sm:py-1.5 sm:px-2.5 sm:w-[70px] selected" id="homeButton">
           <svg viewBox="0 0 24 24" width="25" height="25" class="home-icon">
@@ -451,6 +560,8 @@
     const emojiPicker = document.getElementById('emojiPicker');
     const attachmentButton = document.querySelector('.attachment-button');
     const attachmentInput = document.getElementById('attachmentInput');
+    const moreOptionsButton = document.querySelector('.more-options-button');
+    const dropdownMenu = document.getElementById('dropdownMenu');
 
     let chatHistory = [];
 
@@ -467,7 +578,6 @@
       }
     ];
 
-    // Open modal
     chatButton.addEventListener('click', () => {
       modal.style.display = 'block';
       modal.setAttribute('aria-hidden', 'false');
@@ -480,7 +590,6 @@
       modalContent.focus();
     });
 
-    // Close modal
     function closeModal() {
       modalContent.classList.remove('animate-slideUp');
       modalContent.classList.add('animate-slideDown');
@@ -497,14 +606,12 @@
       button.addEventListener('click', closeModal);
     });
 
-    // Remove backdrop click-to-close since backdrop is removed
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && modal.style.display === 'block') {
         closeModal();
       }
     });
 
-    // Render messages
     function renderMessages() {
       chatMessages.innerHTML = '';
       [...predefinedMessages, ...chatHistory].forEach(msg => {
@@ -512,14 +619,13 @@
         const messageDiv = document.createElement('div');
         messageDiv.className = `chat-message ${isUser ? 'user' : ''}`;
         messageDiv.innerHTML = `
-          <div class="message-icon ${isUser ? 'user' : 'bot'}">
-            ${isUser ? 
-              '<i class="fas fa-user"></i>' : 
-              '<svg viewBox="0 0 32 32" fill="none"><path fill="#FFFFFF" d="M12.63,26.46H8.83a6.61,6.61,0,0,1-6.65-6.07,89.05,89.05,0,0,1,0-11.2A6.5,6.5,0,0,1,8.23,3.25a121.62,121.62,0,0,1,15.51,0A6.51,6.51,0,0,1,29.8,9.19a77.53,77.53,0,0,1,0,11.2,6.61,6.61,0,0,1-6.66,6.07H19.48L12.63,31V26.46Z"/><path fill="#FF5101" d="M19.57,21.68h3.67a2.08,2.08,0,0,0,2.11-1.81,89.86,89.86,0,0,0,0-10.38,1.9,1.9,0,0,0-1.84-1.74,113.15,113.15,0,0,0-15,0A1.9,1.9,0,0,0,6.71,9.49a74.92,74.92,0,0,0-.06,10.38,2,2,0,0,0,2.1,1.81h3.81V26.5Z"/></svg>'
-            }
-          </div>
-          <div class="sender">${msg.sender}</div>
-          <div class="timestamp">${msg.timestamp}</div>
+          ${!isUser ? `
+          <div class="message-icon bot">
+            <svg viewBox="0 0 32 32" fill="none">
+              <path fill="#FFFFFF" d="M12.63,26.46H8.83a6.61,6.61,0,0,1-6.65-6.07,89.05,89.05,0,0,1,0-11.2A6.5,6.5,0,0,1,8.23,3.25a121.62,121.62,0,0,1,15.51,0A6.51,6.51,0,0,1,29.8,9.19a77.53,77.53,0,0,1,0,11.2,6.61,6.61,0,0,1-6.66,6.07H19.48L12.63,31V26.46Z"/>
+              <path fill="#FF5101" d="M19.57,21.68h3.67a2.08,2.08,0,0,0,2.11-1.81,89.86,89.86,0,0,0,0-10.38,1.9,1.9,0,0,0-1.84-1.74,113.15,113.15,0,0,0-15,0A1.9,1.9,0,0,0,6.71,9.49a74.92,74.92,0,0,0-.06,10.38,2,2,0,0,0,2.1,1.81h3.81V26.5Z"/>
+            </svg>
+          </div>` : ''}
           <div>${msg.text}</div>
         `;
         chatMessages.appendChild(messageDiv);
@@ -527,7 +633,6 @@
       chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    // Switch to LiveChat
     function showLiveChatContent() {
       homeContent.classList.remove('active');
       liveChatContent.classList.add('active');
@@ -540,7 +645,6 @@
     liveChatButton.addEventListener('click', showLiveChatContent);
     document.querySelector('.chat-now-btn').addEventListener('click', showLiveChatContent);
 
-    // Switch to Home
     function showHomeContent() {
       liveChatContent.classList.remove('active');
       homeContent.classList.add('active');
@@ -552,7 +656,6 @@
     homeButton.addEventListener('click', showHomeContent);
     backButton.addEventListener('click', showHomeContent);
 
-    // Send message
     function sendMessage() {
       const messageText = messageInput.value.trim();
       if (messageText) {
@@ -575,7 +678,6 @@
       }
     });
 
-    // Emoji picker
     emojiButton.addEventListener('click', () => {
       emojiPicker.style.display = emojiPicker.style.display === 'flex' ? 'none' : 'flex';
     });
@@ -594,9 +696,18 @@
       }
     });
 
-    // Attachment button
     attachmentButton.addEventListener('click', () => {
       attachmentInput.click();
+    });
+
+    moreOptionsButton.addEventListener('click', () => {
+      dropdownMenu.classList.toggle('active');
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!moreOptionsButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+        dropdownMenu.classList.remove('active');
+      }
     });
   </script>
 </body>
