@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Live Chat Button</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
@@ -12,29 +13,61 @@
     }
 
     @keyframes slideUp {
-      0% { transform: translateY(100%); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
+      0% {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
 
     @keyframes slideDown {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(100%); opacity: 0; }
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(100%);
+        opacity: 0;
+      }
     }
 
     @keyframes bounce {
-      0%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-8px); }
+
+      0%,
+      80%,
+      100% {
+        transform: translateY(0);
+      }
+
+      40% {
+        transform: translateY(-8px);
+      }
     }
 
-    .animate-slideUp { animation: slideUp 0.5s ease-out forwards; }
-    .animate-slideDown { animation: slideDown 0.2s ease-in forwards; }
+    .animate-slideUp {
+      animation: slideUp 0.5s ease-out forwards;
+    }
+
+    .animate-slideDown {
+      animation: slideDown 0.2s ease-in forwards;
+    }
 
     .dot-loader span {
       animation: bounce 0.6s infinite ease-in-out;
     }
 
-    .dot-loader span:nth-child(2) { animation-delay: 0.1s; }
-    .dot-loader span:nth-child(3) { animation-delay: 0.2s; }
+    .dot-loader span:nth-child(2) {
+      animation-delay: 0.1s;
+    }
+
+    .dot-loader span:nth-child(3) {
+      animation-delay: 0.2s;
+    }
 
     .content-item {
       transition: background-color 0.3s ease-in-out;
@@ -69,7 +102,8 @@
       overflow-x: hidden;
     }
 
-    #homeContent, #liveChatContent {
+    #homeContent,
+    #liveChatContent {
       display: none;
       flex-direction: column;
       overflow-y: auto;
@@ -77,7 +111,8 @@
       flex: 1;
     }
 
-    #homeContent.active, #liveChatContent.active {
+    #homeContent.active,
+    #liveChatContent.active {
       display: flex;
     }
 
@@ -85,7 +120,7 @@
       padding-bottom: 8px;
     }
 
-    #liveChatContent.active ~ .footer-box {
+    #liveChatContent.active~.footer-box {
       display: none;
     }
 
@@ -95,6 +130,9 @@
       align-items: center;
       margin-bottom: 12px;
       padding: 8px 0;
+      position: relative;
+      z-index: 10;
+      min-height: 60px; /* Ensure header has enough space for bubble */
     }
 
     .chat-messages {
@@ -292,6 +330,7 @@
     .dropdown-menu {
       position: absolute;
       top: 100%;
+      left: -40px;
       background: #fff;
       border: 1px solid #d1d5db;
       border-radius: 8px;
@@ -372,26 +411,119 @@
       border-radius: 50%;
     }
 
-    input:checked + .slider {
+    input:checked+.slider {
       background-color: #ff5101;
     }
 
-    input:checked + .slider:before {
+    input:checked+.slider:before {
       transform: translateX(14px);
+    }
+
+    /* Updated chat bubble styles */
+    .chat-bubble {
+      position: absolute;
+      top: 10px; /* Start near the top of the header */
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff;
+      border: 2px solid #ff5101;
+      border-radius: 24px;
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: all 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+      max-width: 220px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      z-index: 20;
+    }
+
+    .chat-bubble.active {
+      transform: translateX(-50%) translateY(40px) scale(1.05);
+      border-width: 3px;
+      animation: bounceDown 0.5s ease;
+    }
+
+    @keyframes bounceDown {
+      0% {
+        transform: translateX(-50%) translateY(0) scale(1);
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(50px) scale(1.1);
+      }
+
+      100% {
+        transform: translateX(-50%) translateY(40px) scale(1.05);
+      }
+    }
+
+    .chat-bubble-content {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .chat-bubble svg {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.3s ease;
+    }
+
+    .chat-bubble.active svg {
+      transform: rotate(5deg);
+    }
+
+    .chat-bubble-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .chat-bubble h3 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: bold;
+      color: #000;
+      transition: all 0.3s ease;
+    }
+
+    .chat-bubble.active h3 {
+      font-size: 18px;
+    }
+
+    .chat-bubble p {
+      margin: 0;
+      font-size: 12px;
+      color: #374151;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.5s ease;
+    }
+
+    .chat-bubble.active p {
+      max-height: 20px;
+      font-size: 14px;
+      margin-top: 4px;
     }
   </style>
 </head>
+
 <body>
   <div class="container" style="padding: 20px; max-width: 1200px; margin: 0 auto;">
     <h1>Welcome to Our Website</h1>
     <button onclick="alert('Button clicked!')">Click Me</button>
   </div>
 
-  <button type="button" aria-label="Open LiveChat chat widget" class="fixed bottom-5 right-5 bg-[#ff5101] border-none rounded-full w-16 h-16 flex items-center justify-center cursor-pointer shadow-lg z-50 hover:bg-white transition-colors duration-300 overflow-hidden chat-button">
+  <button type="button" aria-label="Open LiveChat chat widget"
+    class="fixed bottom-5 right-5 bg-[#ff5101] border-none rounded-full w-16 h-16 flex items-center justify-center cursor-pointer shadow-lg z-50 hover:bg-white transition-colors duration-300 overflow-hidden chat-button">
     <div class="absolute chat-icon">
       <svg viewBox="0 0 32 32" width="28" height="28" fill="none">
-        <path fill="#FFFFFF" d="M12.63,26.46H8.83a6.61,6.61,0,0,1-6.65-6.07,89.05,89.05,0,0,1,0-11.2A6.5,6.5,0,0,1,8.23,3.25a121.62,121.62,0,0,1,15.51,0A6.51,6.51,0,0,1,29.8,9.19a77.53,77.53,0,0,1,0,11.2,6.61,6.61,0,0,1-6.66,6.07H19.48L12.63,31V26.46Z"/>
-        <path fill="#FF5101" d="M19.57,21.68h3.67a2.08,2.08,0,0,0,2.11-1.81,89.86,89.86,0,0,0,0-10.38,1.9,1.9,0,0,0-1.84-1.74,113.15,113.15,0,0,0-15,0A1.9,1.9,0,0,0,6.71,9.49a74.92,74.92,0,0,0-.06,10.38,2,2,0,0,0,2.1,1.81h3.81V26.5Z"/>
+        <path fill="#FFFFFF"
+          d="M12.63,26.46H8.83a6.61,6.61,0,0,1-6.65-6.07,89.05,89.05,0,0,1,0-11.2A6.5,6.5,0,0,1,8.23,3.25a121.62,121.62,0,0,1,15.51,0A6.51,6.51,0,0,1,29.8,9.19a77.53,77.53,0,0,1,0,11.2,6.61,6.61,0,0,1-6.66,6.07H19.48L12.63,31V26.46Z" />
+        <path fill="#FF5101"
+          d="M19.57,21.68h3.67a2.08,2.08,0,0,0,2.11-1.81,89.86,89.86,0,0,0,0-10.38,1.9,1.9,0,0,0-1.84-1.74,113.15,113.15,0,0,0-15,0A1.9,1.9,0,0,0,6.71,9.49a74.92,74.92,0,0,0-.06,10.38,2,2,0,0,0,2.1,1.81h3.81V26.5Z" />
       </svg>
     </div>
     <div class="flex gap-1 opacity-0 absolute items-end h-3.5 dot-loader transition-opacity duration-300">
@@ -401,16 +533,22 @@
     </div>
   </button>
 
-  <div class="fixed bottom-5 right-5 z-50 hidden" id="chatModal" role="dialog" aria-labelledby="modalTitle liveChatTitle" aria-hidden="true">
-    <div class="bg-gradient-to-b from-[#d3d3d3] to-[#e8e8e8] rounded-2xl w-[100%] max-w-[400px] p-5 shadow-xl sm:max-w-[370px]" id="modalContent">
+  <div class="fixed bottom-5 right-5 z-50 hidden" id="chatModal" role="dialog" aria-labelledby="modalTitle"
+    aria-hidden="true">
+    <div
+      class="bg-gradient-to-b from-[#d3d3d3] to-[#e8e8e8] rounded-2xl w-[100%] max-w-[400px] p-5 shadow-xl sm:max-w-[370px]"
+      id="modalContent">
       <div id="homeContent" class="active">
-        <button class="absolute top-0 right-0 bg-transparent font-bold text-5xl border-none text-gray-600 cursor-pointer close-button" aria-label="Close modal">_</button>
+        <button
+          class="absolute top-0 right-0 bg-transparent font-bold text-5xl border-none text-gray-600 cursor-pointer close-button"
+          aria-label="Close modal">_</button>
         <h2 id="modalTitle" class="text-4xl pl-2 text-black mt-9 mb-5 font-bold sm:text-5xl">Chat with us!</h2>
         <div class="border border-gray-300 bg-gray-100 rounded-2xl p-3 mb-3">
           <div class="flex items-start pl-5 pt-5 gap-4">
             <div class="relative bg-[#ff5101] mt-3 rounded-full p-2">
               <svg viewBox="0 0 32 32" aria-hidden="true" class="w-6 h-6 fill-white">
-                <path fill="#FFFFFF" d="M12.63,26.46H8.83a6.61,6.61,0,0,1-6.65-6.07,89.05,89.05,0,0,1,0-11.2A6.5,6.5,0,0,1,8.23,3.25a121.62,121.62,0,0,1,15.51,0A6.51,6.51,0,0,1,29.8,9.19a77.53,77.53,0,0,1,0,11.2,6.61,6.61,0,0,1-6.66,6.07H19.48L12.63,31V26.46Z" />
+                <path fill="#FFFFFF"
+                  d="M12.63,26.46H8.83a6.61,6.61,0,0,1-6.65-6.07,89.05,89.05,0,0,1,0-11.2A6.5,6.5,0,0,1,8.23,3.25a121.62,121.62,0,0,1,15.51,0A6.51,6.51,0,0,1,29.8,9.19a77.53,77.53,0,0,1,0,11.2,6.61,6.61,0,0,1-6.66,6.07H19.48L12.63,31V26.46Z" />
               </svg>
               <span class="absolute top-0 left-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></span>
             </div>
@@ -421,38 +559,46 @@
               </p>
             </div>
           </div>
-          <button type="button" class="chat-now-btn bg-black text-white w-full mt-4 p-2 rounded-lg text-lg font-bold flex items-center justify-center gap-1 hover:bg-gray-800 transition-colors duration-300 sm:text-sm sm:p-3.5">
+          <button type="button"
+            class="chat-now-btn bg-black text-white w-full mt-4 p-2 rounded-lg text-lg font-bold flex items-center justify-center gap-1 hover:bg-gray-800 transition-colors duration-300 sm:text-sm sm:p-3.5">
             Chat now
             <svg viewBox="0 0 24 24" aria-hidden="true" class="w-5 h-5 fill-current">
-              <path d="M4.3880707,3.17638951 L20.4789623,11.1029371 C20.9743965,11.3469933 21.1781786,11.9464687 20.9341223,12.4419029 C20.8367142,12.6396414 20.6767008,12.7996548 20.4789623,12.8970629 L4.3743554,20.8303668 C3.87892124,21.074423 3.27944584,20.870641 3.03538961,20.3752068 C2.90852242,20.1176664 2.89846393,19.8180217 3.00777474,19.5525533 L6.12545221,11.9794521 L6.12845221,11.9204521 L3.02294371,4.4577144 C2.81072167,3.94783182 3.05202321,3.36245036 3.56190579,3.15022831 C3.82783088,3.03939996 4.12934099,3.04893645 4.3880707,3.17638951 Z M5.892,6.146 L7.91045221,10.9964521 L11.0011069,11.0000006 C11.5533913,11.0006119 12.0006107,11.4488225 12,12.0011069 C11.9993881,12.5533913 11.5511775,13.0006107 10.9988931,13 L7.86945221,12.9964521 L5.865,17.866 L17.773,12 L5.892,6.146 Z" />
+              <path
+                d="M4.3880707,3.17638951 L20.4789623,11.1029371 C20.9743965,11.3469933 21.1781786,11.9464687 20.9341223,12.4419029 C20.8367142,12.6396414 20.6767008,12.7996548 20.4789623,12.8970629 L4.3743554,20.8303668 C3.87892124,21.074423 3.27944584,20.870641 3.03538961,20.3752068 C2.90852242,20.1176664 2.89846393,19.8180217 3.00777474,19.5525533 L6.12545221,11.9794521 L6.12845221,11.9204521 L3.02294371,4.4577144 C2.81072167,3.94783182 3.05202321,3.36245036 3.56190579,3.15022831 C3.82783088,3.03939996 4.12934099,3.04893645 4.3880707,3.17638951 Z M5.892,6.146 L7.91045221,10.9964521 L11.0011069,11.0000006 C11.5533913,11.0006119 12.0006107,11.4488225 12,12.0011069 C11.9993881,12.5533913 11.5511775,13.0006107 10.9988931,13 L7.86945221,12.9964521 L5.865,17.866 L17.773,12 L5.892,6.146 Z" />
             </svg>
           </button>
         </div>
         <div>
-          <div class="border border-gray-300 bg-gray-100 rounded-xl p-2 mb-2 flex items-center justify-between hover:bg-[#e8e8e8] transition-colors duration-300 group content-item">
+          <div
+            class="border border-gray-300 bg-gray-100 rounded-xl p-2 mb-2 flex items-center justify-between hover:bg-[#e8e8e8] transition-colors duration-300 group content-item">
             <a href="#pricing" class="text-gray-800 no-underline text-sm flex items-center gap-2 flex-1 sm:text-sm">
               <span>💰</span>
               Pricing
             </a>
-            <span class="w-6 h-6 bg-gray-500 border border-gray-300 rounded-full flex items-center justify-center arrow-container">
+            <span
+              class="w-6 h-6 bg-gray-500 border border-gray-300 rounded-full flex items-center justify-center arrow-container">
               <i class="fas fa-arrow-right text-white text-sm arrow"></i>
             </span>
           </div>
-          <div class="border border-gray-300 bg-gray-100 rounded-xl p-2 mb-2 flex items-center justify-between hover:bg-[#e8e8e8] transition-colors duration-300 group content-item">
+          <div
+            class="border border-gray-300 bg-gray-100 rounded-xl p-2 mb-2 flex items-center justify-between hover:bg-[#e8e8e8] transition-colors duration-300 group content-item">
             <a href="#tour" class="text-gray-800 no-underline text-sm flex items-center gap-2 flex-1 sm:text-sm">
               <span>👓</span>
               Take a tour
             </a>
-            <span class="w-6 h-6 bg-gray-500 border border-gray-300 rounded-full flex items-center justify-center arrow-container">
+            <span
+              class="w-6 h-6 bg-gray-500 border border-gray-300 rounded-full flex items-center justify-center arrow-container">
               <i class="fas fa-arrow-right text-white text-sm arrow"></i>
             </span>
           </div>
-          <div class="border border-gray-300 bg-gray-100 rounded-xl p-2 mb-2 flex items-center justify-between hover:bg-[#e8e8e8] transition-colors duration-300 group content-item">
+          <div
+            class="border border-gray-300 bg-gray-100 rounded-xl p-2 mb-2 flex items-center justify-between hover:bg-[#e8e8e8] transition-colors duration-300 group content-item">
             <a href="#hire" class="text-gray-800 no-underline text-sm flex items-center gap-2 flex-1 sm:text-sm">
               <span>🤖</span>
               Hire AI-powered Chatbot
             </a>
-            <span class="w-6 h-6 bg-gray-500 border border-gray-300 rounded-full flex items-center justify-center arrow-container">
+            <span
+              class="w-6 h-6 bg-gray-500 border border-gray-300 rounded-full flex items-center justify-center arrow-container">
               <i class="fas fa-arrow-right text-white text-sm arrow"></i>
             </span>
           </div>
@@ -461,28 +607,35 @@
       <div id="liveChatContent">
         <div class="chat-header">
           <div class="flex items-center gap-2 relative">
-            <button class="bg-transparent border-none text-gray-600 text-xl cursor-pointer back-button" aria-label="Back to home section">
+            <button class="bg-transparent border-none text-gray-600 text-xl cursor-pointer back-button"
+              aria-label="Back to home section">
               <i class="fas fa-arrow-left"></i>
             </button>
-            <button class="bg-transparent border-none text-gray-600 text-xl cursor-pointer more-options-button" aria-label="More options">
+            <button class="bg-transparent border-none text-gray-600 text-xl cursor-pointer more-options-button"
+              aria-label="More options">
               <i class="fas fa-ellipsis-h"></i>
             </button>
             <div class="dropdown-menu" id="dropdownMenu">
               <div class="dropdown-item" onclick="alert('Send transcript clicked')">
                 <svg color="inherit" viewBox="0 0 24 24" aria-hidden="true" class="lc-uz8pkq">
-                  <path d="M5.5,6l6.5,5.7L18.5,6H5.5z M20,7.3l-7.3,6.4c-0.4,0.3-0.9,0.3-1.3,0L4,7.3V17c0,0.6,0.4,1,1,1h14 c0.6,0,1-0.4,1-1V7.3z M5,4h14c1.7,0,3,1.3,3,3v10c0,1.7-1.3,3-3,3H5c-1.7,0-3-1.3-3-3V7C2,5.3,3.3,4,5,4z"></path>
+                  <path
+                    d="M5.5,6l6.5,5.7L18.5,6H5.5z M20,7.3l-7.3,6.4c-0.4,0.3-0.9,0.3-1.3,0L4,7.3V17c0,0.6,0.4,1,1,1h14 c0.6,0,1-0.4,1-1V7.3z M5,4h14c1.7,0,3,1.3,3,3v10c0,1.7-1.3,3-3,3H5c-1.7,0-3-1.3-3-3V7C2,5.3,3.3,4,5,4z">
+                  </path>
                 </svg>
                 Send transcript
               </div>
               <div class="dropdown-item" onclick="alert('Move chat to mobile clicked')">
                 <svg viewBox="0 0 24 24" aria-hidden="true" class="lc-uz8pkq">
-                  <path d="M17 2H7c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 18H7V4h10v16zm-5-3c.6 0 1 .4 1 1s-.4 1-1 1-1-.4-1-1 .4-1 1-1z"/>
+                  <path
+                    d="M17 2H7c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 18H7V4h10v16zm-5-3c.6 0 1 .4 1 1s-.4 1-1 1-1-.4-1-1 .4-1 1-1z" />
                 </svg>
                 Move chat to mobile
               </div>
               <div class="dropdown-item">
                 <svg color="inherit" viewBox="0 0 24 24" aria-hidden="true" class="lc-uz8pkq">
-                  <path d="M15,19v-2c2.8,0,5-2.2,5-5s-2.2-5-5-5V5c3.9,0,7,3.1,7,7S18.9,19,15,19z M15,16v-2c1.1,0,2-0.9,2-2s-0.9-2-2-2 V8c2.2,0,4,1.8,4,4S17.2,16,15,16z M7,8l4.3-3.7C11.9,3.7,13,4.1,13,5v14c0,0.9-1.1,1.3-1.7,0.7L7.2,16H4c-0.6,0-1-0.4-1-1V9 c0-0.6,0.4-1,1-1H7z M11,7.4L8.3,9.7C8.1,9.9,7.9,10,7.6,10H5v4h2.6c0.3,0,0.5,0.1,0.7,0.3l2.7,2.3V7.4z"></path>
+                  <path
+                    d="M15,19v-2c2.8,0,5-2.2,5-5s-2.2-5-5-5V5c3.9,0,7,3.1,7,7S18.9,19,15,19z M15,16v-2c1.1,0,2-0.9,2-2s-0.9-2-2-2 V8c2.2,0,4,1.8,4,4S17.2,16,15,16z M7,8l4.3-3.7C11.9,3.7,13,4.1,13,5v14c0,0.9-1.1,1.3-1.7,0.7L7.2,16H4c-0.6,0-1-0.4-1-1V9 c0-0.6,0.4-1,1-1H7z M11,7.4L8.3,9.7C8.1,9.9,7.9,10,7.6,10H5v4h2.6c0.3,0,0.5,0.1,0.7,0.3l2.7,2.3V7.4z">
+                  </path>
                 </svg>
                 Sounds
                 <label class="toggle-switch">
@@ -492,19 +645,28 @@
               </div>
             </div>
           </div>
-          <h2 id="liveChatTitle" class="text-2xl text-black font-bold">LiveChat</h2>
-          <button class="bg-transparent border-none text-gray-600 text-xl cursor-pointer close-button" aria-label="Close modal">×</button>
+          <div class="chat-bubble" id="chatBubble">
+            <div class="chat-bubble-content">
+              <svg viewBox="0 0 32 32" aria-hidden="true" fill="none">
+                <path fill="#FF5101"
+                  d="M12.63,26.46H8.83a6.61,6.61,0,0,1-6.65-6.07,89.05,89.05,0,0,1,0-11.2A6.5,6.5,0,0,1,8.23,3.25a121.62,121.62,0,0,1,15.51,0A6.51,6.51,0,0,1,29.8,9.19a77.53,77.53,0,0,1,0,11.2,6.61,6.61,0,0,1-6.66,6.07H19.48L12.63,31V26.46Z" />
+                <path fill="#FFFFFF"
+                  d="M19.57,21.68h3.67a2.08,2.08,0,0,0,2.11-1.81,89.86,89.86,0,0,0,0-10.38,1.9,1.9,0,0,0-1.84-1.74,113.15,113.15,0,0,0-15,0A1.9,1.9,0,0,0,6.71,9.49a74.92,74.92,0,0,0-.06,10.38,2,2,0,0,0,2.1,1.81h3.81V26.5Z" />
+              </svg>
+              <div class="chat-bubble-text">
+                <h3>LiveChat</h3>
+                <p>Let's chat</p>
+              </div>
+            </div>
+          </div>
+          <button class="bg-transparent border-none text-gray-600 text-xl cursor-pointer close-button"
+            aria-label="Close modal">×</button>
         </div>
         <div class="chat-messages" id="chatMessages"></div>
         <div class="relative w-full max-w-md">
-          <input 
-            type="text"
-            id="messageInput"
-            placeholder="Type a message..."
-            class="w-full"
-            aria-label="Type a message"
-          />
-          <div class="absolute right-2 top-2/5 -translate-y-1/2 flex items-center space-x-2">
+          <input type="text" id="messageInput" placeholder="Type a message..." class="w-full"
+            aria-label="Type a message" />
+          <div class="absolute right-2 top-2/4 -translate-y-1/2 flex items-center space-x-2">
             <button class="emoji-button text-gray-500 hover:text-black" aria-label="Open emoji picker">
               <i class="fas fa-smile"></i>
             </button>
@@ -516,7 +678,8 @@
             </button>
           </div>
           <input type="file" id="attachmentInput" class="hidden" />
-          <div class="emoji-picker hidden absolute bottom-full mb-2 bg-white border rounded shadow-md p-2" id="emojiPicker">
+          <div class="emoji-picker hidden absolute bottom-full mb-2 bg-white border rounded shadow-md p-2"
+            id="emojiPicker">
             <span data-emoji="😊">😊</span>
             <span data-emoji="👍">👍</span>
             <span data-emoji="🚀">🚀</span>
@@ -525,17 +688,27 @@
           </div>
         </div>
       </div>
-      <div class="border border-gray-300 rounded-3xl shadow-2xl p-2.5 flex justify-between items-center bg-gray-100 footer-box">
-        <a href="#home" class="text-gray-800 ml-7 no-underline text-sm flex flex-col items-center gap-1.5 py-2 px-3 w-20 text-center hover:text-gray-500 transition-colors duration-300 font-bold sm:text-xs sm:py-1.5 sm:px-2.5 sm:w-[70px] selected" id="homeButton">
+      <div
+        class="border border-gray-300 rounded-3xl shadow-2xl p-2.5 flex justify-between items-center bg-gray-100 footer-box">
+        <a href="#home"
+          class="text-gray-800 ml-7 no-underline text-sm flex flex-col items-center gap-1.5 py-2 px-3 w-20 text-center hover:text-gray-500 transition-colors duration-300 font-bold sm:text-xs sm:py-1.5 sm:px-2.5 sm:w-[70px] selected"
+          id="homeButton">
           <svg viewBox="0 0 24 24" width="25" height="25" class="home-icon">
-            <path d="M3 12l9-9 9 9v9a2 2 0 0 1-2 2h-4v-6h-6v6H5a2 2 0 0 1-2-2v-9z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M3 12l9-9 9 9v9a2 2 0 0 1-2 2h-4v-6h-6v6H5a2 2 0 0 1-2-2v-9z" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
           Home
         </a>
-        <a href="#livechat" class="text-gray-800 mr-7 no-underline text-sm flex flex-col items-center gap-1.5 py-2 px-3 w-20 text-center hover:text-gray-500 transition-colors duration-300 sm:text-xs sm:py-1.5 sm:px-2.5 sm:w-[70px]" id="liveChatButton">
+        <a href="#livechat"
+          class="text-gray-800 mr-7 no-underline text-sm flex flex-col items-center gap-1.5 py-2 px-3 w-20 text-center hover:text-gray-500 transition-colors duration-300 sm:text-xs sm:py-1.5 sm:px-2.5 sm:w-[70px]"
+          id="liveChatButton">
           <svg viewBox="0 0 24 24" width="25" height="25" class="livechat-icon">
-            <path d="M3.046875,12.9375 C1.46776039,9.98739221 2.28831494,6.32568237 4.9753792,4.33158492 C7.66244345,2.33748747 11.4048397,2.61298558 13.770927,4.97907295 C16.1370144,7.34516033 16.4125125,11.0875566 14.4184151,13.7746208 C12.4243176,16.4616851 8.76260779,17.2822396 5.8125,15.703125 L3.21,16.468125 C2.94676941,16.5454268 2.66233667,16.4728351 2.46834451,16.278843 C2.27435236,16.0848508 2.2017607,15.8004181 2.2790625,15.5371875 L3.046875,12.9375 Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M15.369375,7.5103125 C17.6739183,7.63560127 19.7547031,8.92965262 20.8861548,10.9412277 C22.0176064,12.9528028 22.0428658,15.4030266 20.953125,17.4375 L21.718125,20.04 C21.7954268,20.3032306 21.7228351,20.5876633 21.528843,20.7816555 C21.3348508,20.9756476 21.0504181,21.0482393 20.7871875,20.9709375 L18.1875,20.203125 C16.4496517,21.13252 14.3925777,21.256597 12.5556181,20.5428245 C10.7186584,19.829052 9.28503442,18.3486227 8.630625,16.4896875" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path
+              d="M3.046875,12.9375 C1.46776039,9.98739221 2.28831494,6.32568237 4.9753792,4.33158492 C7.66244345,2.33748747 11.4048397,2.61298558 13.770927,4.97907295 C16.1370144,7.34516033 16.4125125,11.0875566 14.4184151,13.7746208 C12.4243176,16.4616851 8.76260779,17.2822396 5.8125,15.703125 L3.21,16.468125 C2.94676941,16.5454268 2.66233667,16.4728351 2.46834451,16.278843 C2.27435236,16.0848508 2.2017607,15.8004181 2.2790625,15.5371875 L3.046875,12.9375 Z"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path
+              d="M15.369375,7.5103125 C17.6739183,7.63560127 19.7547031,8.92965262 20.8861548,10.9412277 C22.0176064,12.9528028 22.0428658,15.4030266 20.953125,17.4375 L21.718125,20.04 C21.7954268,20.3032306 21.7228351,20.5876633 21.528843,20.7816555 C21.3348508,20.9756476 21.0504181,21.0482393 20.7871875,20.9709375 L18.1875,20.203125 C16.4496517,21.13252 14.3925777,21.256597 12.5556181,20.5428245 C10.7186584,19.829052 9.28503442,18.3486227 8.630625,16.4896875"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
           LiveChat
         </a>
@@ -562,6 +735,7 @@
     const attachmentInput = document.getElementById('attachmentInput');
     const moreOptionsButton = document.querySelector('.more-options-button');
     const dropdownMenu = document.getElementById('dropdownMenu');
+    const chatBubble = document.getElementById('chatBubble');
 
     let chatHistory = [];
 
@@ -651,6 +825,8 @@
       homeButton.classList.add('selected');
       liveChatButton.classList.remove('selected');
       modalContent.focus();
+      chatBubble.classList.remove('active');
+      isBubbleActive = false;
     }
 
     homeButton.addEventListener('click', showHomeContent);
@@ -709,6 +885,28 @@
         dropdownMenu.classList.remove('active');
       }
     });
+
+    let isBubbleActive = false;
+
+    chatBubble.addEventListener('click', () => {
+      isBubbleActive = !isBubbleActive;
+
+      if (isBubbleActive) {
+        chatBubble.classList.add('active');
+        setTimeout(() => {
+          const newMessage = {
+            sender: 'LiveChat Bot',
+            timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            text: 'How can I help you today?'
+          };
+          chatHistory.push(newMessage);
+          renderMessages();
+        }, 500);
+      } else {
+        chatBubble.classList.remove('active');
+      }
+    });
   </script>
 </body>
+
 </html>
