@@ -100,12 +100,14 @@
     .chat-messages {
       flex: 1;
       overflow-y: auto;
-      padding: 8px;
+      padding: 8px 48px 8px 48px; /* Increased left and right padding for icons */
       font-size: small;
+      margin-bottom: 8px;
     }
 
     .chat-message {
-      margin-bottom: 8px;
+      position: relative;
+      margin-bottom: 16px;
       padding: 6px 10px;
       background-color: #f3f4f6;
       border-radius: 8px;
@@ -113,9 +115,44 @@
       word-wrap: break-word;
     }
 
+    .chat-message.user {
+      margin-left: auto; /* Align user messages to the right */
+      background-color: #e0f2fe; /* Light blue for user messages */
+    }
+
     .chat-message .sender {
       font-weight: bold;
       margin-bottom: 4px;
+    }
+
+    .chat-message .message-icon {
+      position: absolute;
+      top: 0; /* Align at top edge */
+      left: -40px; /* Default: outside left border for bot */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chat-message.user .message-icon {
+      left: auto; /* Override for user messages */
+      right: -40px; /* Position outside right border */
+    }
+
+    .chat-message .message-icon.bot svg {
+      width: 24px;
+      height: 24px;
+      background-color: #ff5101;
+      border-radius: 50%;
+      padding: 4px;
+    }
+
+    .chat-message .message-icon.user i {
+      font-size: 24px; /* Match bot SVG size */
+      color: #fff;
+      background-color: #374151; /* Dark gray for user icon */
+      border-radius: 50%;
+      padding: 4px; /* Match bot SVG padding */
     }
 
     .input-container {
@@ -196,6 +233,54 @@
       transform: translateX(5px);
       background-color: #000;
     }
+
+    /* Updated styles for input box */
+    .relative.w-full.max-w-md {
+      margin-top: -8px; /* Maintains upward shift */
+      padding-bottom: 10px; /* Balanced spacing */
+      max-width: 95%; /* Wide input box */
+      margin-left: auto; /* Center horizontally */
+      margin-right: auto; /* Center horizontally */
+    }
+
+    #liveChatContent .relative.w-full.max-w-md input[type="text"] {
+      padding: 10px 70px 10px 12px; /* Increased padding for larger size */
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      outline: none;
+      font-size: 16px; /* Larger text */
+      min-height: 40px; /* Taller input box */
+      transition: border-color 0.2s ease-in-out;
+    }
+
+    #liveChatContent .relative.w-full.max-w-md input[type="text"]:focus {
+      border-color: #000; /* Subtle border change on focus, no ring */
+    }
+
+    #liveChatContent .relative.w-full.max-w-md .absolute.right-2 {
+      right: 10px; /* Adjusted icon positioning */
+      display: flex; /* Ensure vertical centering */
+      align-items: center; /* Center icons vertically */
+      gap: 6px; /* Consistent spacing between icons */
+    }
+
+    #liveChatContent .relative.w-full.max-w-md .absolute.right-2 button {
+      font-size: 18px; /* Larger icons to match input box */
+    }
+
+    /* Fix chat button icon rendering */
+    .chat-button .chat-icon {
+      opacity: 1; /* Ensure icon is visible on load */
+      transition: none; /* Remove transition to avoid rendering issues */
+    }
+
+    .chat-button:hover .chat-icon {
+      opacity: 0; /* Hide icon on hover to show dot-loader */
+    }
+
+    .chat-button:hover .dot-loader {
+      opacity: 1; /* Show dot-loader on hover */
+    }
   </style>
 </head>
 <body>
@@ -207,13 +292,13 @@
 
   <!-- Chat Button -->
   <button type="button" aria-label="Open LiveChat chat widget" class="fixed bottom-5 right-5 bg-[#ff5101] border-none rounded-full w-16 h-16 flex items-center justify-center cursor-pointer shadow-lg z-50 hover:bg-white transition-colors duration-300 overflow-hidden chat-button">
-    <div class="absolute transition-opacity duration-300 chat-icon">
+    <div class="absolute chat-icon">
       <svg viewBox="0 0 32 32" width="28" height="28" fill="none">
         <path fill="#FFFFFF" d="M12.63,26.46H8.83a6.61,6.61,0,0,1-6.65-6.07,89.05,89.05,0,0,1,0-11.2A6.5,6.5,0,0,1,8.23,3.25a121.62,121.62,0,0,1,15.51,0A6.51,6.51,0,0,1,29.8,9.19a77.53,77.53,0,0,1,0,11.2,6.61,6.61,0,0,1-6.66,6.07H19.48L12.63,31V26.46Z"/>
         <path fill="#FF5101" d="M19.57,21.68h3.67a2.08,2.08,0,0,0,2.11-1.81,89.86,89.86,0,0,0,0-10.38,1.9,1.9,0,0,0-1.84-1.74,113.15,113.15,0,0,0-15,0A1.9,1.9,0,0,0,6.71,9.49a74.92,74.92,0,0,0-.06,10.38,2,2,0,0,0,2.1,1.81h3.81V26.5Z"/>
       </svg>
     </div>
-    <div class="flex gap-1 opacity-0 absolute items-end h-3.5 dot-loader hover:opacity-100 transition-opacity duration-300">
+    <div class="flex gap-1 opacity-0 absolute items-end h-3.5 dot-loader transition-opacity duration-300">
       <span class="block w-1.5 h-1.5 bg-[#ff5101] rounded-full"></span>
       <span class="block w-1.5 h-1.5 bg-[#ff5101] rounded-full"></span>
       <span class="block w-1.5 h-1.5 bg-[#ff5101] rounded-full"></span>
@@ -247,7 +332,7 @@
           <button type="button" class="chat-now-btn bg-black text-white w-full mt-4 p-2 rounded-lg text-lg font-bold flex items-center justify-center gap-1 hover:bg-gray-800 transition-colors duration-300 sm:text-sm sm:p-3.5">
             Chat now
             <svg viewBox="0 0 24 24" aria-hidden="true" class="w-5 h-5 fill-current">
-              <path d="M4.3880707,3.17638951 L20.4789623,11.1029371 C20.9743965,11.3469933 21.1781786,11.9464687 20.9341223,12.4419029 C20.8367142,12.6396414 20.6767008,12.7996548 20.4789623,12.8970629 L4.3743554,20.8303668 C3.87892124,21.074423 3.27944584,20.870641 3.03538961,20.3752068 C2.90852242,20.1176664 2.89846393,19.8180217 3.00777474,19.5525533 L6.12545221,11.9794521 L6.12845221,11.9204521 L3.02294371,4.4577144 C2.81072167,3.94783182 3.05202321,3.36245036 3.56190579,3.15022831 C3.82818088,3.03939996 4.12934099,3.04893645 4.3880707,3.17638951 Z M5.892,6.146 L7.91045221,10.9964521 L11.0011069,11.0000006 C11.5533913,11.0006119 12.0006107,11.4488225 12,12.0011069 C11.9993881,12.5533913 11.5511775,13.0006107 10.9988931,13 L7.86945221,12.9964521 L5.865,17.866 L17.773,12 L5.892,6.146 Z" />
+              <path d="M4.3880707,3.17638951 L20.4789623,11.1029371 C20.9743965,11.3469933 21.1781786,11.9464687 20.9341223,12.4419029 C20.8367142,12.6396414 20.6767008,12.7996548 20.4789623,12.8970629 L4.3743554,20.8303668 C3.87892124,21.074423 3.27944584,20.870641 3.03538961,20.3752068 C2.90852242,20.1176664 2.89846393,19.8180217 3.00777474,19.5525533 L6.12545221,11.9794521 L6.12845221,11.9204521 L3.02294371,4.4577144 C2.81072167,3.94783182 3.05202321,3.36245036 3.56190579,3.15022831 C3.82783088,3.03939996 4.12934099,3.04893645 4.3880707,3.17638951 Z M5.892,6.146 L7.91045221,10.9964521 L11.0011069,11.0000006 C11.5533913,11.0006119 12.0006107,11.4488225 12,12.0011069 C11.9993881,12.5533913 11.5511775,13.0006107 10.9988931,13 L7.86945221,12.9964521 L5.865,17.866 L17.773,12 L5.892,6.146 Z" />
             </svg>
           </button>
         </div>
@@ -292,32 +377,36 @@
           <button class="bg-transparent border-none text-gray-600 text-xl cursor-pointer close-button" aria-label="Close modal">×</button>
         </div>
         <div class="chat-messages" id="chatMessages">
-          <div class="chat-message">
-            <div class="sender">LiveChat Bot</div>
-            <div class="timestamp">07:41 PM</div>
-            <div>Engage your customers effortlessly with our powerful LiveChat tools. Interested in exploring more?</div>
-          </div>
-          <div class="chat-message">
-            <div class="sender">LiveChat Bot</div>
-            <div class="timestamp">07:41 PM</div>
-            <div>I'm your AI assistant, and I'm ready to help. You can pick an option below or just type your question like you're chatting with a person. The more specific you are, the better I can help!</div>
-          </div>
+          <!-- Messages will be rendered dynamically -->
         </div>
-        <div class="input-container">
-          <input type="text" id="messageInput" placeholder="Type a message..." aria-label="Type a message" />
-          <div class="button-group">
-            <button class="emoji-button" aria-label="Open emoji picker">
+        <div class="relative w-full max-w-md">
+          <!-- Input Field -->
+          <input 
+            type="text"
+            id="messageInput"
+            placeholder="Type a message..."
+            class="w-full"
+            aria-label="Type a message"
+          />
+        
+          <!-- Icons inside input -->
+          <div class="absolute right-2 top-2/5 -translate-y-1/2 flex items-center space-x-2">
+            <button class="emoji-button text-gray-500 hover:text-black" aria-label="Open emoji picker">
               <i class="fas fa-smile"></i>
             </button>
-            <button class="attachment-button" aria-label="Attach file">
+            <button class="attachment-button text-gray-500 hover:text-black" aria-label="Attach file">
               <i class="fas fa-paperclip"></i>
             </button>
-            <button class="send-button" aria-label="Send message">
+            <button class="send-button text-blue-600 hover:text-blue-800" aria-label="Send message">
               <i class="fas fa-paper-plane"></i>
             </button>
           </div>
-          <input type="file" id="attachmentInput" style="display: none;" />
-          <div class="emoji-picker" id="emojiPicker">
+        
+          <!-- Hidden file input -->
+          <input type="file" id="attachmentInput" class="hidden" />
+        
+          <!-- Emoji Picker Dropdown -->
+          <div class="emoji-picker hidden absolute bottom-full mb-2 bg-white border rounded shadow-md p-2" id="emojiPicker">
             <span data-emoji="😊">😊</span>
             <span data-emoji="👍">👍</span>
             <span data-emoji="🚀">🚀</span>
@@ -327,7 +416,7 @@
         </div>
       </div>
       <!-- Footer -->
-      <div class="border  border-gray-300 rounded-3xl shadow-2xl p-2.5 flex justify-between items-center bg-gray-100 footer-box">
+      <div class="border border-gray-300 rounded-3xl shadow-2xl p-2.5 flex justify-between items-center bg-gray-100 footer-box">
         <a href="#home" class="text-gray-800 ml-7 no-underline text-sm flex flex-col items-center gap-1.5 py-2 px-3 w-20 text-center hover:text-gray-500 transition-colors duration-300 font-bold sm:text-xs sm:py-1.5 sm:px-2.5 sm:w-[70px] selected" id="homeButton">
           <svg viewBox="0 0 24 24" width="25" height="25" class="home-icon">
             <path d="M3 12l9-9 9 9v9a2 2 0 0 1-2 2h-4v-6h-6v6H5a2 2 0 0 1-2-2v-9z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -409,7 +498,6 @@
     });
 
     // Remove backdrop click-to-close since backdrop is removed
-    // Optionally, keep this for other interactions if needed
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && modal.style.display === 'block') {
         closeModal();
@@ -420,9 +508,16 @@
     function renderMessages() {
       chatMessages.innerHTML = '';
       [...predefinedMessages, ...chatHistory].forEach(msg => {
+        const isUser = msg.sender === 'You';
         const messageDiv = document.createElement('div');
-        messageDiv.className = 'chat-message';
+        messageDiv.className = `chat-message ${isUser ? 'user' : ''}`;
         messageDiv.innerHTML = `
+          <div class="message-icon ${isUser ? 'user' : 'bot'}">
+            ${isUser ? 
+              '<i class="fas fa-user"></i>' : 
+              '<svg viewBox="0 0 32 32" fill="none"><path fill="#FFFFFF" d="M12.63,26.46H8.83a6.61,6.61,0,0,1-6.65-6.07,89.05,89.05,0,0,1,0-11.2A6.5,6.5,0,0,1,8.23,3.25a121.62,121.62,0,0,1,15.51,0A6.51,6.51,0,0,1,29.8,9.19a77.53,77.53,0,0,1,0,11.2,6.61,6.61,0,0,1-6.66,6.07H19.48L12.63,31V26.46Z"/><path fill="#FF5101" d="M19.57,21.68h3.67a2.08,2.08,0,0,0,2.11-1.81,89.86,89.86,0,0,0,0-10.38,1.9,1.9,0,0,0-1.84-1.74,113.15,113.15,0,0,0-15,0A1.9,1.9,0,0,0,6.71,9.49a74.92,74.92,0,0,0-.06,10.38,2,2,0,0,0,2.1,1.81h3.81V26.5Z"/></svg>'
+            }
+          </div>
           <div class="sender">${msg.sender}</div>
           <div class="timestamp">${msg.timestamp}</div>
           <div>${msg.text}</div>
