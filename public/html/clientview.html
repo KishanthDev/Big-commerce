@@ -96,7 +96,7 @@
     }
 
     #modalContent {
-      height: 600px;
+      height: 605px;
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
@@ -185,6 +185,7 @@
       align-items: center;
       padding: 8px;
       gap: 8px;
+      width: 100%;
       border-top: 1px solid #d1d5db;
       background-color: #fff;
       box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
@@ -537,13 +538,13 @@
   <div class="fixed bottom-5 right-5 z-50 hidden" id="chatModal" role="dialog" aria-labelledby="modalTitle"
     aria-hidden="true">
     <div
-      class="bg-gradient-to-b from-[#d3d3d3] to-[#e8e8e8] rounded-2xl w-[100%] max-w-[400px] p-5 shadow-xl sm:max-w-[370px]"
+      class="bg-gradient-to-b from-[#d3d3d3] to-[#e8e8e8] rounded-2xl w-[100%] max-w-[400px] p-4 shadow-xl sm:max-w-[370px]"
       id="modalContent">
       <div id="homeContent" class="active">
         <button
-          class="absolute top-0 right-0 bg-transparent font-bold text-5xl border-none text-gray-600 cursor-pointer close-button"
+          class="absolute top-0 right-4 bg-transparent font-bold hover:bg-gray-300 text-5xl border-none text-gray-600 cursor-pointer close-button"
           aria-label="Close modal">_</button>
-        <h2 id="modalTitle" class="text-4xl pl-2 text-black mt-9 mb-5 font-bold sm:text-5xl">Chat with us!</h2>
+        <h2 id="modalTitle" class="text-4xl pl-2 text-black pt-9 mb-5 font-bold sm:text-5xl">Chat with us!</h2>
         <div class="border border-gray-300 bg-gray-100 rounded-2xl p-3 mb-3">
           <div class="flex items-start pl-5 pt-5 gap-4">
             <div class="relative bg-[#ff5101] mt-3 rounded-full p-2">
@@ -666,18 +667,33 @@
         </div>
         <div class="chat-messages" id="chatMessages"></div>
         <div class="relative w-full max-w-md">
-          <input type="text" id="messageInput" placeholder="Type a message..." class="w-full"
+          <input type="text" class="input-container" id="messageInput" placeholder="Type a message..." class="w-full"
             aria-label="Type a message" />
-          <div class="absolute right-2 top-2/5 -translate-y-1/2 flex items-center space-x-2">
-            <button class="emoji-button text-gray-500 hover:text-black" aria-label="Open emoji picker">
-              <i class="fas fa-smile"></i>
+          <div class="absolute right-2 top-2/5 -translate-y-1/2 flex items-center">
+            <button class="emoji-button text-black hover:text-black" aria-label="Open emoji picker">
+              <svg color="inherit" viewBox="0 0 32 32" class="w-7 h-7" xmlns="http://www.w3.org/2000/svg">
+                <g id="emoji-smile" stroke="none" stroke-width="2" fill="none" fill-rule="evenodd" transform="translate(7, 7)">
+                  <path stroke="currentColor" id="changeable" stroke-linecap="round" stroke-linejoin="round" d="M0,9 C0,12.2153905 1.71539025,15.1865338 4.5,16.7942289 C7.28460967,18.4019241 10.7153903,18.4019241 13.5,16.7942289 C16.2846097,15.1865338 18,12.2153905 18,9 C18,5.78460984 16.2846098,2.81346659 13.5,1.2057714 C10.7153903,-0.401923799 7.28460966,-0.401923799 4.5,1.2057714 C1.71539023,2.81346659 0,5.78460984 0,9"></path>
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M6,7.00000019 L6.01,7.00000019 M12,7.00000019 L12.01,7.00000019"></path>
+                  <path d="M6.5,12.0000002 C7.15831134,12.6718864 8.05935933,13.0505104 9,13.0505104 C9.94064067,13.0505104 10.8416887,12.6718864 11.5,12.0000002" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+              </svg>
+            </button>            
+            <button class="attachment-button text-black hover:text-black" aria-label="Attach file">
+              <svg color="currentColor" viewBox="0 0 32 32" aria-hidden="true" class="w-7 h-7">
+                <g id="attachment-squircle" stroke="none" stroke-width="2" fill="none" fill-rule="evenodd">
+                  <path d="M16,7 C23.2,7 25,7 25,16 C25,23.2 23.2,25 16,25 C8.8,25 7,23.2 7,16 C7,8.8 7,7 16,7 Z M19,16 L13,16 M16,13 L16,19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" id="changeable"></path>
+                  <path d="M19,16 L13,16 M16,13 L16,19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+              </svg>
             </button>
-            <button class="attachment-button text-gray-500 hover:text-black" aria-label="Attach file">
-              <i class="fas fa-paperclip"></i>
+            
+            <button class="send-button text-white rounded-full" aria-label="Send message">
+              <svg color="currentColor" viewBox="0 0 32 32" aria-hidden="true" class="w-7 h-7">
+                <path d="M9.05674797,7.10056554 L9.13703813,7.13553157 L25.4390381,15.1015316 L25.5284558,15.1506535 L25.6286153,15.2222405 C25.7452987,15.313793 25.8339182,15.4266828 25.895416,15.5505399 L25.9423517,15.6622033 L25.9751927,15.7773803 L25.9891204,15.8509608 L25.998657,15.9475578 L25.9972397,16.0748669 L25.9800642,16.201216 L25.9701282,16.2435678 C25.9550365,16.3071288 25.9331784,16.3694784 25.9050831,16.4294253 L25.8937351,16.4490792 C25.8488724,16.5422577 25.7878083,16.6290528 25.7112518,16.7055442 L25.609137,16.7931281 L25.539527,16.8424479 L25.4390381,16.8984684 L9.05674797,24.8994345 C8.4880852,25.1179893 7.84373932,24.9716543 7.42618713,24.5298922 C7.02348961,24.1049956 6.89354829,23.48994 7.08502271,22.9526995 L9.44381329,15.9994998 L7.08997091,9.06153122 C6.90991684,8.5560159 7.00409914,7.99707209 7.33051276,7.58090053 L7.4252609,7.47108641 C7.84373932,7.02834566 8.4880852,6.8820107 9.05674797,7.10056554 Z M20.6761421,16.9994644 L11.2161421,16.9994644 L9.33681329,22.5404998 L20.6761421,16.9994644 Z M9.33581329,9.45749977 L11.2161421,14.9994644 L20.6761421,14.9994644 L9.33581329,9.45749977 Z"></path>
+              </svg>
             </button>
-            <button class="send-button text-blue-600 hover:text-blue-800" aria-label="Send message">
-              <i class="fas fa-paper-plane"></i>
-            </button>
+            
           </div>
           <input type="file" id="attachmentInput" class="hidden" />
           <div class="emoji-picker hidden absolute bottom-full mb-2 bg-white border rounded shadow-md p-2"
