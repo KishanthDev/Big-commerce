@@ -225,28 +225,35 @@
     <div class="bg-gradient-to-b from-[#d3d3d3] to-[#e8e8e8] rounded-2xl w-[100%] max-w-[400px] p-5 shadow-xl sm:max-w-[370px]" id="modalContent">
       <!-- Home Content -->
       <div id="homeContent" class="active">
-        <button class="absolute top-2.5 right-2.5 bg-transparent border-none text-gray-600 text-xl cursor-pointer close-button" aria-label="Close modal">×</button>
-        <h2 id="modalTitle" class="text-4xl text-black mt-9 mb-5 font-bold sm:text-5xl">Chat with us!</h2>
-        <div class="border border-gray-300 bg-gray-100 rounded-lg p-3 mb-3 flex items-start gap-4">
-          <div class="relative bg-[#ff5101] rounded-full p-2">
-            <svg viewBox="0 0 32 32" aria-hidden="true" class="w-6 h-6 fill-white">
-              <path fill="#FFFFFF" d="M12.63,26.46H8.83a6.61,6.61,0,0,1-6.65-6.07,89.05,89.05,0,0,1,0-11.2A6.5,6.5,0,0,1,8.23,3.25a121.62,121.62,0,0,1,15.51,0A6.51,6.51,0,0,1,29.8,9.19a77.53,77.53,0,0,1,0,11.2,6.61,6.61,0,0,1-6.66,6.07H19.48L12.63,31V26.46Z" />
-            </svg>
-            <span class="absolute top-0 right-0 w-2 h-2 bg-green-500 rounded-full border-2 border-white"></span>
-          </div>
-          <div class="flex-1 mt-3">
-            <div class="font-bold text-gray-800 mb-1">LiveChat Bot · 07:41 PM</div>
-            <p class="text-base text-gray-800 mb-3 sm:text-sm">Engage your customers effortlessly with our powerful LiveChat tools. Interested in...</p>
-            <button type="button" class="chat-now-btn bg-black text-white w-full p-2 rounded-md text-lg font-bold flex items-center justify-center gap-1 hover:bg-gray-800 transition-colors duration-300 sm:text-sm sm:p-3.5">
-              Chat now
-              <svg viewBox="0 0 24 24" aria-hidden="true" class="w-5 h-5 fill-current">
-                <path d="M4.3880707,3.17638951 L20.4789623,11.1029371 C20.9743965,11.3469933 21.1781786,11.9464687 20.9341223,12.4419029 C20.8367142,12.6396414 20.6767008,12.7996548 20.4789623,12.8970629 L4.3743554,20.8303668 C3.87892124,21.074423 3.27944584,20.870641 3.03538961,20.3752068 C2.90852242,20.1176664 2.89846393,19.8180217 3.00777474,19.5525533 L6.12545221,11.9794521 L6.12845221,11.9204521 L3.02294371,4.4577144 C2.81072167,3.94783182 3.05202321,3.36245036 3.56190579,3.15022831 C3.82818088,3.03939996 4.12934099,3.04893645 4.3880707,3.17638951 Z M5.892,6.146 L7.91045221,10.9964521 L11.0011069,11.0000006 C11.5533913,11.0006119 12.0006107,11.4488225 12,12.0011069 C11.9993881,12.5533913 11.5511775,13.0006107 10.9988931,13 L7.86945221,12.9964521 L5.865,17.866 L17.773,12 L5.892,6.146 Z" />
+        <button class="absolute top-0 right-0 bg-transparent font-bold text-5xl border-none text-gray-600 cursor-pointer close-button" aria-label="Close modal">_</button>
+        <h2 id="modalTitle" class="text-4xl pl-2 text-black mt-9 mb-5 font-bold sm:text-5xl">Chat with us!</h2>
+        <div class="border border-gray-300 bg-gray-100 rounded-2xl p-3 mb-3">
+          <div class="flex items-start pl-5 pt-5 gap-4">
+            <div class="relative bg-[#ff5101] mt-3 rounded-full p-2">
+              <svg viewBox="0 0 32 32" aria-hidden="true" class="w-6 h-6 fill-white">
+                <path fill="#FFFFFF" d="M12.63,26.46H8.83a6.61,6.61,0,0,1-6.65-6.07,89.05,89.05,0,0,1,0-11.2A6.5,6.5,0,0,1,8.23,3.25a121.62,121.62,0,0,1,15.51,0A6.51,6.51,0,0,1,29.8,9.19a77.53,77.53,0,0,1,0,11.2,6.61,6.61,0,0,1-6.66,6.07H19.48L12.63,31V26.46Z" />
               </svg>
-            </button>
+              <span class="absolute top-0 left-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></span>
+            </div>
+            <div class="flex-1">
+              <div class="font-light text-xs text-black mb-1">LiveChat Bot · 07:41 PM</div>
+              <p class="font-normal text-gray-800 sm:text-sm">
+                Engage your customers effortlessly with our powerful LiveChat tools. Interested in...
+              </p>
+            </div>
           </div>
+        
+          <!-- Full-width button below -->
+          <button type="button" class="chat-now-btn bg-black text-white w-full mt-4 p-2 rounded-lg text-lg font-bold flex items-center justify-center gap-1 hover:bg-gray-800 transition-colors duration-300 sm:text-sm sm:p-3.5">
+            Chat now
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="w-5 h-5 fill-current">
+              <path d="M4.3880707,3.17638951 L20.4789623,11.1029371 C20.9743965,11.3469933 21.1781786,11.9464687 20.9341223,12.4419029 C20.8367142,12.6396414 20.6767008,12.7996548 20.4789623,12.8970629 L4.3743554,20.8303668 C3.87892124,21.074423 3.27944584,20.870641 3.03538961,20.3752068 C2.90852242,20.1176664 2.89846393,19.8180217 3.00777474,19.5525533 L6.12545221,11.9794521 L6.12845221,11.9204521 L3.02294371,4.4577144 C2.81072167,3.94783182 3.05202321,3.36245036 3.56190579,3.15022831 C3.82818088,3.03939996 4.12934099,3.04893645 4.3880707,3.17638951 Z M5.892,6.146 L7.91045221,10.9964521 L11.0011069,11.0000006 C11.5533913,11.0006119 12.0006107,11.4488225 12,12.0011069 C11.9993881,12.5533913 11.5511775,13.0006107 10.9988931,13 L7.86945221,12.9964521 L5.865,17.866 L17.773,12 L5.892,6.146 Z" />
+            </svg>
+          </button>
         </div>
+        
         <div>
-          <div class="border border-gray-300 bg-gray-100 rounded-lg p-2 mb-2 flex items-center justify-between hover:bg-[#e8e8e8] transition-colors duration-300 group content-item">
+          <div class="border border-gray-300 bg-gray-100 rounded-xl p-2 mb-2 flex items-center justify-between hover:bg-[#e8e8e8] transition-colors duration-300 group content-item">
             <a href="#pricing" class="text-gray-800 no-underline text-sm flex items-center gap-2 flex-1 sm:text-sm">
               <span>💰</span>
               Pricing
@@ -255,7 +262,7 @@
               <i class="fas fa-arrow-right text-white text-sm arrow"></i>
             </span>
           </div>
-          <div class="border border-gray-300 bg-gray-100 rounded-lg p-2 mb-2 flex items-center justify-between hover:bg-[#e8e8e8] transition-colors duration-300 group content-item">
+          <div class="border border-gray-300 bg-gray-100 rounded-xl p-2 mb-2 flex items-center justify-between hover:bg-[#e8e8e8] transition-colors duration-300 group content-item">
             <a href="#tour" class="text-gray-800 no-underline text-sm flex items-center gap-2 flex-1 sm:text-sm">
               <span>👓</span>
               Take a tour
@@ -264,7 +271,7 @@
               <i class="fas fa-arrow-right text-white text-sm arrow"></i>
             </span>
           </div>
-          <div class="border border-gray-300 bg-gray-100 rounded-lg p-2 mb-2 flex items-center justify-between hover:bg-[#e8e8e8] transition-colors duration-300 group content-item">
+          <div class="border border-gray-300 bg-gray-100 rounded-xl p-2 mb-2 flex items-center justify-between hover:bg-[#e8e8e8] transition-colors duration-300 group content-item">
             <a href="#hire" class="text-gray-800 no-underline text-sm flex items-center gap-2 flex-1 sm:text-sm">
               <span>🤖</span>
               Hire AI-powered Chatbot
