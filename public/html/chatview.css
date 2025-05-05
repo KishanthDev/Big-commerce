@@ -44,9 +44,16 @@
   cursor: pointer;
 }
 
+#chatWidgetOpenContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+
 .chat-widget {
   width: 392px;
-  height: 714px;
+  height: 650px;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   display: flex;
@@ -111,9 +118,12 @@
 }
 
 .chat-input-container {
+  position: relative;
   padding: 10px;
   background-color: #ffffff;
   border-top: 1px solid #d1d5db;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .chat-input-container input[type="text"] {
@@ -123,6 +133,8 @@
   outline: none;
   font-size: 16px;
   min-height: 40px;
+  width: 100%;
+  box-sizing: border-box;
   transition: border-color 0.2s ease-in-out;
 }
 
@@ -204,7 +216,6 @@
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  right: 10px;
   background: #fff;
   border: 1px solid #d1d5db;
   border-radius: 8px;
