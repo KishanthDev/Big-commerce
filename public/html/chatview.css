@@ -16,6 +16,7 @@
 }
 
 .bubble-preview {
+  position: relative;
   padding: 12px;
   border-radius: 50%;
   display: flex;
@@ -26,12 +27,62 @@
   height: 60px;
   background-color: #ff5101;
   transition: background-color 0.3s ease;
+  overflow: hidden;
+}
+
+.bubble-preview .chat-icon {
+  transition: opacity 0.3s ease;
+}
+
+.bubble-preview .dot-loader {
+  transition: opacity 0.3s ease;
+}
+
+.bubble-preview:hover {
+  background-color: #ffffff;
+}
+
+.bubble-preview:hover .chat-icon {
+  opacity: 0;
+}
+
+.bubble-preview:hover .dot-loader {
+  opacity: 1;
 }
 
 .bubble-preview svg {
   width: 28px;
   height: 28px;
-  fill: #ffffff;
+}
+
+.bubble-preview .dot-loader {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.bubble-preview .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: jump 1.2s infinite ease-in-out;
+}
+
+.bubble-preview .dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.bubble-preview .dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes jump {
+  0%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
 }
 
 .chat-bar-preview {
@@ -49,7 +100,6 @@
   flex-direction: column;
   height: 100%;
 }
-
 
 .chat-widget {
   width: 392px;
@@ -144,7 +194,6 @@
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.15);
 }
 
-
 .chat-input-container .absolute.right-2 {
   right: 14px;
   top: 50%;
@@ -222,7 +271,7 @@
   background: #fff;
   border: 1px solid #d1d5db;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   display: none;
   flex-direction: column;
   width: 200px;
