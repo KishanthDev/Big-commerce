@@ -20,21 +20,45 @@ const chatBarTextColorInput = document.getElementById("chatBarTextColorInput");
 const chatBarTextColorText = document.getElementById("chatBarTextColorText");
 
 // Chat Widget Inputs
-const widgetHeaderBgColorInput = document.getElementById("widgetHeaderBgColorInput");
-const widgetHeaderBgColorText = document.getElementById("widgetHeaderBgColorText");
-const widgetHeaderTextColorInput = document.getElementById("widgetHeaderTextColorInput");
-const widgetHeaderTextColorText = document.getElementById("widgetHeaderTextColorText");
 const widgetAgentName = document.getElementById("widgetAgentName");
-const widgetIncomingMsgBgInput = document.getElementById("widgetIncomingMsgBgInput");
-const widgetIncomingMsgBgText = document.getElementById("widgetIncomingMsgBgText");
-const widgetOutgoingMsgBgInput = document.getElementById("widgetOutgoingMsgBgInput");
-const widgetOutgoingMsgBgText = document.getElementById("widgetOutgoingMsgBgText");
+const widgetBubbleBgColorInput = document.getElementById("widgetBubbleBgColorInput");
+const widgetBubbleBgColorText = document.getElementById("widgetBubbleBgColorText");
+const widgetBubbleBorderColorInput = document.getElementById("widgetBubbleBorderColorInput");
+const widgetBubbleBorderColorText = document.getElementById("widgetBubbleBorderColorText");
+const widgetBubbleTitleColorInput = document.getElementById("widgetBubbleTitleColorInput");
+const widgetBubbleTitleColorText = document.getElementById("widgetBubbleTitleColorText");
+const widgetBubbleTextColorInput = document.getElementById("widgetBubbleTextColorInput");
+const widgetBubbleTextColorText = document.getElementById("widgetBubbleTextColorText");
+const widgetMessagesBgColorInput = document.getElementById("widgetMessagesBgColorInput");
+const widgetMessagesBgColorText = document.getElementById("widgetMessagesBgColorText");
+const widgetUserMsgBgColorInput = document.getElementById("widgetUserMsgBgColorInput");
+const widgetUserMsgBgColorText = document.getElementById("widgetUserMsgBgColorText");
 const widgetMsgTextColorInput = document.getElementById("widgetMsgTextColorInput");
 const widgetMsgTextColorText = document.getElementById("widgetMsgTextColorText");
-const widgetChatBgColorInput = document.getElementById("widgetChatBgColorInput");
-const widgetChatBgColorText = document.getElementById("widgetChatBgColorText");
 const widgetInputBgColorInput = document.getElementById("widgetInputBgColorInput");
 const widgetInputBgColorText = document.getElementById("widgetInputBgColorText");
+const widgetSendBtnBgColorInput = document.getElementById("widgetSendBtnBgColorInput");
+const widgetSendBtnBgColorText = document.getElementById("widgetSendBtnBgColorText");
+const widgetSendBtnIconColorInput = document.getElementById("widgetSendBtnIconColorInput");
+const widgetSendBtnIconColorText = document.getElementById("widgetSendBtnIconColorText");
+
+// Chat Widget Landing Inputs
+const modalBgColorInput = document.getElementById("modalBgColorInput");
+const modalBgColorText = document.getElementById("modalBgColorText");
+const modalTitleColorInput = document.getElementById("modalTitleColorInput");
+const modalTitleColorText = document.getElementById("modalTitleColorText");
+const chatPreviewBgInput = document.getElementById("chatPreviewBgInput");
+const chatPreviewBgText = document.getElementById("chatPreviewBgText");
+const chatPreviewTextColorInput = document.getElementById("chatPreviewTextColorInput");
+const chatPreviewTextColorText = document.getElementById("chatPreviewTextColorText");
+const chatNowBtnBgInput = document.getElementById("chatNowBtnBgInput");
+const chatNowBtnBgText = document.getElementById("chatNowBtnBgText");
+const chatNowBtnTextColorInput = document.getElementById("chatNowBtnTextColorInput");
+const chatNowBtnTextColorText = document.getElementById("chatNowBtnTextColorText");
+const linkItemBgInput = document.getElementById("linkItemBgInput");
+const linkItemBgText = document.getElementById("linkItemBgText");
+const linkItemTextColorInput = document.getElementById("linkItemTextColorInput");
+const linkItemTextColorText = document.getElementById("linkItemTextColorText");
 
 // Preview Elements
 const eyecatcherPreviewBox = document.getElementById("eyecatcherPreviewBox");
@@ -45,21 +69,162 @@ const bubbleIcon = document.getElementById("bubbleIcon");
 const chatBarPreviewBox = document.getElementById("chatBarPreviewBox");
 const chatBarPreviewText = document.getElementById("chatBarPreviewText");
 const chatWidgetPreviewBox = document.getElementById("chatWidgetPreviewBox");
-const widgetHeaderPreview = document.getElementById("widgetHeaderPreview");
+const widgetBubblePreview = document.getElementById("widgetBubblePreview");
 const widgetAgentNamePreview = document.getElementById("widgetAgentNamePreview");
+const widgetBubbleTextPreview = document.getElementById("widgetBubbleTextPreview");
 const widgetMessagesPreview = document.getElementById("widgetMessagesPreview");
-const widgetIncomingMsgPreview = document.getElementById("widgetIncomingMsgPreview");
-const widgetOutgoingMsgPreview = document.getElementById("widgetOutgoingMsgPreview");
-const widgetInputPreview = document.getElementById("widgetInputPreview");
+const widgetMessageInput = document.getElementById("widgetMessageInput");
+const widgetSendButton = document.querySelector(".send-button");
+const modalLandingBg = document.querySelector(".modal-landing-bg");
+const modalTitle = document.getElementById("modalTitle");
+const chatPreviewBg = document.querySelector(".chat-preview-bg");
+const chatPreviewTexts = document.querySelectorAll(".chat-preview-text");
+const chatNowBtnBg = document.querySelector(".chat-now-btn-bg");
+const chatNowBtnText = document.querySelector(".chat-now-btn-text");
+const linkItemsBg = document.querySelectorAll(".link-item-bg");
+const linkItemsText = document.querySelectorAll(".link-item-text");
+
+// Dropdown Menu Toggle
+const moreOptionsButton = document.querySelector(".more-options-button");
+const dropdownMenu = document.getElementById("dropdownMenu");
+
+moreOptionsButton.addEventListener("click", () => {
+    dropdownMenu.classList.toggle("active");
+});
+
+// Close dropdown when clicking outside
+document.addEventListener("click", (event) => {
+    if (!moreOptionsButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+        dropdownMenu.classList.remove("active");
+    }
+});
+
+// Load settings from localStorage
+function loadSettings() {
+    const savedSettings = localStorage.getItem("chatSettings");
+    if (savedSettings) {
+        const settings = JSON.parse(savedSettings);
+
+        // Apply Eyecatcher settings
+        titleInput.value = settings.eyecatcher.title || "";
+        textInput.value = settings.eyecatcher.text || "";
+        bgColorInput.value = settings.eyecatcher.bgColor || "#007bff";
+        textColorInput.value = settings.eyecatcher.textColor || "#ffffff";
+        bgColorPicker.value = bgColorInput.value;
+        textColorPicker.value = textColorInput.value;
+        eyecatcherPreviewTitle.textContent = titleInput.value || "Hello";
+        eyecatcherPreviewText.textContent = textInput.value || "Click to chat";
+        eyecatcherPreviewBox.style.backgroundColor = bgColorInput.value;
+        eyecatcherPreviewBox.style.color = textColorInput.value;
+
+        // Apply Bubble settings
+        bubbleBgColorText.value = settings.bubble.bgColor || "#ff5101";
+        bubbleIconColorText.value = settings.bubble.iconColor || "#ffffff";
+        bubbleBgColorInput.value = bubbleBgColorText.value;
+        bubbleIconColorInput.value = bubbleIconColorText.value;
+        bubblePreviewBox.style.backgroundColor = bubbleBgColorText.value;
+        bubbleIcon.style.fill = bubbleIconColorText.value;
+
+        // Apply Chat Bar settings
+        chatBarTextInput.value = settings.chatBar.text || "";
+        chatBarBgColorText.value = settings.chatBar.bgColor || "#007bff";
+        chatBarTextColorText.value = settings.chatBar.textColor || "#ffffff";
+        chatBarBgColorInput.value = chatBarBgColorText.value;
+        chatBarTextColorInput.value = chatBarTextColorText.value;
+        chatBarPreviewText.textContent = chatBarTextInput.value || "Chat with us";
+        chatBarPreviewBox.style.backgroundColor = chatBarBgColorText.value;
+        chatBarPreviewBox.style.color = chatBarTextColorText.value;
+
+        // Apply Chat Widget settings
+        widgetAgentName.value = settings.chatWidget.agentName || "";
+        widgetBubbleBgColorText.value = settings.chatWidget.bubbleBgColor || "#ffffff";
+        widgetBubbleBorderColorText.value = settings.chatWidget.bubbleBorderColor || "#ff5101";
+        widgetBubbleTitleColorText.value = settings.chatWidget.bubbleTitleColor || "#000000";
+        widgetBubbleTextColorText.value = settings.chatWidget.bubbleTextColor || "#374151";
+        widgetMessagesBgColorText.value = settings.chatWidget.messagesBgColor || "#f3f4f6";
+        widgetUserMsgBgColorText.value = settings.chatWidget.userMsgBgColor || "#fef08a";
+        widgetMsgTextColorText.value = settings.chatWidget.msgTextColor || "#000000";
+        widgetInputBgColorText.value = settings.chatWidget.inputBgColor || "#ffffff";
+        widgetSendBtnBgColorText.value = settings.chatWidget.sendBtnBgColor || "#000000";
+        widgetSendBtnIconColorText.value = settings.chatWidget.sendBtnIconColor || "#ffffff";
+        widgetBubbleBgColorInput.value = widgetBubbleBgColorText.value;
+        widgetBubbleBorderColorInput.value = widgetBubbleBorderColorText.value;
+        widgetBubbleTitleColorInput.value = widgetBubbleTitleColorText.value;
+        widgetBubbleTextColorInput.value = widgetBubbleTextColorText.value;
+        widgetMessagesBgColorInput.value = widgetMessagesBgColorText.value;
+        widgetUserMsgBgColorInput.value = widgetUserMsgBgColorText.value;
+        widgetMsgTextColorInput.value = widgetMsgTextColorText.value;
+        widgetInputBgColorInput.value = widgetInputBgColorText.value;
+        widgetSendBtnBgColorInput.value = widgetSendBtnBgColorText.value;
+        widgetSendBtnIconColorInput.value = widgetSendBtnIconColorText.value;
+        widgetAgentNamePreview.textContent = widgetAgentName.value || "LiveChat";
+        widgetBubblePreview.style.backgroundColor = widgetBubbleBgColorText.value;
+        widgetBubblePreview.style.borderColor = widgetBubbleBorderColorText.value;
+        widgetAgentNamePreview.style.color = widgetBubbleTitleColorText.value;
+        widgetBubbleTextPreview.style.color = widgetBubbleTextColorText.value;
+        widgetMessagesPreview.style.backgroundColor = widgetMessagesBgColorText.value;
+        widgetMessagesPreview.querySelectorAll(".chat-message:not(.user)").forEach(msg => {
+            msg.style.backgroundColor = widgetMessagesBgColorText.value;
+        });
+        widgetMessagesPreview.querySelectorAll(".chat-message.user").forEach(msg => {
+            msg.style.backgroundColor = widgetUserMsgBgColorText.value;
+        });
+        widgetMessagesPreview.querySelectorAll(".chat-message").forEach(msg => {
+            msg.style.color = widgetMsgTextColorText.value;
+        });
+        widgetMessageInput.parentElement.style.backgroundColor = widgetInputBgColorText.value;
+        widgetSendButton.classList.add('active');
+        widgetSendButton.style.backgroundColor = widgetSendBtnBgColorText.value;
+        widgetSendButton.style.color = widgetSendBtnIconColorText.value;
+
+        // Apply Chat Widget Landing settings
+        modalBgColorText.value = settings.chatWidget.modalBgColor || "#d3d3d3";
+        modalTitleColorText.value = settings.chatWidget.modalTitleColor || "#000000";
+        chatPreviewBgText.value = settings.chatWidget.chatPreviewBg || "#f3f4f6";
+        chatPreviewTextColorText.value = settings.chatWidget.chatPreviewTextColor || "#374151";
+        chatNowBtnBgText.value = settings.chatWidget.chatNowBtnBg || "#000000";
+        chatNowBtnTextColorText.value = settings.chatWidget.chatNowBtnTextColor || "#ffffff";
+        linkItemBgText.value = settings.chatWidget.linkItemBg || "#f3f4f6";
+        linkItemTextColorText.value = settings.chatWidget.linkItemTextColor || "#374151";
+        modalBgColorInput.value = modalBgColorText.value;
+        modalTitleColorInput.value = modalTitleColorText.value;
+        chatPreviewBgInput.value = chatPreviewBgText.value;
+        chatPreviewTextColorInput.value = chatPreviewTextColorText.value;
+        chatNowBtnBgInput.value = chatNowBtnBgText.value;
+        chatNowBtnTextColorInput.value = chatNowBtnTextColorText.value;
+        linkItemBgInput.value = linkItemBgText.value;
+        linkItemTextColorInput.value = linkItemTextColorText.value;
+        modalLandingBg.style.background = `linear-gradient(to bottom, ${modalBgColorText.value}, #e8e8e8)`;
+        modalTitle.style.color = modalTitleColorText.value;
+        chatPreviewBg.style.backgroundColor = chatPreviewBgText.value;
+        chatPreviewTexts.forEach(text => {
+            text.style.color = chatPreviewTextColorText.value;
+        });
+        chatNowBtnBg.style.backgroundColor = chatNowBtnBgText.value;
+        chatNowBtnBg.style.color = chatNowBtnTextColorText.value;
+        chatNowBtnText.style.fill = chatNowBtnTextColorText.value;
+        linkItemsBg.forEach(item => {
+            item.style.backgroundColor = linkItemBgText.value;
+        });
+        linkItemsText.forEach(item => {
+            item.style.color = linkItemTextColorText.value;
+        });
+
+        // Set selected radio button
+        const radioButton = document.querySelector(`input[name="chat_option"][value="${settings.selectedOption}"]`);
+        if (radioButton) {
+            radioButton.checked = true;
+            radioButton.dispatchEvent(new Event("change"));
+        }
+    }
+}
+
+// Call loadSettings on page load
+loadSettings();
 
 // Update Eyecatcher Title
 titleInput.addEventListener("input", () => {
     eyecatcherPreviewTitle.textContent = titleInput.value || "Hello";
-    if (titleInput.value) {
-        eyecatcherPreviewTitle.innerHTML = `${titleInput.value} <span class="wave">👋</span>`;
-    } else {
-        eyecatcherPreviewTitle.innerHTML = `Hello <span class="wave">👋</span>`;
-    }
 });
 
 // Update Eyecatcher Invitation Text
@@ -102,17 +267,13 @@ bubbleBgColorText.addEventListener("input", () => {
 
 // Update Bubble Icon Color
 bubbleIconColorInput.addEventListener("input", () => {
-    bubbleIcon.style.backgroundColor = bubbleIconColorInput.value;
-    bubbleIcon.style.color = bubbleIconColorInput.value;
+    bubbleIcon.style.fill = bubbleIconColorInput.value;
     bubbleIconColorText.value = bubbleIconColorInput.value;
-    bubbleIcon.style.setProperty('--dot-color', bubbleIconColorInput.value);
 });
 
 bubbleIconColorText.addEventListener("input", () => {
-    bubbleIcon.style.backgroundColor = bubbleIconColorText.value;
-    bubbleIcon.style.color = bubbleIconColorText.value;
+    bubbleIcon.style.fill = bubbleIconColorText.value;
     bubbleIconColorInput.value = bubbleIconColorText.value;
-    bubbleIcon.style.setProperty('--dot-color', bubbleIconColorText.value);
 });
 
 // Update Chat Bar Text
@@ -142,83 +303,220 @@ chatBarTextColorText.addEventListener("input", () => {
     chatBarTextColorInput.value = chatBarTextColorText.value;
 });
 
-// Chat Widget Event Listeners
-widgetHeaderBgColorInput.addEventListener("input", () => {
-    widgetHeaderPreview.style.backgroundColor = widgetHeaderBgColorInput.value;
-    widgetHeaderBgColorText.value = widgetHeaderBgColorInput.value;
-});
-
-widgetHeaderBgColorText.addEventListener("input", () => {
-    widgetHeaderPreview.style.backgroundColor = widgetHeaderBgColorText.value;
-    widgetHeaderBgColorInput.value = widgetHeaderBgColorText.value;
-});
-
-widgetHeaderTextColorInput.addEventListener("input", () => {
-    widgetHeaderPreview.style.color = widgetHeaderTextColorInput.value;
-    widgetHeaderTextColorText.value = widgetHeaderTextColorInput.value;
-});
-
-widgetHeaderTextColorText.addEventListener("input", () => {
-    widgetHeaderPreview.style.color = widgetHeaderTextColorText.value;
-    widgetHeaderTextColorInput.value = widgetHeaderTextColorText.value;
-});
-
+// Chat Widget Open Event Listeners
 widgetAgentName.addEventListener("input", () => {
-    widgetAgentNamePreview.textContent = widgetAgentName.value || "Support Agent";
+    widgetAgentNamePreview.textContent = widgetAgentName.value || "LiveChat";
 });
 
-widgetIncomingMsgBgInput.addEventListener("input", () => {
-    widgetIncomingMsgPreview.style.backgroundColor = widgetIncomingMsgBgInput.value;
-    widgetIncomingMsgBgText.value = widgetIncomingMsgBgInput.value;
+widgetBubbleBgColorInput.addEventListener("input", () => {
+    widgetBubblePreview.style.backgroundColor = widgetBubbleBgColorInput.value;
+    widgetBubbleBgColorText.value = widgetBubbleBgColorInput.value;
 });
 
-widgetIncomingMsgBgText.addEventListener("input", () => {
-    widgetIncomingMsgPreview.style.backgroundColor = widgetIncomingMsgBgText.value;
-    widgetIncomingMsgBgInput.value = widgetIncomingMsgBgText.value;
+widgetBubbleBgColorText.addEventListener("input", () => {
+    widgetBubblePreview.style.backgroundColor = widgetBubbleBgColorText.value;
+    widgetBubbleBgColorInput.value = widgetBubbleBgColorText.value;
 });
 
-widgetOutgoingMsgBgInput.addEventListener("input", () => {
-    widgetOutgoingMsgPreview.style.backgroundColor = widgetOutgoingMsgBgInput.value;
-    widgetOutgoingMsgBgText.value = widgetOutgoingMsgBgInput.value;
+widgetBubbleBorderColorInput.addEventListener("input", () => {
+    widgetBubblePreview.style.borderColor = widgetBubbleBorderColorInput.value;
+    widgetBubbleBorderColorText.value = widgetBubbleBorderColorInput.value;
 });
 
-widgetOutgoingMsgBgText.addEventListener("input", () => {
-    widgetOutgoingMsgPreview.style.backgroundColor = widgetOutgoingMsgBgText.value;
-    widgetOutgoingMsgBgInput.value = widgetOutgoingMsgBgText.value;
+widgetBubbleBorderColorText.addEventListener("input", () => {
+    widgetBubblePreview.style.borderColor = widgetBubbleBorderColorText.value;
+    widgetBubbleBorderColorInput.value = widgetBubbleBorderColorText.value;
+});
+
+widgetBubbleTitleColorInput.addEventListener("input", () => {
+    widgetAgentNamePreview.style.color = widgetBubbleTitleColorInput.value;
+    widgetBubbleTitleColorText.value = widgetBubbleTitleColorInput.value;
+});
+
+widgetBubbleTitleColorText.addEventListener("input", () => {
+    widgetAgentNamePreview.style.color = widgetBubbleTitleColorText.value;
+    widgetBubbleTitleColorInput.value = widgetBubbleTitleColorText.value;
+});
+
+widgetBubbleTextColorInput.addEventListener("input", () => {
+    widgetBubbleTextPreview.style.color = widgetBubbleTextColorInput.value;
+    widgetBubbleTextColorText.value = widgetBubbleTextColorInput.value;
+});
+
+widgetBubbleTextColorText.addEventListener("input", () => {
+    widgetBubbleTextPreview.style.color = widgetBubbleTextColorText.value;
+    widgetBubbleTextColorInput.value = widgetBubbleTextColorText.value;
+});
+
+widgetMessagesBgColorInput.addEventListener("input", () => {
+    widgetMessagesPreview.style.backgroundColor = widgetMessagesBgColorInput.value;
+    widgetMessagesPreview.querySelectorAll(".chat-message:not(.user)").forEach(msg => {
+        msg.style.backgroundColor = widgetMessagesBgColorInput.value;
+    });
+    widgetMessagesBgColorText.value = widgetMessagesBgColorInput.value;
+});
+
+widgetMessagesBgColorText.addEventListener("input", () => {
+    widgetMessagesPreview.style.backgroundColor = widgetMessagesBgColorText.value;
+    widgetMessagesPreview.querySelectorAll(".chat-message:not(.user)").forEach(msg => {
+        msg.style.backgroundColor = widgetMessagesBgColorText.value;
+    });
+    widgetMessagesBgColorInput.value = widgetMessagesBgColorText.value;
+});
+
+widgetUserMsgBgColorInput.addEventListener("input", () => {
+    widgetMessagesPreview.querySelectorAll(".chat-message.user").forEach(msg => {
+        msg.style.backgroundColor = widgetUserMsgBgColorInput.value;
+    });
+    widgetUserMsgBgColorText.value = widgetUserMsgBgColorInput.value;
+});
+
+widgetUserMsgBgColorText.addEventListener("input", () => {
+    widgetMessagesPreview.querySelectorAll(".chat-message.user").forEach(msg => {
+        msg.style.backgroundColor = widgetUserMsgBgColorText.value;
+    });
+    widgetUserMsgBgColorInput.value = widgetUserMsgBgColorText.value;
 });
 
 widgetMsgTextColorInput.addEventListener("input", () => {
-    const color = widgetMsgTextColorInput.value;
-    widgetIncomingMsgPreview.style.color = color;
-    widgetOutgoingMsgPreview.style.color = color;
-    widgetMsgTextColorText.value = color;
+    widgetMessagesPreview.querySelectorAll(".chat-message").forEach(msg => {
+        msg.style.color = widgetMsgTextColorInput.value;
+    });
+    widgetMsgTextColorText.value = widgetMsgTextColorInput.value;
 });
 
 widgetMsgTextColorText.addEventListener("input", () => {
-    const color = widgetMsgTextColorText.value;
-    widgetIncomingMsgPreview.style.color = color;
-    widgetOutgoingMsgPreview.style.color = color;
-    widgetMsgTextColorInput.value = color;
-});
-
-widgetChatBgColorInput.addEventListener("input", () => {
-    widgetMessagesPreview.style.backgroundColor = widgetChatBgColorInput.value;
-    widgetChatBgColorText.value = widgetChatBgColorInput.value;
-});
-
-widgetChatBgColorText.addEventListener("input", () => {
-    widgetMessagesPreview.style.backgroundColor = widgetChatBgColorText.value;
-    widgetChatBgColorInput.value = widgetChatBgColorText.value;
+    widgetMessagesPreview.querySelectorAll(".chat-message").forEach(msg => {
+        msg.style.color = widgetMsgTextColorText.value;
+    });
+    widgetMsgTextColorInput.value = widgetMsgTextColorText.value;
 });
 
 widgetInputBgColorInput.addEventListener("input", () => {
-    widgetInputPreview.style.backgroundColor = widgetInputBgColorInput.value;
+    widgetMessageInput.parentElement.style.backgroundColor = widgetInputBgColorInput.value;
     widgetInputBgColorText.value = widgetInputBgColorInput.value;
 });
 
 widgetInputBgColorText.addEventListener("input", () => {
-    widgetInputPreview.style.backgroundColor = widgetInputBgColorText.value;
+    widgetMessageInput.parentElement.style.backgroundColor = widgetInputBgColorText.value;
     widgetInputBgColorInput.value = widgetInputBgColorText.value;
+});
+
+widgetSendBtnBgColorInput.addEventListener("input", () => {
+    widgetSendButton.classList.add('active');
+    widgetSendButton.style.backgroundColor = widgetSendBtnBgColorInput.value;
+    widgetSendBtnBgColorText.value = widgetSendBtnBgColorInput.value;
+});
+
+widgetSendBtnBgColorText.addEventListener("input", () => {
+    widgetSendButton.classList.add('active');
+    widgetSendButton.style.backgroundColor = widgetSendBtnBgColorText.value;
+    widgetSendBtnBgColorInput.value = widgetSendBtnBgColorText.value;
+});
+
+widgetSendBtnIconColorInput.addEventListener("input", () => {
+    widgetSendButton.style.color = widgetSendBtnIconColorInput.value;
+    widgetSendBtnIconColorText.value = widgetSendBtnIconColorInput.value;
+});
+
+widgetSendBtnIconColorText.addEventListener("input", () => {
+    widgetSendButton.style.color = widgetSendBtnIconColorText.value;
+    widgetSendBtnIconColorInput.value = widgetSendBtnIconColorText.value;
+});
+
+// Chat Widget Landing Event Listeners
+modalBgColorInput.addEventListener("input", () => {
+    modalLandingBg.style.background = `linear-gradient(to bottom, ${modalBgColorInput.value}, #e8e8e8)`;
+    modalBgColorText.value = modalBgColorInput.value;
+});
+
+modalBgColorText.addEventListener("input", () => {
+    modalLandingBg.style.background = `linear-gradient(to bottom, ${modalBgColorText.value}, #e8e8e8)`;
+    modalBgColorInput.value = modalBgColorText.value;
+});
+
+modalTitleColorInput.addEventListener("input", () => {
+    modalTitle.style.color = modalTitleColorInput.value;
+    modalTitleColorText.value = modalTitleColorInput.value;
+});
+
+modalTitleColorText.addEventListener("input", () => {
+    modalTitle.style.color = modalTitleColorText.value;
+    modalTitleColorInput.value = modalTitleColorText.value;
+});
+
+chatPreviewBgInput.addEventListener("input", () => {
+    chatPreviewBg.style.backgroundColor = chatPreviewBgInput.value;
+    chatPreviewBgText.value = chatPreviewBgInput.value;
+});
+
+chatPreviewBgText.addEventListener("input", () => {
+    chatPreviewBg.style.backgroundColor = chatPreviewBgText.value;
+    chatPreviewBgInput.value = chatPreviewBgText.value;
+});
+
+chatPreviewTextColorInput.addEventListener("input", () => {
+    chatPreviewTexts.forEach(text => {
+        text.style.color = chatPreviewTextColorInput.value;
+    });
+    chatPreviewTextColorText.value = chatPreviewTextColorInput.value;
+});
+
+chatPreviewTextColorText.addEventListener("input", () => {
+    chatPreviewTexts.forEach(text => {
+        text.style.color = chatPreviewTextColorText.value;
+    });
+    chatPreviewTextColorInput.value = chatPreviewTextColorText.value;
+});
+
+chatNowBtnBgInput.addEventListener("input", () => {
+    chatNowBtnBg.style.backgroundColor = chatNowBtnBgInput.value;
+    chatNowBtnBgText.value = chatNowBtnBgInput.value;
+});
+
+chatNowBtnBgText.addEventListener("input", () => {
+    chatNowBtnBg.style.backgroundColor = chatNowBtnBgText.value;
+    chatNowBtnBgInput.value = chatNowBtnBgText.value;
+});
+
+chatNowBtnTextColorInput.addEventListener("input", () => {
+    chatNowBtnBg.style.color = chatNowBtnTextColorInput.value;
+    chatNowBtnText.style.fill = chatNowBtnTextColorInput.value;
+    chatNowBtnTextColorText.value = chatNowBtnTextColorInput.value;
+});
+
+chatNowBtnTextColorText.addEventListener("input", () => {
+    chatNowBtnBg.style.color = chatNowBtnTextColorText.value;
+    chatNowBtnText.style.fill = chatNowBtnTextColorText.value;
+    chatNowBtnTextColorInput.value = chatNowBtnTextColorText.value;
+});
+
+linkItemBgInput.addEventListener("input", () => {
+    linkItemsBg.forEach(item => {
+        item.style.backgroundColor = linkItemBgInput.value;
+    });
+    linkItemBgText.value = linkItemBgInput.value;
+});
+
+linkItemBgText.addEventListener("input", () => {
+    linkItemsBg.forEach(item => {
+        item.style.backgroundColor = linkItemBgText.value;
+    });
+    linkItemBgInput.value = linkItemBgText.value;
+});
+
+linkItemTextColorInput.addEventListener("input", () => {
+    linkItemsText.forEach(item => {
+        item.style.color = linkItemTextColorInput.value;
+    });
+    linkItemTextColorText.value = linkItemTextColorInput.value;
+});
+
+linkItemTextColorText.addEventListener("input", () => {
+    linkItemsText.forEach(item => {
+        item.style.color = linkItemTextColorText.value;
+    });
+    linkItemTextColorInput.value = linkItemTextColorText.value;
 });
 
 // Radio Button Functionality
@@ -232,10 +530,14 @@ radioButtons.forEach(radio => {
         document.getElementById('bubbleInputs').style.display = 'none';
         document.getElementById('chatBarInputs').style.display = 'none';
         document.getElementById('chatWidgetInputs').style.display = 'none';
+        document.getElementById('chatWidgetOpenInputs').style.display = 'none';
+        document.getElementById('chatWidgetLandingInputs').style.display = 'none';
         eyecatcherPreviewBox.style.display = 'none';
         bubblePreviewBox.style.display = 'none';
         chatBarPreviewBox.style.display = 'none';
         chatWidgetPreviewBox.style.display = 'none';
+        document.getElementById('chatWidgetOpenContent').style.display = 'none';
+        document.getElementById('homeContent').style.display = 'none';
 
         // Show selected option
         if (selectedValue === "eyecatcher") {
@@ -244,16 +546,20 @@ radioButtons.forEach(radio => {
         } else if (selectedValue === "bubble") {
             document.getElementById('bubbleInputs').style.display = 'block';
             bubblePreviewBox.style.display = 'flex';
-            // Ensure background color is applied
             bubblePreviewBox.style.backgroundColor = bubbleBgColorInput.value;
         } else if (selectedValue === "chat_bar") {
             document.getElementById('chatBarInputs').style.display = 'block';
             chatBarPreviewBox.style.display = 'flex';
         } else if (selectedValue === "chat_widget") {
             document.getElementById('chatWidgetInputs').style.display = 'block';
+            document.getElementById('chatWidgetOpenInputs').style.display = 'block';
             chatWidgetPreviewBox.style.display = 'block';
-        } else if (selectedValue === "chat_widget_cbse") {
+            document.getElementById('chatWidgetOpenContent').style.display = 'block';
+        } else if (selectedValue === "chat_widget_landing") {
             document.getElementById('chatWidgetInputs').style.display = 'block';
+            document.getElementById('chatWidgetLandingInputs').style.display = 'block';
+            chatWidgetPreviewBox.style.display = 'block';
+            document.getElementById('homeContent').style.display = 'block';
         }
     });
 });
@@ -279,103 +585,54 @@ document.getElementById("saveBtn").addEventListener("click", () => {
             textColor: chatBarTextColorText.value
         },
         chatWidget: {
-            headerBgColor: widgetHeaderBgColorText.value,
-            headerTextColor: widgetHeaderTextColorText.value,
             agentName: widgetAgentName.value,
-            incomingMsgBg: widgetIncomingMsgBgText.value,
-            outgoingMsgBg: widgetOutgoingMsgBgText.value,
+            bubbleBgColor: widgetBubbleBgColorText.value,
+            bubbleBorderColor: widgetBubbleBorderColorText.value,
+            bubbleTitleColor: widgetBubbleTitleColorText.value,
+            bubbleTextColor: widgetBubbleTextColorText.value,
+            messagesBgColor: widgetMessagesBgColorText.value,
+            userMsgBgColor: widgetUserMsgBgColorText.value,
             msgTextColor: widgetMsgTextColorText.value,
-            chatBgColor: widgetChatBgColorText.value,
-            inputBgColor: widgetInputBgColorText.value
+            inputBgColor: widgetInputBgColorText.value,
+            sendBtnBgColor: widgetSendBtnBgColorText.value,
+            sendBtnIconColor: widgetSendBtnIconColorText.value,
+            modalBgColor: modalBgColorText.value,
+            modalTitleColor: modalTitleColorText.value,
+            chatPreviewBg: chatPreviewBgText.value,
+            chatPreviewTextColor: chatPreviewTextColorText.value,
+            chatNowBtnBg: chatNowBtnBgText.value,
+            chatNowBtnTextColor: chatNowBtnTextColorText.value,
+            linkItemBg: linkItemBgText.value,
+            linkItemTextColor: linkItemTextColorText.value
         }
     };
-
-    localStorage.setItem('chatSettings', JSON.stringify(settings));
-    alert('Settings saved successfully!');
+    localStorage.setItem("chatSettings", JSON.stringify(settings));
+    alert("Settings saved to local storage!");
 });
 
-// Load saved preferences
-function loadSettings() {
-    const savedSettings = localStorage.getItem('chatSettings');
-    if (savedSettings) {
-        const settings = JSON.parse(savedSettings);
+// Emoji Picker Functionality
+const emojiButton = document.querySelector(".emoji-button");
+const emojiPicker = document.getElementById("emojiPicker");
+emojiButton.addEventListener("click", () => {
+    emojiPicker.classList.toggle("hidden");
+});
 
-        // Set radio button
-        document.querySelector(`input[name="chat_option"][value="${settings.selectedOption}"]`).checked = true;
+emojiPicker.querySelectorAll("span").forEach(span => {
+    span.addEventListener("click", () => {
+        widgetMessageInput.value += span.dataset.emoji;
+        emojiPicker.classList.add("hidden");
+    });
+});
 
-        // Set eyecatcher values
-        titleInput.value = settings.eyecatcher.title || "Hello";
-        textInput.value = settings.eyecatcher.text || "Click to chat";
-        bgColorInput.value = settings.eyecatcher.bgColor || "#007bff";
-        textColorInput.value = settings.eyecatcher.textColor || "#ffffff";
-        bgColorPicker.value = settings.eyecatcher.bgColor || "#007bff";
-        textColorPicker.value = settings.eyecatcher.textColor || "#ffffff";
+// Attachment Button Functionality
+const attachmentButton = document.querySelector(".attachment-button");
+const attachmentInput = document.getElementById("attachmentInput");
+attachmentButton.addEventListener("click", () => {
+    attachmentInput.click();
+});
 
-        // Set bubble values
-        bubbleBgColorText.value = settings.bubble.bgColor || "#007bff";
-        bubbleIconColorText.value = settings.bubble.iconColor || "#ffffff";
-        bubbleBgColorInput.value = settings.bubble.bgColor || "#007bff";
-        bubbleIconColorInput.value = settings.bubble.iconColor || "#ffffff";
-
-        // Set chat bar values
-        chatBarTextInput.value = settings.chatBar.text || "Chat with us";
-        chatBarBgColorText.value = settings.chatBar.bgColor || "#007bff";
-        chatBarTextColorText.value = settings.chatBar.textColor || "#ffffff";
-        chatBarBgColorInput.value = settings.chatBar.bgColor || "#007bff";
-        chatBarTextColorInput.value = settings.chatBar.textColor || "#ffffff";
-
-        // Set chat widget values
-        if (settings.chatWidget) {
-            widgetHeaderBgColorText.value = settings.chatWidget.headerBgColor || "#075e54";
-            widgetHeaderBgColorInput.value = settings.chatWidget.headerBgColor || "#075e54";
-            widgetHeaderTextColorText.value = settings.chatWidget.headerTextColor || "#ffffff";
-            widgetHeaderTextColorInput.value = settings.chatWidget.headerTextColor || "#ffffff";
-            widgetAgentName.value = settings.chatWidget.agentName || "Support Agent";
-            widgetIncomingMsgBgText.value = settings.chatWidget.incomingMsgBg || "#ffffff";
-            widgetIncomingMsgBgInput.value = settings.chatWidget.incomingMsgBg || "#ffffff";
-            widgetOutgoingMsgBgText.value = settings.chatWidget.outgoingMsgBg || "#dcf8c6";
-            widgetOutgoingMsgBgInput.value = settings.chatWidget.outgoingMsgBg || "#dcf8c6";
-            widgetMsgTextColorText.value = settings.chatWidget.msgTextColor || "#000000";
-            widgetMsgTextColorInput.value = settings.chatWidget.msgTextColor || "#000000";
-            widgetChatBgColorText.value = settings.chatWidget.chatBgColor || "#e5ddd5";
-            widgetChatBgColorInput.value = settings.chatWidget.chatBgColor || "#e5ddd5";
-            widgetInputBgColorText.value = settings.chatWidget.inputBgColor || "#f0f0f0";
-            widgetInputBgColorInput.value = settings.chatWidget.inputBgColor || "#f0f0f0";
-
-            // Update widget preview
-            widgetHeaderPreview.style.backgroundColor = settings.chatWidget.headerBgColor || "#075e54";
-            widgetHeaderPreview.style.color = settings.chatWidget.headerTextColor || "#ffffff";
-            widgetAgentNamePreview.textContent = settings.chatWidget.agentName || "Support Agent";
-            widgetIncomingMsgPreview.style.backgroundColor = settings.chatWidget.incomingMsgBg || "#ffffff";
-            widgetOutgoingMsgPreview.style.backgroundColor = settings.chatWidget.outgoingMsgBg || "#dcf8c6";
-            widgetIncomingMsgPreview.style.color = settings.chatWidget.msgTextColor || "#000000";
-            widgetOutgoingMsgPreview.style.color = settings.chatWidget.msgTextColor || "#000000";
-            widgetMessagesPreview.style.backgroundColor = settings.chatWidget.chatBgColor || "#e5ddd5";
-            widgetInputPreview.style.backgroundColor = settings.chatWidget.inputBgColor || "#f0f0f0";
-        }
-
-        // Update previews
-        eyecatcherPreviewTitle.innerHTML = (settings.eyecatcher.title || "Hello") + ` <span class="wave">👋</span>`;
-        eyecatcherPreviewText.textContent = settings.eyecatcher.text || "Click to chat";
-        eyecatcherPreviewBox.style.backgroundColor = settings.eyecatcher.bgColor || "#007bff";
-        eyecatcherPreviewBox.style.color = settings.eyecatcher.textColor || "#ffffff";
-        bubblePreviewBox.style.backgroundColor = settings.bubble.bgColor || "#007bff";
-        bubbleIcon.style.backgroundColor = settings.bubble.iconColor || "#ffffff";
-        bubbleIcon.style.color = settings.bubble.iconColor || "#ffffff";
-        bubbleIcon.style.setProperty('--dot-color', settings.bubble.iconColor || "#ffffff");
-        chatBarPreviewBox.style.backgroundColor = settings.chatBar.bgColor || "#007bff";
-        chatBarPreviewBox.style.color = settings.chatBar.textColor || "#ffffff";
-        chatBarPreviewText.textContent = settings.chatBar.text || "Chat with us";
-
-        // Trigger change event
-        document.querySelector(`input[name="chat_option"][value="${settings.selectedOption}"]`).dispatchEvent(new Event('change'));
-    } else {
-        document.getElementById('eyecatcherRadio').checked = true;
-        document.getElementById('eyecatcherRadio').dispatchEvent(new Event('change'));
-        // Set default bubble preview background
-        bubblePreviewBox.style.backgroundColor = bubbleBgColorInput.value;
+attachmentInput.addEventListener("change", () => {
+    if (attachmentInput.files.length > 0) {
+        alert(`Selected file: ${attachmentInput.files[0].name}`);
     }
-}
-
-// Load settings on page load
-window.addEventListener('DOMContentLoaded', loadSettings);
+});
