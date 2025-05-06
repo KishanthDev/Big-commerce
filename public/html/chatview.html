@@ -128,10 +128,6 @@
                 <div id="chatWidgetInputs" style="display: none;">
                     <div id="chatWidgetOpenInputs">
                         <div>
-                            <label for="widgetAgentName" class="block text-sm font-medium text-gray-700 mb-2">Agent Name:</label>
-                            <input id="widgetAgentName" type="text" placeholder="LiveChat" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
-                        </div>
-                        <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Chat Bubble Background Color:</label>
                             <div class="flex items-center border rounded-md overflow-hidden">
                                 <input type="text" placeholder="#ffffff" class="w-full px-2 py-2 text-sm focus:outline-none" id="widgetBubbleBgColorText" value="#ffffff" />
@@ -160,10 +156,10 @@
                             </div>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Messages Background Color:</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Bot Message Background Color:</label>
                             <div class="flex items-center border rounded-md overflow-hidden">
-                                <input type="text" placeholder="#f3f4f6" class="w-full px-2 py-2 text-sm focus:outline-none" id="widgetMessagesBgColorText" value="#f3f4f6" />
-                                <input type="color" class="w-12 h-12 cursor-pointer border-l" id="widgetMessagesBgColorInput" value="#f3f4f6" />
+                                <input type="text" placeholder="#f3f4f6" class="w-full px-2 py-2 text-sm focus:outline-none" id="widgetBotMsgBgColorText" value="#f3f4f6" />
+                                <input type="color" class="w-12 h-12 cursor-pointer border-l" id="widgetBotMsgBgColorInput" value="#f3f4f6" />
                             </div>
                         </div>
                         <div>
@@ -218,8 +214,7 @@
                             </div>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-7
-                            00 mb-2">Chat Preview Background:</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Chat Preview Background:</label>
                             <div class="flex items-center border rounded-md overflow-hidden">
                                 <input type="text" placeholder="#f3f4f6" class="w-full px-2 py-2 text-sm focus:outline-none" id="chatPreviewBgText" value="#f3f4f6" />
                                 <input type="color" class="w-12 h-12 cursor-pointer border-l" id="chatPreviewBgInput" value="#f3f4f6" />
@@ -356,9 +351,9 @@
                                         <path fill="#FF5101" d="M19.57,21.68h3.67a2.08,2.08,0,0,0,2.11-1.81,89.86,89.86,0,0,0,0-10.38,1.9,1.9,0,0,0-1.84-1.74,113.15,113.15,0,0,0-15,0A1.9,1.9,0,0,0,6.71,9.49a74.92,74.92,0,0,0-.06,10.38,2,2,0,0,0,2.1,1.81h3.81V26.5Z"/>
                                     </svg>
                                 </div>
-                                <div>Hello! How can I help you today?</div>
+                                <div style="background-color: #f3f4f6;">Hello! How can I help you today?</div>
                             </div>
-                            <div class="chat-message user">
+                            <div class="chat-message user" style="background-color: #fef08a;">
                                 <div>I need help with my order</div>
                             </div>
                         </div>
