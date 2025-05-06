@@ -37,8 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const widgetUserMsgBgColorText = document.getElementById("widgetUserMsgBgColorText");
     const widgetMsgTextColorInput = document.getElementById("widgetMsgTextColorInput");
     const widgetMsgTextColorText = document.getElementById("widgetMsgTextColorText");
-    const widgetInputBgColorInput = document.getElementById("widgetInputBgColorInput");
-    const widgetInputBgColorText = document.getElementById("widgetInputBgColorText");
     const widgetSendBtnBgColorInput = document.getElementById("widgetSendBtnBgColorInput");
     const widgetSendBtnBgColorText = document.getElementById("widgetSendBtnBgColorText");
     const widgetSendBtnIconColorInput = document.getElementById("widgetSendBtnIconColorInput");
@@ -153,7 +151,6 @@ document.addEventListener("DOMContentLoaded", () => {
             widgetBotMsgBgColorText.value = settings.chatWidget.botMsgBgColor || "#f3f4f6";
             widgetUserMsgBgColorText.value = settings.chatWidget.userMsgBgColor || "#fef08a";
             widgetMsgTextColorText.value = settings.chatWidget.msgTextColor || "#000000";
-            widgetInputBgColorText.value = settings.chatWidget.inputBgColor || "#ffffff";
             widgetSendBtnBgColorText.value = settings.chatWidget.sendBtnBgColor || "#000000";
             widgetSendBtnIconColorText.value = settings.chatWidget.sendBtnIconColor || "#ffffff";
             modalBgColorText.value = settings.chatWidget.modalBgColor || "#d3d3d3";
@@ -171,7 +168,6 @@ document.addEventListener("DOMContentLoaded", () => {
             widgetBotMsgBgColorInput.value = widgetBotMsgBgColorText.value;
             widgetUserMsgBgColorInput.value = widgetUserMsgBgColorText.value;
             widgetMsgTextColorInput.value = widgetMsgTextColorText.value;
-            widgetInputBgColorInput.value = widgetInputBgColorText.value;
             widgetSendBtnBgColorInput.value = widgetSendBtnBgColorText.value;
             widgetSendBtnIconColorInput.value = widgetSendBtnIconColorText.value;
             modalBgColorInput.value = modalBgColorText.value;
@@ -195,7 +191,6 @@ document.addEventListener("DOMContentLoaded", () => {
             widgetMessagesPreview.querySelectorAll(".chat-message").forEach(msg => {
                 msg.style.color = widgetMsgTextColorText.value;
             });
-            widgetMessageInput.parentElement.style.backgroundColor = widgetInputBgColorText.value;
             widgetSendButton.classList.add('active');
             widgetSendButton.style.backgroundColor = widgetSendBtnBgColorText.value;
             widgetSendButton.style.color = widgetSendBtnIconColorText.value;
@@ -250,7 +245,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 botMsgBgColor: widgetBotMsgBgColorText.value,
                 userMsgBgColor: widgetUserMsgBgColorText.value,
                 msgTextColor: widgetMsgTextColorText.value,
-                inputBgColor: widgetInputBgColorText.value,
                 sendBtnBgColor: widgetSendBtnBgColorText.value,
                 sendBtnIconColor: widgetSendBtnIconColorText.value,
                 modalBgColor: modalBgColorText.value,
@@ -431,14 +425,6 @@ document.addEventListener("DOMContentLoaded", () => {
         widgetMessagesPreview.querySelectorAll(".chat-message").forEach(msg => {
             msg.style.color = widgetMsgTextColorInput.value;
         });
-    });
-    widgetInputBgColorText.addEventListener("input", () => {
-        widgetInputBgColorInput.value = widgetInputBgColorText.value;
-        widgetMessageInput.parentElement.style.backgroundColor = widgetInputBgColorText.value;
-    });
-    widgetInputBgColorInput.addEventListener("input", () => {
-        widgetInputBgColorText.value = widgetInputBgColorInput.value;
-        widgetMessageInput.parentElement.style.backgroundColor = widgetInputBgColorInput.value;
     });
     widgetSendBtnBgColorText.addEventListener("input", () => {
         widgetSendBtnBgColorInput.value = widgetSendBtnBgColorText.value;
