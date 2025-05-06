@@ -42,7 +42,6 @@
   top: 25% !important;
 }
 
-
 .bubble-preview .dot-loader {
   position: absolute;
   top: 50%;
@@ -164,7 +163,7 @@
 .chat-message {
   position: relative;
   margin-bottom: 16px;
-  padding: 0; /* Remove padding from outer div */
+  padding: 0;
   border-radius: 8px;
   max-width: 50%;
   word-wrap: break-word;
@@ -173,24 +172,33 @@
 }
 
 .chat-message:not(.user) {
-  background-color: transparent; /* Remove background from outer div */
+  background-color: transparent;
 }
 
 .chat-message.user {
   margin-left: auto;
-  background-color: transparent; /* Remove background from outer div */
+  background-color: transparent;
 }
 
 .chat-message > div:not(.message-icon) {
-  padding: 6px 10px;
+  padding: 6px 10px 6px 10px; /* Increased left padding to accommodate SVG */
   border-radius: 8px;
   background-color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Space between SVG and text */
 }
+
+.chat-message:not(.user) > div:not(.message-icon) {
+  background-color: #f3f4f6;
+}
+
 
 .chat-message .message-icon {
   position: absolute;
-  top: 0;
+  top: 50%;
   left: -40px;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -206,6 +214,21 @@
   background-color: #ff5101;
   border-radius: 50%;
   padding: 4px;
+}
+
+.chat-message .message-text-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-message .message-text-icon svg {
+  width: 24px;
+  height: 24px;
+  background-color: #ff5101;
+  border-radius: 50%;
+  padding: 4px;
+  flex-shrink: 0; /* Prevent SVG from shrinking */
 }
 
 .chat-input-container {
