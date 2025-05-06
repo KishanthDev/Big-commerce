@@ -111,6 +111,19 @@
   justify-content: center;
   cursor: pointer;
 }
+.eye-catcher-preview {
+  width: auto; 
+  min-width: 70%; 
+  max-width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  word-break: break-word;
+}
+
 
 #chatWidgetOpenContent {
   display: flex;
