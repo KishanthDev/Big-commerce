@@ -31,10 +31,27 @@
 }
 
 .bubble-preview .chat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: opacity 0.3s ease;
 }
 
+.chat-icon svg {
+  position: absolute;
+  top: 25% !important;
+}
+  
+
 .bubble-preview .dot-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
   transition: opacity 0.3s ease;
 }
 
