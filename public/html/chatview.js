@@ -23,14 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const chatBarTextColorText = document.getElementById("chatBarTextColorText");
 
     // Chat Widget Inputs
-    const widgetBubbleBgColorInput = document.getElementById("widgetBubbleBgColorInput");
-    const widgetBubbleBgColorText = document.getElementById("widgetBubbleBgColorText");
-    const widgetBubbleBorderColorInput = document.getElementById("widgetBubbleBorderColorInput");
-    const widgetBubbleBorderColorText = document.getElementById("widgetBubbleBorderColorText");
-    const widgetBubbleTitleColorInput = document.getElementById("widgetBubbleTitleColorInput");
-    const widgetBubbleTitleColorText = document.getElementById("widgetBubbleTitleColorText");
-    const widgetBubbleTextColorInput = document.getElementById("widgetBubbleTextColorInput");
-    const widgetBubbleTextColorText = document.getElementById("widgetBubbleTextColorText");
     const widgetBotMsgBgColorInput = document.getElementById("widgetBotMsgBgColorInput");
     const widgetBotMsgBgColorText = document.getElementById("widgetBotMsgBgColorText");
     const widgetUserMsgBgColorInput = document.getElementById("widgetUserMsgBgColorInput");
@@ -39,6 +31,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const widgetSendBtnBgColorText = document.getElementById("widgetSendBtnBgColorText");
     const widgetSendBtnIconColorInput = document.getElementById("widgetSendBtnIconColorInput");
     const widgetSendBtnIconColorText = document.getElementById("widgetSendBtnIconColorText");
+    const footerBgColorInput = document.getElementById("footerBgColorInput");
+    const footerBgColorText = document.getElementById("footerBgColorText");
+    const footerTextColorInput = document.getElementById("footerTextColorInput");
+    const footerTextColorText = document.getElementById("footerTextColorText");
 
     // Chat Widget Landing Inputs
     const modalBgColorInput = document.getElementById("modalBgColorInput");
@@ -68,12 +64,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const chatBarPreviewBox = document.getElementById("chatBarPreviewBox");
     const chatBarPreviewText = document.getElementById("chatBarPreviewText");
     const chatWidgetPreviewBox = document.getElementById("chatWidgetPreviewBox");
-    const widgetBubblePreview = document.getElementById("widgetBubblePreview");
-    const widgetAgentNamePreview = document.getElementById("widgetAgentNamePreview");
-    const widgetBubbleTextPreview = document.getElementById("widgetBubbleTextPreview");
     const widgetMessagesPreview = document.getElementById("widgetMessagesPreview");
     const widgetMessageInput = document.getElementById("widgetMessageInput");
     const widgetSendButton = document.querySelector(".send-button");
+    const chatFooter = document.querySelector(".chat-footer");
     const modalLandingBg = document.querySelector(".modal-landing-bg");
     const modalTitle = document.getElementById("modalTitle");
     const chatPreviewBg = document.querySelector(".chat-preview-bg");
@@ -87,13 +81,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const moreOptionsButton = document.querySelector(".more-options-button");
     const dropdownMenu = document.getElementById("dropdownMenu");
 
-    moreOptionsButton.addEventListener("click", () => {
-        dropdownMenu.classList.toggle("active");
-    });
+    if (moreOptionsButton) {
+        moreOptionsButton.addEventListener("click", () => {
+            dropdownMenu.classList.toggle("active");
+        });
+    }
 
-    // Close dropdown when clicking outside
     document.addEventListener("click", (event) => {
-        if (!moreOptionsButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+        if (moreOptionsButton && dropdownMenu && !moreOptionsButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
             dropdownMenu.classList.remove("active");
         }
     });
@@ -105,148 +100,155 @@ document.addEventListener("DOMContentLoaded", () => {
             const settings = JSON.parse(savedSettings);
 
             // Apply Eyecatcher settings
-            titleInput.value = settings.eyecatcher.title || "";
-            textInput.value = settings.eyecatcher.text || "";
-            bgColorInput.value = settings.eyecatcher.bgColor || "#007bff";
-            textColorInput.value = settings.eyecatcher.textColor || "#ffffff";
-            bgColorPicker.value = bgColorInput.value;
-            textColorPicker.value = textColorInput.value;
-            eyecatcherPreviewTitle.textContent = titleInput.value || "Hello";
-            eyecatcherPreviewText.textContent = textInput.value || "Click to chat";
-            eyecatcherPreviewBox.style.backgroundColor = bgColorInput.value;
-            eyecatcherPreviewBox.style.color = textColorInput.value;
+            if (titleInput) titleInput.value = settings.eyecatcher.title || "";
+            if (textInput) textInput.value = settings.eyecatcher.text || "";
+            if (bgColorInput) bgColorInput.value = settings.eyecatcher.bgColor || "#007bff";
+            if (textColorInput) textColorInput.value = settings.eyecatcher.textColor || "#ffffff";
+            if (bgColorPicker) bgColorPicker.value = bgColorInput.value;
+            if (textColorPicker) textColorPicker.value = textColorInput.value;
+            if (eyecatcherPreviewTitle) eyecatcherPreviewTitle.textContent = titleInput.value || "Hello";
+            if (eyecatcherPreviewText) eyecatcherPreviewText.textContent = textInput.value || "Click to chat";
+            if (eyecatcherPreviewBox) eyecatcherPreviewBox.style.backgroundColor = bgColorInput.value;
+            if (eyecatcherPreviewBox) eyecatcherPreviewBox.style.color = textColorInput.value;
 
             // Apply Bubble settings
-            bubbleBgColorText.value = settings.bubble.bgColor || "#ff5101";
-            bubbleIconColorText.value = settings.bubble.iconColor || "#ffffff";
-            bubbleDotsColorText.value = settings.bubble.dotsColor || "#ff5101";
-            bubbleBgColorInput.value = bubbleBgColorText.value;
-            bubbleIconColorInput.value = bubbleIconColorText.value;
-            bubbleDotsColorInput.value = bubbleDotsColorText.value;
-            bubblePreviewBox.style.backgroundColor = bubbleBgColorText.value;
-            bubbleIcon.querySelectorAll("path").forEach(path => {
-                path.setAttribute("fill", bubbleIconColorText.value);
-            });
+            if (bubbleBgColorText) bubbleBgColorText.value = settings.bubble.bgColor || "#ff5101";
+            if (bubbleIconColorText) bubbleIconColorText.value = settings.bubble.iconColor || "#ffffff";
+            if (bubbleDotsColorText) bubbleDotsColorText.value = settings.bubble.dotsColor || "#ff5101";
+            if (bubbleBgColorInput) bubbleBgColorInput.value = bubbleBgColorText.value;
+            if (bubbleIconColorInput) bubbleIconColorInput.value = bubbleIconColorText.value;
+            if (bubbleDotsColorInput) bubbleDotsColorInput.value = bubbleDotsColorText.value;
+            if (bubblePreviewBox) bubblePreviewBox.style.backgroundColor = bubbleBgColorText.value;
+            if (bubbleIcon) {
+                bubbleIcon.querySelectorAll("path").forEach(path => {
+                    path.setAttribute("fill", bubbleIconColorText.value);
+                });
+            }
             bubbleDots.forEach(dot => {
                 dot.style.backgroundColor = bubbleDotsColorText.value;
             });
 
             // Apply Chat Bar settings
-            chatBarTextInput.value = settings.chatBar.text || "";
-            chatBarBgColorText.value = settings.chatBar.bgColor || "#007bff";
-            chatBarTextColorText.value = settings.chatBar.textColor || "#ffffff";
-            chatBarBgColorInput.value = chatBarBgColorText.value;
-            chatBarTextColorInput.value = chatBarTextColorText.value;
-            chatBarPreviewText.textContent = chatBarTextInput.value || "Chat with us";
-            chatBarPreviewBox.style.backgroundColor = chatBarBgColorText.value;
-            chatBarPreviewBox.style.color = chatBarTextColorText.value;
+            if (chatBarTextInput) chatBarTextInput.value = settings.chatBar.text || "";
+            if (chatBarBgColorText) chatBarBgColorText.value = settings.chatBar.bgColor || "#007bff";
+            if (chatBarTextColorText) chatBarTextColorText.value = settings.chatBar.textColor || "#ffffff";
+            if (chatBarBgColorInput) chatBarBgColorInput.value = chatBarBgColorText.value;
+            if (chatBarTextColorInput) chatBarTextColorInput.value = chatBarTextColorText.value;
+            if (chatBarPreviewText) chatBarPreviewText.textContent = chatBarTextInput.value || "Chat with us";
+            if (chatBarPreviewBox) chatBarPreviewBox.style.backgroundColor = chatBarBgColorText.value;
+            if (chatBarPreviewBox) chatBarPreviewBox.style.color = chatBarTextColorText.value;
 
             // Apply Chat Widget settings
-            widgetBubbleBgColorText.value = settings.chatWidget.bubbleBgColor || "#ffffff";
-            widgetBubbleBorderColorText.value = settings.chatWidget.bubbleBorderColor || "#ff5101";
-            widgetBubbleTitleColorText.value = settings.chatWidget.bubbleTitleColor || "#000000";
-            widgetBubbleTextColorText.value = settings.chatWidget.bubbleTextColor || "#374151";
-            widgetBotMsgBgColorText.value = settings.chatWidget.botMsgBgColor || "#f3f4f6";
-            widgetUserMsgBgColorText.value = settings.chatWidget.userMsgBgColor || "#fef08a";
-            widgetSendBtnBgColorText.value = settings.chatWidget.sendBtnBgColor || "#000000";
-            widgetSendBtnIconColorText.value = settings.chatWidget.sendBtnIconColor || "#ffffff";
-            modalBgColorText.value = settings.chatWidget.modalBgColor || "#d3d3d3";
-            modalTitleColorText.value = settings.chatWidget.modalTitleColor || "#000000";
-            chatPreviewBgText.value = settings.chatWidget.chatPreviewBg || "#f3f4f6";
-            chatPreviewTextColorText.value = settings.chatWidget.chatPreviewTextColor || "#374151";
-            chatNowBtnBgText.value = settings.chatWidget.chatNowBtnBg || "#000000";
-            chatNowBtnTextColorText.value = settings.chatWidget.chatNowBtnTextColor || "#ffffff";
-            linkItemBgText.value = settings.chatWidget.linkItemBg || "#f3f4f6";
-            linkItemTextColorText.value = settings.chatWidget.linkItemTextColor || "#374151";
-            widgetBubbleBgColorInput.value = widgetBubbleBgColorText.value;
-            widgetBubbleBorderColorInput.value = widgetBubbleBorderColorText.value;
-            widgetBubbleTitleColorInput.value = widgetBubbleTitleColorText.value;
-            widgetBubbleTextColorInput.value = widgetBubbleTextColorText.value;
-            widgetBotMsgBgColorInput.value = widgetBotMsgBgColorText.value;
-            widgetUserMsgBgColorInput.value = widgetUserMsgBgColorText.value;
-            widgetSendBtnBgColorInput.value = widgetSendBtnBgColorText.value;
-            widgetSendBtnIconColorInput.value = widgetSendBtnIconColorText.value;
-            modalBgColorInput.value = modalBgColorText.value;
-            modalTitleColorInput.value = modalTitleColorText.value;
-            chatPreviewBgInput.value = chatPreviewBgText.value;
-            chatPreviewTextColorInput.value = chatPreviewTextColorText.value;
-            chatNowBtnBgInput.value = chatNowBtnBgText.value;
-            chatNowBtnTextColorInput.value = chatNowBtnTextColorText.value;
-            linkItemBgInput.value = linkItemBgText.value;
-            linkItemTextColorInput.value = linkItemTextColorText.value;
-            widgetBubblePreview.style.backgroundColor = widgetBubbleBgColorText.value;
-            widgetBubblePreview.style.borderColor = widgetBubbleBorderColorText.value;
-            widgetAgentNamePreview.style.color = widgetBubbleTitleColorText.value;
-            widgetBubbleTextPreview.style.color = widgetBubbleTextColorText.value;
-            widgetMessagesPreview.querySelectorAll(".chat-message:not(.user) div").forEach(msg => {
-                msg.style.backgroundColor = widgetBotMsgBgColorText.value;
-            });
-            widgetMessagesPreview.querySelectorAll(".chat-message.user").forEach(msg => {
-                msg.style.backgroundColor = widgetUserMsgBgColorText.value;
-            });
-            widgetSendButton.classList.add('active');
-            widgetSendButton.style.backgroundColor = widgetSendBtnBgColorText.value;
-            widgetSendButton.style.color = widgetSendBtnIconColorText.value;
-            modalLandingBg.style.background = `linear-gradient(to bottom, ${modalBgColorText.value}, #e8e8e8)`;
-            modalTitle.style.color = modalTitleColorText.value;
-            chatPreviewBg.style.backgroundColor = chatPreviewBgText.value;
-            chatPreviewTexts.forEach(text => {
-                text.style.color = chatPreviewTextColorText.value;
-            });
-            chatNowBtnBg.style.backgroundColor = chatNowBtnBgText.value;
-            chatNowBtnBg.style.color = chatNowBtnTextColorText.value;
-            chatNowBtnText.style.fill = chatNowBtnTextColorText.value;
-            linkItemsBg.forEach(item => {
-                item.style.backgroundColor = linkItemBgText.value;
-            });
-            linkItemsText.forEach(text => {
-                text.style.color = linkItemTextColorText.value;
-            });
+            if (widgetBotMsgBgColorText) widgetBotMsgBgColorText.value = settings.chatWidget.botMsgBgColor || "#f3f4f6";
+            if (widgetUserMsgBgColorText) widgetUserMsgBgColorText.value = settings.chatWidget.userMsgBgColor || "#fef08a";
+            if (widgetSendBtnBgColorText) widgetSendBtnBgColorText.value = settings.chatWidget.sendBtnBgColor || "#000000";
+            if (widgetSendBtnIconColorText) widgetSendBtnIconColorText.value = settings.chatWidget.sendBtnIconColor || "#ffffff";
+            if (footerBgColorText) footerBgColorText.value = settings.chatWidget.footerBgColor || "#ffffff";
+            if (footerTextColorText) footerTextColorText.value = settings.chatWidget.footerTextColor || "#374151";
+            if (modalBgColorText) modalBgColorText.value = settings.chatWidget.modalBgColor || "#d3d3d3";
+            if (modalTitleColorText) modalTitleColorText.value = settings.chatWidget.modalTitleColor || "#000000";
+            if (chatPreviewBgText) chatPreviewBgText.value = settings.chatWidget.chatPreviewBg || "#f3f4f6";
+            if (chatPreviewTextColorText) chatPreviewTextColorText.value = settings.chatWidget.chatPreviewTextColor || "#374151";
+            if (chatNowBtnBgText) chatNowBtnBgText.value = settings.chatWidget.chatNowBtnBg || "#000000";
+            if (chatNowBtnTextColorText) chatNowBtnTextColorText.value = settings.chatWidget.chatNowBtnTextColor || "#ffffff";
+            if (linkItemBgText) linkItemBgText.value = settings.chatWidget.linkItemBg || "#f3f4f6";
+            if (linkItemTextColorText) linkItemTextColorText.value = settings.chatWidget.linkItemTextColor || "#374151";
+
+            if (widgetBotMsgBgColorInput) widgetBotMsgBgColorInput.value = widgetBotMsgBgColorText.value;
+            if (widgetUserMsgBgColorInput) widgetUserMsgBgColorInput.value = widgetUserMsgBgColorText.value;
+            if (widgetSendBtnBgColorInput) widgetSendBtnBgColorInput.value = widgetSendBtnBgColorText.value;
+            if (widgetSendBtnIconColorInput) widgetSendBtnIconColorInput.value = widgetSendBtnIconColorText.value;
+            if (footerBgColorInput) footerBgColorInput.value = footerBgColorText.value;
+            if (footerTextColorInput) footerTextColorInput.value = footerTextColorText.value;
+            if (modalBgColorInput) modalBgColorInput.value = modalBgColorText.value;
+            if (modalTitleColorInput) modalTitleColorInput.value = modalTitleColorText.value;
+            if (chatPreviewBgInput) chatPreviewBgInput.value = chatPreviewBgText.value;
+            if (chatPreviewTextColorInput) chatPreviewTextColorInput.value = chatPreviewTextColorText.value;
+            if (chatNowBtnBgInput) chatNowBtnBgInput.value = chatNowBtnBgText.value;
+            if (chatNowBtnTextColorInput) chatNowBtnTextColorInput.value = chatNowBtnTextColorText.value;
+            if (linkItemBgInput) linkItemBgInput.value = linkItemBgText.value;
+            if (linkItemTextColorInput) linkItemTextColorInput.value = linkItemTextColorText.value;
+
+            // Apply styles to preview
+            if (widgetMessagesPreview) {
+                widgetMessagesPreview.querySelectorAll(".chat-message:not(.user) div").forEach(msg => {
+                    msg.style.backgroundColor = widgetBotMsgBgColorText.value;
+                });
+                widgetMessagesPreview.querySelectorAll(".chat-message.user div").forEach(msg => {
+                    msg.style.backgroundColor = widgetUserMsgBgColorText.value;
+                });
+            }
+            if (widgetSendButton) widgetSendButton.style.backgroundColor = widgetSendBtnBgColorText.value;
+            if (widgetSendButton) widgetSendButton.style.color = widgetSendBtnIconColorText.value;
+            if (chatFooter) chatFooter.style.backgroundColor = footerBgColorText.value;
+            if (chatFooter) chatFooter.style.color = footerTextColorText.value;
+            if (modalLandingBg) modalLandingBg.style.background = `linear-gradient(to bottom, ${modalBgColorText.value}, #e8e8e8)`;
+            if (modalTitle) modalTitle.style.color = modalTitleColorText.value;
+            if (chatPreviewBg) chatPreviewBg.style.backgroundColor = chatPreviewBgText.value;
+            if (chatPreviewTexts) {
+                chatPreviewTexts.forEach(text => {
+                    text.style.color = chatPreviewTextColorText.value;
+                });
+            }
+            if (chatNowBtnBg) chatNowBtnBg.style.backgroundColor = chatNowBtnBgText.value;
+            if (chatNowBtnBg) chatNowBtnBg.style.color = chatNowBtnTextColorText.value;
+            if (chatNowBtnText) chatNowBtnText.style.fill = chatNowBtnTextColorText.value;
+            if (linkItemsBg) {
+                linkItemsBg.forEach(item => {
+                    item.style.backgroundColor = linkItemBgText.value;
+                });
+            }
+            if (linkItemsText) {
+                linkItemsText.forEach(text => {
+                    text.style.color = linkItemTextColorText.value;
+                });
+            }
 
             // Set selected radio button
             const selectedOption = settings.selectedOption || "eyecatcher";
-            document.querySelector(`input[name="chat_option"][value="${selectedOption}"]`).checked = true;
-            toggleInputs(selectedOption);
+            const radioInput = document.querySelector(`input[name="chat_option"][value="${selectedOption}"]`);
+            if (radioInput) {
+                radioInput.checked = true;
+                toggleInputs(selectedOption);
+            }
         }
     }
 
     // Save settings to localStorage
     function saveSettings() {
         const settings = {
-            selectedOption: document.querySelector('input[name="chat_option"]:checked').value,
+            selectedOption: document.querySelector('input[name="chat_option"]:checked')?.value || "eyecatcher",
             eyecatcher: {
-                title: titleInput.value,
-                text: textInput.value,
-                bgColor: bgColorInput.value,
-                textColor: textColorInput.value
+                title: titleInput?.value || "",
+                text: textInput?.value || "",
+                bgColor: bgColorInput?.value || "#007bff",
+                textColor: textColorInput?.value || "#ffffff"
             },
             bubble: {
-                bgColor: bubbleBgColorText.value,
-                iconColor: bubbleIconColorText.value,
-                dotsColor: bubbleDotsColorText.value
+                bgColor: bubbleBgColorText?.value || "#ff5101",
+                iconColor: bubbleIconColorText?.value || "#ffffff",
+                dotsColor: bubbleDotsColorText?.value || "#ff5101"
             },
             chatBar: {
-                text: chatBarTextInput.value,
-                bgColor: chatBarBgColorText.value,
-                textColor: chatBarTextColorText.value
+                text: chatBarTextInput?.value || "",
+                bgColor: chatBarBgColorText?.value || "#007bff",
+                textColor: chatBarTextColorText?.value || "#ffffff"
             },
             chatWidget: {
-                bubbleBgColor: widgetBubbleBgColorText.value,
-                bubbleBorderColor: widgetBubbleBorderColorText.value,
-                bubbleTitleColor: widgetBubbleTitleColorText.value,
-                bubbleTextColor: widgetBubbleTextColorText.value,
-                botMsgBgColor: widgetBotMsgBgColorText.value,
-                userMsgBgColor: widgetUserMsgBgColorText.value,
-                sendBtnBgColor: widgetSendBtnBgColorText.value,
-                sendBtnIconColor: widgetSendBtnIconColorText.value,
-                modalBgColor: modalBgColorText.value,
-                modalTitleColor: modalTitleColorText.value,
-                chatPreviewBg: chatPreviewBgText.value,
-                chatPreviewTextColor: chatPreviewTextColorText.value,
-                chatNowBtnBg: chatNowBtnBgText.value,
-                chatNowBtnTextColor: chatNowBtnTextColorText.value,
-                linkItemBg: linkItemBgText.value,
-                linkItemTextColor: linkItemTextColorText.value
+                botMsgBgColor: widgetBotMsgBgColorText?.value || "#f3f4f6",
+                userMsgBgColor: widgetUserMsgBgColorText?.value || "#fef08a",
+                sendBtnBgColor: widgetSendBtnBgColorText?.value || "#000000",
+                sendBtnIconColor: widgetSendBtnIconColorText?.value || "#ffffff",
+                footerBgColor: footerBgColorText?.value || "#ffffff",
+                footerTextColor: footerTextColorText?.value || "#374151",
+                modalBgColor: modalBgColorText?.value || "#d3d3d3",
+                modalTitleColor: modalTitleColorText?.value || "#000000",
+                chatPreviewBg: chatPreviewBgText?.value || "#f3f4f6",
+                chatPreviewTextColor: chatPreviewTextColorText?.value || "#374151",
+                chatNowBtnBg: chatNowBtnBgText?.value || "#000000",
+                chatNowBtnTextColor: chatNowBtnTextColorText?.value || "#ffffff",
+                linkItemBg: linkItemBgText?.value || "#f3f4f6",
+                linkItemTextColor: linkItemTextColorText?.value || "#374151"
             }
         };
         localStorage.setItem("chatSettings", JSON.stringify(settings));
@@ -255,263 +257,374 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Toggle input visibility based on selected radio button
     function toggleInputs(selectedOption) {
-        document.getElementById("eyecatcherInputs").style.display = selectedOption === "eyecatcher" ? "block" : "none";
-        document.getElementById("bubbleInputs").style.display = selectedOption === "bubble" ? "block" : "none";
-        document.getElementById("chatBarInputs").style.display = selectedOption === "chat_bar" ? "block" : "none";
-        document.getElementById("chatWidgetInputs").style.display = selectedOption.includes("chat_widget") ? "block" : "none";
-        document.getElementById("chatWidgetOpenInputs").style.display = selectedOption === "chat_widget" ? "block" : "none";
-        document.getElementById("chatWidgetLandingInputs").style.display = selectedOption === "chat_widget_landing" ? "block" : "none";
+        const eyecatcherInputs = document.getElementById("eyecatcherInputs");
+        const bubbleInputs = document.getElementById("bubbleInputs");
+        const chatBarInputs = document.getElementById("chatBarInputs");
+        const chatWidgetInputs = document.getElementById("chatWidgetInputs");
+        const chatWidgetOpenInputs = document.getElementById("chatWidgetOpenInputs");
+        const chatWidgetLandingInputs = document.getElementById("chatWidgetLandingInputs");
+        const chatWidgetOpenContent = document.getElementById("chatWidgetOpenContent");
+        const homeContent = document.getElementById("homeContent");
 
-        eyecatcherPreviewBox.style.display = selectedOption === "eyecatcher" ? "flex" : "none";
-        bubblePreviewBox.style.display = selectedOption === "bubble" ? "block" : "none";
-        chatBarPreviewBox.style.display = selectedOption === "chat_bar" ? "flex" : "none";
-        chatWidgetPreviewBox.style.display = selectedOption.includes("chat_widget") ? "block" : "none";
-        document.getElementById("chatWidgetOpenContent").style.display = selectedOption === "chat_widget" ? "flex" : "none";
-        document.getElementById("homeContent").style.display = selectedOption === "chat_widget_landing" ? "flex" : "none";
+        if (eyecatcherInputs) eyecatcherInputs.style.display = selectedOption === "eyecatcher" ? "block" : "none";
+        if (bubbleInputs) bubbleInputs.style.display = selectedOption === "bubble" ? "block" : "none";
+        if (chatBarInputs) chatBarInputs.style.display = selectedOption === "chat_bar" ? "block" : "none";
+        if (chatWidgetInputs) chatWidgetInputs.style.display = selectedOption.includes("chat_widget") ? "block" : "none";
+        if (chatWidgetOpenInputs) chatWidgetOpenInputs.style.display = selectedOption === "chat_widget" ? "block" : "none";
+        if (chatWidgetLandingInputs) chatWidgetLandingInputs.style.display = selectedOption === "chat_widget_landing" ? "block" : "none";
+
+        if (eyecatcherPreviewBox) eyecatcherPreviewBox.style.display = selectedOption === "eyecatcher" ? "flex" : "none";
+        if (bubblePreviewBox) bubblePreviewBox.style.display = selectedOption === "bubble" ? "block" : "none";
+        if (chatBarPreviewBox) chatBarPreviewBox.style.display = selectedOption === "chat_bar" ? "flex" : "none";
+        if (chatWidgetPreviewBox) chatWidgetPreviewBox.style.display = selectedOption.includes("chat_widget") ? "block" : "none";
+        if (chatWidgetOpenContent) chatWidgetOpenContent.style.display = selectedOption === "chat_widget" ? "flex" : "none";
+        if (homeContent) homeContent.style.display = selectedOption === "chat_widget_landing" ? "flex" : "none";
     }
 
     // Event Listeners for Eyecatcher Inputs
-    titleInput.addEventListener("input", () => {
-        eyecatcherPreviewTitle.textContent = titleInput.value || "Hello";
-    });
-    textInput.addEventListener("input", () => {
-        eyecatcherPreviewText.textContent = textInput.value || "Click to chat";
-    });
-    bgColorInput.addEventListener("input", () => {
-        bgColorPicker.value = bgColorInput.value;
-        eyecatcherPreviewBox.style.backgroundColor = bgColorInput.value;
-    });
-    textColorInput.addEventListener("input", () => {
-        textColorPicker.value = textColorInput.value;
-        eyecatcherPreviewBox.style.color = textColorInput.value;
-    });
-    bgColorPicker.addEventListener("input", () => {
-        bgColorInput.value = bgColorPicker.value;
-        eyecatcherPreviewBox.style.backgroundColor = bgColorPicker.value;
-    });
-    textColorPicker.addEventListener("input", () => {
-        textColorInput.value = textColorPicker.value;
-        eyecatcherPreviewBox.style.color = textColorPicker.value;
-    });
+    if (titleInput) {
+        titleInput.addEventListener("input", () => {
+            if (eyecatcherPreviewTitle) eyecatcherPreviewTitle.textContent = titleInput.value || "Hello";
+        });
+    }
+    if (textInput) {
+        textInput.addEventListener("input", () => {
+            if (eyecatcherPreviewText) eyecatcherPreviewText.textContent = textInput.value || "Click to chat";
+        });
+    }
+    if (bgColorInput) {
+        bgColorInput.addEventListener("input", () => {
+            if (bgColorPicker) bgColorPicker.value = bgColorInput.value;
+            if (eyecatcherPreviewBox) eyecatcherPreviewBox.style.backgroundColor = bgColorInput.value;
+        });
+    }
+    if (textColorInput) {
+        textColorInput.addEventListener("input", () => {
+            if (textColorPicker) textColorPicker.value = textColorInput.value;
+            if (eyecatcherPreviewBox) eyecatcherPreviewBox.style.color = textColorInput.value;
+        });
+    }
+    if (bgColorPicker) {
+        bgColorPicker.addEventListener("input", () => {
+            if (bgColorInput) bgColorInput.value = bgColorPicker.value;
+            if (eyecatcherPreviewBox) eyecatcherPreviewBox.style.backgroundColor = bgColorPicker.value;
+        });
+    }
+    if (textColorPicker) {
+        textColorPicker.addEventListener("input", () => {
+            if (textColorInput) textColorInput.value = textColorPicker.value;
+            if (eyecatcherPreviewBox) eyecatcherPreviewBox.style.color = textColorPicker.value;
+        });
+    }
 
     // Event Listeners for Bubble Inputs
-    bubbleBgColorText.addEventListener("input", () => {
-        bubbleBgColorInput.value = bubbleBgColorText.value;
-        bubblePreviewBox.style.backgroundColor = bubbleBgColorText.value;
-    });
-    bubbleBgColorInput.addEventListener("input", () => {
-        bubbleBgColorText.value = bubbleBgColorInput.value;
-        bubblePreviewBox.style.backgroundColor = bubbleBgColorInput.value;
-    });
-    bubbleIconColorText.addEventListener("input", () => {
-        bubbleIconColorInput.value = bubbleIconColorText.value;
-        bubbleIcon.querySelectorAll("path").forEach(path => {
-            path.setAttribute("fill", bubbleIconColorText.value);
+    if (bubbleBgColorText) {
+        bubbleBgColorText.addEventListener("input", () => {
+            if (bubbleBgColorInput) bubbleBgColorInput.value = bubbleBgColorText.value;
+            if (bubblePreviewBox) bubblePreviewBox.style.backgroundColor = bubbleBgColorText.value;
         });
-    });
-    bubbleIconColorInput.addEventListener("input", () => {
-        bubbleIconColorText.value = bubbleIconColorInput.value;
-        bubbleIcon.querySelectorAll("path").forEach(path => {
-            path.setAttribute("fill", bubbleIconColorInput.value);
+    }
+    if (bubbleBgColorInput) {
+        bubbleBgColorInput.addEventListener("input", () => {
+            if (bubbleBgColorText) bubbleBgColorText.value = bubbleBgColorInput.value;
+            if (bubblePreviewBox) bubblePreviewBox.style.backgroundColor = bubbleBgColorInput.value;
         });
-    });
-    bubbleDotsColorText.addEventListener("input", () => {
-        bubbleDotsColorInput.value = bubbleDotsColorText.value;
-        bubbleDots.forEach(dot => {
-            dot.style.backgroundColor = bubbleDotsColorText.value;
+    }
+    if (bubbleIconColorText) {
+        bubbleIconColorText.addEventListener("input", () => {
+            if (bubbleIconColorInput) bubbleIconColorInput.value = bubbleIconColorText.value;
+            if (bubbleIcon) {
+                bubbleIcon.querySelectorAll("path").forEach(path => {
+                    path.setAttribute("fill", bubbleIconColorText.value);
+                });
+            }
         });
-    });
-    bubbleDotsColorInput.addEventListener("input", () => {
-        bubbleDotsColorText.value = bubbleDotsColorInput.value;
-        bubbleDots.forEach(dot => {
-            dot.style.backgroundColor = bubbleDotsColorInput.value;
+    }
+    if (bubbleIconColorInput) {
+        bubbleIconColorInput.addEventListener("input", () => {
+            if (bubbleIconColorText) bubbleIconColorText.value = bubbleIconColorInput.value;
+            if (bubbleIcon) {
+                bubbleIcon.querySelectorAll("path").forEach(path => {
+                    path.setAttribute("fill", bubbleIconColorInput.value);
+                });
+            }
         });
-    });
+    }
+    if (bubbleDotsColorText) {
+        bubbleDotsColorText.addEventListener("input", () => {
+            if (bubbleDotsColorInput) bubbleDotsColorInput.value = bubbleDotsColorText.value;
+            bubbleDots.forEach(dot => {
+                dot.style.backgroundColor = bubbleDotsColorText.value;
+            });
+        });
+    }
+    if (bubbleDotsColorInput) {
+        bubbleDotsColorInput.addEventListener("input", () => {
+            if (bubbleDotsColorText) bubbleDotsColorText.value = bubbleDotsColorInput.value;
+            bubbleDots.forEach(dot => {
+                dot.style.backgroundColor = bubbleDotsColorInput.value;
+            });
+        });
+    }
 
     // Event Listeners for Chat Bar Inputs
-    chatBarTextInput.addEventListener("input", () => {
-        chatBarPreviewText.textContent = chatBarTextInput.value || "Chat with us";
-    });
-    chatBarBgColorText.addEventListener("input", () => {
-        chatBarBgColorInput.value = chatBarBgColorText.value;
-        chatBarPreviewBox.style.backgroundColor = chatBarBgColorText.value;
-    });
-    chatBarBgColorInput.addEventListener("input", () => {
-        chatBarBgColorText.value = chatBarBgColorInput.value;
-        chatBarPreviewBox.style.backgroundColor = chatBarBgColorInput.value;
-    });
-    chatBarTextColorText.addEventListener("input", () => {
-        chatBarTextColorInput.value = chatBarTextColorText.value;
-        chatBarPreviewBox.style.color = chatBarTextColorText.value;
-    });
-    chatBarTextColorInput.addEventListener("input", () => {
-        chatBarTextColorText.value = chatBarTextColorInput.value;
-        chatBarPreviewBox.style.color = chatBarTextColorInput.value;
-    });
+    if (chatBarTextInput) {
+        chatBarTextInput.addEventListener("input", () => {
+            if (chatBarPreviewText) chatBarPreviewText.textContent = chatBarTextInput.value || "Chat with us";
+        });
+    }
+    if (chatBarBgColorText) {
+        chatBarBgColorText.addEventListener("input", () => {
+            if (chatBarBgColorInput) chatBarBgColorInput.value = chatBarBgColorText.value;
+            if (chatBarPreviewBox) chatBarPreviewBox.style.backgroundColor = chatBarBgColorText.value;
+        });
+    }
+    if (chatBarBgColorInput) {
+        chatBarBgColorInput.addEventListener("input", () => {
+            if (chatBarBgColorText) chatBarBgColorText.value = chatBarBgColorInput.value;
+            if (chatBarPreviewBox) chatBarPreviewBox.style.backgroundColor = chatBarBgColorInput.value;
+        });
+    }
+    if (chatBarTextColorText) {
+        chatBarTextColorText.addEventListener("input", () => {
+            if (chatBarTextColorInput) chatBarTextColorInput.value = chatBarTextColorText.value;
+            if (chatBarPreviewBox) chatBarPreviewBox.style.color = chatBarTextColorText.value;
+        });
+    }
+    if (chatBarTextColorInput) {
+        chatBarTextColorInput.addEventListener("input", () => {
+            if (chatBarTextColorText) chatBarTextColorText.value = chatBarTextColorInput.value;
+            if (chatBarPreviewBox) chatBarPreviewBox.style.color = chatBarTextColorInput.value;
+        });
+    }
 
     // Event Listeners for Chat Widget Inputs
-    widgetBubbleBgColorText.addEventListener("input", () => {
-        widgetBubbleBgColorInput.value = widgetBubbleBgColorText.value;
-        widgetBubblePreview.style.backgroundColor = widgetBubbleBgColorText.value;
-    });
-    widgetBubbleBgColorInput.addEventListener("input", () => {
-        widgetBubbleBgColorText.value = widgetBubbleBgColorInput.value;
-        widgetBubblePreview.style.backgroundColor = widgetBubbleBgColorInput.value;
-    });
-    widgetBubbleBorderColorText.addEventListener("input", () => {
-        widgetBubbleBorderColorInput.value = widgetBubbleBorderColorText.value;
-        widgetBubblePreview.style.borderColor = widgetBubbleBorderColorText.value;
-    });
-    widgetBubbleBorderColorInput.addEventListener("input", () => {
-        widgetBubbleBorderColorText.value = widgetBubbleBorderColorInput.value;
-        widgetBubblePreview.style.borderColor = widgetBubbleBorderColorInput.value;
-    });
-    widgetBubbleTitleColorText.addEventListener("input", () => {
-        widgetBubbleTitleColorInput.value = widgetBubbleTitleColorText.value;
-        widgetAgentNamePreview.style.color = widgetBubbleTitleColorText.value;
-    });
-    widgetBubbleTitleColorInput.addEventListener("input", () => {
-        widgetBubbleTitleColorText.value = widgetBubbleTitleColorInput.value;
-        widgetAgentNamePreview.style.color = widgetBubbleTitleColorInput.value;
-    });
-    widgetBubbleTextColorText.addEventListener("input", () => {
-        widgetBubbleTextColorInput.value = widgetBubbleTextColorText.value;
-        widgetBubbleTextPreview.style.color = widgetBubbleTextColorText.value;
-    });
-    widgetBubbleTextColorInput.addEventListener("input", () => {
-        widgetBubbleTextColorText.value = widgetBubbleTextColorInput.value;
-        widgetBubbleTextPreview.style.color = widgetBubbleTextColorInput.value;
-    });
-    widgetBotMsgBgColorText.addEventListener("input", () => {
-        widgetBotMsgBgColorInput.value = widgetBotMsgBgColorText.value;
-        widgetMessagesPreview.querySelectorAll(".chat-message:not(.user) div").forEach(msg => {
-            msg.style.backgroundColor = widgetBotMsgBgColorText.value;
+    if (widgetBotMsgBgColorText) {
+        widgetBotMsgBgColorText.addEventListener("input", () => {
+            if (widgetBotMsgBgColorInput) widgetBotMsgBgColorInput.value = widgetBotMsgBgColorText.value;
+            if (widgetMessagesPreview) {
+                widgetMessagesPreview.querySelectorAll(".chat-message:not(.user) div").forEach(msg => {
+                    msg.style.backgroundColor = widgetBotMsgBgColorText.value;
+                });
+            }
         });
-    });
-    widgetBotMsgBgColorInput.addEventListener("input", () => {
-        widgetBotMsgBgColorText.value = widgetBotMsgBgColorInput.value;
-        widgetMessagesPreview.querySelectorAll(".chat-message:not(.user) div").forEach(msg => {
-            msg.style.backgroundColor = widgetBotMsgBgColorInput.value;
+    }
+    if (widgetBotMsgBgColorInput) {
+        widgetBotMsgBgColorInput.addEventListener("input", () => {
+            if (widgetBotMsgBgColorText) widgetBotMsgBgColorText.value = widgetBotMsgBgColorInput.value;
+            if (widgetMessagesPreview) {
+                widgetMessagesPreview.querySelectorAll(".chat-message:not(.user) div").forEach(msg => {
+                    msg.style.backgroundColor = widgetBotMsgBgColorInput.value;
+                });
+            }
         });
-    });
-    widgetUserMsgBgColorText.addEventListener("input", () => {
-        widgetUserMsgBgColorInput.value = widgetUserMsgBgColorText.value;
-        widgetMessagesPreview.querySelectorAll(".chat-message.user").forEach(msg => {
-            msg.style.backgroundColor = widgetUserMsgBgColorText.value;
+    }
+    if (widgetUserMsgBgColorText) {
+        widgetUserMsgBgColorText.addEventListener("input", () => {
+            if (widgetUserMsgBgColorInput) widgetUserMsgBgColorInput.value = widgetUserMsgBgColorText.value;
+            if (widgetMessagesPreview) {
+                widgetMessagesPreview.querySelectorAll(".chat-message.user div").forEach(msg => {
+                    msg.style.backgroundColor = widgetUserMsgBgColorText.value;
+                });
+            }
         });
-    });
-    widgetUserMsgBgColorInput.addEventListener("input", () => {
-        widgetUserMsgBgColorText.value = widgetUserMsgBgColorInput.value;
-        widgetMessagesPreview.querySelectorAll(".chat-message.user").forEach(msg => {
-            msg.style.backgroundColor = widgetUserMsgBgColorInput.value;
+    }
+    if (widgetUserMsgBgColorInput) {
+        widgetUserMsgBgColorInput.addEventListener("input", () => {
+            if (widgetUserMsgBgColorText) widgetUserMsgBgColorText.value = widgetUserMsgBgColorInput.value;
+            if (widgetMessagesPreview) {
+                widgetMessagesPreview.querySelectorAll(".chat-message.user div").forEach(msg => {
+                    msg.style.backgroundColor = widgetUserMsgBgColorInput.value;
+                });
+            }
         });
-    });
-    widgetSendBtnBgColorText.addEventListener("input", () => {
-        widgetSendBtnBgColorInput.value = widgetSendBtnBgColorText.value;
-        widgetSendButton.style.backgroundColor = widgetSendBtnBgColorText.value;
-    });
-    widgetSendBtnBgColorInput.addEventListener("input", () => {
-        widgetSendBtnBgColorText.value = widgetSendBtnBgColorInput.value;
-        widgetSendButton.style.backgroundColor = widgetSendBtnBgColorInput.value;
-    });
-    widgetSendBtnIconColorText.addEventListener("input", () => {
-        widgetSendBtnIconColorInput.value = widgetSendBtnIconColorText.value;
-        widgetSendButton.style.color = widgetSendBtnIconColorText.value;
-    });
-    widgetSendBtnIconColorInput.addEventListener("input", () => {
-        widgetSendBtnIconColorText.value = widgetSendBtnIconColorInput.value;
-        widgetSendButton.style.color = widgetSendBtnIconColorInput.value;
-    });
+    }
+    if (widgetSendBtnBgColorText) {
+        widgetSendBtnBgColorText.addEventListener("input", () => {
+            if (widgetSendBtnBgColorInput) widgetSendBtnBgColorInput.value = widgetSendBtnBgColorText.value;
+            if (widgetSendButton) widgetSendButton.style.backgroundColor = widgetSendBtnBgColorText.value;
+        });
+    }
+    if (widgetSendBtnBgColorInput) {
+        widgetSendBtnBgColorInput.addEventListener("input", () => {
+            if (widgetSendBtnBgColorText) widgetSendBtnBgColorText.value = widgetSendBtnBgColorInput.value;
+            if (widgetSendButton) widgetSendButton.style.backgroundColor = widgetSendBtnBgColorInput.value;
+        });
+    }
+    if (widgetSendBtnIconColorText) {
+        widgetSendBtnIconColorText.addEventListener("input", () => {
+            if (widgetSendBtnIconColorInput) widgetSendBtnIconColorInput.value = widgetSendBtnIconColorText.value;
+            if (widgetSendButton) widgetSendButton.style.color = widgetSendBtnIconColorText.value;
+        });
+    }
+    if (widgetSendBtnIconColorInput) {
+        widgetSendBtnIconColorInput.addEventListener("input", () => {
+            if (widgetSendBtnIconColorText) widgetSendBtnIconColorText.value = widgetSendBtnIconColorInput.value;
+            if (widgetSendButton) widgetSendButton.style.color = widgetSendBtnIconColorInput.value;
+        });
+    }
+    if (footerBgColorText) {
+        footerBgColorText.addEventListener("input", () => {
+            if (footerBgColorInput) footerBgColorInput.value = footerBgColorText.value;
+            if (chatFooter) chatFooter.style.backgroundColor = footerBgColorText.value;
+        });
+    }
+    if (footerBgColorInput) {
+        footerBgColorInput.addEventListener("input", () => {
+            if (footerBgColorText) footerBgColorText.value = footerBgColorInput.value;
+            if (chatFooter) chatFooter.style.backgroundColor = footerBgColorInput.value;
+        });
+    }
+    if (footerTextColorText) {
+        footerTextColorText.addEventListener("input", () => {
+            if (footerTextColorInput) footerTextColorInput.value = footerTextColorText.value;
+            if (chatFooter) chatFooter.style.color = footerTextColorText.value;
+        });
+    }
+    if (footerTextColorInput) {
+        footerTextColorInput.addEventListener("input", () => {
+            if (footerTextColorText) footerTextColorText.value = footerTextColorInput.value;
+            if (chatFooter) chatFooter.style.color = footerTextColorInput.value;
+        });
+    }
 
     // Event Listeners for Chat Widget Landing Inputs
-    modalBgColorText.addEventListener("input", () => {
-        modalBgColorInput.value = modalBgColorText.value;
-        modalLandingBg.style.background = `linear-gradient(to bottom, ${modalBgColorText.value}, #e8e8e8)`;
-    });
-    modalBgColorInput.addEventListener("input", () => {
-        modalBgColorText.value = modalBgColorInput.value;
-        modalLandingBg.style.background = `linear-gradient(to bottom, ${modalBgColorInput.value}, #e8e8e8)`;
-    });
-    modalTitleColorText.addEventListener("input", () => {
-        modalTitleColorInput.value = modalTitleColorText.value;
-        modalTitle.style.color = modalTitleColorText.value;
-    });
-    modalTitleColorInput.addEventListener("input", () => {
-        modalTitleColorText.value = modalTitleColorInput.value;
-        modalTitle.style.color = modalTitleColorInput.value;
-    });
-    chatPreviewBgText.addEventListener("input", () => {
-        chatPreviewBgInput.value = chatPreviewBgText.value;
-        chatPreviewBg.style.backgroundColor = chatPreviewBgText.value;
-    });
-    chatPreviewBgInput.addEventListener("input", () => {
-        chatPreviewBgText.value = chatPreviewBgInput.value;
-        chatPreviewBg.style.backgroundColor = chatPreviewBgInput.value;
-    });
-    chatPreviewTextColorText.addEventListener("input", () => {
-        chatPreviewTextColorInput.value = chatPreviewTextColorText.value;
-        chatPreviewTexts.forEach(text => {
-            text.style.color = chatPreviewTextColorText.value;
+    if (modalBgColorText) {
+        modalBgColorText.addEventListener("input", () => {
+            if (modalBgColorInput) modalBgColorInput.value = modalBgColorText.value;
+            if (modalLandingBg) modalLandingBg.style.background = `linear-gradient(to bottom, ${modalBgColorText.value}, #e8e8e8)`;
         });
-    });
-    chatPreviewTextColorInput.addEventListener("input", () => {
-        chatPreviewTextColorText.value = chatPreviewTextColorInput.value;
-        chatPreviewTexts.forEach(text => {
-            text.style.color = chatPreviewTextColorInput.value;
+    }
+    if (modalBgColorInput) {
+        modalBgColorInput.addEventListener("input", () => {
+            if (modalBgColorText) modalBgColorText.value = modalBgColorInput.value;
+            if (modalLandingBg) modalLandingBg.style.background = `linear-gradient(to bottom, ${modalBgColorInput.value}, #e8e8e8)`;
         });
-    });
-    chatNowBtnBgText.addEventListener("input", () => {
-        chatNowBtnBgInput.value = chatNowBtnBgText.value;
-        chatNowBtnBg.style.backgroundColor = chatNowBtnBgText.value;
-    });
-    chatNowBtnBgInput.addEventListener("input", () => {
-        chatNowBtnBgText.value = chatNowBtnBgInput.value;
-        chatNowBtnBg.style.backgroundColor = chatNowBtnBgInput.value;
-    });
-    chatNowBtnTextColorText.addEventListener("input", () => {
-        chatNowBtnTextColorInput.value = chatNowBtnTextColorText.value;
-        chatNowBtnBg.style.color = chatNowBtnTextColorText.value;
-        chatNowBtnText.style.fill = chatNowBtnTextColorText.value;
-    });
-    chatNowBtnTextColorInput.addEventListener("input", () => {
-        chatNowBtnTextColorText.value = chatNowBtnTextColorInput.value;
-        chatNowBtnBg.style.color = chatNowBtnTextColorInput.value;
-        chatNowBtnText.style.fill = chatNowBtnTextColorInput.value;
-    });
-    linkItemBgText.addEventListener("input", () => {
-        linkItemBgInput.value = linkItemBgText.value;
-        linkItemsBg.forEach(item => {
-            item.style.backgroundColor = linkItemBgText.value;
+    }
+    if (modalTitleColorText) {
+        modalTitleColorText.addEventListener("input", () => {
+            if (modalTitleColorInput) modalTitleColorInput.value = modalTitleColorText.value;
+            if (modalTitle) modalTitle.style.color = modalTitleColorText.value;
         });
-    });
-    linkItemBgInput.addEventListener("input", () => {
-        linkItemBgText.value = linkItemBgInput.value;
-        linkItemsBg.forEach(item => {
-            item.style.backgroundColor = linkItemBgInput.value;
+    }
+    if (modalTitleColorInput) {
+        modalTitleColorInput.addEventListener("input", () => {
+            if (modalTitleColorText) modalTitleColorText.value = modalTitleColorInput.value;
+            if (modalTitle) modalTitle.style.color = modalTitleColorInput.value;
         });
-    });
-    linkItemTextColorText.addEventListener("input", () => {
-        linkItemTextColorInput.value = linkItemTextColorText.value;
-        linkItemsText.forEach(text => {
-            text.style.color = linkItemTextColorText.value;
+    }
+    if (chatPreviewBgText) {
+        chatPreviewBgText.addEventListener("input", () => {
+            if (chatPreviewBgInput) chatPreviewBgInput.value = chatPreviewBgText.value;
+            if (chatPreviewBg) chatPreviewBg.style.backgroundColor = chatPreviewBgText.value;
         });
-    });
-    linkItemTextColorInput.addEventListener("input", () => {
-        linkItemTextColorText.value = linkItemTextColorInput.value;
-        linkItemsText.forEach(text => {
-            text.style.color = linkItemTextColorInput.value;
+    }
+    if (chatPreviewBgInput) {
+        chatPreviewBgInput.addEventListener("input", () => {
+            if (chatPreviewBgText) chatPreviewBgText.value = chatPreviewBgInput.value;
+            if (chatPreviewBg) chatPreviewBg.style.backgroundColor = chatPreviewBgInput.value;
         });
-    });
+    }
+    if (chatPreviewTextColorText) {
+        chatPreviewTextColorText.addEventListener("input", () => {
+            if (chatPreviewTextColorInput) chatPreviewTextColorInput.value = chatPreviewTextColorText.value;
+            if (chatPreviewTexts) {
+                chatPreviewTexts.forEach(text => {
+                    text.style.color = chatPreviewTextColorText.value;
+                });
+            }
+        });
+    }
+    if (chatPreviewTextColorInput) {
+        chatPreviewTextColorInput.addEventListener("input", () => {
+            if (chatPreviewTextColorText) chatPreviewTextColorText.value = chatPreviewTextColorInput.value;
+            if (chatPreviewTexts) {
+                chatPreviewTexts.forEach(text => {
+                    text.style.color = chatPreviewTextColorInput.value;
+                });
+            }
+        });
+    }
+    if (chatNowBtnBgText) {
+        chatNowBtnBgText.addEventListener("input", () => {
+            if (chatNowBtnBgInput) chatNowBtnBgInput.value = chatNowBtnBgText.value;
+            if (chatNowBtnBg) chatNowBtnBg.style.backgroundColor = chatNowBtnBgText.value;
+        });
+    }
+    if (chatNowBtnBgInput) {
+        chatNowBtnBgInput.addEventListener("input", () => {
+            if (chatNowBtnBgText) chatNowBtnBgText.value = chatNowBtnBgInput.value;
+            if (chatNowBtnBg) chatNowBtnBg.style.backgroundColor = chatNowBtnBgInput.value;
+        });
+    }
+    if (chatNowBtnTextColorText) {
+        chatNowBtnTextColorText.addEventListener("input", () => {
+            if (chatNowBtnTextColorInput) chatNowBtnTextColorInput.value = chatNowBtnTextColorText.value;
+            if (chatNowBtnBg) chatNowBtnBg.style.color = chatNowBtnTextColorText.value;
+            if (chatNowBtnText) chatNowBtnText.style.fill = chatNowBtnTextColorText.value;
+        });
+    }
+    if (chatNowBtnTextColorInput) {
+        chatNowBtnTextColorInput.addEventListener("input", () => {
+            if (chatNowBtnTextColorText) chatNowBtnTextColorText.value = chatNowBtnTextColorInput.value;
+            if (chatNowBtnBg) chatNowBtnBg.style.color = chatNowBtnTextColorInput.value;
+            if (chatNowBtnText) chatNowBtnText.style.fill = chatNowBtnTextColorInput.value;
+        });
+    }
+    if (linkItemBgText) {
+        linkItemBgText.addEventListener("input", () => {
+            if (linkItemBgInput) linkItemBgInput.value = linkItemBgText.value;
+            if (linkItemsBg) {
+                linkItemsBg.forEach(item => {
+                    item.style.backgroundColor = linkItemBgText.value;
+                });
+            }
+        });
+    }
+    if (linkItemBgInput) {
+        linkItemBgInput.addEventListener("input", () => {
+            if (linkItemBgText) linkItemBgText.value = linkItemBgInput.value;
+            if (linkItemsBg) {
+                linkItemsBg.forEach(item => {
+                    item.style.backgroundColor = linkItemBgInput.value;
+                });
+            }
+        });
+    }
+    if (linkItemTextColorText) {
+        linkItemTextColorText.addEventListener("input", () => {
+            if (linkItemTextColorInput) linkItemTextColorInput.value = linkItemTextColorText.value;
+            if (linkItemsText) {
+                linkItemsText.forEach(text => {
+                    text.style.color = linkItemTextColorText.value;
+                });
+            }
+        });
+    }
+    if (linkItemTextColorInput) {
+        linkItemTextColorInput.addEventListener("input", () => {
+            if (linkItemTextColorText) linkItemTextColorText.value = linkItemTextColorInput.value;
+            if (linkItemsText) {
+                linkItemsText.forEach(text => {
+                    text.style.color = linkItemTextColorInput.value;
+                });
+            }
+        });
+    }
 
     // Radio button event listener
-    document.querySelectorAll('input[name="chat_option"]').forEach(radio => {
+    const radioButtons = document.querySelectorAll('input[name="chat_option"]');
+    radioButtons.forEach(radio => {
         radio.addEventListener("change", () => {
             toggleInputs(radio.value);
         });
     });
 
     // Save button event listener
-    document.getElementById("saveBtn").addEventListener("click", saveSettings);
+    const saveBtn = document.getElementById("saveBtn");
+    if (saveBtn) {
+        saveBtn.addEventListener("click", saveSettings);
+    }
 
     // Load settings on page load
     loadSettings();
@@ -519,13 +632,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // Emoji Picker Functionality
     const emojiButton = document.querySelector(".emoji-button");
     const emojiPicker = document.getElementById("emojiPicker");
-    emojiButton.addEventListener("click", () => {
-        emojiPicker.classList.toggle("hidden");
-    });
-    emojiPicker.querySelectorAll("span").forEach(span => {
-        span.addEventListener("click", () => {
-            widgetMessageInput.value += span.dataset.emoji;
-            emojiPicker.classList.add("hidden");
+    if (emojiButton) {
+        emojiButton.addEventListener("click", () => {
+            if (emojiPicker) emojiPicker.classList.toggle("hidden");
         });
-    });
+    }
+    if (emojiPicker) {
+        emojiPicker.querySelectorAll("span").forEach(span => {
+            span.addEventListener("click", () => {
+                if (widgetMessageInput) widgetMessageInput.value += span.dataset.emoji;
+                if (emojiPicker) emojiPicker.classList.add("hidden");
+            });
+        });
+    }
 });

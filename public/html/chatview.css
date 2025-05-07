@@ -138,7 +138,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  padding: 0;
+  padding: 0px;
 }
 
 .chat-header {
@@ -149,7 +149,48 @@
   padding: 8px 0;
   position: relative;
   z-index: 10;
-  min-height: 60px;
+}
+
+.company-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.company-logo img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.company-logo span {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--bubble-title-color);
+}
+
+.header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-buttons button {
+  font-size: 24px;
+  line-height: 1;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #374151;
+  transition: color 0.2s ease;
+}
+
+.header-buttons button:hover {
+  color: #000;
 }
 
 .chat-messages {
@@ -163,8 +204,6 @@
 .chat-message {
   position: relative;
   margin-bottom: 16px;
-  padding: 0;
-  border-radius: 8px;
   max-width: 50%;
   word-wrap: break-word;
   display: flex;
@@ -177,13 +216,15 @@
 
 .chat-message.user {
   margin-left: auto;
+  border-radius: 20px 20px 20px 20px;
+
   background-color: transparent;
 }
 
 .chat-message > div:not(.message-icon) {
   padding: 6px 10px 6px 10px; /* Increased left padding to accommodate SVG */
-  border-radius: 8px;
   background-color: inherit;
+  border-radius: 20px 20px 0px 20px;
   display: flex;
   align-items: center;
   gap: 8px; /* Space between SVG and text */
@@ -191,6 +232,8 @@
 
 .chat-message:not(.user) > div:not(.message-icon) {
   background-color: #f3f4f6;
+  border-radius: 20px 20px 20px 0px;
+
 }
 
 
@@ -233,9 +276,7 @@
 
 .chat-input-container {
   position: relative;
-  padding: 10px;
   background-color: #ffffff;
-  border-top: 1px solid #d1d5db;
   width: 100%;
   box-sizing: border-box;
 }
@@ -269,6 +310,22 @@
 
 .chat-input-container .absolute.right-2 button {
   font-size: 18px;
+}
+
+.chat-footer {
+  text-align: center;
+  padding: 4px 0;
+  margin: 0;
+  border-radius: 0 0px 16px 16px;
+  font-size: 12px;
+  color: var(--chat-footer-text-color);
+  background-color: var(--chat-footer-bg-color);
+  border-top: 1px solid #e5e7eb;
+  line-height: 1;
+  margin-top: 16px;
+  margin-left: -16px; /* Offset left padding */
+  margin-right: -16px; 
+  margin-bottom: -16px; /* Offset right padding */
 }
 
 .send-button {
