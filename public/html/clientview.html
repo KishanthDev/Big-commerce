@@ -235,10 +235,8 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 12px;
-      padding: 8px 0;
       position: relative;
       z-index: 10;
-      min-height: 60px;
     }
 
     .chat-messages {
@@ -528,6 +526,7 @@
       text-align: center;
       padding: 4px 0;
       margin: 0;
+      border-radius: 0 0px 16px 16px;
       font-size: 12px;
       color: var(--chat-footer-text-color);
       background-color: var(--chat-footer-bg-color);
@@ -752,7 +751,7 @@
       </div>
       <!-- Chat Widget Open -->
       <div id="liveChatContent">
-        <div class="chat-header">
+        <div class="chat-header border-b pb-2.5 border-gray-900 flex items-center justify-between">
           <div class="company-logo">
             <img src="https://res.cloudinary.com/dfbqxsiud/image/upload/v1720047961/users/663e7a3a159e95e303d68afb/ChatMatrix/66415c89d553dbb92bacbbf4/profile_picture.png" alt="LiveChat Logo" />
             <span>LiveChat</span>
