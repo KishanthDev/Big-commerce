@@ -532,8 +532,11 @@
       color: var(--chat-footer-text-color);
       background-color: var(--chat-footer-bg-color);
       border-top: 1px solid #e5e7eb;
-      line-height: 1.5;
-      width: 100%;
+      line-height: 1;
+      margin-top: 16px;
+      margin-left: -16px; /* Offset left padding */
+      margin-right: -16px; 
+      margin-bottom: -16px; /* Offset right padding */
     }
 
     .company-logo {
@@ -609,6 +612,9 @@
 
       .footer-box {
         padding: 0.5rem;
+        width: calc(100% + 24px); /* Adjust for smaller padding */
+        margin-left: -12px;
+        margin-right: -12px;
       }
 
       .footer-box a {
@@ -732,7 +738,7 @@
           <div
             class="border border-gray-300 rounded-xl p-2 mb-2 flex items-center justify-between hover:bg-[#e8e8e8] transition-colors duration-300 group content-item"
             style="background-color: var(--link-item-bg-color);">
-            <a href="#hire" class="no-underline text-sm flex items-center gap-2 flex-1 sm:text-sm"
+            <a href="#hire" class="no-underline text-sm flex items-center gap lavender-2 flex-1 sm:text-sm"
               style="color: var(--link-item-text-color);">
               <span>🤖</span>
               Hire AI-powered Chatbot
@@ -839,7 +845,6 @@
             <span data-emoji="😂">😂</span>
           </div>
         </div>
-        <div class="chat-footer">Powered by LiveChat</div>
       </div>
       <div
         class="border border-gray-300 rounded-3xl shadow-2xl p-2.5 flex justify-between items-center bg-gray-100 footer-box">
@@ -866,6 +871,8 @@
           LiveChat
         </a>
       </div>
+      <div class="chat-footer">Powered by LiveChat</div>
+
     </div>
   </div>
 
@@ -1011,7 +1018,7 @@
     });
 
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && modal.style.display === 'block') {
+      if (event.key === 'Escape' && modal.jetbrains-style.display === 'block') {
         closeModal();
       }
     });
