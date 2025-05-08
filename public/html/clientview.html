@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -44,6 +43,14 @@
       /* Chat Footer */
       --chat-footer-bg-color: #f9fafb;
       --chat-footer-text-color: #6b7280;
+      /* Footer Box and Buttons */
+      --footer-box-bg: #ffffff;
+      --home-btn-bg: #f3f4f6;
+      --livechat-btn-bg: #f3f4f6;
+      --home-btn-icon-color: #374151;
+      --livechat-btn-icon-color: #374151;
+      --hover-bg: #e5e7eb;
+      --hover-icon-color: #000000;
     }
 
     * {
@@ -51,64 +58,83 @@
     }
 
     @keyframes slideUp {
-      0% {
-        transform: translate(80%, 80%) scale(0.2);
-        opacity: 0;
-      }
-
-      100% {
-        transform: translate(0, 0) scale(1);
-        opacity: 1;
-      }
+      0% { transform: translate(80%, 80%) scale(0.2); opacity: 0; }
+      100% { transform: translate(0, 0) scale(1); opacity: 1; }
     }
 
     @keyframes slideDown {
-      0% {
-        transform: translateY(0);
-        opacity: 1;
-      }
-
-      100% {
-        transform: translateY(100%);
-        opacity: 0;
-      }
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(100%); opacity: 0; }
     }
 
     @keyframes bounce {
-      0%,
-      80%,
-      100% {
-        transform: translateY(0);
-      }
-
-      40% {
-        transform: translateY(-8px);
-      }
+      0%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-8px); }
     }
 
-    .animate-slideUp {
-      animation: slideUp 0.5s ease-out forwards;
-    }
-
-    .animate-slideDown {
-      animation: slideDown 0.2s ease-in forwards;
-    }
+    .animate-slideUp { animation: slideUp 0.5s ease-out forwards; }
+    .animate-slideDown { animation: slideDown 0.2s ease-in forwards; }
 
     .dot-loader span {
       animation: bounce 0.6s infinite ease-in-out;
       background-color: var(--bubble-dot-color);
     }
 
-    .dot-loader span:nth-child(2) {
-      animation-delay: 0.1s;
+    .dot-loader span:nth-child(2) { animation-delay: 0.1s; }
+    .dot-loader span:nth-child(3) { animation-delay: 0.2s; }
+
+    .content-item { transition: background-color 0.3s ease-in-out; }
+
+    .footer-box {
+      background-color: var(--footer-box-bg);
+      transition: background-color 0.3s ease;
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
     }
 
-    .dot-loader span:nth-child(3) {
-      animation-delay: 0.2s;
+    .footer-box a {
+      border-radius: 8px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5px;
+      padding: 8px;
+      width: 70px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: bold;
     }
 
-    .content-item {
-      transition: background-color 0.3s ease-in-out;
+    .footer-box a#homeButton {
+      background-color: var(--home-btn-bg);
+      color: var(--home-btn-icon-color);
+    }
+
+    .footer-box a#liveChatButton {
+      background-color: var(--livechat-btn-bg);
+      color: var(--livechat-btn-icon-color);
+    }
+
+    .footer-box a:hover {
+      background-color: var(--hover-bg);
+      color: var(--hover-icon-color);
+    }
+
+    .footer-box a svg {
+      stroke: currentColor;
+      fill: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      width: 25px;
+      height: 25px;
     }
 
     .footer-box a.selected {
@@ -116,13 +142,13 @@
     }
 
     .footer-box a.selected svg {
-      fill: black !important;
-      stroke: none !important;
+      fill: black;
+      stroke: none;
     }
 
     .footer-box a:hover svg {
-      stroke: black;
-      fill: #5f5f5f;
+      stroke: var(--hover-icon-color);
+      fill: var(--hover-icon-color);
     }
 
     .send-button {
@@ -158,14 +184,6 @@
       fill: currentColor;
     }
 
-    .footer-box svg {
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
     #modalContent {
       width: 392px;
       height: 714px;
@@ -189,26 +207,24 @@
         max-width: 95vw;
         max-height: 95vh;
       }
+      .footer-box {
+        padding: 0.5rem;
+        width: calc(100% + 24px);
+        margin-left: -12px;
+        margin-right: -12px;
+      }
+      .footer-box a { font-size: 0.8rem; width: 60px; }
     }
 
     @media (min-width: 481px) and (max-width: 768px) {
-      #modalContent {
-        width: 360px;
-        height: 650px;
-        max-width: 95vw;
-        max-height: 90vh;
-      }
+      #modalContent { width: 360px; height: 650px; max-width: 95vw; max-height: 90vh; }
     }
 
     @media (min-width: 1024px) {
-      #modalContent {
-        width: 392px;
-        height: 714px;
-      }
+      #modalContent { width: 392px; height: 714px; }
     }
 
-    #homeContent,
-    #liveChatContent {
+    #homeContent, #liveChatContent {
       display: none;
       flex-direction: column;
       overflow-y: auto;
@@ -217,18 +233,9 @@
       width: 100%;
     }
 
-    #homeContent.active,
-    #liveChatContent.active {
-      display: flex;
-    }
-
-    #homeContent {
-      padding-bottom: 8px;
-    }
-
-    #liveChatContent.active~.footer-box {
-      display: none;
-    }
+    #homeContent.active, #liveChatContent.active { display: flex; }
+    #homeContent { padding-bottom: 8px; }
+    #liveChatContent.active ~ .footer-box { display: none; }
 
     .chat-header {
       display: flex;
@@ -302,9 +309,7 @@
       color: #374151;
     }
 
-    .input-container button:hover {
-      color: #000;
-    }
+    .input-container button:hover { color: #000; }
 
     .emoji-picker {
       position: absolute;
@@ -394,18 +399,9 @@
       background-color: var(--bubble-hover-bg-color);
     }
 
-    .chat-button .chat-icon {
-      opacity: 1;
-      transition: none;
-    }
-
-    .chat-button:hover .chat-icon {
-      opacity: 0;
-    }
-
-    .chat-button:hover .dot-loader {
-      opacity: 1;
-    }
+    .chat-button .chat-icon { opacity: 1; transition: none; }
+    .chat-button:hover .chat-icon { opacity: 0; }
+    .chat-button:hover .dot-loader { opacity: 1; }
 
     .more-options-button {
       position: relative;
@@ -445,9 +441,7 @@
       margin-top: 8px;
     }
 
-    .dropdown-menu.active {
-      display: flex;
-    }
+    .dropdown-menu.active { display: flex; }
 
     .dropdown-item {
       display: flex;
@@ -460,14 +454,8 @@
       transition: background-color 0.2s ease, color 0.2s ease;
     }
 
-    .dropdown-item:hover {
-      background: #000;
-      color: #fff;
-    }
-
-    .dropdown-item:hover svg {
-      fill: #fff;
-    }
+    .dropdown-item:hover { background: #000; color: #fff; }
+    .dropdown-item:hover svg { fill: #fff; }
 
     .dropdown-item svg {
       width: 20px;
@@ -484,11 +472,7 @@
       margin-left: auto;
     }
 
-    .toggle-switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
+    .toggle-switch input { opacity: 0; width: 0; height: 0; }
 
     .slider {
       position: absolute;
@@ -514,13 +498,8 @@
       border-radius: 50%;
     }
 
-    input:checked+.slider {
-      background-color: #ff5101;
-    }
-
-    input:checked+.slider:before {
-      transform: translateX(14px);
-    }
+    input:checked + .slider { background-color: #ff5101; }
+    input:checked + .slider:before { transform: translateX(14px); }
 
     .chat-footer {
       text-align: center;
@@ -533,9 +512,9 @@
       border-top: 1px solid #e5e7eb;
       line-height: 1;
       margin-top: 16px;
-      margin-left: -16px; /* Offset left padding */
-      margin-right: -16px; 
-      margin-bottom: -16px; /* Offset right padding */
+      margin-left: -16px;
+      margin-right: -16px;
+      margin-bottom: -16px;
     }
 
     .company-logo {
@@ -576,23 +555,9 @@
       transition: color 0.2s ease;
     }
 
-    .header-buttons button:hover {
-      color: #000;
-    }
+    .header-buttons button:hover { color: #000; }
 
-    #homeContent .close-button {
-      position: absolute;
-      top: 0;
-      right: 1rem;
-      font-size: 3rem;
-      font-weight: bold;
-      color: #4b5563;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-    }
-
-    #liveChatContent .close-button {
+    #homeContent .close-button, #liveChatContent .close-button {
       position: absolute;
       top: 0;
       right: 1rem;
@@ -605,49 +570,18 @@
     }
 
     @media (max-width: 480px) {
-      .chat-messages {
-        padding: 8px 12px;
-      }
-
-      .footer-box {
-        padding: 0.5rem;
-        width: calc(100% + 24px); /* Adjust for smaller padding */
-        margin-left: -12px;
-        margin-right: -12px;
-      }
-
-      .footer-box a {
-        font-size: 0.8rem;
-        width: 60px;
-      }
-
-      #homeContent h2 {
-        font-size: 1.5rem;
-      }
-
-      .company-logo img {
-        width: 28px;
-        height: 28px;
-      }
-
-      .company-logo span {
-        font-size: 14px;
-      }
-
-      .header-buttons button {
-        font-size: 20px;
-        padding: 6px;
-      }
-
-      #homeContent .close-button,
-      #liveChatContent .close-button {
+      .chat-messages { padding: 8px 12px; }
+      .company-logo img { width: 28px; height: 28px; }
+      .company-logo span { font-size: 14px; }
+      .header-buttons button { font-size: 20px; padding: 6px; }
+      #homeContent .close-button, #liveChatContent .close-button {
         font-size: 2.5rem;
         right: 0.75rem;
       }
+      #homeContent h2 { font-size: 1.5rem; }
     }
   </style>
 </head>
-
 <body>
   <div class="container" style="padding: 20px; max-width: 1200px; margin: 0 auto;">
     <h1>Welcome to Our Website</h1>
@@ -846,9 +780,9 @@
         </div>
       </div>
       <div
-        class="border border-gray-300 rounded-3xl shadow-2xl p-2.5 flex justify-between items-center bg-gray-100 footer-box">
+        class="border border-gray-300 rounded-3xl shadow-2xl p-2.5 flex justify-between items-center footer-box">
         <a href="#home"
-          class="text-gray-800 ml-7 no-underline text-sm flex flex-col items-center gap-1.5 py-2 px-3 w-20 text-center hover:text-gray-500 transition-colors duration-300 font-bold sm:text-xs sm:py-1.5 sm:px-2.5 sm:w-[70px] selected"
+          class="no-underline text-sm flex flex-col items-center ml-9 gap-1.5 py-2 px-3 w-20 text-center transition-colors duration-300 font-bold sm:text-xs sm:py-1.5 sm:px-2.5 sm:w-[70px] selected"
           id="homeButton">
           <svg viewBox="0 0 24 24" width="25" height="25" class="home-icon">
             <path d="M3 12l9-9 9 9v9a2 2 0 0 1-2 2h-4v-6h-6v6H5a2 2 0 0 1-2-2v-9z" stroke="currentColor"
@@ -857,7 +791,7 @@
           Home
         </a>
         <a href="#livechat"
-          class="text-gray-800 mr-7 no-underline text-sm flex flex-col items-center gap-1.5 py-2 px-3 w-20 text-center hover:text-gray-500 transition-colors duration-300 sm:text-xs sm:py-1.5 sm:px-2.5 sm:w-[70px]"
+          class="no-underline text-sm flex flex-col mr-9 items-center gap-1.5 py-2 px-3 w-20 text-center transition-colors duration-300 sm:text-xs sm:py-1.5 sm:px-2.5 sm:w-[70px]"
           id="liveChatButton">
           <svg viewBox="0 0 24 24" width="25" height="25" class="livechat-icon">
             <path
@@ -871,7 +805,6 @@
         </a>
       </div>
       <div class="chat-footer">Powered by LiveChat</div>
-
     </div>
   </div>
 
@@ -937,8 +870,9 @@
           root.style.setProperty('--bubble-icon-inner-color', settings.bubble.iconColor || '#655858');
         }
 
-        // Chat Widget Landing
+        // Chat Widget Landing and Open
         if (settings.chatWidget) {
+          // Landing
           root.style.setProperty('--modal-gradient-start', settings.chatWidget.modalBgColor || '#d3d3d3');
           root.style.setProperty('--modal-gradient-end', '#e8e8e8');
           root.style.setProperty('--modal-title-color', settings.chatWidget.modalTitleColor || '#000000');
@@ -951,10 +885,7 @@
           root.style.setProperty('--link-item-text-color', settings.chatWidget.linkItemTextColor || '#374151');
           root.style.setProperty('--landing-icon-bg-color', settings.chatWidget.bubbleBorderColor || '#ff5101');
           root.style.setProperty('--landing-icon-fill-color', '#ffffff');
-        }
-
-        // Chat Widget Open
-        if (settings.chatWidget) {
+          // Open
           root.style.setProperty('--bubble-bg-color-open', settings.chatWidget.bubbleBgColor || '#ffffff');
           root.style.setProperty('--bubble-border-color', settings.chatWidget.bubbleBorderColor || '#ff5101');
           root.style.setProperty('--bubble-title-color', settings.chatWidget.bubbleTitleColor || '#000000');
@@ -969,6 +900,14 @@
           root.style.setProperty('--bubble-icon-inner-color-open', '#ffffff');
           root.style.setProperty('--chat-footer-bg-color', settings.chatWidget.footerBgColor || '#f9fafb');
           root.style.setProperty('--chat-footer-text-color', settings.chatWidget.footerTextColor || '#6b7280');
+          // Footer Box and Buttons
+          root.style.setProperty('--footer-box-bg', settings.chatWidget.footerBoxBg || '#ffffff');
+          root.style.setProperty('--home-btn-bg', settings.chatWidget.footerButtonsBg || '#f3f4f6');
+          root.style.setProperty('--livechat-btn-bg', settings.chatWidget.footerButtonsBg || '#f3f4f6');
+          root.style.setProperty('--home-btn-icon-color', settings.chatWidget.footerButtonsIconColor || '#374151');
+          root.style.setProperty('--livechat-btn-icon-color', settings.chatWidget.footerButtonsIconColor || '#374151');
+          root.style.setProperty('--hover-bg', lightenColor(settings.chatWidget.footerButtonsBg || '#f3f4f6', 0.2));
+          root.style.setProperty('--hover-icon-color', '#000000');
         }
 
         // Re-render messages to apply updated colors
@@ -1017,7 +956,7 @@
     });
 
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && modal.jetbrains-style.display === 'block') {
+      if (event.key === 'Escape' && modal.style.display === 'block') {
         closeModal();
       }
     });
@@ -1139,5 +1078,4 @@
     });
   </script>
 </body>
-
 </html>
