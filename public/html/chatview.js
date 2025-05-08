@@ -261,7 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (widgetSendBtnIconColorText) widgetSendBtnIconColorText.value = settings.chatWidget.sendBtnIconColor || "#ffffff";
                 if (footerBgColorText) footerBgColorText.value = settings.chatWidget.footerBgColor || "#ffffff";
                 if (footerTextColorText) footerTextColorText.value = settings.chatWidget.footerTextColor || "#374151";
-                if (modalBgColorText)  modalBgColorText.value = settings.chatWidget.modalBgColor || "#d3d3d3";
+                if (modalBgColorText) modalBgColorText.value = settings.chatWidget.modalBgColor || "#d3d3d3";
                 if (modalTitleColorText) modalTitleColorText.value = settings.chatWidget.modalTitleColor || "#000000";
                 if (chatPreviewBgText) chatPreviewBgText.value = settings.chatWidget.chatPreviewBg || "#f3f4f6";
                 if (chatPreviewTextColorText) chatPreviewTextColorText.value = settings.chatWidget.chatPreviewTextColor || "#374151";
@@ -378,9 +378,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         if (homeButton && footerButtonsIconColorText) {
             homeButton.style.color = footerButtonsIconColorText.value;
+            homeButton.querySelectorAll("svg path").forEach(path => {
+                path.setAttribute("fill", footerButtonsIconColorText.value);
+                path.setAttribute("stroke", footerButtonsIconColorText.value);
+            });
         }
         if (liveChatButton && footerButtonsIconColorText) {
             liveChatButton.style.color = footerButtonsIconColorText.value;
+            liveChatButton.querySelectorAll("svg path").forEach(path => {
+                path.setAttribute("fill", footerButtonsIconColorText.value);
+                path.setAttribute("stroke", footerButtonsIconColorText.value);
+            });
         }
     }
 
@@ -773,6 +781,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 footerButtonsIconColorInput.value = footerButtonsIconColorText.value;
                 homeButton.style.color = footerButtonsIconColorText.value;
                 liveChatButton.style.color = footerButtonsIconColorText.value;
+                homeButton.querySelectorAll("svg path").forEach(path => {
+                    path.setAttribute("fill", footerButtonsIconColorText.value);
+                    path.setAttribute("stroke", footerButtonsIconColorText.value);
+                });
+                liveChatButton.querySelectorAll("svg path").forEach(path => {
+                    path.setAttribute("fill", footerButtonsIconColorText.value);
+                    path.setAttribute("stroke", footerButtonsIconColorText.value);
+                });
             });
         }
         if (footerButtonsIconColorInput) {
@@ -780,6 +796,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 footerButtonsIconColorText.value = footerButtonsIconColorInput.value;
                 homeButton.style.color = footerButtonsIconColorInput.value;
                 liveChatButton.style.color = footerButtonsIconColorInput.value;
+                homeButton.querySelectorAll("svg path").forEach(path => {
+                    path.setAttribute("fill", footerButtonsIconColorInput.value);
+                    path.setAttribute("stroke", footerButtonsIconColorInput.value);
+                });
+                liveChatButton.querySelectorAll("svg path").forEach(path => {
+                    path.setAttribute("fill", footerButtonsIconColorInput.value);
+                    path.setAttribute("stroke", footerButtonsIconColorInput.value);
+                });
             });
         }
     }
