@@ -33,7 +33,7 @@ const Header = () => {
         </Link>
         <span className="mr-4">Call Sales: 1-888-248-9325</span>
         <Link
-          href="#"
+          href="/login"
           className="text-gray-700 dark:text-gray-100 hover:text-black dark:hover:text-white"
         >
           Log In

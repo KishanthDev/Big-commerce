@@ -38,7 +38,7 @@ export default function Login() {
       </div>
 
       {/* Login Form */}
-      <div className="w-full max-w-md border dark:border-gray-600 bg-white dark:bg-black p-8 rounded-xl shadow-md">
+      <div className="w-full max-w-md dark:border dark:border-gray-600 bg-white dark:bg-black p-8 dark:rounded-lg">
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-900 dark:text-gray-100">
           Login
         </h2>
