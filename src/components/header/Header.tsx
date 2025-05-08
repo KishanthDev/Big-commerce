@@ -106,12 +106,23 @@ const Header = () => {
               className={`border ${pathname !== "/" ? "bg-blue-700" : "bg-blue-600"} text-white border-blue-500 p-1.5 w-8 h-8 rounded-md cursor-pointer`}
             />
           </Link>
+          <Link
+            href="/login">
+          <Button
+            variant="outline"
+          >
+           Log In
+          </Button>
+          </Link>
+          <Link
+            href="/signup">
           <Button
             variant="blue"
             className="bg-blue-600 text-white hover:bg-blue-700"
           >
-            Sign Up / Sign In
+            Sign Up free
           </Button>
+          </Link>
           <FullScreenToggle />
           <DarkModeToggle />
         </div>
