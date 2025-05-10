@@ -1,3 +1,65 @@
+/* Base Styles with Hidden Scrollbars */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-y: auto; /* Enable body scrolling */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+/* Chat Widget Container */
+.chat-widget {
+  width: 392px;
+  height: 650px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Scrollable Areas */
+.chat-messages,
+#homeContent,
+.modal-landing-bg {
+  overflow-y: auto; /* Enable scrolling */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  scroll-behavior: smooth; /* Optional: smooth scrolling */
+}
+
+/* Chat Messages Area */
+.chat-messages {
+  flex: 1;
+  padding: 8px 16px;
+  font-size: small;
+}
+
+/* Home Content Area */
+#homeContent {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Modal Landing Background */
+.modal-landing-bg {
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  justify-content: space-between;
+}
+
+/* Wave Animation */
 .wave {
   display: inline-block;
   animation: wave 1.5s infinite;
@@ -27,7 +89,6 @@
   height: 60px;
   background-color: #ff5101;
   transition: background-color 0.3s ease;
-  overflow: hidden;
 }
 
 .bubble-preview .chat-icon {
@@ -320,7 +381,6 @@
   text-align: center;
   padding: 4px 0;
   margin: 0;
-  border-radius: 0 0px 16px 16px;
   font-size: 12px;
   color: var(--chat-footer-text-color);
   background-color: var(--chat-footer-bg-color);
@@ -580,6 +640,7 @@ input:checked+.slider:before {
   animation: slideUp 0.5s ease-out forwards;
 }
 
+/* Footer Box */
 .footer-box {
   background-color: var(--footer-box-bg, #ffffff);
   transition: background-color 0.3s ease;
