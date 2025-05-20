@@ -18,37 +18,6 @@ const Header = () => {
 
   return (
     <motion.div className="sticky top-0 left-0 w-full z-50">
-      <div className="hidden md:flex bg-gray-50 dark:bg-blue-900 text-gray-800 dark:text-gray-100 h-10 py-2 px-6 justify-end items-center text-sm font-medium shadow-md">
-        <Link
-          href="#"
-          className="hover:text-gray-900 dark:hover:text-white mr-4"
-        >
-          Help Center
-        </Link>
-        <Link
-          href="#"
-          className="hover:text-gray-900 dark:hover:text-white mr-4"
-        >
-          Developer Center
-        </Link>
-        <span className="mr-4">Call Sales: 1-888-248-9325</span>
-        <Link
-          href="/login"
-          className="text-gray-700 dark:text-gray-100 hover:text-black dark:hover:text-white"
-        >
-          Log In
-        </Link>
-        <select
-          aria-label="Select country"
-          className="bg-transparent text-gray-700 dark:text-white border-none focus:outline-none ml-2"
-        >
-          <option value="us">🇺🇸 US</option>
-          <option value="uk">🇬🇧 UK</option>
-          <option value="in">🇮🇳 India</option>
-          <option value="ca">🇨🇦 Canada</option>
-        </select>
-      </div>
-
       <motion.header className="bg-white dark:bg-blue-950 shadow-md p-4 h-16 w-full flex items-center justify-between transition-all">
         <Link href="/">
           <div className="hidden md:block">
@@ -185,48 +154,6 @@ const Header = () => {
               },
             )}
           </div>
-
-          <hr className="border-gray-800 dark:border-gray-600 w-full" />
-
-          <div data-testid="mobile-menu" className="flex flex-col space-y-2">
-            <Link
-              href="#"
-              className="text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-300"
-            >
-              Help Center
-            </Link>
-            <Link
-              href="#"
-              className="text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-300"
-            >
-              Developer Center
-            </Link>
-            <span className="text-gray-700 dark:text-white">
-              Call Sales: 1-888-248-9325
-            </span>
-            <Link
-              href="#"
-              className="text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-300"
-            >
-              Log In
-            </Link>
-
-            <Button className="bg-blue-600 text-white hover:bg-blue-700 w-full text-sm">
-              Sign Up / Sign In
-            </Button>
-          </div>
-
-          <hr className="border-gray-800 dark:border-gray-600 w-full" />
-
-          <select
-            aria-label="Select country"
-            className="bg-background text-foreground border border-border rounded px-2 py-1 focus:outline-none transition-colors"
-          >
-            <option value="us">🇺🇸 United States</option>
-            <option value="uk">🇬🇧 United Kingdom</option>
-            <option value="in">🇮🇳 India</option>
-            <option value="ca">🇨🇦 Canada</option>
-          </select>
         </motion.div>
       )}
     </motion.div>
