@@ -1,17 +1,29 @@
 "use client";
+import React, { useEffect } from "react";
 import HeroSection from "@/components/hero/Hero";
 import Header from "@/components/header/Header";
 import StatsSection from "@/components/Stats";
 import BigCommerceBenefits from "@/components/BigCommerceBenefits";
 import Footer from "@/components/footer/Footer";
 import { CarouselDemo } from "@/components/Carousel";
+import { useCategoryStore } from "@/components/stores/useCategoryStore";
+import NavBar from "@/components/Slider";
 
 export default function Home() {
- 
+  const { categories, loading, error, fetchCategories } = useCategoryStore()
+
+  useEffect(() => {
+    fetchCategories()
+  }, [fetchCategories])
+
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error: {error}</p>
 
   return (
     <>
       <Header />
+      {categories.length}
+      <NavBar />
       <HeroSection />
 
       <div className="relative w-full">
