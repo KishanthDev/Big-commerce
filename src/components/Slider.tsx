@@ -156,12 +156,6 @@ export default function CategoryCarousel() {
                 )}
 
             </div>
-            {activeIndex !== null && categories[activeIndex].name !== 'All' && (
-                <h2 className="text-xl font-semibold text-gray-800 mt-4">
-                    {categories[activeIndex].name}
-                </h2>
-            )}
-
             <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
         </div>
     );
