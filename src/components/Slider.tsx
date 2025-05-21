@@ -24,7 +24,7 @@ const ITEM_WIDTH = 140;
 
 export default function CategoryCarousel() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [activeIndex, setActiveIndex] = useState(0);
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
     const [xOffset, setXOffset] = useState(0);
     const [showButtons, setShowButtons] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
@@ -45,11 +45,15 @@ export default function CategoryCarousel() {
     };
 
     const handleCategoryClick = (index: number) => {
-        setActiveIndex(index);
         if (categories[index].name === 'All') {
             setSidebarOpen(true);
+            setActiveIndex(null); // Deselect all
+        } else {
+            setSidebarOpen(false); // Close if open
+            setActiveIndex(index);
         }
     };
+
 
     useEffect(() => {
         const checkOverflow = () => {
@@ -97,7 +101,7 @@ export default function CategoryCarousel() {
     }, [xOffset, controls]);
 
     return (
-        <div className="relative max-w-7xl mx-auto px-4 mt-4">
+        <div className="relative max-w-7xl mx-auto px-4 mt-2">
             <div className="relative overflow-hidden">
                 <div ref={containerRef} className="overflow-hidden cursor-grab">
                     <motion.div
@@ -152,7 +156,13 @@ export default function CategoryCarousel() {
                 )}
 
             </div>
-        <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+            {activeIndex !== null && categories[activeIndex].name !== 'All' && (
+                <h2 className="text-xl font-semibold text-gray-800 mt-4">
+                    {categories[activeIndex].name}
+                </h2>
+            )}
+
+            <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
         </div>
     );
 }
