@@ -25,12 +25,10 @@ const ITEM_WIDTH = 140;
 export default function CategoryCarousel() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const [xOffset, setXOffset] = useState(0);
   const [showButtons, setShowButtons] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
 
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   const scrollLeft = () => {
     if (!containerRef.current) return;
