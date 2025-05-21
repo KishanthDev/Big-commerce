@@ -10,7 +10,7 @@ import { useCategoryStore } from "@/components/stores/useCategoryStore";
 import NavBar from "@/components/Slider";
 
 export default function Home() {
-  const { categories, loading, error, fetchCategories } = useCategoryStore()
+  const { loading, error, fetchCategories } = useCategoryStore()
 
   useEffect(() => {
     fetchCategories()
@@ -22,7 +22,6 @@ export default function Home() {
   return (
     <>
       <Header />
-      {categories.length}
       <NavBar />
       <HeroSection />
 
