@@ -19,7 +19,7 @@ const Header = () => {
 
   return (
     <motion.div className="sticky top-0 left-0 w-full z-50">
-      <motion.header className="bg-white dark:bg-blue-950 p-4 h-16 w-full flex items-center justify-between transition-all">
+      <motion.header className="bg-white dark:bg-blue-950 p-4 pt-6 h-16 w-full flex items-center justify-between transition-all">
         <Link href="/">
           <div className="hidden md:block">
             <Image

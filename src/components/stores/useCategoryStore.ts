@@ -1,11 +1,12 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
+import fallback from '../../../data/fallback.json';
 
 interface Category {
   id: string;
   name: string;
   subcategories?: Category[];
-  [key: string]: unknown;  // safer than any
+  [key: string]: unknown;
 }
 
 interface CategoryState {
@@ -28,11 +29,12 @@ export const useCategoryStore = create<CategoryState>()(
         const data = await res.json();
         set({ categories: data, loading: false });
       } catch (err: unknown) {
-        if (err instanceof Error) {
-          set({ error: err.message, loading: false });
-        } else {
-          set({ error: 'Unknown error', loading: false });
-        }
+        console.error('Error fetching categories, using fallback:', err);
+        set({
+          categories: fallback as unknown as Category[],
+          loading: false,
+          error: err instanceof Error ? err.message : 'Unknown error',
+        });
       }
     },
   }))

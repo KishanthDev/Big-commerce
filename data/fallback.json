@@ -1,0 +1,509 @@
+[
+    {
+        "id": 1,
+        "categoryName": "Automotive",
+        "description": null,
+        "subcategories": [
+            {
+                "id": 1,
+                "subcategoryName": "Car Repair",
+                "categoryId": 1
+            },
+            {
+                "id": 2,
+                "subcategoryName": "Car Sales",
+                "categoryId": 1
+            },
+            {
+                "id": 3,
+                "subcategoryName": "Tires",
+                "categoryId": 1
+            },
+            {
+                "id": 4,
+                "subcategoryName": "Auto Parts",
+                "categoryId": 1
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "categoryName": "Restaurants & Food",
+        "description": null,
+        "subcategories": [
+            {
+                "id": 15,
+                "subcategoryName": "Fast Food",
+                "categoryId": 4
+            },
+            {
+                "id": 16,
+                "subcategoryName": "Fine Dining",
+                "categoryId": 4
+            },
+            {
+                "id": 17,
+                "subcategoryName": "Cafes",
+                "categoryId": 4
+            },
+            {
+                "id": 18,
+                "subcategoryName": "Bakeries",
+                "categoryId": 4
+            },
+            {
+                "id": 19,
+                "subcategoryName": "Food Delivery Services",
+                "categoryId": 4
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "categoryName": "Health & Medical",
+        "description": null,
+        "subcategories": [
+            {
+                "id": 5,
+                "subcategoryName": "Hospitals",
+                "categoryId": 2
+            },
+            {
+                "id": 6,
+                "subcategoryName": "Clinics",
+                "categoryId": 2
+            },
+            {
+                "id": 7,
+                "subcategoryName": "Dentists",
+                "categoryId": 2
+            },
+            {
+                "id": 8,
+                "subcategoryName": "Pharmacies",
+                "categoryId": 2
+            },
+            {
+                "id": 9,
+                "subcategoryName": "Physiotherapy Centres",
+                "categoryId": 2
+            },
+            {
+                "id": 10,
+                "subcategoryName": "Veterinary Clinics",
+                "categoryId": 2
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "categoryName": "Shopping & Retail",
+        "description": null,
+        "subcategories": [
+            {
+                "id": 20,
+                "subcategoryName": "Clothing Stores",
+                "categoryId": 5
+            },
+            {
+                "id": 21,
+                "subcategoryName": "Electronics Stores",
+                "categoryId": 5
+            },
+            {
+                "id": 22,
+                "subcategoryName": "Jewellery Showrooms",
+                "categoryId": 5
+            },
+            {
+                "id": 23,
+                "subcategoryName": "Grocery Stores",
+                "categoryId": 5
+            },
+            {
+                "id": 24,
+                "subcategoryName": "Department Stores",
+                "categoryId": 5
+            },
+            {
+                "id": 25,
+                "subcategoryName": "Furniture Showrooms",
+                "categoryId": 5
+            },
+            {
+                "id": 26,
+                "subcategoryName": "Pest Control",
+                "categoryId": 5
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "categoryName": "Travel & Transportation",
+        "description": null,
+        "subcategories": [
+            {
+                "id": 38,
+                "subcategoryName": "Airlines",
+                "categoryId": 8
+            },
+            {
+                "id": 39,
+                "subcategoryName": "Hotels",
+                "categoryId": 8
+            },
+            {
+                "id": 40,
+                "subcategoryName": "Car Rentals",
+                "categoryId": 8
+            },
+            {
+                "id": 41,
+                "subcategoryName": "Travel Agencies",
+                "categoryId": 8
+            },
+            {
+                "id": 42,
+                "subcategoryName": "Public Transport",
+                "categoryId": 8
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "categoryName": "Education",
+        "description": null,
+        "subcategories": [
+            {
+                "id": 11,
+                "subcategoryName": "Schools (primary, secondary)",
+                "categoryId": 3
+            },
+            {
+                "id": 12,
+                "subcategoryName": "Colleges & Universities",
+                "categoryId": 3
+            },
+            {
+                "id": 13,
+                "subcategoryName": "Tutoring Services",
+                "categoryId": 3
+            },
+            {
+                "id": 14,
+                "subcategoryName": "Educational Consultants",
+                "categoryId": 3
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "categoryName": "Real Estate",
+        "description": null,
+        "subcategories": [
+            {
+                "id": 43,
+                "subcategoryName": "Builders and Developers",
+                "categoryId": 9
+            },
+            {
+                "id": 44,
+                "subcategoryName": "Civil Contractors",
+                "categoryId": 9
+            },
+            {
+                "id": 45,
+                "subcategoryName": "Real Estate Agents",
+                "categoryId": 9
+            },
+            {
+                "id": 46,
+                "subcategoryName": "Property Management",
+                "categoryId": 9
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "categoryName": "Home Services",
+        "description": null,
+        "subcategories": [
+            {
+                "id": 31,
+                "subcategoryName": "Interior Designers",
+                "categoryId": 7
+            },
+            {
+                "id": 32,
+                "subcategoryName": "Carpenters",
+                "categoryId": 7
+            },
+            {
+                "id": 33,
+                "subcategoryName": "Plumbers",
+                "categoryId": 7
+            },
+            {
+                "id": 34,
+                "subcategoryName": "Electricians",
+                "categoryId": 7
+            },
+            {
+                "id": 35,
+                "subcategoryName": "Cleaners",
+                "categoryId": 7
+            },
+            {
+                "id": 36,
+                "subcategoryName": "Landscapers",
+                "categoryId": 7
+            },
+            {
+                "id": 37,
+                "subcategoryName": "Home Renovation",
+                "categoryId": 7
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "categoryName": "Professional Business Services",
+        "description": null,
+        "subcategories": [
+            {
+                "id": 27,
+                "subcategoryName": "Chartered Accountants",
+                "categoryId": 6
+            },
+            {
+                "id": 28,
+                "subcategoryName": "Lawyers",
+                "categoryId": 6
+            },
+            {
+                "id": 29,
+                "subcategoryName": "Marketing Agencies",
+                "categoryId": 6
+            },
+            {
+                "id": 30,
+                "subcategoryName": "Business Consultants",
+                "categoryId": 6
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "categoryName": "Financial Services",
+        "description": null,
+        "subcategories": [
+            {
+                "id": 47,
+                "subcategoryName": "Banks",
+                "categoryId": 10
+            },
+            {
+                "id": 48,
+                "subcategoryName": "Loan Agencies",
+                "categoryId": 10
+            },
+            {
+                "id": 49,
+                "subcategoryName": "Insurance Agencies",
+                "categoryId": 10
+            },
+            {
+                "id": 50,
+                "subcategoryName": "Investment Services",
+                "categoryId": 10
+            },
+            {
+                "id": 51,
+                "subcategoryName": "Credit Unions",
+                "categoryId": 10
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "categoryName": "Entertainment & Media",
+        "description": null,
+        "subcategories": [
+            {
+                "id": 56,
+                "subcategoryName": "Movie Theaters",
+                "categoryId": 12
+            },
+            {
+                "id": 57,
+                "subcategoryName": "Music Stores",
+                "categoryId": 12
+            },
+            {
+                "id": 58,
+                "subcategoryName": "Event Management",
+                "categoryId": 12
+            },
+            {
+                "id": 59,
+                "subcategoryName": "Convention Halls",
+                "categoryId": 12
+            },
+            {
+                "id": 60,
+                "subcategoryName": "Media Production",
+                "categoryId": 12
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "categoryName": "Government & Community",
+        "description": null,
+        "subcategories": [
+            {
+                "id": 52,
+                "subcategoryName": "Local Government Offices",
+                "categoryId": 11
+            },
+            {
+                "id": 53,
+                "subcategoryName": "Community Centers",
+                "categoryId": 11
+            },
+            {
+                "id": 54,
+                "subcategoryName": "Libraries",
+                "categoryId": 11
+            },
+            {
+                "id": 55,
+                "subcategoryName": "Post Offices",
+                "categoryId": 11
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "categoryName": "Sports & Recreation",
+        "description": null,
+        "subcategories": [
+            {
+                "id": 61,
+                "subcategoryName": "Gyms",
+                "categoryId": 13
+            },
+            {
+                "id": 62,
+                "subcategoryName": "Sports Leagues",
+                "categoryId": 13
+            },
+            {
+                "id": 63,
+                "subcategoryName": "Parks",
+                "categoryId": 13
+            },
+            {
+                "id": 64,
+                "subcategoryName": "Recreation Centers",
+                "categoryId": 13
+            },
+            {
+                "id": 65,
+                "subcategoryName": "Sports Equipment Stores",
+                "categoryId": 13
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "categoryName": "Pets & Animals",
+        "description": null,
+        "subcategories": [
+            {
+                "id": 66,
+                "subcategoryName": "Pet Stores",
+                "categoryId": 14
+            },
+            {
+                "id": 67,
+                "subcategoryName": "Veterinarians",
+                "categoryId": 14
+            },
+            {
+                "id": 68,
+                "subcategoryName": "Pet Grooming",
+                "categoryId": 14
+            },
+            {
+                "id": 69,
+                "subcategoryName": "Animal Shelters",
+                "categoryId": 14
+            },
+            {
+                "id": 70,
+                "subcategoryName": "Pet Training",
+                "categoryId": 14
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "categoryName": "Safety & Security",
+        "description": null,
+        "subcategories": [
+            {
+                "id": 76,
+                "subcategoryName": "Private Security Services",
+                "categoryId": 16
+            },
+            {
+                "id": 77,
+                "subcategoryName": "Fire Departments",
+                "categoryId": 16
+            },
+            {
+                "id": 78,
+                "subcategoryName": "Police Stations",
+                "categoryId": 16
+            },
+            {
+                "id": 79,
+                "subcategoryName": "Safety Equipment",
+                "categoryId": 16
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "categoryName": "Computers & Mobile",
+        "description": null,
+        "subcategories": [
+            {
+                "id": 71,
+                "subcategoryName": "Internet Service Providers",
+                "categoryId": 15
+            },
+            {
+                "id": 72,
+                "subcategoryName": "Computer Sales and Repair",
+                "categoryId": 15
+            },
+            {
+                "id": 73,
+                "subcategoryName": "Mobile Sales and Repair",
+                "categoryId": 15
+            },
+            {
+                "id": 74,
+                "subcategoryName": "Web Design",
+                "categoryId": 15
+            },
+            {
+                "id": 75,
+                "subcategoryName": "Software Solutions",
+                "categoryId": 15
+            }
+        ]
+    }
+]
