@@ -11,6 +11,7 @@ import { LayoutList } from "lucide-react";
 import { usePathname } from "next/navigation";
 import styles from "./Link.module.css";
 import LocationModal from "./LocationModal";
+import CategoryCarousel from "../Slider";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = React.useState(false);
@@ -18,7 +19,7 @@ const Header = () => {
 
   return (
     <motion.div className="sticky top-0 left-0 w-full z-50">
-      <motion.header className="bg-white dark:bg-blue-950 shadow-md p-4 h-16 w-full flex items-center justify-between transition-all">
+      <motion.header className="bg-white dark:bg-blue-950 p-4 h-16 w-full flex items-center justify-between transition-all">
         <Link href="/">
           <div className="hidden md:block">
             <Image
@@ -34,11 +35,10 @@ const Header = () => {
         <nav className="hidden md:flex items-center space-x-6">
           <Link
             href="/"
-            className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
-              pathname === "/"
+            className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${pathname === "/"
                 ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
                 : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
-            }`}
+              }`}
           >
             Home
           </Link>
@@ -51,11 +51,10 @@ const Header = () => {
                 <Link
                   href={path}
                   key={item}
-                  className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
-                    isActive
+                  className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${isActive
                       ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
                       : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
-                  }`}
+                    }`}
                 >
                   {item}
                   {!isActive && (
@@ -77,20 +76,20 @@ const Header = () => {
           </Link>
           <Link
             href="/login">
-          <Button
-            variant="outline"
-          >
-           Log In
-          </Button>
+            <Button
+              variant="outline"
+            >
+              Log In
+            </Button>
           </Link>
           <Link
             href="/signup">
-          <Button
-            variant="blue"
-            className="bg-blue-600 text-white hover:bg-blue-700"
-          >
-            Sign Up free
-          </Button>
+            <Button
+              variant="blue"
+              className="bg-blue-600 text-white hover:bg-blue-700"
+            >
+              Sign Up free
+            </Button>
           </Link>
           <FullScreenToggle />
           <DarkModeToggle />
@@ -108,7 +107,9 @@ const Header = () => {
           </button>
         </div>
       </motion.header>
-
+      <div className="bg-white dark:bg-blue-950 shadow-md h-16 w-full flex items-center">
+          <CategoryCarousel />
+      </div>
       {menuOpen && (
         <motion.div
           id="mobile-menu"
@@ -122,11 +123,10 @@ const Header = () => {
           <div className="flex flex-col space-y-4">
             <Link
               href="/"
-              className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
-                pathname === "/"
+              className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${pathname === "/"
                   ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
                   : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
-              }`}
+                }`}
             >
               Home
             </Link>
@@ -139,11 +139,10 @@ const Header = () => {
                   <Link
                     href={path}
                     key={item}
-                    className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
-                      isActive
+                    className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${isActive
                         ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
                         : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer relative group`
-                    }`}
+                      }`}
                   >
                     {item}
                     {!isActive && (

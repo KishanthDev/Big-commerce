@@ -7,7 +7,6 @@ import BigCommerceBenefits from "@/components/BigCommerceBenefits";
 import Footer from "@/components/footer/Footer";
 import { CarouselDemo } from "@/components/Carousel";
 import { useCategoryStore } from "@/components/stores/useCategoryStore";
-import NavBar from "@/components/Slider";
 
 export default function Home() {
   const { loading, error, fetchCategories } = useCategoryStore()
@@ -22,7 +21,6 @@ export default function Home() {
   return (
     <>
       <Header />
-      <NavBar />
       <HeroSection />
 
       <div className="relative w-full">
