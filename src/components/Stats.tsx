@@ -15,8 +15,9 @@ const StatsSection = () => {
   return (
     <section
       data-testid="stats-section"
-      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6 py-12 bg-white dark:bg-gray-950 transition-colors"
+      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6 py-12 bg-white/0 dark:bg-gray-950/80 rounded-xl transition-colors"
     >
+
       {stats.map((item, index) => (
         <div
           data-testid="stat-card"

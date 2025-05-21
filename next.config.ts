@@ -5,7 +5,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["via.placeholder.com"],
+    domains: ["via.placeholder.com","cdn.zeptonow.com"],
     formats: ["image/webp", "image/avif"],
   },
   compiler: {

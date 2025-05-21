@@ -11,11 +11,10 @@ import {
 
 export function CarouselDemo() {
   const images = [
-    "/images/1.jpg",
-    "/images/2.jpg",
-    "/images/3.jpg",
-    "/images/4.jpg",
-    "/images/5.jpg",
+    "/slider/photo1.webp",
+    "/slider/photo2.jpeg",
+    "/slider/photo3.jpeg",
+    "/slider/photo4.jpeg",
   ]
 
   return (
@@ -27,13 +26,13 @@ export function CarouselDemo() {
       <CarouselContent>
         {images.map((src, index) => (
           <CarouselItem key={index}>
-            <div className="p-1">
-              <Card className="overflow-hidden">
+            <div>
+              <Card className="overflow-hidden py-0">
                 <CardContent className="p-0 relative">
                   <img
                     src={src}
                     alt={`Slide ${index + 1}`}
-                    className="w-full h-[200px] object-cover"
+                    className="w-full h-[600px] object-cover"
                   />
                 </CardContent>
               </Card>
