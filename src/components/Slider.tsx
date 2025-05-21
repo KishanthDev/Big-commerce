@@ -101,7 +101,7 @@ export default function CategoryCarousel() {
     }, [xOffset, controls]);
 
     return (
-        <div className="relative max-w-7xl mx-auto px-4">
+        <div className="relative max-w-7xl pt-4">
             <div className="relative overflow-hidden">
                 <div ref={containerRef} className="overflow-hidden cursor-grab">
                     <motion.div

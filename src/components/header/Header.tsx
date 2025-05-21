@@ -107,7 +107,7 @@ const Header = () => {
           </button>
         </div>
       </motion.header>
-      <div className="bg-white dark:bg-blue-950 shadow-md h-16 w-full flex items-center">
+      <div className="bg-white dark:bg-blue-950 shadow-md sticky  left-0 w-full flex items-center">
           <CategoryCarousel />
       </div>
       {menuOpen && (
