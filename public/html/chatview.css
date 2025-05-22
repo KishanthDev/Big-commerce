@@ -67,14 +67,30 @@ body {
 }
 
 @keyframes wave {
-  0% { transform: rotate(0deg); }
-  10% { transform: rotate(14deg); }
-  20% { transform: rotate(-8deg); }
-  30% { transform: rotate(14deg); }
-  40% { transform: rotate(-4deg); }
-  50% { transform: rotate(10deg); }
-  60% { transform: rotate(0deg); }
-  100% { transform: rotate(0deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(14deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  30% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 .bubble-preview {
@@ -154,11 +170,13 @@ body {
 }
 
 @keyframes jump {
-  0%, 80%, 100% {
-      transform: translateY(0);
+  0%,
+  80%,
+  100% {
+    transform: translateY(0);
   }
   40% {
-      transform: translateY(-10px);
+    transform: translateY(-10px);
   }
 }
 
@@ -355,7 +373,9 @@ body {
   min-height: 40px;
   width: 100%;
   box-sizing: border-box;
-  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  transition:
+    border-color 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
 }
 
 .chat-input-container input[type="text"]:focus {
@@ -401,7 +421,9 @@ body {
   height: 32px;
   background-color: transparent;
   border-radius: 8px;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
   z-index: 10;
 }
 
@@ -456,7 +478,7 @@ body {
   background: #fff;
   border: 1px solid #d1d5db;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   display: none;
   flex-direction: column;
   width: 200px;
@@ -476,7 +498,9 @@ body {
   gap: 8px;
   font-size: 14px;
   color: #374151;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .dropdown-item:hover {
@@ -533,11 +557,11 @@ body {
   border-radius: 50%;
 }
 
-input:checked+.slider {
+input:checked + .slider {
   background-color: #ff5101;
 }
 
-input:checked+.slider:before {
+input:checked + .slider:before {
   transform: translateX(14px);
 }
 
@@ -623,7 +647,9 @@ input:checked+.slider:before {
 }
 
 .arrow-container {
-  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  transition:
+    transform 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
 }
 
 .content-item:hover .arrow-container {
@@ -632,8 +658,14 @@ input:checked+.slider:before {
 }
 
 @keyframes slideUp {
-  0% { transform: translateY(100%); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .animate-slideUp {
@@ -658,7 +690,9 @@ input:checked+.slider:before {
   background-color: var(--home-btn-bg, #f3f4f6);
   color: var(--home-btn-icon-color, #374151);
   border-radius: 8px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 .footer-box a#homeButton {

@@ -10,7 +10,8 @@ import {
 } from "@heroui/react";
 import { FiSearch, FiMapPin, FiChevronDown, FiX } from "react-icons/fi";
 
-const GEOCODING_API_URL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
+const GEOCODING_API_URL =
+  "https://maps.googleapis.com/maps/api/geocode/json?address=";
 const API_KEY = "AIzaSyCQNqAUkIYa-5HS5iPypurBC6QCT-YjKS8";
 
 export default function LocationModal() {
@@ -25,7 +26,7 @@ export default function LocationModal() {
   const getCurrentLocation = () => {
     setIsLoading(true);
     setError("");
-    
+
     if (!navigator.geolocation) {
       setError("Geolocation is not supported by your browser");
       setIsLoading(false);
@@ -42,13 +43,13 @@ export default function LocationModal() {
               const location = data.results[0].formatted_address;
               const pincodeComponent = data.results[0].address_components.find(
                 (component: { types: string[] }) =>
-                  component.types.includes("postal_code")
+                  component.types.includes("postal_code"),
               );
               const cityComponent = data.results[0].address_components.find(
                 (component: { types: string[] }) =>
-                  component.types.includes("locality")
+                  component.types.includes("locality"),
               );
-              
+
               setSelectedLocation(location);
               setCity(cityComponent?.long_name || "");
               setPincode(pincodeComponent?.long_name || "");
@@ -66,7 +67,7 @@ export default function LocationModal() {
         console.error("Geolocation error:", error);
         setError("Unable to retrieve your location");
         setIsLoading(false);
-      }
+      },
     );
   };
 
@@ -75,7 +76,11 @@ export default function LocationModal() {
     setError("");
   };
 
-  const handleSelectLocation = (location: string, city: string, pincode: string) => {
+  const handleSelectLocation = (
+    location: string,
+    city: string,
+    pincode: string,
+  ) => {
     setSelectedLocation(location);
     setCity(city);
     setPincode(pincode);
@@ -90,20 +95,26 @@ export default function LocationModal() {
     }
 
     setIsLoading(true);
-    fetch(`${GEOCODING_API_URL}${encodeURIComponent(searchQuery)}&key=${API_KEY}`)
+    fetch(
+      `${GEOCODING_API_URL}${encodeURIComponent(searchQuery)}&key=${API_KEY}`,
+    )
       .then((response) => response.json())
       .then((data) => {
         if (data.results && data.results.length > 0) {
           const location = data.results[0].formatted_address;
           const pincodeComponent = data.results[0].address_components.find(
             (component: { types: string[] }) =>
-              component.types.includes("postal_code")
+              component.types.includes("postal_code"),
           );
           const cityComponent = data.results[0].address_components.find(
             (component: { types: string[] }) =>
-              component.types.includes("locality")
+              component.types.includes("locality"),
           );
-          handleSelectLocation(location, cityComponent?.long_name || "", pincodeComponent?.long_name || "");
+          handleSelectLocation(
+            location,
+            cityComponent?.long_name || "",
+            pincodeComponent?.long_name || "",
+          );
         } else {
           setError("No results found for your search");
         }
@@ -133,7 +144,9 @@ export default function LocationModal() {
         className="text-sm font-medium flex dark:bg-transparent bg-white text-primary hover:bg-gray-100 items-center gap-1 px-3 py-2 transition-colors max-w-xs overflow-hidden"
       >
         <span className="truncate">
-          {selectedLocation ? truncateLocation(selectedLocation) : "Select Location"}
+          {selectedLocation
+            ? truncateLocation(selectedLocation)
+            : "Select Location"}
         </span>
         {selectedLocation && city && pincode && (
           <span className="text-xs text-gray-500 dark:text-gray-300 ml-1 whitespace-nowrap">
@@ -176,10 +189,12 @@ export default function LocationModal() {
                     placeholder="Search a new address"
                     value={searchQuery}
                     onChange={handleSearchChange}
-                    onKeyDown={(e) => e.key === "Enter" && handleSearchLocation()}
+                    onKeyDown={(e) =>
+                      e.key === "Enter" && handleSearchLocation()
+                    }
                     className="pl-10 pr-20 py-2 w-full border rounded-md text-sm bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                  <Button 
+                  <Button
                     onClick={handleSearchLocation}
                     disabled={isLoading}
                     className="absolute right-0 top-1/2 transform -translate-y-1/2 h-full px-3 rounded-l-none"
@@ -196,7 +211,9 @@ export default function LocationModal() {
                 >
                   <FiMapPin className="h-4 w-4" />
                   <span className="font-medium">
-                    {isLoading ? "Detecting location..." : "Use Current Location"}
+                    {isLoading
+                      ? "Detecting location..."
+                      : "Use Current Location"}
                   </span>
                 </div>
 

@@ -14,10 +14,16 @@ const Page = () => {
       <HeroSection />
       <ContactPage />
       <FAQSection />
-      <Link className="inline-block p-3 bg-blue-400 cursor-pointer rounded-2xl" href="/html/chatview.html">
+      <Link
+        className="inline-block p-3 bg-blue-400 cursor-pointer rounded-2xl"
+        href="/html/chatview.html"
+      >
         Chat
       </Link>
-      <Link className="inline-block p-3 bg-blue-400 cursor-pointer rounded-2xl" href="/html/clientview.html">
+      <Link
+        className="inline-block p-3 bg-blue-400 cursor-pointer rounded-2xl"
+        href="/html/clientview.html"
+      >
         client
       </Link>
       <Footer />

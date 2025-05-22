@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import { useCategoryStore } from './stores/useCategoryStore';
-import { ChevronDownIcon, ChevronRightIcon } from 'lucide-react';
+import React, { useEffect, useState } from "react";
+import { useCategoryStore } from "./stores/useCategoryStore";
+import { ChevronDownIcon, ChevronRightIcon } from "lucide-react";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -63,7 +63,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                     toggleCategory(Number(cat.id));
                   }}
                   onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
+                    if (e.key === "Enter" || e.key === " ") {
                       e.preventDefault();
                       toggleCategory(Number(cat.id));
                     }
@@ -83,22 +83,24 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                     </span>
                   )}
                 </a>
-                {isOpen && cat.subcategories && cat.subcategories.length > 0 && (
-                  <div
-                    id={`subcategory-list-${cat.id}`}
-                    className="pl-6 mt-2 space-y-1"
-                  >
-                    {cat.subcategories.map((sub) => (
-                      <a
-                        href="#"
-                        key={sub.id}
-                        className="block px-3 py-1 rounded hover:bg-gray-200 text-sm"
-                      >
-                        {String(sub.subcategoryName)}
-                      </a>
-                    ))}
-                  </div>
-                )}
+                {isOpen &&
+                  cat.subcategories &&
+                  cat.subcategories.length > 0 && (
+                    <div
+                      id={`subcategory-list-${cat.id}`}
+                      className="pl-6 mt-2 space-y-1"
+                    >
+                      {cat.subcategories.map((sub) => (
+                        <a
+                          href="#"
+                          key={sub.id}
+                          className="block px-3 py-1 rounded hover:bg-gray-200 text-sm"
+                        >
+                          {String(sub.subcategoryName)}
+                        </a>
+                      ))}
+                    </div>
+                  )}
               </div>
             );
           })}

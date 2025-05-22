@@ -6,21 +6,23 @@ import { slugify } from "../../lib/slugify";
 import SubcategoryPage from "./SubcategoryPage";
 
 // Mock dependencies
-jest.mock("../../../../data/detailed_categories_with_subcategories.json", () => [
-  {
-    category: "Electronics",
-    subcategories: [{ name: "Phones" }, { name: "Laptops" }],
-  },
-  {
-    category: "Books",
-    subcategories: [],
-  },
-]);
+jest.mock(
+  "../../../../data/detailed_categories_with_subcategories.json",
+  () => [
+    {
+      category: "Electronics",
+      subcategories: [{ name: "Phones" }, { name: "Laptops" }],
+    },
+    {
+      category: "Books",
+      subcategories: [],
+    },
+  ],
+);
 
 jest.mock("../../lib/slugify", () => ({
-    slugify: jest.fn((str: string): string => str.toLowerCase()), // Explicit type
-  }));
-  
+  slugify: jest.fn((str: string): string => str.toLowerCase()), // Explicit type
+}));
 
 jest.mock("./SubcategoryPage", () => ({
   __esModule: true,
@@ -50,7 +52,6 @@ describe("Subcategory Page", () => {
       expect(mockedSlugify).toHaveBeenCalledTimes(2);
     });
   });
-  
 
   describe("generateMetadata", () => {
     it("should return correct metadata for found category", async () => {
@@ -91,7 +92,7 @@ describe("Subcategory Page", () => {
 
     it("should call notFound for invalid category", async () => {
       const params = Promise.resolve({ categorySlug: "unknown" });
-      
+
       await expect(async () => {
         await Page({ params });
       }).rejects.toThrow(); // Next.js notFound throws an error

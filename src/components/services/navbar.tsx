@@ -46,8 +46,10 @@ export const Navbar = ({ businessName }: NavbarProps) => {
       </NavbarItem>
 
       <NavbarContent
-      data-testid="mobile-toggle" 
-      className="sm:hidden basis-1 pl-4" justify="end">
+        data-testid="mobile-toggle"
+        className="sm:hidden basis-1 pl-4"
+        justify="end"
+      >
         <NavbarMenuToggle />
       </NavbarContent>
 

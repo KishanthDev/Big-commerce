@@ -6,14 +6,14 @@ import type { Service } from "../../../types/data";
 describe("ServicesSection", () => {
   const mockServices: Service[] = [
     {
-        name: "Oil Change",
-        price: "$29.99",
-        description: ""
+      name: "Oil Change",
+      price: "$29.99",
+      description: "",
     },
     {
-        name: "Brake Inspection",
-        price: "$49.99",
-        description: ""
+      name: "Brake Inspection",
+      price: "$49.99",
+      description: "",
     },
   ];
 

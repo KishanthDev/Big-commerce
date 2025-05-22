@@ -51,7 +51,8 @@ export default function SubcategoryPage({ category }: SubcategoryPageProps) {
         }`}
       >
         {category.subcategories.map((sub, idx) => {
-          const IconComponent: ElementType | undefined = subCategoryIconMap[sub.name]; // Get the component
+          const IconComponent: ElementType | undefined =
+            subCategoryIconMap[sub.name]; // Get the component
 
           return (
             <li

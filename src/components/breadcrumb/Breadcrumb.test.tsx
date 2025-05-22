@@ -24,13 +24,13 @@ describe("Breadcrumb Component", () => {
     expect(screen.getByText("Categories")).toBeInTheDocument();
     expect(screen.getByText(mockCategory.category)).toHaveAttribute(
       "href",
-      "/subcategory/electronics"
+      "/subcategory/electronics",
     );
   });
 
   it("should render subcategory name if provided", () => {
     render(
-      <Breadcrumb category={mockCategory} subcategory={mockSubcategory} />
+      <Breadcrumb category={mockCategory} subcategory={mockSubcategory} />,
     );
     expect(screen.getByText(mockSubcategory.name)).toBeInTheDocument();
   });
@@ -39,11 +39,11 @@ describe("Breadcrumb Component", () => {
     (usePathname as jest.Mock).mockReturnValue("/subcategory/electronics");
 
     render(<Breadcrumb category={mockCategory} />);
-    
+
     const categoryNameElement = screen.getByText(mockCategory.category);
-    
+
     const iconElement = categoryNameElement.previousElementSibling;
-    
-    expect(iconElement).toHaveClass("mx-2");  
+
+    expect(iconElement).toHaveClass("mx-2");
   });
 });

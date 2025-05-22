@@ -1,23 +1,67 @@
-'use client';
+"use client";
 
-import { useRef, useState, useEffect } from 'react';
-import { motion, useAnimation } from 'framer-motion';
-import Image from 'next/image';
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
-import Sidebar from './Sidebar';
+import { useRef, useState, useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
+import Image from "next/image";
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+import Sidebar from "./Sidebar";
 
 const categories = [
-  { name: 'All', image: 'https://cdn.zeptonow.com/production/inventory/banner/a767cf6e-9113-409b-b5ab-ac0d22a7db58.png' },
-  { name: 'Cafe', image: 'https://cdn.zeptonow.com/production/inventory/banner/e8abccfb-64fe-4249-84d3-426eccf01e23.png' },
-  { name: 'Home', image: 'https://cdn.zeptonow.com/production/inventory/banner/be82f78d-d993-4838-9f4a-4c64cd387126.png' },
-  { name: 'Toys', image: 'https://cdn.zeptonow.com/production/inventory/banner/b6960301-bb3c-4b75-af0e-433a8ce0a6b9.png' },
-  { name: 'Fresh', image: 'https://cdn.zeptonow.com/production/inventory/banner/8e8a58b9-f2d7-46fb-9634-930b016499fa.png' },
-  { name: 'Electronics', image: 'https://cdn.zeptonow.com/production/inventory/banner/5c9a7bea-68b1-4bad-9fab-44cc940b72ee.png' },
-  { name: 'Mobiles', image: 'https://cdn.zeptonow.com/production/inventory/banner/c882779f-738d-46f8-8656-8ebb72246b46.png' },
-  { name: 'Beauty', image: 'https://cdn.zeptonow.com/production/inventory/banner/fcb1b518-5047-4aee-a6c4-3677c801d2ca.png' },
-  { name: 'Fashion', image: 'https://cdn.zeptonow.com/production/inventory/banner/331fa0bc-afda-409d-a201-acc3deedaa2d.png' },
-  { name: 'Deal Zone', image: 'https://cdn.zeptonow.com/production/inventory/banner/3c9537eb-0d84-427a-ae63-3137f74ad6f0.png' },
-  { name: 'Baby Store', image: 'https://cdn.zeptonow.com/production/inventory/banner/71ee967e-5e83-46df-95cb-192ff0dde506.png' },
+  {
+    name: "All",
+    image:
+      "https://cdn.zeptonow.com/production/inventory/banner/a767cf6e-9113-409b-b5ab-ac0d22a7db58.png",
+  },
+  {
+    name: "Cafe",
+    image:
+      "https://cdn.zeptonow.com/production/inventory/banner/e8abccfb-64fe-4249-84d3-426eccf01e23.png",
+  },
+  {
+    name: "Home",
+    image:
+      "https://cdn.zeptonow.com/production/inventory/banner/be82f78d-d993-4838-9f4a-4c64cd387126.png",
+  },
+  {
+    name: "Toys",
+    image:
+      "https://cdn.zeptonow.com/production/inventory/banner/b6960301-bb3c-4b75-af0e-433a8ce0a6b9.png",
+  },
+  {
+    name: "Fresh",
+    image:
+      "https://cdn.zeptonow.com/production/inventory/banner/8e8a58b9-f2d7-46fb-9634-930b016499fa.png",
+  },
+  {
+    name: "Electronics",
+    image:
+      "https://cdn.zeptonow.com/production/inventory/banner/5c9a7bea-68b1-4bad-9fab-44cc940b72ee.png",
+  },
+  {
+    name: "Mobiles",
+    image:
+      "https://cdn.zeptonow.com/production/inventory/banner/c882779f-738d-46f8-8656-8ebb72246b46.png",
+  },
+  {
+    name: "Beauty",
+    image:
+      "https://cdn.zeptonow.com/production/inventory/banner/fcb1b518-5047-4aee-a6c4-3677c801d2ca.png",
+  },
+  {
+    name: "Fashion",
+    image:
+      "https://cdn.zeptonow.com/production/inventory/banner/331fa0bc-afda-409d-a201-acc3deedaa2d.png",
+  },
+  {
+    name: "Deal Zone",
+    image:
+      "https://cdn.zeptonow.com/production/inventory/banner/3c9537eb-0d84-427a-ae63-3137f74ad6f0.png",
+  },
+  {
+    name: "Baby Store",
+    image:
+      "https://cdn.zeptonow.com/production/inventory/banner/71ee967e-5e83-46df-95cb-192ff0dde506.png",
+  },
 ];
 
 const ITEM_WIDTH = 140;
@@ -29,21 +73,20 @@ export default function CategoryCarousel() {
   const containerRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
 
-
   const scrollLeft = () => {
     if (!containerRef.current) return;
     const scrollAmount = ITEM_WIDTH * 2;
-    containerRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    containerRef.current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
   };
 
   const scrollRight = () => {
     if (!containerRef.current) return;
     const scrollAmount = ITEM_WIDTH * 2;
-    containerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    containerRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
   };
 
   const handleCategoryClick = (index: number) => {
-    if (categories[index].name === 'All') {
+    if (categories[index].name === "All") {
       setSidebarOpen(true);
       setActiveIndex(null);
     } else {
@@ -60,8 +103,8 @@ export default function CategoryCarousel() {
       }
     };
     checkOverflow();
-    window.addEventListener('resize', checkOverflow);
-    return () => window.removeEventListener('resize', checkOverflow);
+    window.addEventListener("resize", checkOverflow);
+    return () => window.removeEventListener("resize", checkOverflow);
   }, []);
 
   return (
@@ -74,7 +117,7 @@ export default function CategoryCarousel() {
           <motion.div
             animate={controls}
             className="flex gap-3 px-2"
-            style={{ width: 'max-content' }}
+            style={{ width: "max-content" }}
           >
             {categories.map((category, index) => (
               <div
@@ -91,12 +134,12 @@ export default function CategoryCarousel() {
                   sizes="100vw"
                 />
                 <span
-                  className={`text-sm font-medium ${activeIndex === index ? 'text-purple-600' : 'text-gray-600'}`}
+                  className={`text-sm font-medium ${activeIndex === index ? "text-purple-600" : "text-gray-600"}`}
                 >
                   {category.name}
                 </span>
                 <div
-                  className={`absolute bottom-0 h-[3px] w-full bg-purple-600 rounded-t-md transition-opacity duration-300 ${activeIndex === index ? 'opacity-100' : 'opacity-0'}`}
+                  className={`absolute bottom-0 h-[3px] w-full bg-purple-600 rounded-t-md transition-opacity duration-300 ${activeIndex === index ? "opacity-100" : "opacity-0"}`}
                 />
               </div>
             ))}

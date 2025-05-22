@@ -35,10 +35,11 @@ const Header = () => {
         <nav className="hidden md:flex items-center space-x-6">
           <Link
             href="/"
-            className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${pathname === "/"
+            className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
+              pathname === "/"
                 ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
                 : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
-              }`}
+            }`}
           >
             Home
           </Link>
@@ -51,10 +52,11 @@ const Header = () => {
                 <Link
                   href={path}
                   key={item}
-                  className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${isActive
+                  className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
+                    isActive
                       ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
                       : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
-                    }`}
+                  }`}
                 >
                   {item}
                   {!isActive && (
@@ -74,16 +76,10 @@ const Header = () => {
               className={`border ${pathname !== "/" ? "bg-blue-700" : "bg-blue-600"} text-white border-blue-500 p-1.5 w-8 h-8 rounded-md cursor-pointer`}
             />
           </Link>
-          <Link
-            href="/login">
-            <Button
-              variant="outline"
-            >
-              Log In
-            </Button>
+          <Link href="/login">
+            <Button variant="outline">Log In</Button>
           </Link>
-          <Link
-            href="/signup">
+          <Link href="/signup">
             <Button
               variant="blue"
               className="bg-blue-600 text-white hover:bg-blue-700"
@@ -108,7 +104,7 @@ const Header = () => {
         </div>
       </motion.header>
       <div className="bg-white dark:bg-blue-950 shadow-md">
-          <CategoryCarousel />
+        <CategoryCarousel />
       </div>
       {menuOpen && (
         <motion.div
@@ -123,10 +119,11 @@ const Header = () => {
           <div className="flex flex-col space-y-4">
             <Link
               href="/"
-              className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${pathname === "/"
+              className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
+                pathname === "/"
                   ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
                   : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
-                }`}
+              }`}
             >
               Home
             </Link>
@@ -139,10 +136,11 @@ const Header = () => {
                   <Link
                     href={path}
                     key={item}
-                    className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${isActive
+                    className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
+                      isActive
                         ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
                         : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer relative group`
-                      }`}
+                    }`}
                   >
                     {item}
                     {!isActive && (

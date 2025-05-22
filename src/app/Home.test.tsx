@@ -21,7 +21,9 @@ jest.mock("@/components/Stats", () => {
 });
 
 jest.mock("@/components/BigCommerceBenefits", () => {
-  const BigCommerceBenefitsMock = () => <div data-testid="big-commerce-benefits">BigCommerceBenefits</div>;
+  const BigCommerceBenefitsMock = () => (
+    <div data-testid="big-commerce-benefits">BigCommerceBenefits</div>
+  );
   BigCommerceBenefitsMock.displayName = "BigCommerceBenefitsMock";
   return BigCommerceBenefitsMock;
 });
@@ -43,8 +45,12 @@ describe("Home Component", () => {
     expect(screen.getByTestId("footer")).toBeInTheDocument();
 
     expect(screen.getByTestId("hero-section")).toHaveTextContent("HeroSection");
-    expect(screen.getByTestId("stats-section")).toHaveTextContent("StatsSection");
-    expect(screen.getByTestId("big-commerce-benefits")).toHaveTextContent("BigCommerceBenefits");
+    expect(screen.getByTestId("stats-section")).toHaveTextContent(
+      "StatsSection",
+    );
+    expect(screen.getByTestId("big-commerce-benefits")).toHaveTextContent(
+      "BigCommerceBenefits",
+    );
     expect(screen.getByTestId("footer")).toHaveTextContent("Footer");
   });
 });

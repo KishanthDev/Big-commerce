@@ -9,14 +9,14 @@ import { CarouselDemo } from "@/components/Carousel";
 import { useCategoryStore } from "@/components/stores/useCategoryStore";
 
 export default function Home() {
-  const { loading, error, fetchCategories } = useCategoryStore()
+  const { loading, error, fetchCategories } = useCategoryStore();
 
   useEffect(() => {
-    fetchCategories()
-  }, [fetchCategories])
+    fetchCategories();
+  }, [fetchCategories]);
 
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error: {error}</p>
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <>
@@ -31,15 +31,12 @@ export default function Home() {
             <StatsSection />
           </div>
         </div>
-
       </div>
 
       <div className="h-40" />
 
       <BigCommerceBenefits />
       <Footer />
-
     </>
-
   );
 }

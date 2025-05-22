@@ -1,13 +1,13 @@
-import * as React from "react"
+import * as React from "react";
 
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel"
+} from "@/components/ui/carousel";
 
 export function CarouselDemo() {
   const images = [
@@ -15,7 +15,7 @@ export function CarouselDemo() {
     "/slider/photo2.jpeg",
     "/slider/photo3.jpeg",
     "/slider/photo4.jpeg",
-  ]
+  ];
 
   return (
     <Carousel className="w-full mx-auto relative">
@@ -41,5 +41,5 @@ export function CarouselDemo() {
         ))}
       </CarouselContent>
     </Carousel>
-  )
+  );
 }

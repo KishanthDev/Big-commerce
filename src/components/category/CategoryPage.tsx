@@ -14,10 +14,12 @@ const CategoryPage = () => {
   return (
     <div
       className="flex min-h-screen bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-100"
-      data-testid="category-page">
+      data-testid="category-page"
+    >
       <main
         className="flex-1 p-6 overflow-y-auto scrollbar-hide"
-        data-testid="main-content">
+        data-testid="main-content"
+      >
         <div className="mb-6">
           <Breadcrumb />
           <div className="max-w-md mx-auto">
@@ -33,7 +35,8 @@ const CategoryPage = () => {
 
         <div
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
-          data-testid="categories-grid">
+          data-testid="categories-grid"
+        >
           {categoriesData.map((category: CategoryType) => {
             const visibleSubcats = category.subcategories;
             return (

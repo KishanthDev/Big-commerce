@@ -13,7 +13,9 @@ function FeatureSection() {
               <div className="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-5 text-blue-600 text-2xl">
                 📝
               </div>
-              <h3 className="text-lg dark:text-black font-semibold mb-2">Selling Tips</h3>
+              <h3 className="text-lg dark:text-black font-semibold mb-2">
+                Selling Tips
+              </h3>
               <p className="text-gray-500 mb-4">
                 Expert advice to help you grow your online business
               </p>
@@ -28,7 +30,9 @@ function FeatureSection() {
               <div className="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-5 text-blue-600 text-2xl">
                 🛍️
               </div>
-              <h3 className="text-lg dark:text-black font-semibold mb-2">Buying Guides</h3>
+              <h3 className="text-lg dark:text-black font-semibold mb-2">
+                Buying Guides
+              </h3>
               <p className="text-gray-500 mb-4">
                 Make informed decisions with our comprehensive guides
               </p>

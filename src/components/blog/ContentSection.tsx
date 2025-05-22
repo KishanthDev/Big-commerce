@@ -27,7 +27,8 @@ const ContentSection = () => {
           <div className="lg:w-1/4" data-testid="sidebar">
             <div
               data-testid="categories-section"
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 mb-8">
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 mb-8"
+            >
               <h3 className="text-lg font-semibold text-primary mb-4 pb-3 border-b border-gray-200 dark:border-gray-700">
                 Categories
               </h3>
@@ -40,7 +41,10 @@ const ContentSection = () => {
                       data-testid="category-link"
                     >
                       {category.name}
-                      <span data-testid="category-count" className="bg-blue-50 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-full px-2 py-0.5 text-xs font-medium">
+                      <span
+                        data-testid="category-count"
+                        className="bg-blue-50 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-full px-2 py-0.5 text-xs font-medium"
+                      >
                         {category.count}
                       </span>
                     </a>
@@ -51,7 +55,8 @@ const ContentSection = () => {
 
             <div
               data-testid="featured-section"
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6"
+            >
               <h3 className="text-lg font-semibold mb-4 text-primary pb-3 border-b border-gray-200 dark:border-gray-700">
                 Popular Articles
               </h3>

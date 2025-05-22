@@ -1,34 +1,78 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { Navbar } from './navbar';
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import { Navbar } from "./navbar";
 
 // Mock the HeroUI navbar components
-jest.mock('@heroui/navbar', () => ({
-  Navbar: ({ children, className, maxWidth, position }: { children?: React.ReactNode; className?: string; maxWidth?: string; position?: string }) => (
-    <nav className={className} data-maxwidth={maxWidth} data-position={position}>
+jest.mock("@heroui/navbar", () => ({
+  Navbar: ({
+    children,
+    className,
+    maxWidth,
+    position,
+  }: {
+    children?: React.ReactNode;
+    className?: string;
+    maxWidth?: string;
+    position?: string;
+  }) => (
+    <nav
+      className={className}
+      data-maxwidth={maxWidth}
+      data-position={position}
+    >
       {children}
     </nav>
   ),
-  NavbarBrand: ({ children, as: As, className }: { children?: React.ReactNode; as: React.ElementType; className?: string }) => (
-    <As className={className}>{children}</As>
-  ),
-  NavbarContent: ({ children, className, justify }: { children?: React.ReactNode; className?: string; justify?: string }) => (
+  NavbarBrand: ({
+    children,
+    as: As,
+    className,
+  }: {
+    children?: React.ReactNode;
+    as: React.ElementType;
+    className?: string;
+  }) => <As className={className}>{children}</As>,
+  NavbarContent: ({
+    children,
+    className,
+    justify,
+  }: {
+    children?: React.ReactNode;
+    className?: string;
+    justify?: string;
+  }) => (
     <div className={className} data-justify={justify}>
       {children}
     </div>
   ),
-  NavbarItem: ({ children, className }: { children?: React.ReactNode; className?: string }) => (
-    <div className={className}>{children}</div>
+  NavbarItem: ({
+    children,
+    className,
+  }: {
+    children?: React.ReactNode;
+    className?: string;
+  }) => <div className={className}>{children}</div>,
+  NavbarMenu: ({ children }: { children?: React.ReactNode }) => (
+    <div data-testid="navbar-menu">{children}</div>
   ),
-  NavbarMenu: ({ children }: { children?: React.ReactNode }) => <div data-testid="navbar-menu">{children}</div>,
   NavbarMenuItem: () => <div data-testid="navbar-menu-item" />,
-  NavbarMenuToggle: () => <button data-testid="navbar-menu-toggle">Toggle</button>,
+  NavbarMenuToggle: () => (
+    <button data-testid="navbar-menu-toggle">Toggle</button>
+  ),
 }));
 
 // Mock NextLink
-jest.mock('next/link', () => ({
+jest.mock("next/link", () => ({
   __esModule: true,
-  default: ({ children, href, className }: { children?: React.ReactNode; href: string; className?: string }) => (
+  default: ({
+    children,
+    href,
+    className,
+  }: {
+    children?: React.ReactNode;
+    href: string;
+    className?: string;
+  }) => (
     <a href={href} className={className}>
       {children}
     </a>
@@ -36,70 +80,70 @@ jest.mock('next/link', () => ({
 }));
 
 // Mock DarkModeToggle
-jest.mock('../header/ModeToggle', () => ({
+jest.mock("../header/ModeToggle", () => ({
   DarkModeToggle: () => <div data-testid="dark-mode-toggle" />,
 }));
 
-describe('Navbar Component', () => {
-  const mockBusinessName = 'Auto Repair Pro';
+describe("Navbar Component", () => {
+  const mockBusinessName = "Auto Repair Pro";
 
-  test('renders with business name', () => {
+  test("renders with business name", () => {
     render(<Navbar businessName={mockBusinessName} />);
     expect(screen.getByText(mockBusinessName)).toBeInTheDocument();
   });
 
-  test('does not render icon when not in categoryIconMap', () => {
+  test("does not render icon when not in categoryIconMap", () => {
     render(<Navbar businessName="Unknown Business" />);
-    expect(screen.queryByTestId('category-icon')).not.toBeInTheDocument();
+    expect(screen.queryByTestId("category-icon")).not.toBeInTheDocument();
   });
 
-  test('has correct navbar styling', () => {
+  test("has correct navbar styling", () => {
     render(<Navbar businessName={mockBusinessName} />);
-    const navbar = screen.getByRole('navigation');
+    const navbar = screen.getByRole("navigation");
 
     expect(navbar).toHaveClass(
-      'h-16',
-      'z-50',
-      'backdrop-blur-md',
-      'bg-white/30',
-      'dark:bg-black/30',
-      'border-b',
-      'border-gray-200',
-      'dark:border-gray-800'
+      "h-16",
+      "z-50",
+      "backdrop-blur-md",
+      "bg-white/30",
+      "dark:bg-black/30",
+      "border-b",
+      "border-gray-200",
+      "dark:border-gray-800",
     );
 
-    expect(navbar).toHaveAttribute('data-maxwidth', 'xl');
-    expect(navbar).toHaveAttribute('data-position', 'sticky');
+    expect(navbar).toHaveAttribute("data-maxwidth", "xl");
+    expect(navbar).toHaveAttribute("data-position", "sticky");
   });
 
-  test('renders NavbarBrand with correct link', () => {
+  test("renders NavbarBrand with correct link", () => {
     render(<Navbar businessName={mockBusinessName} />);
-    const link = screen.getByRole('link');
+    const link = screen.getByRole("link");
 
-    expect(link).toHaveAttribute('href', '/');
-    expect(link).toHaveClass('flex', 'justify-start', 'items-center', 'gap-1');
+    expect(link).toHaveAttribute("href", "/");
+    expect(link).toHaveClass("flex", "justify-start", "items-center", "gap-1");
   });
 
-  test('renders desktop dark mode toggle', () => {
+  test("renders desktop dark mode toggle", () => {
     render(<Navbar businessName={mockBusinessName} />);
-    expect(screen.getByTestId('dark-mode-toggle')).toBeInTheDocument();
+    expect(screen.getByTestId("dark-mode-toggle")).toBeInTheDocument();
   });
 
-  test('renders mobile menu toggle', () => {
+  test("renders mobile menu toggle", () => {
     render(<Navbar businessName={mockBusinessName} />);
-    expect(screen.getByTestId('navbar-menu-toggle')).toBeInTheDocument();
+    expect(screen.getByTestId("navbar-menu-toggle")).toBeInTheDocument();
   });
 
-  test('renders navbar menu', () => {
+  test("renders navbar menu", () => {
     render(<Navbar businessName={mockBusinessName} />);
-    expect(screen.getByTestId('navbar-menu')).toBeInTheDocument();
-    expect(screen.getByTestId('navbar-menu-item')).toBeInTheDocument();
+    expect(screen.getByTestId("navbar-menu")).toBeInTheDocument();
+    expect(screen.getByTestId("navbar-menu-item")).toBeInTheDocument();
   });
 
-  test('applies dark mode classes', () => {
+  test("applies dark mode classes", () => {
     render(<Navbar businessName={mockBusinessName} />);
-    const navbar = screen.getByRole('navigation');
+    const navbar = screen.getByRole("navigation");
 
-    expect(navbar).toHaveClass('dark:bg-black/30', 'dark:border-gray-800');
+    expect(navbar).toHaveClass("dark:bg-black/30", "dark:border-gray-800");
   });
 });

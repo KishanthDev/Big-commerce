@@ -39,7 +39,9 @@ export default function FeaturedStores() {
                 <span className="dark:text-gray-900">Store Preview</span>
               </div>
               <div className="p-5">
-                <h3 className="text-lg dark:text-black font-semibold mb-2">{store.name}</h3>
+                <h3 className="text-lg dark:text-black font-semibold mb-2">
+                  {store.name}
+                </h3>
                 <p className="text-gray-600 text-sm mb-4">
                   {store.description}
                 </p>

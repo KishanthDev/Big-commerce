@@ -143,7 +143,7 @@ describe("SidebarLayout", () => {
 
     const electronicsLink = screen.getByText("Electronics").closest("a");
     fireEvent.click(electronicsLink!);
-    
+
     await waitFor(() => {
       expect(screen.queryByText("Phones")).not.toBeInTheDocument();
     });
@@ -153,7 +153,7 @@ describe("SidebarLayout", () => {
   describe("Main Content Styling", () => {
     it("applies default styling for non-business pages", () => {
       mockUsePathname.mockReturnValue("/subcategory/electronics");
-      
+
       render(
         <SidebarLayout>
           <div>Main Content</div>
