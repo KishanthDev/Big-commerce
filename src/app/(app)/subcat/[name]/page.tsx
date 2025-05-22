@@ -30,7 +30,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
   }
 
   if (!subcategory) {
-    notFound();
+    return <div className="p-6">Loading...</div>;
   }
 
   return (
