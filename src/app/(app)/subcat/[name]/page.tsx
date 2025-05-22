@@ -1,10 +1,15 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect,use } from "react";
 import { slugify } from "@/app/lib/slugify";
 import { useCategoryStore } from "@/components/stores/useCategoryStore";
+import { notFound } from "next/navigation";
 
-export default function CategoryPage({ params }: { params: { name: string } }) {
+interface CategoryPageProps {
+  params: Promise<{ name: string }>;
+}
+
+export default function CategoryPage({ params }: CategoryPageProps) {
   const { categories, fetchCategories, loading } = useCategoryStore();
 
   useEffect(() => {
@@ -13,7 +18,8 @@ export default function CategoryPage({ params }: { params: { name: string } }) {
     }
   }, [categories.length, fetchCategories]);
 
-  const slug = slugify(params.name);
+  const resolvedParams = use(params);
+  const slug = slugify(resolvedParams.name);
 
   const subcategory = categories
     .flatMap((cat) => cat.subcategories || [])
@@ -23,19 +29,19 @@ export default function CategoryPage({ params }: { params: { name: string } }) {
     return <div className="p-6">Loading...</div>;
   }
 
+  if (!subcategory) {
+    notFound();
+  }
+
   return (
     <div className="min-h-[calc(100vh-336px)] px-4 py-6">
-      {subcategory ? (
-        <div>
-          <p>
-            Subcategory:{" "}
-            {String((subcategory.subcategoryName ?? subcategory.name) || "")}
-          </p>
-          <p>Subcategory ID: {subcategory.id}</p>
-        </div>
-      ) : (
-        <p>Subcategory not found.</p>
-      )}
+      <div>
+        <p>
+          Subcategory:{" "}
+          {String((subcategory.subcategoryName ?? subcategory.name) || "")}
+        </p>
+        <p>Subcategory ID: {subcategory.id}</p>
+      </div>
     </div>
   );
 }
