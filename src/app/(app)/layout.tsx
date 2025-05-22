@@ -1,18 +1,16 @@
 import Header from "@/components/header/Header";
 import Footer from "@/components/services/Footer";
 
-
-
 export default function RootLayout({
-    children,
+  children,
 }: Readonly<{
-    children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-    return (
-        <div>
-            <Header />
-            {children}
-            <Footer />
-        </div>
-    );
+  return (
+    <div>
+      <Header />
+      {children}
+      <Footer />
+    </div>
+  );
 }

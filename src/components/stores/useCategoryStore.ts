@@ -1,6 +1,6 @@
-import { create } from 'zustand';
-import { devtools } from 'zustand/middleware';
-import fallback from '../../../data/fallback.json';
+import { create } from "zustand";
+import { devtools } from "zustand/middleware";
+import fallback from "../../../data/fallback.json";
 
 interface Category {
   id: string;
@@ -26,7 +26,7 @@ export const useCategoryStore = create<CategoryState>()(
       set({ loading: true, error: null });
 
       try {
-        const res = await fetch('/api/categories');
+        const res = await fetch("/api/categories");
 
         if (!res.ok) {
           throw new Error(`API Error: ${res.status}`);
@@ -35,7 +35,7 @@ export const useCategoryStore = create<CategoryState>()(
         const data = await res.json();
         set({ categories: data, loading: false });
       } catch (err: unknown) {
-        console.warn('Using fallback categories due to API failure.', err);
+        console.warn("Using fallback categories due to API failure.", err);
 
         set({
           categories: fallback as unknown as Category[],
@@ -44,5 +44,5 @@ export const useCategoryStore = create<CategoryState>()(
         });
       }
     },
-  }))
+  })),
 );

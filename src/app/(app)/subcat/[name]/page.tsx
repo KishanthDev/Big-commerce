@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { slugify } from '@/app/lib/slugify';
-import { useCategoryStore } from '@/components/stores/useCategoryStore';
+import { useEffect } from "react";
+import { slugify } from "@/app/lib/slugify";
+import { useCategoryStore } from "@/components/stores/useCategoryStore";
 
 export default function CategoryPage({ params }: { params: { name: string } }) {
   const { categories, fetchCategories, loading } = useCategoryStore();
@@ -27,13 +27,15 @@ export default function CategoryPage({ params }: { params: { name: string } }) {
     <div className="min-h-[calc(100vh-336px)] px-4 py-6">
       {subcategory ? (
         <div>
-          <p>Subcategory: {String((subcategory.subcategoryName ?? subcategory.name) || '')}</p>
+          <p>
+            Subcategory:{" "}
+            {String((subcategory.subcategoryName ?? subcategory.name) || "")}
+          </p>
           <p>Subcategory ID: {subcategory.id}</p>
         </div>
       ) : (
         <p>Subcategory not found.</p>
       )}
-
     </div>
   );
 }

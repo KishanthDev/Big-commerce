@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { slugify } from "@/app/lib/slugify";
 
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useCategoryStore } from "./stores/useCategoryStore";
 import { ChevronDownIcon, ChevronRightIcon } from "lucide-react";
 
@@ -12,19 +12,18 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
-  const { categories,fetchCategories,loading } = useCategoryStore();
+  const { categories, fetchCategories, loading } = useCategoryStore();
   const [openCategory, setOpenCategory] = useState<number | null>(null);
   const router = useRouter();
 
-
-    useEffect(() => {
-      if (categories.length === 0) {
-        fetchCategories();
-      }
-    }, [categories.length, fetchCategories]);
+  useEffect(() => {
+    if (categories.length === 0) {
+      fetchCategories();
+    }
+  }, [categories.length, fetchCategories]);
 
   if (!isOpen) return null;
-  if(loading) return<>Loading</>
+  if (loading) return <>Loading</>;
 
   const toggleCategory = (categoryId: number) => {
     setOpenCategory((prev) => (prev === categoryId ? null : categoryId));
@@ -98,9 +97,12 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                           className="block px-3 py-1 rounded hover:bg-gray-200 text-sm"
                           onClick={(e) => {
                             e.preventDefault();
-                            router.push(`/subcat/${slugify(String(sub.subcategoryName))}`);
-                            onClose()
-                          }}                        >
+                            router.push(
+                              `/subcat/${slugify(String(sub.subcategoryName))}`,
+                            );
+                            onClose();
+                          }}
+                        >
                           {String(sub.subcategoryName)}
                         </a>
                       ))}

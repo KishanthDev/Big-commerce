@@ -9,20 +9,20 @@ import { CarouselDemo } from "@/components/Carousel";
 import { useCategoryStore } from "@/components/stores/useCategoryStore";
 
 export default function Home() {
-  const { loading, error, fetchCategories,categories } = useCategoryStore();
+  const { loading, error, fetchCategories, categories } = useCategoryStore();
 
-    useEffect(() => {
-      if (categories.length === 0) {
-        fetchCategories();
-      }
-    }, [categories.length, fetchCategories]);
+  useEffect(() => {
+    if (categories.length === 0) {
+      fetchCategories();
+    }
+  }, [categories.length, fetchCategories]);
 
   if (loading) return <p>Loading...</p>;
 
   return (
     <>
       {/* Api error */}
-      {error&&console.log(error)}
+      {error && console.log(error)}
       <Header />
       <HeroSection />
 
