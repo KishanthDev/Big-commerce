@@ -16,10 +16,11 @@ export default function Home() {
   }, [fetchCategories]);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
 
   return (
     <>
+      {/* Api error */}
+      {error&&console.log(error)}
       <Header />
       <HeroSection />
 
