@@ -9,11 +9,13 @@ import { CarouselDemo } from "@/components/Carousel";
 import { useCategoryStore } from "@/components/stores/useCategoryStore";
 
 export default function Home() {
-  const { loading, error, fetchCategories } = useCategoryStore();
+  const { loading, error, fetchCategories,categories } = useCategoryStore();
 
-  useEffect(() => {
-    fetchCategories();
-  }, [fetchCategories]);
+    useEffect(() => {
+      if (categories.length === 0) {
+        fetchCategories();
+      }
+    }, [categories.length, fetchCategories]);
 
   if (loading) return <p>Loading...</p>;
 
