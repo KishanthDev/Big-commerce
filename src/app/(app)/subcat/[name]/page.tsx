@@ -3,7 +3,6 @@
 import { useEffect,use } from "react";
 import { slugify } from "@/app/lib/slugify";
 import { useCategoryStore } from "@/components/stores/useCategoryStore";
-import { notFound } from "next/navigation";
 
 interface CategoryPageProps {
   params: Promise<{ name: string }>;
