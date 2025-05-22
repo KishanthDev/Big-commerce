@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useCategoryStore } from "./stores/useCategoryStore";
 import { ChevronDownIcon, ChevronRightIcon } from "lucide-react";
 
@@ -10,14 +10,8 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
-  const { categories, fetchCategories, loading, error } = useCategoryStore();
+  const { categories } = useCategoryStore();
   const [openCategory, setOpenCategory] = useState<number | null>(null);
-
-  useEffect(() => {
-    if (isOpen && categories.length === 0 && !loading) {
-      fetchCategories();
-    }
-  }, [isOpen, categories.length, loading, fetchCategories]);
 
   if (!isOpen) return null;
 
@@ -45,9 +39,6 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         </button>
 
         <h2 className="text-2xl font-bold mb-6">Categories</h2>
-
-        {loading && <p>Loading categories...</p>}
-        {error && <p className="text-red-600">Error: {error}</p>}
 
         <div>
           {categories.map((cat) => {
