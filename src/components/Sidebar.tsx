@@ -95,7 +95,6 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                           router.push(
                             `/subcat/${slugify(String(sub.subcategoryName))}`,
                           );
-                          onClose();
                         }}
                       >
                         {String(sub.subcategoryName)}

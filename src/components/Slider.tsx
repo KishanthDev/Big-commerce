@@ -1,97 +1,47 @@
-// components/Slider.tsx
 "use client";
 
 import { useRef, useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
-import Image from "next/image";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
-
-const categories = [
-  {
-    name: "All",
-    image:
-      "https://cdn.zeptonow.com/production/inventory/banner/a767cf6e-9113-409b-b5ab-ac0d22a7db58.png",
-  },
-  {
-    name: "Cafe",
-    image:
-      "https://cdn.zeptonow.com/production/inventory/banner/e8abccfb-64fe-4249-84d3-426eccf01e23.png",
-  },
-  {
-    name: "Home",
-    image:
-      "https://cdn.zeptonow.com/production/inventory/banner/be82f78d-d993-4838-9f4a-4c64cd387126.png",
-  },
-  {
-    name: "Toys",
-    image:
-      "https://cdn.zeptonow.com/production/inventory/banner/b6960301-bb3c-4b75-af0e-433a8ce0a6b9.png",
-  },
-  {
-    name: "Fresh",
-    image:
-      "https://cdn.zeptonow.com/production/inventory/banner/8e8a58b9-f2d7-46fb-9634-930b016499fa.png",
-  },
-  {
-    name: "Electronics",
-    image:
-      "https://cdn.zeptonow.com/production/inventory/banner/5c9a7bea-68b1-4bad-9fab-44cc940b72ee.png",
-  },
-  {
-    name: "Mobiles",
-    image:
-      "https://cdn.zeptonow.com/production/inventory/banner/c882779f-738d-46f8-8656-8ebb72246b46.png",
-  },
-  {
-    name: "Beauty",
-    image:
-      "https://cdn.zeptonow.com/production/inventory/banner/fcb1b518-5047-4aee-a6c4-3677c801d2ca.png",
-  },
-  {
-    name: "Fashion",
-    image:
-      "https://cdn.zeptonow.com/production/inventory/banner/331fa0bc-afda-409d-a201-acc3deedaa2d.png",
-  },
-  {
-    name: "Deal Zone",
-    image:
-      "https://cdn.zeptonow.com/production/inventory/banner/3c9537eb-0d84-427a-ae63-3137f74ad6f0.png",
-  },
-  {
-    name: "Baby Store",
-    image:
-      "https://cdn.zeptonow.com/production/inventory/banner/71ee967e-5e83-46df-95cb-192ff0dde506.png",
-  },
-];
+import { useCategoryStore } from "./stores/useCategoryStore";
 
 const ITEM_WIDTH = 140;
 
 interface CategoryCarouselProps {
-   sidebarOpen: boolean;
+  sidebarOpen: boolean;
   setSidebarOpen: (open: boolean) => void;
 }
 
-export default function CategoryCarousel({ setSidebarOpen,sidebarOpen }: CategoryCarouselProps) {
+export default function CategoryCarousel({ setSidebarOpen, sidebarOpen }: CategoryCarouselProps) {
+  const { categories, fetchCategories, loading } = useCategoryStore();
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [showButtons, setShowButtons] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
 
+  useEffect(() => {
+    if (categories.length === 0) {
+      fetchCategories();
+    }
+  }, [categories.length, fetchCategories]);
+
   const scrollLeft = () => {
-    if (!containerRef.current) return;
-    const scrollAmount = ITEM_WIDTH * 2;
-    containerRef.current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+    if (containerRef.current) {
+      containerRef.current.scrollBy({ left: -ITEM_WIDTH * 2, behavior: "smooth" });
+    }
   };
 
   const scrollRight = () => {
-    if (!containerRef.current) return;
-    const scrollAmount = ITEM_WIDTH * 2;
-    containerRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    if (containerRef.current) {
+      containerRef.current.scrollBy({ left: ITEM_WIDTH * 2, behavior: "smooth" });
+    }
   };
 
   const handleCategoryClick = (index: number) => {
-    if (categories[index].name === "All") {
-      sidebarOpen ? setSidebarOpen(false) : setSidebarOpen(true)
+    const clickedCategory = displayCategories[index];
+
+    if (clickedCategory.categoryName === "All") {
+      setSidebarOpen(!sidebarOpen);
       setActiveIndex(null);
     } else {
       setSidebarOpen(false);
@@ -111,6 +61,12 @@ export default function CategoryCarousel({ setSidebarOpen,sidebarOpen }: Categor
     return () => window.removeEventListener("resize", checkOverflow);
   }, []);
 
+  if (loading) return <div className="p-6">Loading...</div>;
+
+  // Manually insert "All" category at the beginning
+  const allCategory = { categoryName: "All" };
+  const displayCategories = [allCategory, ...categories];
+
   return (
     <div className="relative w-full pt-4">
       <div className="relative overflow-hidden">
@@ -123,27 +79,23 @@ export default function CategoryCarousel({ setSidebarOpen,sidebarOpen }: Categor
             className="flex gap-3 px-2"
             style={{ width: "max-content" }}
           >
-            {categories.map((category, index) => (
+            {displayCategories.map((category, index) => (
               <div
-                key={category.name}
+                key={`${category.categoryName}-${index}`}
                 className="relative flex items-center gap-2 px-2 py-3 flex-shrink-0 cursor-pointer select-none"
                 onClick={() => handleCategoryClick(index)}
               >
-                <Image
-                  src={category.image}
-                  alt={category.name}
-                  width={24}
-                  height={24}
-                  className="object-contain flex-shrink-0"
-                  sizes="100vw"
-                />
                 <span
-                  className={`text-sm font-medium ${activeIndex === index ? "text-purple-600" : "text-gray-600"}`}
+                  className={`text-sm font-medium ${
+                    activeIndex === index ? "text-purple-600" : "text-gray-600"
+                  }`}
                 >
-                  {category.name}
+                  {String(category.categoryName)}
                 </span>
                 <div
-                  className={`absolute bottom-0 h-[3px] w-full bg-purple-600 rounded-t-md transition-opacity duration-300 ${activeIndex === index ? "opacity-100" : "opacity-0"}`}
+                  className={`absolute bottom-0 h-[3px] w-full bg-purple-600 rounded-t-md transition-opacity duration-300 ${
+                    activeIndex === index ? "opacity-100" : "opacity-0"
+                  }`}
                 />
               </div>
             ))}
