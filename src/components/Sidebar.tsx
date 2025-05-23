@@ -5,6 +5,8 @@ import { slugify } from "@/app/lib/slugify";
 import React, { useState, useEffect } from "react";
 import { useCategoryStore } from "./stores/useCategoryStore";
 import { ChevronDownIcon, ChevronRightIcon } from "lucide-react";
+import { categoryIconMap } from "@/components/icons/IconMap";
+
 
 interface SidebarProps {
   isOpen: boolean;
@@ -68,7 +70,19 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 aria-controls={`subcategory-list-${cat.id}`}
                 className="flex justify-between items-center cursor-pointer font-semibold px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
               >
-                <span>{String(cat.categoryName)}</span>
+                <span><span className="flex items-center gap-2">
+                  {(() => {
+                    const name = String(cat.categoryName).trim();
+                    const Icon = categoryIconMap[name];
+                    return (
+                      <>
+                        {Icon && <Icon className="h-4 w-4 text-blue-500 shrink-0" />}
+                        {name}
+                      </>
+                    );
+                  })()}
+                </span>
+                </span>
                 {cat.subcategories && cat.subcategories.length > 0 && (
                   <span>
                     {isOpen ? (

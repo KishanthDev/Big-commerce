@@ -4,6 +4,8 @@ import { useRef, useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import { useCategoryStore } from "./stores/useCategoryStore";
+import { categoryIconMap } from "@/components/icons/IconMap";
+
 
 const ITEM_WIDTH = 140;
 
@@ -79,26 +81,33 @@ export default function CategoryCarousel({ setSidebarOpen, sidebarOpen }: Catego
             className="flex gap-3 px-2"
             style={{ width: "max-content" }}
           >
-            {displayCategories.map((category, index) => (
-              <div
-                key={`${category.categoryName}-${index}`}
-                className="relative flex items-center gap-2 px-2 py-3 flex-shrink-0 cursor-pointer select-none"
-                onClick={() => handleCategoryClick(index)}
-              >
-                <span
-                  className={`text-sm font-medium ${
-                    activeIndex === index ? "text-purple-600" : "text-gray-600"
-                  }`}
-                >
-                  {String(category.categoryName)}
-                </span>
+            {displayCategories.map((category, index) => {
+              const name = String(category.categoryName).trim();
+              const Icon = categoryIconMap[name];
+
+              return (
                 <div
-                  className={`absolute bottom-0 h-[3px] w-full bg-purple-600 rounded-t-md transition-opacity duration-300 ${
-                    activeIndex === index ? "opacity-100" : "opacity-0"
-                  }`}
-                />
-              </div>
-            ))}
+                  key={`${name}-${index}`}
+                  className="relative flex items-center gap-2 px-2 py-3 flex-shrink-0 cursor-pointer select-none"
+                  onClick={() => handleCategoryClick(index)}
+                >
+                  {Icon && (
+                    <Icon className="h-4 w-4 text-blue-500 shrink-0" />
+                  )}
+                  <span
+                    className={`text-sm font-medium ${activeIndex === index ? "text-purple-600" : "text-gray-600"
+                      }`}
+                  >
+                    {name}
+                  </span>
+                  <div
+                    className={`absolute bottom-0 h-[3px] w-full bg-purple-600 rounded-t-md transition-opacity duration-300 ${activeIndex === index ? "opacity-100" : "opacity-0"
+                      }`}
+                  />
+                </div>
+              );
+            })}
+
           </motion.div>
         </div>
 
