@@ -1,17 +1,14 @@
-import Header from "@/components/header/Header";
-import Footer from "@/components/footer/Footer";
+// app/(auth)/auth/layout.tsx
+import Footer from '@/components/footer/Footer';
+import Header from '@/components/header/Header';
+import type { ReactNode } from 'react';
 
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <div>
-      <Header />
-      {children}
-      <Footer />
-    </div>
-  );
+export default function AuthLayout({ children }: { children: ReactNode }) {
+    return (
+        <div className="min-h-screen w-full bg-gray-100 dark:bg-black">
+            <Header />
+            {children}
+            <Footer />
+        </div>
+    );
 }

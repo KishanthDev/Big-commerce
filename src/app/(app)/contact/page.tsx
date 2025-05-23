@@ -4,13 +4,10 @@ import ContactPage from "@/components/contact/ContactPage";
 import FAQSection from "@/components/contact/FAQSection";
 import React from "react";
 import Link from "next/link";
-import Header from "@/components/header/Header";
-import Footer from "@/components/footer/Footer";
 
 const Page = () => {
   return (
     <div className="dark:bg-black bg-gray-100">
-      <Header />
       <HeroSection />
       <ContactPage />
       <FAQSection />
@@ -26,7 +23,6 @@ const Page = () => {
       >
         client
       </Link>
-      <Footer />
     </div>
   );
 };
