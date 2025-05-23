@@ -6,6 +6,7 @@ import React, { useState, useEffect } from "react";
 import { useCategoryStore } from "./stores/useCategoryStore";
 import { ChevronDownIcon, ChevronRightIcon } from "lucide-react";
 import { categoryIconMap } from "@/components/icons/IconMap";
+import { subCategoryIconMap } from "./icons/subCategoryIconMap";
 
 
 interface SidebarProps {
@@ -70,7 +71,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 aria-controls={`subcategory-list-${cat.id}`}
                 className="flex justify-between items-center cursor-pointer font-semibold px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
               >
-                <span><span className="flex items-center gap-2">
+                <span className="flex items-center gap-2">
                   {(() => {
                     const name = String(cat.categoryName).trim();
                     const Icon = categoryIconMap[name];
@@ -81,7 +82,6 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                       </>
                     );
                   })()}
-                </span>
                 </span>
                 {cat.subcategories && cat.subcategories.length > 0 && (
                   <span>
@@ -103,15 +103,22 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                     {cat.subcategories.map((sub) => (
                       <a
                         key={sub.id}
-                        className="block px-3 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 text-sm"
+                        className="flex items-center gap-2 px-3 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 text-sm cursor-pointer"
                         onClick={(e) => {
                           e.preventDefault();
-                          router.push(
-                            `/subcat/${slugify(String(sub.subcategoryName))}`,
-                          );
+                          router.push(`/subcat/${slugify(String(sub.subcategoryName))}`);
                         }}
                       >
-                        {String(sub.subcategoryName)}
+                        {(() => {
+                          const name = String(sub.subcategoryName).trim();
+                          const Icon = subCategoryIconMap[name];
+                          return (
+                            <>
+                              {Icon && <Icon className="h-4 w-4 text-blue-500 shrink-0" />}
+                              <span>{name}</span>
+                            </>
+                          );
+                        })()}
                       </a>
                     ))}
                   </div>
