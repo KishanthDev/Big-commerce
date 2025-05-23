@@ -2,12 +2,9 @@
 
 import { useRef, useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import { useCategoryStore } from "./stores/useCategoryStore";
 import { categoryIconMap } from "@/components/icons/IconMap";
 
-
-const ITEM_WIDTH = 140;
 
 interface CategoryCarouselProps {
   sidebarOpen: boolean;
@@ -17,7 +14,6 @@ interface CategoryCarouselProps {
 export default function CategoryCarousel({ setSidebarOpen, sidebarOpen }: CategoryCarouselProps) {
   const { categories, fetchCategories, loading } = useCategoryStore();
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const [showButtons, setShowButtons] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
 
@@ -26,18 +22,6 @@ export default function CategoryCarousel({ setSidebarOpen, sidebarOpen }: Catego
       fetchCategories();
     }
   }, [categories.length, fetchCategories]);
-
-  const scrollLeft = () => {
-    if (containerRef.current) {
-      containerRef.current.scrollBy({ left: -ITEM_WIDTH * 2, behavior: "smooth" });
-    }
-  };
-
-  const scrollRight = () => {
-    if (containerRef.current) {
-      containerRef.current.scrollBy({ left: ITEM_WIDTH * 2, behavior: "smooth" });
-    }
-  };
 
   const handleCategoryClick = (index: number) => {
     const clickedCategory = displayCategories[index];
@@ -51,17 +35,6 @@ export default function CategoryCarousel({ setSidebarOpen, sidebarOpen }: Catego
     }
   };
 
-  useEffect(() => {
-    const checkOverflow = () => {
-      if (containerRef.current) {
-        const { scrollWidth, clientWidth } = containerRef.current;
-        setShowButtons(scrollWidth > clientWidth && window.innerWidth >= 768);
-      }
-    };
-    checkOverflow();
-    window.addEventListener("resize", checkOverflow);
-    return () => window.removeEventListener("resize", checkOverflow);
-  }, []);
 
   if (loading) return <div className="p-6">Loading...</div>;
 
@@ -110,25 +83,6 @@ export default function CategoryCarousel({ setSidebarOpen, sidebarOpen }: Catego
 
           </motion.div>
         </div>
-
-        {showButtons && (
-          <>
-            <button
-              onClick={scrollLeft}
-              className="scroll-buttons absolute left-2 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-black text-white p-2 shadow-lg z-10"
-              aria-label="Scroll Left"
-            >
-              <ChevronLeftIcon className="h-5 w-5" />
-            </button>
-            <button
-              onClick={scrollRight}
-              className="scroll-buttons absolute right-2 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-black text-white p-2 shadow-lg z-10"
-              aria-label="Scroll Right"
-            >
-              <ChevronRightIcon className="h-5 w-5" />
-            </button>
-          </>
-        )}
       </div>
     </div>
   );
