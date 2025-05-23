@@ -1,10 +1,10 @@
+// components/Slider.tsx
 "use client";
 
 import { useRef, useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import Image from "next/image";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
-import Sidebar from "./Sidebar";
 
 const categories = [
   {
@@ -66,8 +66,12 @@ const categories = [
 
 const ITEM_WIDTH = 140;
 
-export default function CategoryCarousel() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+interface CategoryCarouselProps {
+   sidebarOpen: boolean;
+  setSidebarOpen: (open: boolean) => void;
+}
+
+export default function CategoryCarousel({ setSidebarOpen,sidebarOpen }: CategoryCarouselProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [showButtons, setShowButtons] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -87,7 +91,7 @@ export default function CategoryCarousel() {
 
   const handleCategoryClick = (index: number) => {
     if (categories[index].name === "All") {
-      setSidebarOpen(true);
+      sidebarOpen ? setSidebarOpen(false) : setSidebarOpen(true)
       setActiveIndex(null);
     } else {
       setSidebarOpen(false);
@@ -108,7 +112,7 @@ export default function CategoryCarousel() {
   }, []);
 
   return (
-    <div className="relative max-w-7xl pt-4">
+    <div className="relative w-full pt-4">
       <div className="relative overflow-hidden">
         <div
           ref={containerRef}
@@ -165,8 +169,6 @@ export default function CategoryCarousel() {
           </>
         )}
       </div>
-
-      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
     </div>
   );
 }

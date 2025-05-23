@@ -13,13 +13,27 @@ import styles from "./Link.module.css";
 import LocationModal from "./LocationModal";
 import CategoryCarousel from "../Slider";
 
-const Header = () => {
+interface HeaderProps {
+  sidebarOpen: boolean;
+  setSidebarOpen: (open: boolean) => void;
+}
+
+const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
   const [menuOpen, setMenuOpen] = React.useState(false);
   const pathname = usePathname();
 
+  const navLinks = [
+    { label: "Home", path: "/" },
+    { label: "Sellers", path: "/sellers" },
+    { label: "Buyers", path: "/buyers" },
+    { label: "Advertising", path: "/advertising" },
+    { label: "Blog", path: "/blog" },
+    { label: "Contact", path: "/contact" },
+  ];
+
   return (
     <motion.div className="sticky top-0 left-0 w-full z-50">
-      <motion.header className="bg-white dark:bg-blue-950 p-4 pt-6 h-16 w-full flex items-center justify-between transition-all">
+      <motion.header className="bg-white dark:bg-blue-950 p-4 pt-6 h-16 flex items-center justify-between transition-all relative">
         <Link href="/">
           <div className="hidden md:block">
             <Image
@@ -32,44 +46,34 @@ const Header = () => {
           </div>
         </Link>
 
-        <nav className="hidden md:flex items-center space-x-6">
-          <Link
-            href="/"
-            className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
-              pathname === "/"
-                ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
-                : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
-            }`}
-          >
-            Home
-          </Link>
-          {["Sellers", "Buyers", "Advertising", "Blog", "Contact"].map(
-            (item) => {
-              const path = `/${item.toLowerCase()}`;
+        {/* Desktop Nav - Only visible if sidebar is closed */}
+        {!sidebarOpen && (
+          <nav className="hidden md:flex items-center space-x-6">
+            {navLinks.map(({ label, path }) => {
               const isActive = pathname === path;
-
               return (
                 <Link
                   href={path}
-                  key={item}
+                  key={label}
                   className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
                     isActive
                       ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
                       : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
                   }`}
                 >
-                  {item}
+                  {label}
                   {!isActive && (
                     <span className="absolute left-2 right-2 bottom-0 h-[2px] bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
                   )}
                 </Link>
               );
-            },
-          )}
-        </nav>
+            })}
+          </nav>
+        )}
 
         <LocationModal />
 
+        {/* Desktop Right Side Controls */}
         <div className="hidden md:flex items-center space-x-4">
           <Link href={pathname === "/home" ? "/categories" : "/"}>
             <LayoutList
@@ -91,7 +95,8 @@ const Header = () => {
           <DarkModeToggle />
         </div>
 
-        <div className="md:hidden flex items-center space-x-2">
+        {/* Always-visible Hamburger Menu */}
+        <div className="md:hidden flex items-center space-x-2 absolute top-4 right-4 z-50">
           <FullScreenToggle />
           <DarkModeToggle />
           <button
@@ -103,10 +108,13 @@ const Header = () => {
           </button>
         </div>
       </motion.header>
+
       <div className="bg-white dark:bg-blue-950 shadow-md">
-        <CategoryCarousel />
+        <CategoryCarousel setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen} />
       </div>
-      {menuOpen && (
+
+      {/* Mobile or Sidebar Open Nav */}
+      {(menuOpen || sidebarOpen) && (
         <motion.div
           id="mobile-menu"
           data-testid="mobile-menu"
@@ -116,41 +124,25 @@ const Header = () => {
           transition={{ duration: 0.3 }}
           className="md:hidden bg-white dark:bg-blue-950 shadow-md py-4 px-6 flex flex-col space-y-4"
         >
-          <div className="flex flex-col space-y-4">
-            <Link
-              href="/"
-              className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
-                pathname === "/"
-                  ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
-                  : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
-              }`}
-            >
-              Home
-            </Link>
-            {["Sellers", "Buyers", "Advertising", "Blog", "Contact"].map(
-              (item) => {
-                const path = `/${item.toLowerCase()}`;
-                const isActive = pathname === path;
-
-                return (
-                  <Link
-                    href={path}
-                    key={item}
-                    className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
-                      isActive
-                        ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
-                        : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer relative group`
-                    }`}
-                  >
-                    {item}
-                    {!isActive && (
-                      <span className="absolute left-2 right-2 bottom-0 h-[2px] bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                    )}
-                  </Link>
-                );
-              },
-            )}
-          </div>
+          {navLinks.map(({ label, path }) => {
+            const isActive = pathname === path;
+            return (
+              <Link
+                href={path}
+                key={label}
+                className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
+                  isActive
+                    ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
+                    : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer relative group`
+                }`}
+              >
+                {label}
+                {!isActive && (
+                  <span className="absolute left-2 right-2 bottom-0 h-[2px] bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                )}
+              </Link>
+            );
+          })}
         </motion.div>
       )}
     </motion.div>
