@@ -4,9 +4,9 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDownIcon, ChevronRightIcon } from "lucide-react";
-import { Category } from "../../../types/category";
-import { slugify } from "../lib/slugify";
-import categoriesData from "../../../data/detailed_categories_with_subcategories.json";
+import { Category } from "../../../../types/category";
+import { slugify } from "../../lib/slugify";
+import categoriesData from "../../../../data/detailed_categories_with_subcategories.json";
 import { categoryIconMap } from "@/components/icons/IconMap";
 
 export default function SidebarLayout({

@@ -5,9 +5,9 @@ import Link from "next/link";
 import { GridIcon, ListIcon } from "lucide-react";
 import { ElementType } from "react";
 
-import Breadcrumb from "../../../components/breadcrumb/Breadcrumb";
-import { slugify } from "../../lib/slugify";
-import { Category } from "../../../../types/category";
+import Breadcrumb from "@/components/breadcrumb/Breadcrumb";
+import { slugify } from "../../../lib/slugify";
+import { Category } from "../../../../../types/category";
 import { subCategoryIconMap } from "@/components/icons/subCategoryIconMap";
 
 interface SubcategoryPageProps {

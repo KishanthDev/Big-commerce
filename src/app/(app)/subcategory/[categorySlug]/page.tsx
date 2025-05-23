@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { Category } from "../../../../types/category";
+import { Category } from "../../../../../types/category";
 
-import categoriesData from "../../../../data/detailed_categories_with_subcategories.json";
-import { slugify } from "../../lib/slugify";
+import categoriesData from "../../../../../data/detailed_categories_with_subcategories.json";
+import { slugify } from "../../../lib/slugify";
 import SubcategoryPage from "./SubcategoryPage";
 
 export async function generateStaticParams(): Promise<
