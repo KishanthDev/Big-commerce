@@ -4,33 +4,102 @@ import Header from "@/components/header/Header";
 import Sidebar from "@/components/Sidebar";
 import type { ReactNode } from "react";
 import { useSidebarStore } from "@/stores/useSidebarStore";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
   const { isOpen, closeSidebar } = useSidebarStore();
 
+  // Animation variants for the sidebar
+  const sidebarVariants = {
+    open: {
+      x: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+        duration: 0.5, // Slower duration
+      },
+    },
+    closed: {
+      x: "-100%",
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+        duration: 0.5,
+      },
+    },
+  };
+
+  // Animation variants for the overlay
+  const overlayVariants = {
+    open: {
+      opacity: 0.1,
+      transition: { duration: 0.5 },
+    },
+    closed: {
+      opacity: 0,
+      transition: { duration: 0.5 },
+    },
+  };
+
+  // Animation variants for the close button
+  const buttonVariants = {
+    open: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.5 },
+    },
+    closed: {
+      opacity: 0,
+      x: -10,
+      transition: { duration: 0.5 },
+    },
+  };
+
   return (
     <div className="relative h-screen w-full flex flex-col bg-gray-100 dark:bg-black">
-      {/* Sidebar Overlay */}
-      {isOpen && (
-        <>
-          <div
-            className="fixed inset-0 bg-black/10 z-40"
-            onClick={closeSidebar}
-          />
+      {/* Sidebar and Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            {/* Overlay */}
+            <motion.div
+              className="fixed inset-0 bg-black/10 z-40"
+              onClick={closeSidebar}
+              variants={overlayVariants}
+              initial="closed"
+              animate="open"
+              exit="closed"
+            />
 
-          <div className="fixed top-0 left-0 h-full z-50 bg-white dark:bg-zinc-900 shadow-lg overflow-y-auto">
-            <Sidebar />
-          </div>
+            {/* Sidebar */}
+            <motion.div
+              className="fixed top-0 left-0 h-full z-50 bg-white dark:bg-zinc-900 shadow-lg overflow-y-auto"
+              variants={sidebarVariants}
+              initial="closed"
+              animate="open"
+              exit="closed"
+              style={{ width: "280px" }} // Match Sidebar's w-70 (assuming ~280px)
+            >
+              <Sidebar />
+            </motion.div>
 
-          <button
-            onClick={closeSidebar}
-            className="absolute top-4 left-[290px] z-50 px-3 py-2 bg-gray-200 hover:bg-gray-300 dark:bg-zinc-700 dark:hover:bg-zinc-600 rounded-md"
-            aria-label="Close sidebar"
-          >
-            ✕
-          </button>
-        </>
-      )}
+            {/* Close Button */}
+            <motion.button
+              onClick={closeSidebar}
+              className="absolute top-4 left-[290px] z-50 px-3 py-2 bg-gray-200 hover:bg-gray-300 dark:bg-zinc-700 dark:hover:bg-zinc-600 rounded-md"
+              aria-label="Close sidebar"
+              variants={buttonVariants}
+              initial="closed"
+              animate="open"
+              exit="closed"
+            >
+              ✕
+            </motion.button>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Fixed Header */}
       <div className="fixed top-0 left-0 right-0 z-30">
