@@ -6,11 +6,11 @@ import React, { useState, useEffect } from "react";
 import { useCategoryStore } from "@/stores/useCategoryStore";
 import { ChevronDownIcon, ChevronRightIcon } from "lucide-react";
 import { categoryIconMap } from "@/components/icons/IconMap";
-import { subCategoryIconMap } from "./icons/subCategoryIconMap";
+import { subCategoryIconMap } from "@/components/icons/subCategoryIconMap";
 import { useSidebarStore } from "@/stores/useSidebarStore";
 
 export default function Sidebar() {
-  const {isOpen,closeSidebar} = useSidebarStore()
+  const { isOpen, closeSidebar } = useSidebarStore();
   const { categories, fetchCategories, loading } = useCategoryStore();
   const [openCategory, setOpenCategory] = useState<number | null>(null);
   const router = useRouter();
@@ -22,26 +22,14 @@ export default function Sidebar() {
   }, [categories.length, fetchCategories]);
 
   if (!isOpen) return null;
-  if (loading) return <div className="p-6">Loading</div>;
+  if (loading) return <div className="p-6">Loading...</div>;
 
   const toggleCategory = (categoryId: number) => {
     setOpenCategory((prev) => (prev === categoryId ? null : categoryId));
   };
 
   return (
-    <div
-      className={`relative w-70 bg-white dark:bg-gray-800 p-6 shadow-lg transition-all duration-300 md:block ${isOpen ? "block" : "hidden"
-        }`}
-    >
-
-      <button
-        className="absolute top-4 right-4 p-2 rounded bg-gray-200 hover:bg-gray-300"
-        onClick={()=>closeSidebar()}
-        aria-label="Close sidebar"
-      >
-        Close
-      </button>
-
+    <div className="relative w-70 bg-white dark:bg-gray-800 p-6 shadow-lg h-full overflow-y-auto">
       <h2 className="text-2xl font-bold mb-6">Categories</h2>
 
       <div>
