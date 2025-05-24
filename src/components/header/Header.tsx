@@ -7,10 +7,8 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { DarkModeToggle } from "./ModeToggle";
 import FullScreenToggle from "./FullScreenToggle";
-import { LayoutList } from "lucide-react";
 import { usePathname } from "next/navigation";
 import styles from "./Link.module.css";
-import LocationModal from "./LocationModal";
 import CategoryCarousel from "../Slider";
 
 const Header = () => {

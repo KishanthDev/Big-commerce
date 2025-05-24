@@ -32,16 +32,20 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
         </>
       )}
 
+      {/* Fixed Header */}
+      <div className="fixed top-0 left-0 right-0 z-30">
+        <Header />
+      </div>
+
+      {/* Main Content */}
       <div
-        className={`relative flex-1 flex-col h-full z-10 transition duration-300 ${isOpen ? "pointer-events-none overflow-hidden select-none" : ""
+        className={`pt-[64px] flex-1 flex-col h-full z-10 transition duration-300 ${isOpen ? "pointer-events-none overflow-hidden select-none" : ""
           }`}
         aria-hidden={isOpen ? "true" : "false"}
       >
-        <Header />
         <main className="flex-1 overflow-y-auto">{children}</main>
         <Footer />
       </div>
     </div>
-
   );
 }
