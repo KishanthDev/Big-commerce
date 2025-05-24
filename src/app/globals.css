@@ -132,10 +132,16 @@
   scrollbar-width: none; /* Firefox */
 }
 
-.scrollbar-thin{
-  scrollbar-width: thin;
+.custom-scrollbar::-webkit-scrollbar {
+  height: 2px;
+  width: 2px !important;
 }
 
-.scrollbar-hide::-webkit-scrollbar {
-  display: none; /* Chrome, Safari and Opera */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #5f0775, #3d0681);
+  border-radius: 9px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
 }

@@ -1,4 +1,3 @@
-// components/Sidebar.tsx
 "use client";
 import { useRouter } from "next/navigation";
 import { slugify } from "@/app/lib/slugify";
@@ -28,13 +27,33 @@ export default function Sidebar() {
     setOpenCategory((prev) => (prev === categoryId ? null : categoryId));
   };
 
+  // Sort categories alphabetically by categoryName
+  const sortedCategories = [...categories].sort((a, b) => {
+    const nameA = String(a.categoryName).toLowerCase();
+    const nameB = String(b.categoryName).toLowerCase();
+    return nameA.localeCompare(nameB);
+  });
+
+  // Function to sort subcategories alphabetically
+  const sortSubcategories = (subcategories: any[]) => {
+    return [...subcategories].sort((a, b) => {
+      const nameA = String(a.subcategoryName).toLowerCase();
+      const nameB = String(b.subcategoryName).toLowerCase();
+      return nameA.localeCompare(nameB);
+    });
+  };
+
   return (
     <div className="relative w-70 bg-white dark:bg-gray-800 p-6 shadow-lg h-full overflow-y-auto">
       <h2 className="text-2xl font-bold mb-6">Categories</h2>
 
       <div>
-        {categories.map((cat) => {
+        {sortedCategories.map((cat) => {
           const isOpen = openCategory === Number(cat.id);
+          const sortedSubcategories = cat.subcategories 
+            ? sortSubcategories(cat.subcategories)
+            : [];
+            
           return (
             <div key={cat.id} className="mb-4">
               <a
@@ -67,7 +86,7 @@ export default function Sidebar() {
                     );
                   })()}
                 </span>
-                {cat.subcategories && cat.subcategories.length > 0 && (
+                {sortedSubcategories.length > 0 && (
                   <span>
                     {isOpen ? (
                       <ChevronDownIcon className="h-5 w-5" />
@@ -77,36 +96,34 @@ export default function Sidebar() {
                   </span>
                 )}
               </a>
-              {isOpen &&
-                cat.subcategories &&
-                cat.subcategories.length > 0 && (
-                  <div
-                    id={`subcategory-list-${cat.id}`}
-                    className="pl-6 mt-2 space-y-1"
-                  >
-                    {cat.subcategories.map((sub) => (
-                      <a
-                        key={sub.id}
-                        className="flex items-center gap-2 px-3 py-2.5 rounded hover:bg-gray-200 dark:hover:bg-gray-600 text-sm cursor-pointer"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          router.push(`/subcat/${slugify(String(sub.subcategoryName))}`);
-                        }}
-                      >
-                        {(() => {
-                          const name = String(sub.subcategoryName).trim();
-                          const Icon = subCategoryIconMap[name];
-                          return (
-                            <>
-                              {Icon && <Icon className="h-4 w-4 text-blue-500 shrink-0" />}
-                              <span>{name}</span>
-                            </>
-                          );
-                        })()}
-                      </a>
-                    ))}
-                  </div>
-                )}
+              {isOpen && sortedSubcategories.length > 0 && (
+                <div
+                  id={`subcategory-list-${cat.id}`}
+                  className="pl-6 mt-2 space-y-1"
+                >
+                  {sortedSubcategories.map((sub) => (
+                    <a
+                      key={sub.id}
+                      className="flex items-center gap-2 px-3 py-2.5 rounded hover:bg-gray-200 dark:hover:bg-gray-600 text-sm cursor-pointer"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        router.push(`/subcat/${slugify(String(sub.subcategoryName))}`);
+                      }}
+                    >
+                      {(() => {
+                        const name = String(sub.subcategoryName).trim();
+                        const Icon = subCategoryIconMap[name];
+                        return (
+                          <>
+                            {Icon && <Icon className="h-4 w-4 text-blue-500 shrink-0" />}
+                            <span>{name}</span>
+                          </>
+                        );
+                      })()}
+                    </a>
+                  ))}
+                </div>
+              )}
             </div>
           );
         })}

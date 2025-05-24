@@ -6,9 +6,8 @@ import { useCategoryStore } from "@/stores/useCategoryStore";
 import { categoryIconMap } from "@/components/icons/IconMap";
 import { useSidebarStore } from "@/stores/useSidebarStore";
 
-
 export default function CategoryCarousel() {
-  const {toggleSidebar ,closeSidebar } = useSidebarStore();
+  const { toggleSidebar, closeSidebar } = useSidebarStore();
   const { categories, fetchCategories, loading } = useCategoryStore();
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -24,26 +23,32 @@ export default function CategoryCarousel() {
     const clickedCategory = displayCategories[index];
 
     if (clickedCategory.categoryName === "All") {
-      toggleSidebar()
+      toggleSidebar();
     } else {
-      closeSidebar()
+      closeSidebar();
       setActiveIndex(index);
     }
   };
 
-
   if (loading) return <div className="p-6">Loading...</div>;
+
+  // Sort categories alphabetically (case-insensitive)
+  const sortedCategories = [...categories].sort((a, b) => {
+    const nameA = String(a.categoryName).toLowerCase();
+    const nameB = String(b.categoryName).toLowerCase();
+    return nameA.localeCompare(nameB);
+  });
 
   // Manually insert "All" category at the beginning
   const allCategory = { categoryName: "All" };
-  const displayCategories = [allCategory, ...categories];
+  const displayCategories = [allCategory, ...sortedCategories];
 
   return (
     <div className="relative w-full pt-4">
       <div className="relative overflow-hidden">
         <div
           ref={containerRef}
-          className="overflow-x-auto scrollbar-thin scroll-smooth cursor-grab"
+          className="overflow-x-auto custom-scrollbar scroll-smooth cursor-grab"
         >
           <motion.div
             animate={controls}
@@ -61,23 +66,22 @@ export default function CategoryCarousel() {
                   onClick={() => handleCategoryClick(index)}
                 >
                   {Icon && (
-                    <Icon className={`h-5 w-5 ${activeIndex === index ? "text-purple-600" : "text-gray-600"
-                      } shrink-0`} />
+                    <Icon
+                      className={`h-5 w-5 ${
+                        activeIndex === index ? "text-purple-600" : "text-gray-600"
+                      } shrink-0`}
+                    />
                   )}
                   <span
-                    className={`text-sm font-medium ${activeIndex === index ? "text-purple-600" : "text-gray-600"
-                      }`}
+                    className={`text-sm font-medium ${
+                      activeIndex === index ? "text-purple-600" : "text-gray-600"
+                    }`}
                   >
                     {name}
                   </span>
-                  <div
-                    className={`absolute bottom-0 h-[3px] w-full bg-purple-600 rounded-t-md transition-opacity duration-300 ${activeIndex === index ? "opacity-100" : "opacity-0"
-                      }`}
-                  />
                 </div>
               );
             })}
-
           </motion.div>
         </div>
       </div>
