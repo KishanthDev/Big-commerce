@@ -1,4 +1,4 @@
-import advertising from "../../../data/advertising.json";
+import advertising from "@/data/advertising.json";
 
 export default function HowItWorks() {
   const { steps } = advertising;

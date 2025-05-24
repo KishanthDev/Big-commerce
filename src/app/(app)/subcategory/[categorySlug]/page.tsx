@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 
 import { Category } from "../../../../../types/category";
 
-import categoriesData from "../../../../../data/detailed_categories_with_subcategories.json";
+import categoriesData from "@/data/detailed_categories_with_subcategories.json";
 import { slugify } from "../../../lib/slugify";
 import SubcategoryPage from "./SubcategoryPage";
 

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import HeroSection from "@/components/hero/Hero";
 import StatsSection from "@/components/Stats";
 import BigCommerceBenefits from "@/components/BigCommerceBenefits";
@@ -10,7 +10,6 @@ export default function Home() {
     <>
       <HeroSection />
       
-
       <div className="relative w-full">
         <CarouselDemo />
 

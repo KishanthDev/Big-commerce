@@ -1,6 +1,6 @@
 import React from "react";
 import BlogPostCard from "./BlogPostCard";
-import contactData from "../../../data/content_section_data.json";
+import contactData from "@/data/content_section_data.json";
 import Image from "next/image";
 
 const ContentSection = () => {

@@ -10,7 +10,7 @@ import { subCategoryIconMap } from "@/components/icons/subCategoryIconMap";
 import { useSidebarStore } from "@/stores/useSidebarStore";
 
 export default function Sidebar() {
-  const { isOpen, closeSidebar } = useSidebarStore();
+  const { isOpen } = useSidebarStore();
   const { categories, fetchCategories, loading } = useCategoryStore();
   const [openCategory, setOpenCategory] = useState<number | null>(null);
   const router = useRouter();

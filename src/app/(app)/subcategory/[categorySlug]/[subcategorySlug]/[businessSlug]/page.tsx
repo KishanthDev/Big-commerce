@@ -1,4 +1,4 @@
-import businessesData from "@data/detailed_categories_with_subcategories.json";
+import businessesData from "@/data/detailed_categories_with_subcategories.json";
 import { Navbar } from "@components/services/navbar";
 import HeroSection from "@components/services/HeroSection";
 import ServicesSection from "@components/services/ServicesSection";
@@ -8,7 +8,7 @@ import GallerySection from "@components/services/GallerySection";
 import ContactSection from "@components/services/ContactSection";
 import BusinessHoursSection from "@components/services/BusinessHoursSection";
 import AdditionalInfoSection from "@components/services/AdditionalInfoSection";
-import data from "@data/data.json";
+import data from "@/data/data.json";
 import { notFound } from "next/navigation";
 import { slugify } from "@lib/slugify";
 import Footer from "@/components/services/Footer";

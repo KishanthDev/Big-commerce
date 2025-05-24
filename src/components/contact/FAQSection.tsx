@@ -1,6 +1,6 @@
 import React from "react";
 import FAQItem from "./FAQItem";
-import faqs from "../../../data/faq.json";
+import faqs from "@/data/faq.json";
 
 function FAQSection() {
   return (
