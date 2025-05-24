@@ -12,10 +12,8 @@ import { usePathname } from "next/navigation";
 import styles from "./Link.module.css";
 import LocationModal from "./LocationModal";
 import CategoryCarousel from "../Slider";
-import { useSidebarStore } from "@/stores/useSidebarStore";
 
 const Header = () => {
-  const { isOpen, closeSidebar } = useSidebarStore();
   const [menuOpen, setMenuOpen] = React.useState(false);
   const pathname = usePathname();
 
@@ -43,30 +41,27 @@ const Header = () => {
           </div>
         </Link>
 
-        {/* Desktop Nav - Only visible if sidebar is closed */}
-        {!isOpen && (
-          <nav className="hidden md:flex items-center space-x-6">
-            {navLinks.map(({ label, path }) => {
-              const isActive = pathname === path;
-              return (
-                <Link
-                  href={path}
-                  key={label}
-                  className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${isActive
-                      ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
-                      : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
-                    }`}
-                >
-                  {label}
-                  {!isActive && (
-                    <span className="absolute left-2 right-2 bottom-0 h-[2px] bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                  )}
-                </Link>
-              );
-            })}
-          </nav>
-        )}
 
+        <nav className="hidden md:flex items-center space-x-6">
+          {navLinks.map(({ label, path }) => {
+            const isActive = pathname === path;
+            return (
+              <Link
+                href={path}
+                key={label}
+                className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${isActive
+                  ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
+                  : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
+                  }`}
+              >
+                {label}
+                {!isActive && (
+                  <span className="absolute left-2 right-2 bottom-0 h-[2px] bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                )}
+              </Link>
+            );
+          })}
+        </nav>
         <LocationModal />
 
         {/* Desktop Right Side Controls */}
@@ -106,11 +101,10 @@ const Header = () => {
       </motion.header>
 
       <div className="bg-white dark:bg-blue-950 shadow-md">
-        <CategoryCarousel/>
+        <CategoryCarousel />
       </div>
 
-      {/* Mobile or Sidebar Open Nav */}
-      {(menuOpen || isOpen) && (
+      {menuOpen && (
         <motion.div
           id="mobile-menu"
           data-testid="mobile-menu"
@@ -127,8 +121,8 @@ const Header = () => {
                 href={path}
                 key={label}
                 className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${isActive
-                    ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
-                    : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer relative group`
+                  ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
+                  : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer relative group`
                   }`}
               >
                 {label}
