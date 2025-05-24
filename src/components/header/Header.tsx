@@ -12,13 +12,10 @@ import { usePathname } from "next/navigation";
 import styles from "./Link.module.css";
 import LocationModal from "./LocationModal";
 import CategoryCarousel from "../Slider";
+import { useSidebarStore } from "@/stores/useSidebarStore";
 
-interface HeaderProps {
-  sidebarOpen: boolean;
-  setSidebarOpen: (open: boolean) => void;
-}
-
-const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
+const Header = () => {
+  const { isOpen, closeSidebar } = useSidebarStore();
   const [menuOpen, setMenuOpen] = React.useState(false);
   const pathname = usePathname();
 
@@ -47,7 +44,7 @@ const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
         </Link>
 
         {/* Desktop Nav - Only visible if sidebar is closed */}
-        {!sidebarOpen && (
+        {!isOpen && (
           <nav className="hidden md:flex items-center space-x-6">
             {navLinks.map(({ label, path }) => {
               const isActive = pathname === path;
@@ -55,11 +52,10 @@ const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
                 <Link
                   href={path}
                   key={label}
-                  className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
-                    isActive
+                  className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${isActive
                       ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
                       : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
-                  }`}
+                    }`}
                 >
                   {label}
                   {!isActive && (
@@ -110,11 +106,11 @@ const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
       </motion.header>
 
       <div className="bg-white dark:bg-blue-950 shadow-md">
-        <CategoryCarousel setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen} />
+        <CategoryCarousel/>
       </div>
 
       {/* Mobile or Sidebar Open Nav */}
-      {(menuOpen || sidebarOpen) && (
+      {(menuOpen || isOpen) && (
         <motion.div
           id="mobile-menu"
           data-testid="mobile-menu"
@@ -130,11 +126,10 @@ const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
               <Link
                 href={path}
                 key={label}
-                className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
-                  isActive
+                className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${isActive
                     ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
                     : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer relative group`
-                }`}
+                  }`}
               >
                 {label}
                 {!isActive && (

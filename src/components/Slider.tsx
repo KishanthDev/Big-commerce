@@ -2,16 +2,13 @@
 
 import { useRef, useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
-import { useCategoryStore } from "./stores/useCategoryStore";
+import { useCategoryStore } from "@/stores/useCategoryStore";
 import { categoryIconMap } from "@/components/icons/IconMap";
+import { useSidebarStore } from "@/stores/useSidebarStore";
 
 
-interface CategoryCarouselProps {
-  sidebarOpen: boolean;
-  setSidebarOpen: (open: boolean) => void;
-}
-
-export default function CategoryCarousel({ setSidebarOpen, sidebarOpen }: CategoryCarouselProps) {
+export default function CategoryCarousel() {
+  const {toggleSidebar ,closeSidebar } = useSidebarStore();
   const { categories, fetchCategories, loading } = useCategoryStore();
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -27,10 +24,9 @@ export default function CategoryCarousel({ setSidebarOpen, sidebarOpen }: Catego
     const clickedCategory = displayCategories[index];
 
     if (clickedCategory.categoryName === "All") {
-      setSidebarOpen(!sidebarOpen);
-      sidebarOpen? setActiveIndex(null):setActiveIndex(index)
+      toggleSidebar()
     } else {
-      setSidebarOpen(false);
+      closeSidebar()
       setActiveIndex(index);
     }
   };

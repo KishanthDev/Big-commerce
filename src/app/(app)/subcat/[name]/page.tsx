@@ -2,7 +2,7 @@
 
 import { useEffect, use } from "react";
 import { slugify } from "@/app/lib/slugify";
-import { useCategoryStore } from "@/components/stores/useCategoryStore";
+import { useCategoryStore } from "@/stores/useCategoryStore";
 import { FiltersBar } from "@/components/filter/FiltersBar";
 import { Globe, Heart, MapPin, Phone, Share2 } from "lucide-react";
 import Image from "next/image";

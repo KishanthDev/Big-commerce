@@ -3,22 +3,32 @@ import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
 import Sidebar from "@/components/Sidebar";
 import type { ReactNode } from "react";
-import { useState } from "react";
+import { useSidebarStore } from "@/stores/useSidebarStore";
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { isOpen, closeSidebar } = useSidebarStore();
 
   return (
-    <div className="flex overflow-hidden h-screen w-full bg-gray-100 dark:bg-black">
-      {/* Sidebar with independent scroll */}
-      <div className="h-full overflow-y-auto">
-        <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-      </div>
+    <div className="relative h-screen w-full flex flex-col bg-gray-100 dark:bg-black">
+      {/* Sidebar Overlay */}
+      {isOpen && (
+        <>
+          <div
+            className="fixed inset-0 bg-opacity-50 z-40"
+            onClick={closeSidebar}
+          />
 
-      {/* Main content with independent scroll */}
-      <div className="flex-1 flex flex-col min-w-0 h-full overflow-y-auto">
-        <Header setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen} />
-        <main className="flex-1">{children}</main>
+          {/* Sidebar wrapper with scrollable content */}
+          <div className="fixed top-0 left-0 h-full z-50 bg-white dark:bg-zinc-900 shadow-lg overflow-y-auto">
+            <Sidebar />
+          </div>
+        </>
+      )}
+
+      {/* Main content area */}
+      <div className="relative flex-1 flex-col h-full z-10">
+        <Header />
+        <main className="flex-1 overflow-y-auto">{children}</main>
         <Footer />
       </div>
     </div>

@@ -3,18 +3,14 @@
 import { useRouter } from "next/navigation";
 import { slugify } from "@/app/lib/slugify";
 import React, { useState, useEffect } from "react";
-import { useCategoryStore } from "./stores/useCategoryStore";
+import { useCategoryStore } from "@/stores/useCategoryStore";
 import { ChevronDownIcon, ChevronRightIcon } from "lucide-react";
 import { categoryIconMap } from "@/components/icons/IconMap";
 import { subCategoryIconMap } from "./icons/subCategoryIconMap";
+import { useSidebarStore } from "@/stores/useSidebarStore";
 
-
-interface SidebarProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-export default function Sidebar({ isOpen, onClose }: SidebarProps) {
+export default function Sidebar() {
+  const {isOpen,closeSidebar} = useSidebarStore()
   const { categories, fetchCategories, loading } = useCategoryStore();
   const [openCategory, setOpenCategory] = useState<number | null>(null);
   const router = useRouter();
@@ -40,7 +36,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
       <button
         className="absolute top-4 right-4 p-2 rounded bg-gray-200 hover:bg-gray-300"
-        onClick={onClose}
+        onClick={()=>closeSidebar()}
         aria-label="Close sidebar"
       >
         Close

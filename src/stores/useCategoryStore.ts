@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-import fallback from "../../../data/fallback.json";
+import fallback from "@/data/fallback.json";
 
 interface Category {
   id: string;
