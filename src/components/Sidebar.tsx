@@ -1,5 +1,6 @@
 "use client";
-import { useRouter } from "next/navigation";
+
+import { useRouter, usePathname } from "next/navigation";
 import { slugify } from "@/app/lib/slugify";
 import React, { useState, useEffect } from "react";
 import { useCategoryStore } from "@/stores/useCategoryStore";
@@ -13,12 +14,29 @@ export default function Sidebar() {
   const { categories, fetchCategories, loading } = useCategoryStore();
   const [openCategory, setOpenCategory] = useState<number | null>(null);
   const router = useRouter();
+  const pathname = usePathname();
+
+  const currentSlug = pathname?.split("/subcat/")[1];
 
   useEffect(() => {
     if (categories.length === 0) {
       fetchCategories();
     }
   }, [categories.length, fetchCategories]);
+
+  // Automatically open parent category if a subcategory is active
+  useEffect(() => {
+    for (const cat of categories) {
+      if (
+        cat.subcategories?.some(
+          (sub: any) => slugify(sub.subcategoryName) === currentSlug
+        )
+      ) {
+        setOpenCategory(Number(cat.id));
+        break;
+      }
+    }
+  }, [categories, currentSlug]);
 
   if (!isOpen) return null;
   if (loading) return <div className="p-6">Loading...</div>;
@@ -27,21 +45,14 @@ export default function Sidebar() {
     setOpenCategory((prev) => (prev === categoryId ? null : categoryId));
   };
 
-  // Sort categories alphabetically by categoryName
-  const sortedCategories = [...categories].sort((a, b) => {
-    const nameA = String(a.categoryName).toLowerCase();
-    const nameB = String(b.categoryName).toLowerCase();
-    return nameA.localeCompare(nameB);
-  });
+  const sortedCategories = [...categories].sort((a, b) =>
+    String(a.categoryName).localeCompare(String(b.categoryName))
+  );
 
-  // Function to sort subcategories alphabetically
-  const sortSubcategories = (subcategories: any[]) => {
-    return [...subcategories].sort((a, b) => {
-      const nameA = String(a.subcategoryName).toLowerCase();
-      const nameB = String(b.subcategoryName).toLowerCase();
-      return nameA.localeCompare(nameB);
-    });
-  };
+  const sortSubcategories = (subcategories: any[]) =>
+    [...subcategories].sort((a, b) =>
+      String(a.subcategoryName).localeCompare(String(b.subcategoryName))
+    );
 
   return (
     <div className="relative w-70 bg-white dark:bg-gray-800 p-6 shadow-lg h-full overflow-y-auto">
@@ -49,11 +60,11 @@ export default function Sidebar() {
 
       <div>
         {sortedCategories.map((cat) => {
-          const isOpen = openCategory === Number(cat.id);
-          const sortedSubcategories = cat.subcategories 
+          const isCategoryOpen = openCategory === Number(cat.id);
+          const sortedSubcategories = cat.subcategories
             ? sortSubcategories(cat.subcategories)
             : [];
-            
+
           return (
             <div key={cat.id} className="mb-4">
               <a
@@ -70,7 +81,7 @@ export default function Sidebar() {
                     toggleCategory(Number(cat.id));
                   }
                 }}
-                aria-expanded={isOpen}
+                aria-expanded={isCategoryOpen}
                 aria-controls={`subcategory-list-${cat.id}`}
                 className="flex justify-between items-center cursor-pointer font-semibold px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
               >
@@ -88,7 +99,7 @@ export default function Sidebar() {
                 </span>
                 {sortedSubcategories.length > 0 && (
                   <span>
-                    {isOpen ? (
+                    {isCategoryOpen ? (
                       <ChevronDownIcon className="h-5 w-5" />
                     ) : (
                       <ChevronRightIcon className="h-5 w-5" />
@@ -96,32 +107,48 @@ export default function Sidebar() {
                   </span>
                 )}
               </a>
-              {isOpen && sortedSubcategories.length > 0 && (
+
+              {isCategoryOpen && sortedSubcategories.length > 0 && (
                 <div
                   id={`subcategory-list-${cat.id}`}
                   className="pl-6 mt-2 space-y-1"
                 >
-                  {sortedSubcategories.map((sub) => (
-                    <a
-                      key={sub.id}
-                      className="flex items-center gap-2 px-3 py-2.5 rounded hover:bg-gray-200 dark:hover:bg-gray-600 text-sm cursor-pointer"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        router.push(`/subcat/${slugify(String(sub.subcategoryName))}`);
-                      }}
-                    >
-                      {(() => {
-                        const name = String(sub.subcategoryName).trim();
-                        const Icon = subCategoryIconMap[name];
-                        return (
-                          <>
-                            {Icon && <Icon className="h-4 w-4 text-blue-500 shrink-0" />}
-                            <span>{name}</span>
-                          </>
-                        );
-                      })()}
-                    </a>
-                  ))}
+                  {sortedSubcategories.map((sub) => {
+                    const name = String(sub.subcategoryName).trim();
+                    const slug = slugify(name);
+                    const isActive = currentSlug === slug;
+
+                    return (
+                      <a
+                        key={sub.id}
+                        className={`flex items-center gap-2 px-3 py-2.5 rounded text-sm cursor-pointer transition-colors ${
+                          isActive
+                            ? "bg-gray-300 dark:bg-gray-700 font-semibold"
+                            : "hover:bg-gray-200 dark:hover:bg-gray-600"
+                        }`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          router.push(`/subcat/${slug}`);
+                        }}
+                      >
+                        {(() => {
+                          const Icon = subCategoryIconMap[name];
+                          return (
+                            <>
+                              {Icon && (
+                                <Icon
+                                  className={`h-4 w-4 shrink-0 ${
+                                    isActive ? "text-blue-600" : "text-blue-500"
+                                  }`}
+                                />
+                              )}
+                              <span>{name}</span>
+                            </>
+                          );
+                        })()}
+                      </a>
+                    );
+                  })}
                 </div>
               )}
             </div>

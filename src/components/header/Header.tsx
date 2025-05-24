@@ -16,7 +16,7 @@ const Header = () => {
   const pathname = usePathname();
 
   const navLinks = [
-    { label: "Home", path: "/" },
+    { label: "Home", path: "/home" },
     { label: "Sellers", path: "/sellers" },
     { label: "Buyers", path: "/buyers" },
     { label: "Advertising", path: "/advertising" },
