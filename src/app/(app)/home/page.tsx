@@ -8,7 +8,6 @@ import { CarouselDemo } from "@/components/Carousel";
 export default function Home() {
   return (
     <>
-      <HeroSection />
       
       <div className="relative w-full">
         <CarouselDemo />
@@ -21,7 +20,8 @@ export default function Home() {
 
       </div>
 
-      <div className="h-40" />
+      <div className="h-60" />
+      <HeroSection />
 
       <BigCommerceBenefits />
     </>

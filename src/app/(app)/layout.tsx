@@ -14,7 +14,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
       {isOpen && (
         <>
           <div
-            className="fixed inset-0 bg-black/20 z-40"
+            className="fixed inset-0 bg-black/10 z-40"
             onClick={closeSidebar}
           />
 
@@ -33,7 +33,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
       )}
 
       <div
-        className={`relative flex-1 flex-col h-full z-10 transition duration-300 ${isOpen ? "pointer-events-none overflow-hidden select-none blur-sm" : ""
+        className={`relative flex-1 flex-col h-full z-10 transition duration-300 ${isOpen ? "pointer-events-none overflow-hidden select-none" : ""
           }`}
         aria-hidden={isOpen ? "true" : "false"}
       >

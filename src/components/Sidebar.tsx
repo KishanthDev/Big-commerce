@@ -61,7 +61,7 @@ export default function Sidebar() {
                     const Icon = categoryIconMap[name];
                     return (
                       <>
-                        {Icon && <Icon className="h-4 w-4 text-blue-500 shrink-0" />}
+                        {Icon && <Icon className="h-5 w-5 text-blue-500 shrink-0" />}
                         {name}
                       </>
                     );
@@ -87,7 +87,7 @@ export default function Sidebar() {
                     {cat.subcategories.map((sub) => (
                       <a
                         key={sub.id}
-                        className="flex items-center gap-2 px-3 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 text-sm cursor-pointer"
+                        className="flex items-center gap-2 px-3 py-2.5 rounded hover:bg-gray-200 dark:hover:bg-gray-600 text-sm cursor-pointer"
                         onClick={(e) => {
                           e.preventDefault();
                           router.push(`/subcat/${slugify(String(sub.subcategoryName))}`);
