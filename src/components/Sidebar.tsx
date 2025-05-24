@@ -29,6 +29,7 @@ export default function Sidebar() {
     for (const cat of categories) {
       if (
         cat.subcategories?.some(
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (sub: any) => slugify(sub.subcategoryName) === currentSlug
         )
       ) {
@@ -49,6 +50,7 @@ export default function Sidebar() {
     String(a.categoryName).localeCompare(String(b.categoryName))
   );
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const sortSubcategories = (subcategories: any[]) =>
     [...subcategories].sort((a, b) =>
       String(a.subcategoryName).localeCompare(String(b.subcategoryName))
