@@ -28,7 +28,7 @@ export default function CategoryCarousel({ setSidebarOpen, sidebarOpen }: Catego
 
     if (clickedCategory.categoryName === "All") {
       setSidebarOpen(!sidebarOpen);
-      setActiveIndex(null);
+      sidebarOpen? setActiveIndex(null):setActiveIndex(index)
     } else {
       setSidebarOpen(false);
       setActiveIndex(index);
@@ -47,7 +47,7 @@ export default function CategoryCarousel({ setSidebarOpen, sidebarOpen }: Catego
       <div className="relative overflow-hidden">
         <div
           ref={containerRef}
-          className="overflow-x-auto no-scrollbar scroll-smooth cursor-grab"
+          className="overflow-x-auto scrollbar-thin scroll-smooth cursor-grab"
         >
           <motion.div
             animate={controls}
@@ -65,7 +65,8 @@ export default function CategoryCarousel({ setSidebarOpen, sidebarOpen }: Catego
                   onClick={() => handleCategoryClick(index)}
                 >
                   {Icon && (
-                    <Icon className="h-4 w-4 text-blue-500 shrink-0" />
+                    <Icon className={`h-5 w-5 ${activeIndex === index ? "text-purple-600" : "text-gray-600"
+                      } shrink-0`} />
                   )}
                   <span
                     className={`text-sm font-medium ${activeIndex === index ? "text-purple-600" : "text-gray-600"

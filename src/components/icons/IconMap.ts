@@ -15,6 +15,7 @@ import {
   PawPrint,
   Laptop,
   Shield,
+  LayoutList,
 } from "lucide-react";
 
 export const categoryIconMap: Record<string, React.ElementType> = {
@@ -25,6 +26,7 @@ export const categoryIconMap: Record<string, React.ElementType> = {
   "Shopping & Retail": ShoppingCart,
   "Professional Business Services": Briefcase,
   "Home Services": Home,
+  "All":LayoutList,
   "Travel & Transportation": Plane,
   "Real Estate": Building2,
   "Financial Services": CreditCard,

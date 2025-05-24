@@ -34,12 +34,12 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
   return (
     <div
-      className={`relative w-70 bg-white dark:bg-gray-800 p-6 overflow-y-auto shadow-lg transition-all duration-300 md:block ${isOpen ? "block" : "hidden"
+      className={`relative w-70 bg-white dark:bg-gray-800 p-6 shadow-lg transition-all duration-300 md:block ${isOpen ? "block" : "hidden"
         }`}
     >
 
       <button
-        className="absolute top-4 right-4 p-2 rounded bg-gray-200 hover:bg-gray-300 md:hidden"
+        className="absolute top-4 right-4 p-2 rounded bg-gray-200 hover:bg-gray-300"
         onClick={onClose}
         aria-label="Close sidebar"
       >
