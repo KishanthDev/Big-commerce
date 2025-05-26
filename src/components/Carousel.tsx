@@ -11,10 +11,11 @@ import {
 
 export function CarouselDemo() {
   const images = [
-    "/slider/photo1.webp",
+    "/slider/photo1.jpeg",
     "/slider/photo2.jpeg",
     "/slider/photo3.jpeg",
     "/slider/photo4.jpeg",
+    "/slider/photo5.jpeg",
   ];
 
   return (
@@ -36,7 +37,7 @@ export function CarouselDemo() {
                   <img
                     src={src}
                     alt={`Slide ${index + 1}`}
-                    className="w-full h-[600px] object-cover"
+                    className="w-full  aspect-[16/9]  object-cover"
                   />
                 </CardContent>
               </Card>
