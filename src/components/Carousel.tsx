@@ -33,15 +33,15 @@ export function CarouselDemo() {
           <CarouselItem key={index}>
             <div>
               <Card className="overflow-hidden py-0">
-                <CardContent className="p-0 relative aspect-[16/9] w-full overflow-hidden">
+                <CardContent className="p-0 relative aspect-[16/9] w-full overflow-hidden h-[600px] flex items-center justify-center">
                   <img
                     src={src}
                     alt={`Slide ${index + 1}`}
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="max-h-[80%] max-w-[80%] object-contain"
                   />
                 </CardContent>
-
               </Card>
+
             </div>
           </CarouselItem>
         ))}
