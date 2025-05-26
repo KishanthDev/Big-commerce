@@ -24,7 +24,8 @@ export function CarouselDemo() {
         align: "start",
         loop: true,
       }}
-      className="w-full mt-3 mx-auto relative">
+      className="w-full mt-15 mx-auto relative max-w-[1600px]"
+    >
       <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/70 hover:bg-white rounded-full p-2" />
       <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/70 hover:bg-white rounded-full p-2" />
 
@@ -32,16 +33,18 @@ export function CarouselDemo() {
         {images.map((src, index) => (
           <CarouselItem key={index}>
             <div>
-              <Card className="overflow-hidden py-0">
-                <CardContent className="p-0 relative aspect-[16/9] w-full overflow-hidden h-[600px] flex items-center justify-center">
+              <Card className="overflow-hidden py-0 border-none">
+                <CardContent className="p-0 relative aspect-[16/9] w-full h-[600px] sm:h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center bg-gray-100">
                   <img
                     src={src}
                     alt={`Slide ${index + 1}`}
-                    className="max-h-[80%] max-w-[80%] object-contain"
+                    className="w-full h-full bg-[#19ABDC] object-contain object-center"
+                    loading="lazy"
+                    srcSet={`${src}?w=800 800w, ${src}?w=1600 1600w`}
+                    sizes="(max-width: 768px) 800px, 1600px"
                   />
                 </CardContent>
               </Card>
-
             </div>
           </CarouselItem>
         ))}
