@@ -60,15 +60,8 @@ const Header = () => {
             );
           })}
         </nav>
-{/*         <LocationModal />
- */}
-        {/* Desktop Right Side Controls */}
+        
         <div className="hidden md:flex items-center space-x-4">
-          {/* <Link href={pathname === "/home" ? "/categories" : "/"}>
-            <LayoutList
-              className={`border ${pathname !== "/home" ? "bg-blue-700" : "bg-blue-600"} text-white border-blue-500 p-1.5 w-8 h-8 rounded-md cursor-pointer`}
-            />
-          </Link> */}
           <Link href="/login">
             <Button variant="outline">Log In</Button>
           </Link>
