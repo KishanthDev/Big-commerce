@@ -5,7 +5,16 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["via.placeholder.com", "cdn.zeptonow.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "via.placeholder.com",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.zeptonow.com",
+      },
+    ],
     formats: ["image/webp", "image/avif"],
   },
   compiler: {
