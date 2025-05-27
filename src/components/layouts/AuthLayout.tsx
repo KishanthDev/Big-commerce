@@ -1,7 +1,7 @@
 "use client";
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/components/sidebar/Sidebar";
 import type { ReactNode } from "react";
 import { useSidebarStore } from "@/stores/useSidebarStore";
 import { motion, AnimatePresence } from "framer-motion";

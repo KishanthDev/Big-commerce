@@ -9,7 +9,7 @@ import { DarkModeToggle } from "./ModeToggle";
 import FullScreenToggle from "./FullScreenToggle";
 import { usePathname } from "next/navigation";
 import styles from "./Link.module.css";
-import CategoryCarousel from "../Slider";
+import CategoryCarousel from "./Slider";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = React.useState(false);
@@ -60,7 +60,7 @@ const Header = () => {
             );
           })}
         </nav>
-        
+
         <div className="hidden md:flex items-center space-x-4">
           <Link href="/login">
             <Button variant="outline">Log In</Button>

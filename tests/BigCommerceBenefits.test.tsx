@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import BigCommerceBenefits from "@/components/BigCommerceBenefits";
+import BigCommerceBenefits from "@/components/home/BigCommerceBenefits";
 
 describe("BigCommerceBenefits", () => {
   it("renders the heading", () => {
