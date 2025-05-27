@@ -24,7 +24,7 @@ export function CarouselDemo() {
         align: "start",
         loop: true,
       }}
-      className="w-full mt-15 mx-auto relative max-w-[1600px]"
+      className="w-full mt-18 mx-auto relative max-w-[1600px]"
     >
       <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/70 hover:bg-white rounded-full p-2" />
       <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/70 hover:bg-white rounded-full p-2" />
