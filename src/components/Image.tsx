@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 export default function ImageGridBox() {
     const { categories, loading, error, fetchCategories } = useCategoryStore()
-    const [visibleCategories, setVisibleCategories] = useState(4) // Start with 4 categories
+    const [visibleCategories] = useState(4) // Start with 4 categories
 
     useEffect(() => {
         fetchCategories()
