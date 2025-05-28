@@ -79,7 +79,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
             </motion.div>
             <motion.button
               onClick={closeSidebar}
-              className="absolute top-4 left-[290px] z-50 px-3 py-2 bg-gray-200 hover:bg-gray-300 dark:bg-zinc-700 dark:hover:bg-zinc-600 rounded-md"
+              className="absolute top-0 left-[280px] z-50 px-3 py-2 bg-gray-200 hover:bg-gray-300 dark:bg-zinc-700 dark:hover:bg-zinc-600 rounded-md"
               aria-label="Close sidebar"
               variants={buttonVariants}
               initial="closed"
