@@ -62,7 +62,7 @@ export default function CategoryCarousel() {
               return (
                 <div
                   key={`${name}-${index}`}
-                  className="relative flex items-center gap-2 px-2 py-3 flex-shrink-0 cursor-pointer select-none"
+                  className="relative flex font-normal text-xs items-center gap-2 px-2 py-3 flex-shrink-0 cursor-pointer select-none"
                   onClick={() => handleCategoryClick(index)}
                 >
                   {Icon && (
