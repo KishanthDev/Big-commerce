@@ -12,7 +12,7 @@ import data from "@/data/data.json";
 import { notFound } from "next/navigation";
 import { slugify } from "@lib/slugify";
 import Footer from "@/components/services/Footer";
-import { Business } from "types/business";
+import { Business } from "@/types/business";
 
 interface Subcategory {
   name: string;

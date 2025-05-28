@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { Category, Subcategory } from "../../../types/category";
+import { Category, Subcategory } from "@/types/category";
 import { slugify } from "@/app/lib/slugify";
 import { usePathname } from "next/navigation";
 import { categoryIconMap } from "@/components/icons/IconMap";

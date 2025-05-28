@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import SubcategoryPage from "./SubcategoryPage";
-import { slugify } from "../../lib/slugify";
+import { slugify } from "../../../lib/slugify";
 
 // Mock dependencies
 jest.mock("next/link", () => {

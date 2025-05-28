@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import categoriesData from "@/data/detailed_categories_with_subcategories.json";
 import { slugify } from "@/app/lib/slugify";
-import { Category, Subcategory } from "../../../../../../types/category";
+import { Category, Subcategory } from "@/types/category";
 import Breadcrumb from "@/components/breadcrumb/Breadcrumb";
 import { FiltersBar } from "@/components/filter/FiltersBar";
 import { Share2, Heart, Phone, Globe, MapPin } from "lucide-react";

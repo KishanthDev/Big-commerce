@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 
-import { GalleryImage } from "../../../types/data";
+import { GalleryImage } from "@/types/data";
 
 interface GallerySectionProps {
   images: GalleryImage[];

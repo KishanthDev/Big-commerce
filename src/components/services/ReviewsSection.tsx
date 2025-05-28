@@ -3,7 +3,7 @@
 import React from "react";
 import { Card, CardBody } from "@heroui/card";
 
-import { Review } from "../../../types/data";
+import { Review } from "@/types/data";
 
 interface ReviewsSectionProps {
   reviews: Review[];

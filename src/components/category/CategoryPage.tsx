@@ -2,7 +2,7 @@ import Link from "next/link";
 import { slugify } from "@/app/lib/slugify";
 import categoriesData from "@/data/detailed_categories_with_subcategories.json";
 import Breadcrumb from "../breadcrumb/Breadcrumb";
-import { Subcategory } from "../../../types/category";
+import { Subcategory } from "@/types/category";
 import { categoryIconMap } from "@/components/icons/IconMap";
 
 interface CategoryType {

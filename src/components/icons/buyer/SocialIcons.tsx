@@ -1,4 +1,4 @@
-import { SocialIconProps } from "../../../../types/social-icons";
+import { SocialIconProps } from "@/types/social-icons";
 
 export function FacebookIcon({
   size = 24,

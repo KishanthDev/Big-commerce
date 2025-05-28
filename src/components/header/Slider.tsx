@@ -5,6 +5,8 @@ import { motion, useAnimation } from "framer-motion";
 import { useCategoryStore } from "@/stores/useCategoryStore";
 import { categoryIconMap } from "@/components/icons/IconMap";
 import { useSidebarStore } from "@/stores/useSidebarStore";
+import { useRouter } from "next/navigation";
+import { slugify } from "@/app/lib/slugify";
 
 export default function CategoryCarousel() {
   const { toggleSidebar, closeSidebar } = useSidebarStore();
@@ -12,12 +14,22 @@ export default function CategoryCarousel() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
+  const router = useRouter();
 
   useEffect(() => {
     if (categories.length === 0) {
       fetchCategories();
     }
   }, [categories.length, fetchCategories]);
+
+  const sortedCategories = [...categories].sort((a, b) => {
+    const nameA = String(a.categoryName).toLowerCase();
+    const nameB = String(b.categoryName).toLowerCase();
+    return nameA.localeCompare(nameB);
+  });
+
+  const allCategory = { categoryName: "All" };
+  const displayCategories = [allCategory, ...sortedCategories];
 
   const handleCategoryClick = (index: number) => {
     const clickedCategory = displayCategories[index];
@@ -27,21 +39,23 @@ export default function CategoryCarousel() {
     } else {
       closeSidebar();
       setActiveIndex(index);
+
+      const slugCategory = slugify(String(clickedCategory.categoryName));
+
+      // Navigate to first subcategory (if exists)
+      let firstSub;
+      if ("subcategories" in clickedCategory && Array.isArray(clickedCategory.subcategories)) {
+        firstSub = clickedCategory.subcategories[0];
+      }
+      if (firstSub) {
+        router.push(`/subcategory/${slugCategory}`);
+      } else {
+        router.push(`/${slugCategory}`);
+      }
     }
   };
 
   if (loading) return <div className="p-6">Loading...</div>;
-
-  // Sort categories alphabetically (case-insensitive)
-  const sortedCategories = [...categories].sort((a, b) => {
-    const nameA = String(a.categoryName).toLowerCase();
-    const nameB = String(b.categoryName).toLowerCase();
-    return nameA.localeCompare(nameB);
-  });
-
-  // Manually insert "All" category at the beginning
-  const allCategory = { categoryName: "All" };
-  const displayCategories = [allCategory, ...sortedCategories];
 
   return (
     <div className="relative w-full pt-4">

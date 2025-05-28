@@ -1,6 +1,6 @@
 "use client";
 
-import type { BusinessHour } from "../../../types/data";
+import type { BusinessHour } from "@/types/data";
 
 import React from "react";
 

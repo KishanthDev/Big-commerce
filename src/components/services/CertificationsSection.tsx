@@ -1,6 +1,6 @@
 "use client";
 
-import type { Certification } from "../../../types/data";
+import type { Certification } from "@/types/data";
 
 import React from "react";
 

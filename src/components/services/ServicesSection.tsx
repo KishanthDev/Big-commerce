@@ -1,6 +1,6 @@
 import { Card, CardHeader } from "@heroui/card";
 
-import { Service } from "../../../types/data";
+import { Service } from "@/types/data";
 
 interface ServicesSectionProps {
   services: Service[];
