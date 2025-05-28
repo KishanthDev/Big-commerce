@@ -68,12 +68,12 @@ export default function CategoryCarousel() {
                   {Icon && (
                     <Icon
                       className={`h-5 w-5 ${
-                        activeIndex === index ? "text-purple-600" : "text-gray-600"
+                        activeIndex === index ? "text-purple-600" : "text-primary"
                       } shrink-0`}
                     />
                   )}
                   <span
-                    className={`text-sm font-medium ${
+                    className={`text-primary font-medium ${
                       activeIndex === index ? "text-purple-600" : "text-gray-600"
                     }`}
                   >

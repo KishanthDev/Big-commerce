@@ -85,7 +85,7 @@ export default function Sidebar() {
                 }}
                 aria-expanded={isCategoryOpen}
                 aria-controls={`subcategory-list-${cat.id}`}
-                className="flex justify-between items-center cursor-pointer font-semibold px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="flex justify-between items-center cursor-pointer font-normal px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <span className="flex items-center gap-2">
                   {(() => {
@@ -125,7 +125,7 @@ export default function Sidebar() {
                         key={sub.id}
                         className={`flex items-center gap-2 px-3 py-2.5 rounded text-sm cursor-pointer transition-colors ${
                           isActive
-                            ? "bg-gray-300 dark:bg-gray-700 font-semibold"
+                            ? "bg-gray-300 text-blue-700 dark:text-blue-400 dark:bg-gray-700 font-medium"
                             : "hover:bg-gray-200 dark:hover:bg-gray-600"
                         }`}
                         onClick={(e) => {
