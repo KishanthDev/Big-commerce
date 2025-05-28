@@ -57,8 +57,10 @@ export default function Sidebar() {
     );
 
   return (
-    <div className="relative w-70 bg-white dark:bg-gray-800 p-6 shadow-lg h-full overflow-y-auto">
-      <h2 className="text-2xl font-bold mb-6">Categories</h2>
+    <div className="relative w-70 bg-white dark:bg-gray-800 pl-6 pr-6 shadow-lg h-full overflow-y-auto scrollbar-hide">
+      <h2 className="text-2xl font-bold sticky top-0 z-10 bg-white dark:bg-gray-800 py-4">
+        Categories
+      </h2>
 
       <div>
         {sortedCategories.map((cat) => {
@@ -123,11 +125,10 @@ export default function Sidebar() {
                     return (
                       <a
                         key={sub.id}
-                        className={`flex items-center gap-2 px-3 py-2.5 rounded text-sm cursor-pointer transition-colors ${
-                          isActive
+                        className={`flex items-center gap-2 px-3 py-2.5 rounded text-sm cursor-pointer transition-colors ${isActive
                             ? "bg-gray-300 text-blue-700 dark:text-blue-400 dark:bg-gray-700 font-medium"
                             : "hover:bg-gray-200 dark:hover:bg-gray-600"
-                        }`}
+                          }`}
                         onClick={(e) => {
                           e.preventDefault();
                           router.push(`/subcat/${slug}`);
@@ -139,9 +140,8 @@ export default function Sidebar() {
                             <>
                               {Icon && (
                                 <Icon
-                                  className={`h-4 w-4 shrink-0 ${
-                                    isActive ? "text-blue-600" : "text-blue-500"
-                                  }`}
+                                  className={`h-4 w-4 shrink-0 ${isActive ? "text-blue-600" : "text-blue-500"
+                                    }`}
                                 />
                               )}
                               <span>{name}</span>
