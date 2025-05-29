@@ -1,20 +1,7 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 import fallback from "@/data/fallback.json";
-
-interface Category {
-  id: string;
-  name: string;
-  subcategories?: Category[];
-  [key: string]: unknown;
-}
-
-interface CategoryState {
-  categories: Category[];
-  loading: boolean;
-  error: string | null;
-  fetchCategories: () => Promise<void>;
-}
+import { Category, CategoryState } from "@/types/cat";
 
 export const useCategoryStore = create<CategoryState>()(
   devtools((set) => ({

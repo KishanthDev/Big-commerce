@@ -8,6 +8,7 @@ import { Globe, Heart, MapPin, Phone, Share2 } from "lucide-react";
 import Image from "next/image";
 import StarRating from "@/components/icons/StarRating";
 import Link from "next/link";
+import { Category, Subcategory } from "@/types/cat";
 
 interface CategoryPageProps {
   params: Promise<{ subcategorySlug: string }>;
@@ -26,13 +27,13 @@ export default function CategoryPage({ params }: CategoryPageProps) {
   const slug = slugify(resolvedParams.subcategorySlug);
 
   // Find the subcategory and its parent category
-  let subcategory = null;
-  let parentCategory = null;
+  let subcategory: Subcategory | null = null;
+  let parentCategory: Category | null = null;
 
   for (const category of categories) {
     if (category.subcategories) {
-      const foundSub = category.subcategories.find(
-        (sub) => slugify(String(sub.subcategoryName ?? sub.name)) === slug
+      const foundSub = category.subcategories.find((sub: Subcategory) =>
+        slugify(String(typeof sub === "string" ? sub : sub.subcategoryName || sub.name)) === slug
       );
       if (foundSub) {
         subcategory = foundSub;
@@ -42,11 +43,14 @@ export default function CategoryPage({ params }: CategoryPageProps) {
     }
   }
 
-  // Temporary business data - replace with your actual business data
+  // Get subcategory name for display and business data
+  const subcategoryName = typeof subcategory === "string" ? subcategory : subcategory?.subcategoryName || subcategory?.name || "Unknown";
+
+  // Temporary business data - replace with actual business data
   const businesses = [
     {
       id: 1,
-      businessName: subcategory?.subcategoryName,
+      businessName: subcategoryName, // Use resolved subcategoryName
       description: "Top-notch car repair services with certified mechanics.",
       ratings: 4.5,
       reviews: [{}, {}, {}, {}, {}],
@@ -59,21 +63,21 @@ export default function CategoryPage({ params }: CategoryPageProps) {
       cta: {
         getDirections: "https://maps.google.com/?q=Mike's+Auto+Garage",
       },
-    }
+    },
   ];
 
   if (loading) {
     return <div className="p-6">Loading...</div>;
   }
 
-  if (!subcategory) {
-    return <div className="p-6">Loading...</div>;
+  if (!subcategory || !parentCategory) {
+    return <div className="p-6">Subcategory not found</div>;
   }
 
   return (
     <div className="h-full p-5 bg-gray-100 dark:bg-black">
       <h1 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-        {String(subcategory.subcategoryName || subcategory.name)} Businesses in {String(parentCategory?.categoryName)}
+        {String(subcategoryName)} Businesses in {parentCategory.categoryName}
       </h1>
       <FiltersBar />
       {businesses.length === 0 ? (
