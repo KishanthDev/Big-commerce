@@ -9,9 +9,18 @@ import ImageGridBox from "@/components/Image";
 export default function Home() {
   return (
     <>
-      <CarouselDemo />
+      <div className="relative">
+        <CarouselDemo />
+        {/* Overlay ImageGridBox but let carousel buttons stay clickable */}
+        <div className="absolute -bottom-200 inset-0 z-10 flex items-center justify-center pointer-events-none">
+          <div className="pointer-events-auto">
+            <ImageGridBox />
+          </div>
+        </div>
+      </div>
+
+      <div className="h-90" />
       <HeroSection />
-      <ImageGridBox/>
       <StatsSection />
       <BigCommerceBenefits />
     </>
