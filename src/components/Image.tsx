@@ -43,7 +43,7 @@ export default function ImageGridBox() {
                     {/* Image box */}
                     <div className="w-full aspect-square relative rounded-md overflow-hidden border border-gray-200">
                       <Image
-                        src={`/images/${slugify(String(subName))}.jpg`}
+                        src={`https://res.cloudinary.com/ds6mdqjnx/image/upload/v1748005976/car_sales_uifw42.jpg`}
                         alt={String(subName)}
                         fill
                         className="object-cover"
