@@ -1,86 +1,88 @@
-import { notFound } from "next/navigation";
-import { Metadata } from "next";
-import categoriesData from "@/data/detailed_categories_with_subcategories.json";
+"use client";
+
+import { useEffect, use } from "react";
 import { slugify } from "@/app/lib/slugify";
-import { Category, Subcategory } from "@/types/category";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb";
+import { useCategoryStore } from "@/stores/useCategoryStore";
 import { FiltersBar } from "@/components/filter/FiltersBar";
-import { Share2, Heart, Phone, Globe, MapPin } from "lucide-react";
-import StarRating from "@/components/icons/StarRating";
+import { Globe, Heart, MapPin, Phone, Share2 } from "lucide-react";
 import Image from "next/image";
+import StarRating from "@/components/icons/StarRating";
 import Link from "next/link";
 
-export async function generateStaticParams() {
-  const params: { categorySlug: string; subcategorySlug: string }[] = [];
-
-  categoriesData.forEach((category: Category) => {
-    category.subcategories.forEach((subcategory) => {
-      const param = {
-        categorySlug: slugify(category.category),
-        subcategorySlug: slugify(subcategory.name),
-      };
-      params.push(param);
-    });
-  });
-
-  return params;
+interface CategoryPageProps {
+  params: Promise<{ subcategorySlug: string }>;
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ categorySlug: string; subcategorySlug: string }>;
-}): Promise<Metadata> {
-  const { categorySlug, subcategorySlug } = await params;
-  const category = categoriesData.find(
-    (cat: Category) => slugify(cat.category) === categorySlug,
-  );
-  const subcategory = category?.subcategories.find(
-    (sub: Subcategory) => slugify(sub.name) === subcategorySlug,
-  );
+export default function CategoryPage({ params }: CategoryPageProps) {
+  const { categories, fetchCategories, loading } = useCategoryStore();
 
-  return {
-    title: subcategory
-      ? `${subcategory.name} Businesses - ${category!.category}`
-      : "Businesses Not Found",
-    description: subcategory
-      ? `Discover the best ${subcategory.name} businesses in ${category!.category}.`
-      : "Browse top-rated local businesses near you.",
-  };
-}
+  useEffect(() => {
+    if (categories.length === 0) {
+      fetchCategories();
+    }
+  }, [categories.length, fetchCategories]);
 
-export default async function SubcategoryBusinessesPage({
-  params,
-}: {
-  params: Promise<{ categorySlug: string; subcategorySlug: string }>;
-}) {
-  const { categorySlug, subcategorySlug } = await params;
+  const resolvedParams = use(params);
+  const slug = slugify(resolvedParams.subcategorySlug);
 
-  const category = categoriesData.find(
-    (cat: Category) => slugify(cat.category) === categorySlug,
-  );
-  const subcategory = category?.subcategories.find(
-    (sub: Subcategory) => slugify(sub.name) === subcategorySlug,
-  );
+  // Find the subcategory and its parent category
+  let subcategory = null;
+  let parentCategory = null;
 
-  if (!category || !subcategory) {
-    notFound();
+  for (const category of categories) {
+    if (category.subcategories) {
+      const foundSub = category.subcategories.find(
+        (sub) => slugify(String(sub.subcategoryName ?? sub.name)) === slug
+      );
+      if (foundSub) {
+        subcategory = foundSub;
+        parentCategory = category;
+        break;
+      }
+    }
+  }
+
+  // Temporary business data - replace with your actual business data
+  const businesses = [
+    {
+      id: 1,
+      businessName: subcategory?.subcategoryName,
+      description: "Top-notch car repair services with certified mechanics.",
+      ratings: 4.5,
+      reviews: [{}, {}, {}, {}, {}],
+      highlights: ["Free Estimates", "Certified Technicians", "Same-Day Service"],
+      gallery: ["/images/car-garage.jpg"],
+      contact: {
+        phone: "123-456-7890",
+        website: "https://mikesauto.com",
+      },
+      cta: {
+        getDirections: "https://maps.google.com/?q=Mike's+Auto+Garage",
+      },
+    }
+  ];
+
+  if (loading) {
+    return <div className="p-6">Loading...</div>;
+  }
+
+  if (!subcategory) {
+    return <div className="p-6">Loading...</div>;
   }
 
   return (
     <div className="h-full p-5 bg-gray-100 dark:bg-black">
-      <Breadcrumb category={category} subcategory={subcategory} />
       <h1 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-        {subcategory.name} Businesses in {category.category}
+        {String(subcategory.subcategoryName || subcategory.name)} Businesses in {String(parentCategory?.categoryName)}
       </h1>
       <FiltersBar />
-      {subcategory.businesses.length === 0 ? (
+      {businesses.length === 0 ? (
         <p className="text-gray-600 dark:text-gray-300">
           No businesses found for this subcategory.
         </p>
       ) : (
         <div className="space-y-6">
-          {subcategory.businesses.map((business) => (
+          {businesses.map((business) => (
             <div
               key={business.id}
               className="relative flex flex-col sm:flex-row bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow"
@@ -105,7 +107,7 @@ export default async function SubcategoryBusinessesPage({
               <div className="sm:w-1/3 w-full h-56 sm:h-auto relative">
                 <Image
                   src={business.gallery[0]}
-                  alt={business.businessName}
+                  alt={String(business.businessName)}
                   className="object-cover w-full h-full"
                   fill
                   sizes="(max-width: 640px) 100vw, 33vw"
@@ -116,7 +118,7 @@ export default async function SubcategoryBusinessesPage({
               <div className="flex-1 p-6 flex flex-col justify-between">
                 <div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-                    {business.businessName}
+                    {String(business.businessName)}
                   </h2>
                   <div className="flex items-center gap-2">
                     <StarRating rating={business.ratings} />
@@ -143,7 +145,6 @@ export default async function SubcategoryBusinessesPage({
 
                 {/* Action Buttons */}
                 <div className="flex justify-between items-end mt-6 flex-wrap gap-4">
-                  {/* CTA + Icons with Lucide */}
                   <div className="flex items-center gap-6 text-sm text-gray-600 dark:text-gray-300">
                     <a
                       href={`tel:${business.contact.phone}`}
@@ -153,7 +154,6 @@ export default async function SubcategoryBusinessesPage({
                       <Phone className="w-4 h-4" />
                       {business.contact.phone}
                     </a>
-
                     <a
                       href={business.contact.website}
                       target="_blank"
@@ -164,7 +164,6 @@ export default async function SubcategoryBusinessesPage({
                       <Globe className="w-4 h-4" />
                       {business.contact.website}
                     </a>
-
                     <a
                       href={business.cta.getDirections}
                       target="_blank"
@@ -178,7 +177,7 @@ export default async function SubcategoryBusinessesPage({
                     <Link
                       target="_blank"
                       rel="noopener noreferrer"
-                      href={`/subcategory/${categorySlug}/${subcategorySlug}/${slugify(business.businessName)}`}
+                      href={'#'}
                       className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition"
                     >
                       Visit

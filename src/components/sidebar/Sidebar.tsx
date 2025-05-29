@@ -119,19 +119,19 @@ export default function Sidebar() {
                 >
                   {sortedSubcategories.map((sub) => {
                     const name = String(sub.subcategoryName).trim();
-                    const slug = slugify(name);
-                    const isActive = currentSlug === slug;
+                    const subCategorySlug = slugify(name);
+                    const isActive = currentSlug === subCategorySlug;
 
                     return (
                       <a
                         key={sub.id}
                         className={`flex items-center gap-2 px-3 py-2.5 rounded text-sm cursor-pointer transition-colors ${isActive
-                            ? "bg-gray-300 text-blue-700 dark:text-blue-400 dark:bg-gray-700 font-medium"
-                            : "hover:bg-gray-200 dark:hover:bg-gray-600"
+                          ? "bg-gray-300 text-blue-700 dark:text-blue-400 dark:bg-gray-700 font-medium"
+                          : "hover:bg-gray-200 dark:hover:bg-gray-600"
                           }`}
                         onClick={(e) => {
                           e.preventDefault();
-                          router.push(`/subcat/${slug}`);
+                          router.push(`/subcategory/${slugify(String(cat.categoryName))}/${subCategorySlug}`);
                         }}
                       >
                         {(() => {
