@@ -4,6 +4,7 @@
 export type Subcategory = string | {
   id?: string;
   subcategoryName: string;
+  imageUrl?: string; // Optional image URL
   [key: string]: unknown; // Allow additional properties
 };
 

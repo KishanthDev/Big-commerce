@@ -1,20 +1,14 @@
 import { NextResponse } from "next/server";
+import clientPromise from "@/lib/mongodb";
 
 export const GET = async () => {
   try {
-    const res = await fetch(
-      "https://dbapiservice.onrender.com/dbapis/v1/categories?extended=true",
-    );
-
-    if (!res.ok) {
-      return NextResponse.json(
-        { error: "Failed to fetch categories" },
-        { status: res.status },
-      );
-    }
-
-    const data = await res.json();
-    return NextResponse.json(data);
+    const client = await clientPromise;
+    const db = client.db("bigcommerce");
+    const categories = await db.collection("categories").find({}).toArray();
+    console.log("Fetched categories:", categories.length);
+    
+    return NextResponse.json(categories);
   } catch (error: unknown) {
     let message = "Unknown error";
     if (error instanceof Error) {

@@ -7,22 +7,26 @@
       {
         "id": 1,
         "subcategoryName": "Car Repair",
-        "categoryId": 1
+        "categoryId": 1,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1748005976/car_sales_uifw42.jpg"
       },
       {
         "id": 2,
         "subcategoryName": "Car Sales",
-        "categoryId": 1
+        "categoryId": 1,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1748005976/car_sales_uifw42.jpg"
       },
       {
         "id": 3,
         "subcategoryName": "Tires",
-        "categoryId": 1
+        "categoryId": 1,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1748006488/tires_kpttmz.jpg"
       },
       {
         "id": 4,
         "subcategoryName": "Auto Parts",
-        "categoryId": 1
+        "categoryId": 1,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1748007300/auto_parts_s6wgys.jpg"
       }
     ]
   },
@@ -30,31 +34,37 @@
     "id": 4,
     "categoryName": "Restaurants & Food",
     "description": null,
+    "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839006/Pictures/finedining/finedining_d01rku.jpg",
     "subcategories": [
       {
         "id": 15,
         "subcategoryName": "Fast Food",
-        "categoryId": 4
+        "categoryId": 4,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839006/Pictures/fastfood/fastfood_cpv1o2.jpg"
       },
       {
         "id": 16,
         "subcategoryName": "Fine Dining",
-        "categoryId": 4
+        "categoryId": 4,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839006/Pictures/finedining/finedining_d01rku.jpg"
       },
       {
         "id": 17,
         "subcategoryName": "Cafes",
-        "categoryId": 4
+        "categoryId": 4,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839005/Pictures/cafes/cafes_xfr3rt.jpg"
       },
       {
         "id": 18,
         "subcategoryName": "Bakeries",
-        "categoryId": 4
+        "categoryId": 4,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839004/Pictures/bakeries/bakeries_jj2qri.jpg"
       },
       {
         "id": 19,
         "subcategoryName": "Food Delivery Services",
-        "categoryId": 4
+        "categoryId": 4,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839006/Pictures/food_delivery/food_delivery_zb0x1x.jpg"
       }
     ]
   },
@@ -66,32 +76,38 @@
       {
         "id": 5,
         "subcategoryName": "Hospitals",
-        "categoryId": 2
+        "categoryId": 2,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747922922/Best_Hospitals_ncim2k.jpg"
       },
       {
         "id": 6,
         "subcategoryName": "Clinics",
-        "categoryId": 2
+        "categoryId": 2,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839014/Pictures/clinics/clinics_ess1kk.jpg"
       },
       {
         "id": 7,
         "subcategoryName": "Dentists",
-        "categoryId": 2
+        "categoryId": 2,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839014/Pictures/dentists/dentists_j77e6d.jpg"
       },
       {
         "id": 8,
         "subcategoryName": "Pharmacies",
-        "categoryId": 2
+        "categoryId": 2,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839012/Pictures/pharmacies/pharmacies_vq3cxc.jpg"
       },
       {
         "id": 9,
         "subcategoryName": "Physiotherapy Centres",
-        "categoryId": 2
+        "categoryId": 2,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839011/Pictures/phsiotherapycentres/phsiotherapycentres_lqni8l.jpg"
       },
       {
         "id": 10,
         "subcategoryName": "Veterinary Clinics",
-        "categoryId": 2
+        "categoryId": 2,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839009/Pictures/veterinarycentres/veterinarycentres_hzu2sq.jpg"
       }
     ]
   },
@@ -103,37 +119,44 @@
       {
         "id": 20,
         "subcategoryName": "Clothing Stores",
-        "categoryId": 5
+        "categoryId": 5,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839017/Pictures/clothingstores/clothingstores_gn1vug.jpg"
       },
       {
         "id": 21,
         "subcategoryName": "Electronics Stores",
-        "categoryId": 5
+        "categoryId": 5,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839004/Pictures/electronicstores/electronicstores_hwfw2m.jpg"
       },
       {
         "id": 22,
         "subcategoryName": "Jewellery Showrooms",
-        "categoryId": 5
+        "categoryId": 5,
+        "imageUrl": null
       },
       {
         "id": 23,
         "subcategoryName": "Grocery Stores",
-        "categoryId": 5
+        "categoryId": 5,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839002/Pictures/grocery_stores/grocery_stores_kn1nf8.jpg"
       },
       {
         "id": 24,
         "subcategoryName": "Department Stores",
-        "categoryId": 5
+        "categoryId": 5,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839003/Pictures/department_stores/department_stores_fqcon1.jpg"
       },
       {
         "id": 25,
         "subcategoryName": "Furniture Showrooms",
-        "categoryId": 5
+        "categoryId": 5,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747838999/Pictures/furniture_stores/furniture_stores_tq00kr.jpg"
       },
       {
         "id": 26,
         "subcategoryName": "Pest Control",
-        "categoryId": 5
+        "categoryId": 5,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839000/Pictures/pest_control/pest_control_fvpluc.jpg"
       }
     ]
   },
@@ -145,27 +168,32 @@
       {
         "id": 38,
         "subcategoryName": "Airlines",
-        "categoryId": 8
+        "categoryId": 8,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839863/Pictures/airlines/airlines_qnw4ex.jpg"
       },
       {
         "id": 39,
         "subcategoryName": "Hotels",
-        "categoryId": 8
+        "categoryId": 8,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839836/Pictures/hotels/hotels_uta79r.jpg"
       },
       {
         "id": 40,
         "subcategoryName": "Car Rentals",
-        "categoryId": 8
+        "categoryId": 8,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839850/Pictures/carrentals/carrentals_lyiamf.jpg"
       },
       {
         "id": 41,
         "subcategoryName": "Travel Agencies",
-        "categoryId": 8
+        "categoryId": 8,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839835/Pictures/travelagencies/travelagencies_npmyyj.jpg"
       },
       {
         "id": 42,
         "subcategoryName": "Public Transport",
-        "categoryId": 8
+        "categoryId": 8,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839835/Pictures/public_transport/public_transport_n57f4k.jpg"
       }
     ]
   },
@@ -177,22 +205,26 @@
       {
         "id": 11,
         "subcategoryName": "Schools (primary, secondary)",
-        "categoryId": 3
+        "categoryId": 3,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1748521832/schools_b1bzgb.jpg"
       },
       {
         "id": 12,
         "subcategoryName": "Colleges & Universities",
-        "categoryId": 3
+        "categoryId": 3,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839011/Pictures/college_university/college_university_xoyemv.jpg"
       },
       {
         "id": 13,
         "subcategoryName": "Tutoring Services",
-        "categoryId": 3
+        "categoryId": 3,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839008/Pictures/tuitionservices/tuitionservices_ksp8mr.jpg"
       },
       {
         "id": 14,
         "subcategoryName": "Educational Consultants",
-        "categoryId": 3
+        "categoryId": 3,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839007/Pictures/educationalconsultancy/educationalconsultancy_staiek.jpg"
       }
     ]
   },
@@ -204,22 +236,26 @@
       {
         "id": 43,
         "subcategoryName": "Builders and Developers",
-        "categoryId": 9
+        "categoryId": 9,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747840956/Pictures/buildersnddevelopers/buildersnddevelopers_bn6r0p.jpg"
       },
       {
         "id": 44,
         "subcategoryName": "Civil Contractors",
-        "categoryId": 9
+        "categoryId": 9,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747840954/Pictures/civilcontractors/civilcontractors_osz698.jpg"
       },
       {
         "id": 45,
         "subcategoryName": "Real Estate Agents",
-        "categoryId": 9
+        "categoryId": 9,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747840947/Pictures/realestateagents/realestateagents_whwnvy.jpg"
       },
       {
         "id": 46,
         "subcategoryName": "Property Management",
-        "categoryId": 9
+        "categoryId": 9,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747840944/Pictures/propertymanagement/propertymanagement_gzx9wh.jpg"
       }
     ]
   },
@@ -231,37 +267,44 @@
       {
         "id": 31,
         "subcategoryName": "Interior Designers",
-        "categoryId": 7
+        "categoryId": 7,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839852/Pictures/interiordesiners/interiordesiners_yqkezm.jpg"
       },
       {
         "id": 32,
         "subcategoryName": "Carpenters",
-        "categoryId": 7
+        "categoryId": 7,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839850/Pictures/carpenters/carpenters_i9flzl.jpg"
       },
       {
         "id": 33,
         "subcategoryName": "Plumbers",
-        "categoryId": 7
+        "categoryId": 7,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839853/Pictures/plumbers/plumbers_nyv23i.jpg"
       },
       {
         "id": 34,
         "subcategoryName": "Electricians",
-        "categoryId": 7
+        "categoryId": 7,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839841/Pictures/electricans/electricans_q9x5ui.jpg"
       },
       {
         "id": 35,
         "subcategoryName": "Cleaners",
-        "categoryId": 7
+        "categoryId": 7,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839845/Pictures/cleaners/cleaners_qnl6qs.jpg"
       },
       {
         "id": 36,
         "subcategoryName": "Landscapers",
-        "categoryId": 7
+        "categoryId": 7,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839849/Pictures/landscapers/landscapers_umau6x.jpg"
       },
       {
         "id": 37,
         "subcategoryName": "Home Renovation",
-        "categoryId": 7
+        "categoryId": 7,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839855/Pictures/homerenovators/homerenovators_bgdx1i.jpg"
       }
     ]
   },
@@ -273,22 +316,26 @@
       {
         "id": 27,
         "subcategoryName": "Chartered Accountants",
-        "categoryId": 6
+        "categoryId": 6,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839860/Pictures/charteredaccountants/charteredaccountants_rzpfge.jpg"
       },
       {
         "id": 28,
         "subcategoryName": "Lawyers",
-        "categoryId": 6
+        "categoryId": 6,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839860/Pictures/lawyers/lawyers_hpq4tt.jpg"
       },
       {
         "id": 29,
         "subcategoryName": "Marketing Agencies",
-        "categoryId": 6
+        "categoryId": 6,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839861/Pictures/marketingagencies/marketingagencies_opjwip.jpg"
       },
       {
         "id": 30,
         "subcategoryName": "Business Consultants",
-        "categoryId": 6
+        "categoryId": 6,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839857/Pictures/businessconsultants/businessconsultants_ylsbt4.jpg"
       }
     ]
   },
@@ -300,27 +347,32 @@
       {
         "id": 47,
         "subcategoryName": "Banks",
-        "categoryId": 10
+        "categoryId": 10,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747840955/Pictures/banks/banks_ghhhdy.jpg"
       },
       {
         "id": 48,
         "subcategoryName": "Loan Agencies",
-        "categoryId": 10
+        "categoryId": 10,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747840925/Pictures/loanagencies/loanagencies_qn6deg.jpg"
       },
       {
         "id": 49,
         "subcategoryName": "Insurance Agencies",
-        "categoryId": 10
+        "categoryId": 10,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747840954/Pictures/insuranceagencies/insuranceagencies_tnpfln.jpg"
       },
       {
         "id": 50,
         "subcategoryName": "Investment Services",
-        "categoryId": 10
+        "categoryId": 10,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747840938/Pictures/investmentservies/investmentservies_bqarrh.jpg"
       },
       {
         "id": 51,
         "subcategoryName": "Credit Unions",
-        "categoryId": 10
+        "categoryId": 10,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747840920/Pictures/creditunions/creditunions_fok31t.jpg"
       }
     ]
   },
@@ -332,27 +384,32 @@
       {
         "id": 56,
         "subcategoryName": "Movie Theaters",
-        "categoryId": 12
+        "categoryId": 12,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747841906/Pictures/Movie_Theaters/Movie_Theaters_geubxd.jpg"
       },
       {
         "id": 57,
         "subcategoryName": "Music Stores",
-        "categoryId": 12
+        "categoryId": 12,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747841905/Pictures/Music_stores/Music_stores_wjmqnw.jpg"
       },
       {
         "id": 58,
         "subcategoryName": "Event Management",
-        "categoryId": 12
+        "categoryId": 12,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747841898/Pictures/Event_management/Event_management_ps24hk.jpg"
       },
       {
         "id": 59,
         "subcategoryName": "Convention Halls",
-        "categoryId": 12
+        "categoryId": 12,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747841902/Pictures/Convention_halls/Convention_halls_fkq1ar.jpg"
       },
       {
         "id": 60,
         "subcategoryName": "Media Production",
-        "categoryId": 12
+        "categoryId": 12,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747841905/Pictures/media_production/media_production_pacnp3.jpg"
       }
     ]
   },
@@ -364,22 +421,26 @@
       {
         "id": 52,
         "subcategoryName": "Local Government Offices",
-        "categoryId": 11
+        "categoryId": 11,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747840984/Pictures/goverment_offices/goverment_offices_vvpjmp.jpg"
       },
       {
         "id": 53,
         "subcategoryName": "Community Centers",
-        "categoryId": 11
+        "categoryId": 11,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747840910/Pictures/community/community_lbhwbr.jpg"
       },
       {
         "id": 54,
         "subcategoryName": "Libraries",
-        "categoryId": 11
+        "categoryId": 11,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747840928/Pictures/libraries/libraries_vuz3ef.jpg"
       },
       {
         "id": 55,
         "subcategoryName": "Post Offices",
-        "categoryId": 11
+        "categoryId": 11,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747840771/Pictures/postoffices/postoffices_v9okrt.jpg"
       }
     ]
   },
@@ -391,27 +452,32 @@
       {
         "id": 61,
         "subcategoryName": "Gyms",
-        "categoryId": 13
+        "categoryId": 13,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747841896/Pictures/gyms/gyms_nyyatm.jpg"
       },
       {
         "id": 62,
         "subcategoryName": "Sports Leagues",
-        "categoryId": 13
+        "categoryId": 13,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747841896/Pictures/sports_leagues/sports_leagues_yawdbb.jpg"
       },
       {
         "id": 63,
         "subcategoryName": "Parks",
-        "categoryId": 13
+        "categoryId": 13,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747841889/Pictures/parks/parks_qbaufh.jpg"
       },
       {
         "id": 64,
         "subcategoryName": "Recreation Centers",
-        "categoryId": 13
+        "categoryId": 13,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747841890/Pictures/recreation_centres/recreation_centres_hhvsze.jpg"
       },
       {
         "id": 65,
         "subcategoryName": "Sports Equipment Stores",
-        "categoryId": 13
+        "categoryId": 13,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747841907/Pictures/sports_equipment_stores/sports_equipment_stores_tyy6iy.jpg"
       }
     ]
   },
@@ -423,27 +489,32 @@
       {
         "id": 66,
         "subcategoryName": "Pet Stores",
-        "categoryId": 14
+        "categoryId": 14,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747842426/Pictures/pet_stores/pet_stores_gbnogx.jpg"
       },
       {
         "id": 67,
         "subcategoryName": "Veterinarians",
-        "categoryId": 14
+        "categoryId": 14,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747842425/Pictures/veterinarians/veterinarians_fdyhtu.jpg"
       },
       {
         "id": 68,
         "subcategoryName": "Pet Grooming",
-        "categoryId": 14
+        "categoryId": 14,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747842429/Pictures/pet_grooming/pet_grooming_nf6wet.jpg"
       },
       {
         "id": 69,
         "subcategoryName": "Animal Shelters",
-        "categoryId": 14
+        "categoryId": 14,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747842430/Pictures/animal_shelters/animal_shelters_gvwlxc.jpg"
       },
       {
         "id": 70,
         "subcategoryName": "Pet Training",
-        "categoryId": 14
+        "categoryId": 14,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747842419/Pictures/pet_training/pet_training_eawos3.jpg"
       }
     ]
   },
@@ -455,22 +526,26 @@
       {
         "id": 76,
         "subcategoryName": "Private Security Services",
-        "categoryId": 16
+        "categoryId": 16,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747842794/Pictures/private_security_services/private_security_services_gytkgy.jpg"
       },
       {
         "id": 77,
         "subcategoryName": "Fire Departments",
-        "categoryId": 16
+        "categoryId": 16,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747842787/Pictures/fire_departments/fire_departments_kvvdvy.jpg"
       },
       {
         "id": 78,
         "subcategoryName": "Police Stations",
-        "categoryId": 16
+        "categoryId": 16,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747842795/Pictures/police_stations/police_stations_k4wi68.jpg"
       },
       {
         "id": 79,
         "subcategoryName": "Safety Equipment",
-        "categoryId": 16
+        "categoryId": 16,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747842786/Pictures/safety_equipment_suppliers/safety_equipment_suppliers_bqix6e.jpg"
       }
     ]
   },
@@ -482,27 +557,32 @@
       {
         "id": 71,
         "subcategoryName": "Internet Service Providers",
-        "categoryId": 15
+        "categoryId": 15,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747842425/Pictures/internet_service_providers/internet_service_providers_os17pj.jpg"
       },
       {
         "id": 72,
         "subcategoryName": "Computer Sales and Repair",
-        "categoryId": 15
+        "categoryId": 15,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747842421/Pictures/computer_sales_and_repair/computer_sales_and_repair_tfiaf0.jpg"
       },
       {
         "id": 73,
         "subcategoryName": "Mobile Sales and Repair",
-        "categoryId": 15
+        "categoryId": 15,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747842417/Pictures/mobile_sales_and_repair/mobile_sales_and_repair_ideiou.jpg"
       },
       {
         "id": 74,
         "subcategoryName": "Web Design",
-        "categoryId": 15
+        "categoryId": 15,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747842416/Pictures/web_design/web_design_hsbpbp.jpg"
       },
       {
         "id": 75,
         "subcategoryName": "Software Solutions",
-        "categoryId": 15
+        "categoryId": 15,
+        "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747842417/Pictures/software_solutions/software_solutions_tifdnn.jpg"
       }
     ]
   }

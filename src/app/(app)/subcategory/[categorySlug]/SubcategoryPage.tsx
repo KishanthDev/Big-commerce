@@ -10,6 +10,7 @@ import { slugify } from "@/app/lib/slugify";
 import { subCategoryIconMap } from "@/components/icons/subCategoryIconMap";
 import StarRating from "@/components/icons/StarRating";
 import type { Category } from "@/types/cat";
+import { FiltersBar } from "@/components/filter/FiltersBar";
 
 interface SubcategoryPageProps {
   categorySlug: string;
@@ -54,11 +55,12 @@ export default function SubcategoryPage({
       <h1 className="text-2xl font-bold mb-6">
         Explore {currentCategory.categoryName} Subcategories
       </h1>
-
+      <FiltersBar/>
       {currentCategory.subcategories && currentCategory.subcategories.length > 0 ? (
         <div className="space-y-6">
           {currentCategory.subcategories.map((sub, idx) => {
             const subName = typeof sub === "string" ? sub : sub.subcategoryName;
+            const subPic = typeof sub === "string" ? sub : (sub.imageUrl || 'https://via.placeholder.com/300');
             const subSlug = slugify(subName);
             const IconComponent: ElementType | undefined = subCategoryIconMap[subName];
 
@@ -70,7 +72,7 @@ export default function SubcategoryPage({
               ratings: 4.2,
               reviews: [{}, {}, {}, {}, {}],
               highlights: ["Affordable", "Expert Staff", "Quick Service"],
-              gallery: ["/images/sample.jpg"],
+              gallery: [typeof subPic === "string" ? subPic : 'https://via.placeholder.com/300'],
               contact: {
                 phone: "123-456-7890",
               },
@@ -80,6 +82,7 @@ export default function SubcategoryPage({
             };
 
             return (
+              
               <div
                 key={idx}
                 className="relative flex flex-col sm:flex-row bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow"

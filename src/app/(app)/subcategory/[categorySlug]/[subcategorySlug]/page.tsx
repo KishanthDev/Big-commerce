@@ -45,6 +45,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
 
   // Get subcategory name for display and business data
   const subcategoryName = typeof subcategory === "string" ? subcategory : subcategory?.subcategoryName || subcategory?.name || "Unknown";
+  const subPic = typeof subcategory === "string" ? subcategory : (subcategory?.imageUrl || 'https://via.placeholder.com/300');
 
   // Temporary business data - replace with actual business data
   const businesses = [
@@ -55,7 +56,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
       ratings: 4.5,
       reviews: [{}, {}, {}, {}, {}],
       highlights: ["Free Estimates", "Certified Technicians", "Same-Day Service"],
-      gallery: ["/images/car-garage.jpg"],
+      gallery: [typeof subPic === "string" ? subPic : 'https://via.placeholder.com/300'],
       contact: {
         phone: "123-456-7890",
         website: "https://mikesauto.com",
