@@ -52,7 +52,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
     {
       id: 1,
       businessName: subcategoryName, // Use resolved subcategoryName
-      description: "Top-notch car repair services with certified mechanics.",
+      description: `Best ${String(subcategoryName).toLowerCase()} services in town.`,
       ratings: 4.5,
       reviews: [{}, {}, {}, {}, {}],
       highlights: ["Free Estimates", "Certified Technicians", "Same-Day Service"],
