@@ -8,8 +8,8 @@ import { slugify } from "@/app/lib/slugify";
 import { Category, Subcategory } from "@/types/cat";
 
 export default function ImageGridBox() {
-  const { categories, loading, error, fetchCategories } = useCategoryStore();
-  const [visibleCategories] = useState(4);
+  const { categories, loading, fetchCategories } = useCategoryStore();
+  const [visibleCategories] = useState(8);
 
   useEffect(() => {
     fetchCategories();
@@ -17,12 +17,6 @@ export default function ImageGridBox() {
 
   if (loading)
     return <div className="text-center py-8">Loading categories...</div>;
-  if (error)
-    return (
-      <div className="text-center py-8 text-red-500">
-        Error loading categories: {error}
-      </div>
-    );
   if (!categories.length)
     return <div className="text-center py-8">No categories found</div>;
 

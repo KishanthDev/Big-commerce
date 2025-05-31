@@ -13,7 +13,7 @@ export const useCategoryStore = create<CategoryState>()(
       set({ loading: true, error: null });
 
       try {
-        const res = await fetch("/api/categories");
+        const res = await fetch("/api/categorie");
 
         if (!res.ok) {
           throw new Error(`API Error: ${res.status}`);

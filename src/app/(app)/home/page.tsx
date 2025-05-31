@@ -12,14 +12,14 @@ export default function Home() {
       <div className="relative">
         <CarouselDemo />
         {/* Overlay ImageGridBox but let carousel buttons stay clickable */}
-        <div className="absolute -bottom-200 inset-0 z-10 flex items-center justify-center pointer-events-none">
+        <div className="absolute -bottom-400 inset-0 z-10 flex items-center justify-center pointer-events-none">
           <div className="pointer-events-auto">
             <ImageGridBox />
           </div>
         </div>
       </div>
 
-      <div className="h-90" />
+      <div className="h-250" />
       <HeroSection />
       <StatsSection />
       <BigCommerceBenefits />

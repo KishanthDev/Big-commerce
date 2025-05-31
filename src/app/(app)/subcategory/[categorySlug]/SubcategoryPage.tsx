@@ -29,7 +29,7 @@ export default function SubcategoryPage({
   initialCategory,
 }: SubcategoryPageProps) {
   const [currentCategory, setCurrentCategory] = useState(initialCategory);
-  const { categories, loading, error, fetchCategories } = useCategoryStore();
+  const { categories, loading, fetchCategories } = useCategoryStore();
 
   useEffect(() => {
     if (categories.length === 0) {
@@ -47,7 +47,6 @@ export default function SubcategoryPage({
   }, [categories, categorySlug]);
 
   if (loading) return <div className="p-6">Loading...</div>;
-  if (error) return <div className="p-6">Error: {error}</div>;
   if (!currentCategory) return <div className="p-6">Category not found</div>;
 
   return (
