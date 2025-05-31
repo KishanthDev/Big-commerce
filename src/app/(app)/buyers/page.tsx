@@ -7,11 +7,11 @@ import CtaSection from "@/components/buyer/CtaSection";
 export default function Page() {
   return (
     <div>
-        <Hero />
-        <WhyShop />
-        <HowItWorks />
-        <FeaturedStores />
-        <CtaSection />
+      <Hero />
+      <WhyShop />
+      <HowItWorks />
+      <FeaturedStores />
+      <CtaSection />
     </div>
   );
 }

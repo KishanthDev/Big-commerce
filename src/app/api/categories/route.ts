@@ -7,7 +7,7 @@ export const GET = async () => {
     const db = client.db("bigcommerce");
     const categories = await db.collection("categories").find({}).toArray();
     console.log("Fetched categories:", categories.length);
-    
+
     return NextResponse.json(categories);
   } catch (error: unknown) {
     let message = "Unknown error";

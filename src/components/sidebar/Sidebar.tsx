@@ -30,7 +30,7 @@ export default function Sidebar() {
       if (
         cat.subcategories?.some(
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          (sub: any) => slugify(sub.subcategoryName) === currentSlug
+          (sub: any) => slugify(sub.subcategoryName) === currentSlug,
         )
       ) {
         setOpenCategory(Number(cat.id));
@@ -47,13 +47,13 @@ export default function Sidebar() {
   };
 
   const sortedCategories = [...categories].sort((a, b) =>
-    String(a.categoryName).localeCompare(String(b.categoryName))
+    String(a.categoryName).localeCompare(String(b.categoryName)),
   );
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const sortSubcategories = (subcategories: any[]) =>
     [...subcategories].sort((a, b) =>
-      String(a.subcategoryName).localeCompare(String(b.subcategoryName))
+      String(a.subcategoryName).localeCompare(String(b.subcategoryName)),
     );
 
   return (
@@ -95,7 +95,9 @@ export default function Sidebar() {
                     const Icon = categoryIconMap[name];
                     return (
                       <>
-                        {Icon && <Icon className="h-5 w-5 text-blue-500 shrink-0" />}
+                        {Icon && (
+                          <Icon className="h-5 w-5 text-blue-500 shrink-0" />
+                        )}
                         {name}
                       </>
                     );
@@ -125,13 +127,16 @@ export default function Sidebar() {
                     return (
                       <a
                         key={sub.id}
-                        className={`flex items-center gap-2 px-3 py-2.5 rounded text-sm cursor-pointer transition-colors ${isActive
-                          ? "bg-gray-300 text-blue-700 dark:text-blue-400 dark:bg-gray-700 font-medium"
-                          : "hover:bg-gray-200 dark:hover:bg-gray-600"
-                          }`}
+                        className={`flex items-center gap-2 px-3 py-2.5 rounded text-sm cursor-pointer transition-colors ${
+                          isActive
+                            ? "bg-gray-300 text-blue-700 dark:text-blue-400 dark:bg-gray-700 font-medium"
+                            : "hover:bg-gray-200 dark:hover:bg-gray-600"
+                        }`}
                         onClick={(e) => {
                           e.preventDefault();
-                          router.push(`/subcategory/${slugify(String(cat.categoryName))}/${subCategorySlug}`);
+                          router.push(
+                            `/subcategory/${slugify(String(cat.categoryName))}/${subCategorySlug}`,
+                          );
                         }}
                       >
                         {(() => {
@@ -140,8 +145,9 @@ export default function Sidebar() {
                             <>
                               {Icon && (
                                 <Icon
-                                  className={`h-4 w-4 shrink-0 ${isActive ? "text-blue-600" : "text-blue-500"
-                                    }`}
+                                  className={`h-4 w-4 shrink-0 ${
+                                    isActive ? "text-blue-600" : "text-blue-500"
+                                  }`}
                                 />
                               )}
                               <span>{name}</span>

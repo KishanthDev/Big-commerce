@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { useCategoryStore } from '@/stores/useCategoryStore';
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useCategoryStore } from "@/stores/useCategoryStore";
 
 export default function Home() {
   const { loading, error, fetchCategories, categories } = useCategoryStore();

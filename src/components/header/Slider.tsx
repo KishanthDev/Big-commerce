@@ -44,7 +44,10 @@ export default function CategoryCarousel() {
 
       // Navigate to first subcategory (if exists)
       let firstSub;
-      if ("subcategories" in clickedCategory && Array.isArray(clickedCategory.subcategories)) {
+      if (
+        "subcategories" in clickedCategory &&
+        Array.isArray(clickedCategory.subcategories)
+      ) {
         firstSub = clickedCategory.subcategories[0];
       }
       if (firstSub) {
@@ -82,13 +85,17 @@ export default function CategoryCarousel() {
                   {Icon && (
                     <Icon
                       className={`h-5 w-5 ${
-                        activeIndex === index ? "text-purple-600" : "text-primary"
+                        activeIndex === index
+                          ? "text-purple-600"
+                          : "text-primary"
                       } shrink-0`}
                     />
                   )}
                   <span
                     className={`text-primary font-medium ${
-                      activeIndex === index ? "text-purple-600" : "text-gray-600"
+                      activeIndex === index
+                        ? "text-purple-600"
+                        : "text-gray-600"
                     }`}
                   >
                     {name}

@@ -97,8 +97,9 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
       </div>
 
       <div
-        className={`pt-[64px] flex-1 flex-col h-full z-10 transition duration-300 ${isOpen ? "pointer-events-none overflow-hidden select-none" : ""
-          }`}
+        className={`pt-[64px] flex-1 flex-col h-full z-10 transition duration-300 ${
+          isOpen ? "pointer-events-none overflow-hidden select-none" : ""
+        }`}
         aria-hidden={isOpen ? "true" : "false"}
       >
         <main className="flex-1 overflow-y-auto">{children}</main>

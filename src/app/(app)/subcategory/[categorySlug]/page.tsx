@@ -27,7 +27,7 @@ export async function generateMetadata({
   const { categorySlug } = await params; // Await the params
   const categories = fallback as unknown as Category[];
   const foundCategory = categories.find(
-    (cat) => slugify(cat.categoryName) === categorySlug
+    (cat) => slugify(cat.categoryName) === categorySlug,
   );
 
   return {
@@ -50,7 +50,7 @@ export default async function Page({
   const categories = fallback as unknown as Category[];
 
   const foundCategory = categories.find(
-    (cat) => slugify(cat.categoryName) === categorySlug
+    (cat) => slugify(cat.categoryName) === categorySlug,
   );
 
   if (!foundCategory) notFound();

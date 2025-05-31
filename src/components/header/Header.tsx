@@ -39,7 +39,6 @@ const Header = () => {
           </div>
         </Link>
 
-
         <nav className="hidden md:flex items-center space-x-6">
           {navLinks.map(({ label, path }) => {
             const isActive = pathname === path;
@@ -47,10 +46,11 @@ const Header = () => {
               <Link
                 href={path}
                 key={label}
-                className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${isActive
-                  ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
-                  : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
-                  }`}
+                className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
+                  isActive
+                    ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
+                    : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
+                }`}
               >
                 {label}
                 {!isActive && (
@@ -111,10 +111,11 @@ const Header = () => {
               <Link
                 href={path}
                 key={label}
-                className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${isActive
-                  ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
-                  : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer relative group`
-                  }`}
+                className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
+                  isActive
+                    ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
+                    : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer relative group`
+                }`}
               >
                 {label}
                 {!isActive && (

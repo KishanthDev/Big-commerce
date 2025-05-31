@@ -32,8 +32,13 @@ export default function CategoryPage({ params }: CategoryPageProps) {
 
   for (const category of categories) {
     if (category.subcategories) {
-      const foundSub = category.subcategories.find((sub: Subcategory) =>
-        slugify(String(typeof sub === "string" ? sub : sub.subcategoryName || sub.name)) === slug
+      const foundSub = category.subcategories.find(
+        (sub: Subcategory) =>
+          slugify(
+            String(
+              typeof sub === "string" ? sub : sub.subcategoryName || sub.name,
+            ),
+          ) === slug,
       );
       if (foundSub) {
         subcategory = foundSub;
@@ -44,8 +49,14 @@ export default function CategoryPage({ params }: CategoryPageProps) {
   }
 
   // Get subcategory name for display and business data
-  const subcategoryName = typeof subcategory === "string" ? subcategory : subcategory?.subcategoryName || subcategory?.name || "Unknown";
-  const subPic = typeof subcategory === "string" ? subcategory : (subcategory?.imageUrl || 'https://via.placeholder.com/300');
+  const subcategoryName =
+    typeof subcategory === "string"
+      ? subcategory
+      : subcategory?.subcategoryName || subcategory?.name || "Unknown";
+  const subPic =
+    typeof subcategory === "string"
+      ? subcategory
+      : subcategory?.imageUrl || "https://via.placeholder.com/300";
 
   // Temporary business data - replace with actual business data
   const businesses = [
@@ -55,8 +66,14 @@ export default function CategoryPage({ params }: CategoryPageProps) {
       description: `Best ${String(subcategoryName).toLowerCase()} services in town.`,
       ratings: 4.5,
       reviews: [{}, {}, {}, {}, {}],
-      highlights: ["Free Estimates", "Certified Technicians", "Same-Day Service"],
-      gallery: [typeof subPic === "string" ? subPic : 'https://via.placeholder.com/300'],
+      highlights: [
+        "Free Estimates",
+        "Certified Technicians",
+        "Same-Day Service",
+      ],
+      gallery: [
+        typeof subPic === "string" ? subPic : "https://via.placeholder.com/300",
+      ],
       contact: {
         phone: "123-456-7890",
         website: "https://mikesauto.com",
@@ -182,7 +199,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                     <Link
                       target="_blank"
                       rel="noopener noreferrer"
-                      href={'#'}
+                      href={"#"}
                       className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition"
                     >
                       Visit
