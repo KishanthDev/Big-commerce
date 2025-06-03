@@ -63,7 +63,7 @@ export default function SubcategoryPage({
             const subPic =
               typeof sub === "string"
                 ? sub
-                : sub.imageUrl || "https://via.placeholder.com/300";
+                : sub.imageUrl || "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1748946852/sampleimage_qgrwbl.jpg";
             const subSlug = slugify(subName);
             const IconComponent: ElementType | undefined =
               subCategoryIconMap[subName];
@@ -79,7 +79,7 @@ export default function SubcategoryPage({
               gallery: [
                 typeof subPic === "string"
                   ? subPic
-                  : "https://via.placeholder.com/300",
+                  : "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1748946852/sampleimage_qgrwbl.jpg",
               ],
               contact: {
                 phone: "123-456-7890",

@@ -56,7 +56,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
   const subPic =
     typeof subcategory === "string"
       ? subcategory
-      : subcategory?.imageUrl || "https://via.placeholder.com/300";
+      : subcategory?.imageUrl || "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1748946852/sampleimage_qgrwbl.jpg";
 
   // Temporary business data - replace with actual business data
   const businesses = [
@@ -72,7 +72,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         "Same-Day Service",
       ],
       gallery: [
-        typeof subPic === "string" ? subPic : "https://via.placeholder.com/300",
+        typeof subPic === "string" ? subPic : "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1748946852/sampleimage_qgrwbl.jpg",
       ],
       contact: {
         phone: "123-456-7890",
