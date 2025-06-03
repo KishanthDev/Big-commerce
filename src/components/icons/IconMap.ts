@@ -21,7 +21,7 @@ import {
 export const categoryIconMap: Record<string, React.ElementType> = {
   Automotive: Car,
   "Health & Medical": Hospital,
-  Education: Book,
+  "Education": Book,
   "Restaurants & Food": Utensils,
   "Shopping & Retail": ShoppingCart,
   "Professional Business Services": Briefcase,

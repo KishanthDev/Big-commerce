@@ -1,0 +1,50 @@
+[
+  {
+    "categoryName": "Education",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748874219/3dicons-notebook-front-gradient_bpk07u.png"
+    }
+    },
+    {
+      "categoryName": "Computers & Mobile",
+      "icon": {
+        "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748874102/3dicons-computer-front-gradient_r5e24c.png"
+      }
+    },
+    {
+      "categoryName": "Entertainment & Media",
+      "icon": {
+        "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748933206/3dicons-play-front-gradient_wg92jj.png"
+      }
+    },
+    {
+      "categoryName": "Financial Services",
+      "icon": {
+        "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748933364/3dicons-wallet-front-gradient_zf0esg.png"
+      }
+    },
+    {
+      "categoryName":"Pets & Animals",
+      "icon": {
+        "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748934713/cat_sw8uam.png"
+      }
+    },
+    {
+      "categoryName": "Home Services",
+      "icon": {
+        "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748935166/home_2_sanzwz.png"
+      }
+      },
+      {
+        "categoryName": "Automotive",
+        "icon": {
+          "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748936046/car_1_scms69.png"
+        }
+      },
+      {
+        "categoryName": "Government & Community",
+        "icon": {
+          "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748936137/data-security_xraw5s.png"
+        }
+      }
+  ]

@@ -19,9 +19,7 @@ export default function Home() {
       router.push("/home");
     }
   }, [loading, categories, router]);
-
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error loading categories.</p>;
 
   return null;
 }
