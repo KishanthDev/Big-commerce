@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useCategoryStore } from "@/stores/useCategoryStore";
-import raw3DIcons from "@/components/icons/3dIconMap.json";
+import { useIconStore } from "@/stores/useIconStore";
 import { categoryIconMap } from "@/components/icons/IconMap";
 import { useSidebarStore } from "@/stores/useSidebarStore";
 import { useRouter } from "next/navigation";
@@ -12,6 +12,7 @@ import { slugify } from "@/app/lib/slugify";
 export default function CategoryCarousel() {
   const { toggleSidebar, closeSidebar } = useSidebarStore();
   const { categories, fetchCategories, loading } = useCategoryStore();
+  const { category3DIcons, fetch3DIcons } = useIconStore();
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
@@ -21,7 +22,8 @@ export default function CategoryCarousel() {
     if (categories.length === 0) {
       fetchCategories();
     }
-  }, [categories.length, fetchCategories]);
+    fetch3DIcons();
+  }, [categories.length, fetchCategories, fetch3DIcons]);
 
   const sortedCategories = [...categories].sort((a, b) => {
     const nameA = String(a.categoryName).toLowerCase();
@@ -59,15 +61,6 @@ export default function CategoryCarousel() {
     }
   };
 
-  const icon3DMap: Record<string, string> = raw3DIcons.reduce(
-    (acc, item) => {
-      const name = item.categoryName.trim();
-      acc[name] = item.icon["3d"];
-      return acc;
-    },
-    {} as Record<string, string>
-  );
-
   if (loading) return <div className="p-6">Loading...</div>;
 
   return (
@@ -85,7 +78,6 @@ export default function CategoryCarousel() {
             {displayCategories.map((category, index) => {
               const name = String(category.categoryName).trim();
               const Icon = categoryIconMap[name];
-              const icon3DUrl = icon3DMap[name];
 
               return (
                 <div
@@ -93,9 +85,9 @@ export default function CategoryCarousel() {
                   className="relative flex font-normal text-xs items-center gap-2 px-2 py-3 flex-shrink-0 cursor-pointer select-none"
                   onClick={() => handleCategoryClick(index)}
                 >
-                  {icon3DUrl ? (
+                  {category3DIcons[name] ? (
                     <img
-                      src={icon3DUrl}
+                      src={category3DIcons[name]}
                       alt={`${name} 3D icon`}
                       className="h-6 w-6 object-contain shrink-0"
                     />
@@ -115,7 +107,6 @@ export default function CategoryCarousel() {
                 </div>
               );
             })}
-
           </motion.div>
         </div>
       </div>
