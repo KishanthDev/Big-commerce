@@ -1,0 +1,470 @@
+[
+  {
+    "subCategoryName": "Car Repair",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945361/3dicons-tools-dynamic-gradient_hawwe0.png"
+    }
+  },
+  {
+    "subCategoryName": "Car Sales",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945597/3dicons-reindeer-dynamic-gradient_mggdxv.png"
+    }
+  },
+  {
+    "subCategoryName": "Tires",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945598/3dicons-bell-dynamic-gradient_1_sxw71w.png"
+    }
+  },
+  {
+    "subCategoryName": "Auto Parts",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945599/3dicons-snowman-dynamic-gradient_1_qntvll.png"
+    }
+  },
+  {
+    "subCategoryName": "Hospitals",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945600/3dicons-axe-dynamic-gradient_euvewx.png"
+    }
+  },
+  {
+    "subCategoryName": "Clinics",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945600/3dicons-file-fav-dynamic-gradient_b3hnvl.png"
+    }
+  },
+  {
+    "subCategoryName": "Dentists",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945601/3dicons-call-only-dynamic-gradient_baekwr.png"
+    }
+  },
+  {
+    "subCategoryName": "Pharmacies",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945602/3dicons-map-pin-dynamic-gradient_llwohq.png"
+    }
+  },
+  {
+    "subCategoryName": "Physiotherapy Centres",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945603/3dicons-target-dynamic-gradient_ut3omh.png"
+    }
+  },
+  {
+    "subCategoryName": "Veterinary Clinics",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945604/3dicons-flash-dynamic-gradient_ki93jg.png"
+    }
+  },
+  {
+    "subCategoryName": "Schools (Primary, Secondary)",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945605/3dicons-puzzle-dynamic-gradient_gneama.png"
+    }
+  },
+  {
+    "subCategoryName": "Colleges & Universities",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945605/3dicons-lock-dynamic-gradient_qm7slb.png"
+    }
+  },
+  {
+    "subCategoryName": "Tuition Services",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945606/3dicons-mic-dynamic-gradient_retjb1.png"
+    }
+  },
+  {
+    "subCategoryName": "Educational Consultants",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945607/3dicons-fire-dynamic-gradient_itew07.png"
+    }
+  },
+  {
+    "subCategoryName": "Fast Food",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945361/3dicons-tools-dynamic-gradient_hawwe0.png"
+    }
+  },
+  {
+    "subCategoryName": "Fine Dining",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945597/3dicons-reindeer-dynamic-gradient_mggdxv.png"
+    }
+  },
+  {
+    "subCategoryName": "Cafés",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945598/3dicons-bell-dynamic-gradient_1_sxw71w.png"
+    }
+  },
+  {
+    "subCategoryName": "Bakeries",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945599/3dicons-snowman-dynamic-gradient_1_qntvll.png"
+    }
+  },
+  {
+    "subCategoryName": "Food Delivery Services",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945600/3dicons-axe-dynamic-gradient_euvewx.png"
+    }
+  },
+  {
+    "subCategoryName": "Clothing Stores",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945600/3dicons-file-fav-dynamic-gradient_b3hnvl.png"
+    }
+  },
+  {
+    "subCategoryName": "Electronics Stores",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945601/3dicons-call-only-dynamic-gradient_baekwr.png"
+    }
+  },
+  {
+    "subCategoryName": "Jewellery Showrooms",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945602/3dicons-map-pin-dynamic-gradient_llwohq.png"
+    }
+  },
+  {
+    "subCategoryName": "Grocery Stores",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945603/3dicons-target-dynamic-gradient_ut3omh.png"
+    }
+  },
+  {
+    "subCategoryName": "Department Stores",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945604/3dicons-flash-dynamic-gradient_ki93jg.png"
+    }
+  },
+  {
+    "subCategoryName": "Furniture Showrooms",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945605/3dicons-puzzle-dynamic-gradient_gneama.png"
+    }
+  },
+  {
+    "subCategoryName": "Interior Designers",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945605/3dicons-lock-dynamic-gradient_qm7slb.png"
+    }
+  },
+  {
+    "subCategoryName": "Carpenters",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945606/3dicons-mic-dynamic-gradient_retjb1.png"
+    }
+  },
+  {
+    "subCategoryName": "Plumbers",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945607/3dicons-fire-dynamic-gradient_itew07.png"
+    }
+  },
+  {
+    "subCategoryName": "Electricians",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945361/3dicons-tools-dynamic-gradient_hawwe0.png"
+    }
+  },
+  {
+    "subCategoryName": "Cleaners",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945597/3dicons-reindeer-dynamic-gradient_mggdxv.png"
+    }
+  },
+  {
+    "subCategoryName": "Landscapers",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945598/3dicons-bell-dynamic-gradient_1_sxw71w.png"
+    }
+  },
+  {
+    "subCategoryName": "Home Renovation",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945599/3dicons-snowman-dynamic-gradient_1_qntvll.png"
+    }
+  },
+  {
+    "subCategoryName": "Chartered Accountants",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945600/3dicons-axe-dynamic-gradient_euvewx.png"
+    }
+  },
+  {
+    "subCategoryName": "Lawyers",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945600/3dicons-file-fav-dynamic-gradient_b3hnvl.png"
+    }
+  },
+  {
+    "subCategoryName": "Marketing Agencies",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945601/3dicons-call-only-dynamic-gradient_baekwr.png"
+    }
+  },
+  {
+    "subCategoryName": "Business Consultants",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945602/3dicons-map-pin-dynamic-gradient_llwohq.png"
+    }
+  },
+  {
+    "subCategoryName": "Airlines",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945603/3dicons-target-dynamic-gradient_ut3omh.png"
+    }
+  },
+  {
+    "subCategoryName": "Hotels",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945604/3dicons-flash-dynamic-gradient_ki93jg.png"
+    }
+  },
+  {
+    "subCategoryName": "Car Rentals",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945605/3dicons-puzzle-dynamic-gradient_gneama.png"
+    }
+  },
+  {
+    "subCategoryName": "Travel Agencies",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945605/3dicons-lock-dynamic-gradient_qm7slb.png"
+    }
+  },
+  {
+    "subCategoryName": "Public Transport",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945606/3dicons-mic-dynamic-gradient_retjb1.png"
+    }
+  },
+  {
+    "subCategoryName": "Builders and Developers",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945607/3dicons-fire-dynamic-gradient_itew07.png"
+    }
+  },
+  {
+    "subCategoryName": "Civil Contractors",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945361/3dicons-tools-dynamic-gradient_hawwe0.png"
+    }
+  },
+  {
+    "subCategoryName": "Real Estate Agents",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945597/3dicons-reindeer-dynamic-gradient_mggdxv.png"
+    }
+  },
+  {
+    "subCategoryName": "Property Management",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945598/3dicons-bell-dynamic-gradient_1_sxw71w.png"
+    }
+  },
+  {
+    "subCategoryName": "Banks",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945599/3dicons-snowman-dynamic-gradient_1_qntvll.png"
+    }
+  },
+  {
+    "subCategoryName": "Loan Agencies",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945600/3dicons-axe-dynamic-gradient_euvewx.png"
+    }
+  },
+  {
+    "subCategoryName": "Insurance Agencies",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945600/3dicons-file-fav-dynamic-gradient_b3hnvl.png"
+    }
+  },
+  {
+    "subCategoryName": "Investment Services",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945601/3dicons-call-only-dynamic-gradient_baekwr.png"
+    }
+  },
+  {
+    "subCategoryName": "Credit Unions",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945602/3dicons-map-pin-dynamic-gradient_llwohq.png"
+    }
+  },
+  {
+    "subCategoryName": "Local Government Offices",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945603/3dicons-target-dynamic-gradient_ut3omh.png"
+    }
+  },
+  {
+    "subCategoryName": "Community Centers",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945604/3dicons-flash-dynamic-gradient_ki93jg.png"
+    }
+  },
+  {
+    "subCategoryName": "Libraries",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945605/3dicons-puzzle-dynamic-gradient_gneama.png"
+    }
+  },
+  {
+    "subCategoryName": "Post Offices",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945605/3dicons-lock-dynamic-gradient_qm7slb.png"
+    }
+  },
+  {
+    "subCategoryName": "Movie Theaters",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945606/3dicons-mic-dynamic-gradient_retjb1.png"
+    }
+  },
+  {
+    "subCategoryName": "Music Stores",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945607/3dicons-fire-dynamic-gradient_itew07.png"
+    }
+  },
+  {
+    "subCategoryName": "Event Management",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945361/3dicons-tools-dynamic-gradient_hawwe0.png"
+    }
+  },
+  {
+    "subCategoryName": "Convention Halls",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945597/3dicons-reindeer-dynamic-gradient_mggdxv.png"
+    }
+  },
+  {
+    "subCategoryName": "Media Production",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945598/3dicons-bell-dynamic-gradient_1_sxw71w.png"
+    }
+  },
+  {
+    "subCategoryName": "Gyms",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945599/3dicons-snowman-dynamic-gradient_1_qntvll.png"
+    }
+  },
+  {
+    "subCategoryName": "Sports Leagues",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945600/3dicons-axe-dynamic-gradient_euvewx.png"
+    }
+  },
+  {
+    "subCategoryName": "Parks",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945600/3dicons-file-fav-dynamic-gradient_b3hnvl.png"
+    }
+  },
+  {
+    "subCategoryName": "Recreation Centers",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945601/3dicons-call-only-dynamic-gradient_baekwr.png"
+    }
+  },
+  {
+    "subCategoryName": "Sports Equipment Stores",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945602/3dicons-map-pin-dynamic-gradient_llwohq.png"
+    }
+  },
+  {
+    "subCategoryName": "Pet Stores",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945603/3dicons-target-dynamic-gradient_ut3omh.png"
+    }
+  },
+  {
+    "subCategoryName": "Veterinarians",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945604/3dicons-flash-dynamic-gradient_ki93jg.png"
+    }
+  },
+  {
+    "subCategoryName": "Pet Grooming",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945605/3dicons-puzzle-dynamic-gradient_gneama.png"
+    }
+  },
+  {
+    "subCategoryName": "Animal Shelters",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945605/3dicons-lock-dynamic-gradient_qm7slb.png"
+    }
+  },
+  {
+    "subCategoryName": "Pet Training",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945606/3dicons-mic-dynamic-gradient_retjb1.png"
+    }
+  },
+  {
+    "subCategoryName": "Internet Service Providers",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945607/3dicons-fire-dynamic-gradient_itew07.png"
+    }
+  },
+  {
+    "subCategoryName": "Computer Sales and Repair",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945361/3dicons-tools-dynamic-gradient_hawwe0.png"
+    }
+  },
+  {
+    "subCategoryName": "Mobile Sales and Repair",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945597/3dicons-reindeer-dynamic-gradient_mggdxv.png"
+    }
+  },
+  {
+    "subCategoryName": "Web Design",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945598/3dicons-bell-dynamic-gradient_1_sxw71w.png"
+    }
+  },
+  {
+    "subCategoryName": "Software Solutions",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945599/3dicons-snowman-dynamic-gradient_1_qntvll.png"
+    }
+  },
+  {
+    "subCategoryName": "Private Security Services",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945600/3dicons-axe-dynamic-gradient_euvewx.png"
+    }
+  },
+  {
+    "subCategoryName": "Fire Departments",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945600/3dicons-file-fav-dynamic-gradient_b3hnvl.png"
+    }
+  },
+  {
+    "subCategoryName": "Police Stations",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945601/3dicons-call-only-dynamic-gradient_baekwr.png"
+    }
+  },
+  {
+    "subCategoryName": "Safety Equipment Suppliers",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945602/3dicons-map-pin-dynamic-gradient_llwohq.png"
+    }
+  }
+]

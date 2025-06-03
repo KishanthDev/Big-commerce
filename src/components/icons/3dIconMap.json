@@ -1,5 +1,12 @@
 [
   {
+    "categoryName":"All",
+    "icon":{
+      "3d":"https://res.cloudinary.com/dkgwkp02d/image/upload/v1748950195/3dicons-folder-front-gradient_dmekr3.png",
+      "3dSlide": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748950195/3dicons-folder-dynamic-gradient_ghqj1c.png"
+    }
+  },
+  {
     "categoryName": "Education",
     "icon": {
       "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748874219/3dicons-notebook-front-gradient_bpk07u.png",

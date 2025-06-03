@@ -8,6 +8,9 @@ import { ChevronDownIcon, ChevronRightIcon } from "lucide-react";
 import { categoryIconMap } from "@/components/icons/IconMap";
 import { subCategoryIconMap } from "@/components/icons/subCategoryIconMap";
 import { useSidebarStore } from "@/stores/useSidebarStore";
+import raw3DIcons from "@/components/icons/3dIconMap.json";
+import rawSubIcon3DMap from "@/components/icons/3dSubCatIcon.json";
+
 
 export default function Sidebar() {
   const { isOpen } = useSidebarStore();
@@ -56,6 +59,24 @@ export default function Sidebar() {
       String(a.subcategoryName).localeCompare(String(b.subcategoryName)),
     );
 
+  const icon3DMap: Record<string, string> = raw3DIcons.reduce(
+    (acc, item) => {
+      const name = item.categoryName.trim();
+      acc[name] = item.icon["3dSlide"];
+      return acc;
+    },
+    {} as Record<string, string>
+  );
+
+  const subIcon3DMap: Record<string, string> = rawSubIcon3DMap.reduce(
+    (acc, item) => {
+      const name = item.subCategoryName.trim();
+      acc[name] = item.icon["3d"];
+      return acc;
+    },
+    {} as Record<string, string>
+  );
+
   return (
     <div className="relative w-70 bg-white dark:bg-gray-800 pl-6 pr-6 shadow-lg h-full overflow-y-auto scrollbar-hide">
       <h2 className="text-2xl font-bold sticky top-0 z-10 bg-white dark:bg-gray-800 py-4">
@@ -92,15 +113,24 @@ export default function Sidebar() {
                 <span className="flex items-center gap-2">
                   {(() => {
                     const name = String(cat.categoryName).trim();
+                    const icon3DUrl = icon3DMap[name];
                     const Icon = categoryIconMap[name];
+
                     return (
                       <>
-                        {Icon && (
+                        {icon3DUrl ? (
+                          <img
+                            src={icon3DUrl}
+                            alt={`${name} 3D icon`}
+                            className="h-5 w-5 object-contain shrink-0"
+                          />
+                        ) : Icon ? (
                           <Icon className="h-5 w-5 text-blue-500 shrink-0" />
-                        )}
+                        ) : null}
                         {name}
                       </>
                     );
+
                   })()}
                 </span>
                 {sortedSubcategories.length > 0 && (
@@ -127,11 +157,10 @@ export default function Sidebar() {
                     return (
                       <a
                         key={sub.id}
-                        className={`flex items-center gap-2 px-3 py-2.5 rounded text-sm cursor-pointer transition-colors ${
-                          isActive
-                            ? "bg-gray-300 text-blue-700 dark:text-blue-400 dark:bg-gray-700 font-medium"
-                            : "hover:bg-gray-200 dark:hover:bg-gray-600"
-                        }`}
+                        className={`flex items-center gap-2 px-3 py-2.5 rounded text-sm cursor-pointer transition-colors ${isActive
+                          ? "bg-gray-300 text-blue-700 dark:text-blue-400 dark:bg-gray-700 font-medium"
+                          : "hover:bg-gray-200 dark:hover:bg-gray-600"
+                          }`}
                         onClick={(e) => {
                           e.preventDefault();
                           router.push(
@@ -140,17 +169,24 @@ export default function Sidebar() {
                         }}
                       >
                         {(() => {
-                          const Icon = subCategoryIconMap[name];
+                          const icon3DUrl = subIcon3DMap[name];
+                                                    const Icon = subCategoryIconMap[name];
+
                           return (
                             <>
-                              {Icon && (
-                                <Icon
-                                  className={`h-4 w-4 shrink-0 ${
-                                    isActive ? "text-blue-600" : "text-blue-500"
-                                  }`}
+                              {icon3DUrl ? (
+                                <img
+                                  src={icon3DUrl}
+                                  alt={`${name} 3D icon`}
+                                  className="h-4 w-4 object-contain shrink-0"
                                 />
-                              )}
-                              <span>{name}</span>
+                              ) : Icon ? (
+                                <Icon
+                                  className={`h-4 w-4 shrink-0 ${isActive ? "text-blue-600" : "text-blue-500"
+                                    }`}
+                                />
+                              ) : null}
+                              {name}
                             </>
                           );
                         })()}
