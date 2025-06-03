@@ -44,7 +44,7 @@ export default function ImageGridBox() {
                   typeof subcategory === "string"
                     ? subcategory
                     : subcategory.imageUrl ||
-                      "https://via.placeholder.com/300";
+                      "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1748946852/sampleimage_qgrwbl.jpg";
 
                 const subKey =
                   typeof subcategory === "string"
