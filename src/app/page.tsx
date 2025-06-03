@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useCategoryStore } from "@/stores/useCategoryStore";
 
 export default function Home() {
-  const { loading, error, fetchCategories, categories } = useCategoryStore();
+  const { loading, fetchCategories, categories } = useCategoryStore();
   const router = useRouter();
 
   useEffect(() => {
