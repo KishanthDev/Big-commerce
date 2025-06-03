@@ -60,7 +60,7 @@
     }
   },
   {
-    "subCategoryName": "Schools (Primary, Secondary)",
+    "subCategoryName": "Schools (primary, secondary)",
     "icon": {
       "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945605/3dicons-puzzle-dynamic-gradient_gneama.png"
     }
@@ -72,7 +72,7 @@
     }
   },
   {
-    "subCategoryName": "Tuition Services",
+    "subCategoryName": "Tutoring Services",
     "icon": {
       "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945606/3dicons-mic-dynamic-gradient_retjb1.png"
     }
@@ -96,7 +96,7 @@
     }
   },
   {
-    "subCategoryName": "Cafés",
+    "subCategoryName": "Cafes",
     "icon": {
       "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945598/3dicons-bell-dynamic-gradient_1_sxw71w.png"
     }
@@ -390,6 +390,12 @@
     }
   },
   {
+    "subCategoryName": "Pest Control",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945603/3dicons-target-dynamic-gradient_ut3omh.png"
+    }
+  },
+  {
     "subCategoryName": "Veterinarians",
     "icon": {
       "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945604/3dicons-flash-dynamic-gradient_ki93jg.png"
@@ -462,7 +468,7 @@
     }
   },
   {
-    "subCategoryName": "Safety Equipment Suppliers",
+    "subCategoryName": "Safety Equipment",
     "icon": {
       "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945602/3dicons-map-pin-dynamic-gradient_llwohq.png"
     }
