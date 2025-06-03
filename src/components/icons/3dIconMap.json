@@ -2,49 +2,113 @@
   {
     "categoryName": "Education",
     "icon": {
-      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748874219/3dicons-notebook-front-gradient_bpk07u.png"
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748874219/3dicons-notebook-front-gradient_bpk07u.png",
+      "3dSlide": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748944336/3dicons-notebook-dynamic-gradient_kfx7xf.png"
     }
-    },
-    {
-      "categoryName": "Computers & Mobile",
-      "icon": {
-        "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748874102/3dicons-computer-front-gradient_r5e24c.png"
-      }
-    },
-    {
-      "categoryName": "Entertainment & Media",
-      "icon": {
-        "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748933206/3dicons-play-front-gradient_wg92jj.png"
-      }
-    },
-    {
-      "categoryName": "Financial Services",
-      "icon": {
-        "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748933364/3dicons-wallet-front-gradient_zf0esg.png"
-      }
-    },
-    {
-      "categoryName":"Pets & Animals",
-      "icon": {
-        "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748934713/cat_sw8uam.png"
-      }
-    },
-    {
-      "categoryName": "Home Services",
-      "icon": {
-        "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748935166/home_2_sanzwz.png"
-      }
-      },
-      {
-        "categoryName": "Automotive",
-        "icon": {
-          "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748936046/car_1_scms69.png"
-        }
-      },
-      {
-        "categoryName": "Government & Community",
-        "icon": {
-          "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748936137/data-security_xraw5s.png"
-        }
-      }
-  ]
+  },
+  {
+    "categoryName": "Computers & Mobile",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748874102/3dicons-computer-front-gradient_r5e24c.png",
+      "3dSlide": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748944444/3dicons-computer-dynamic-gradient_qfyhql.png"
+    }
+  },
+  {
+    "categoryName": "Entertainment & Media",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748933206/3dicons-play-front-gradient_wg92jj.png",
+      "3dSlide": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748944658/3dicons-play-dynamic-gradient_dlxaxg.png"
+    }
+  },
+  {
+    "categoryName": "Financial Services",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748933364/3dicons-wallet-front-gradient_zf0esg.png",
+      "3dSlide":"https://res.cloudinary.com/dkgwkp02d/image/upload/v1748944658/3dicons-play-dynamic-gradient_dlxaxg.png"
+    }
+  },
+  {
+    "categoryName": "Pets & Animals",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748944256/3dicons-snowman-front-gradient_dv7qaj.png",
+      "3dSlide": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748944255/3dicons-snowman-dynamic-gradient_yrpf8g.png"
+    }
+  },
+  {
+    "categoryName": "Home Services",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748944147/3dicons-ribbon-front-gradient_nsg5cx.png",
+      "3dSlide": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748944146/3dicons-ribbon-dynamic-gradient_eiqfvn.png"
+    }
+  },
+  {
+    "categoryName": "Automotive",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748943904/3dicons-bell-front-gradient_xnedk8.png",
+      "3dSlide": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748943905/3dicons-bell-dynamic-gradient_kn1u4v.png"
+    }
+  },
+  {
+    "categoryName": "Government & Community",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748943985/3dicons-crown-front-gradient_onocgo.png",
+      "3dSlide": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748943985/3dicons-crown-dynamic-gradient_nfscah.png"
+    }
+  },
+  {
+    "categoryName": "Health & Medical",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748944064/3dicons-tea-cup-front-gradient_xyauqi.png",
+      "3dSlide": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748944063/3dicons-tea-cup-dynamic-gradient_bycy3m.png"
+    }
+  },
+  {
+    "categoryName": "Sports & Recreation",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748942536/3dicons-gym-front-gradient_kc7fy1.png",
+      "3dSlide":"https://res.cloudinary.com/dkgwkp02d/image/upload/v1748944800/3dicons-gym-dynamic-gradient_xg0ohc.png"
+    }
+  },
+  {
+    "categoryName": "Real Estate",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748943020/3dicons-camera-front-gradient_nwv035.png",
+      "3dSlide":"https://res.cloudinary.com/dkgwkp02d/image/upload/v1748944877/3dicons-camera-dynamic-gradient_ggdz3y.png"
+    }
+  },
+  {
+    "categoryName": "Travel & Transportation",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748943190/3dicons-chat-front-gradient_nkcb8t.png",
+      "3dSlide":"https://res.cloudinary.com/dkgwkp02d/image/upload/v1748944938/3dicons-chat-dynamic-gradient_fwpgjb.png"
+    }
+  },
+  {
+    "categoryName": "Restaurants & Food",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748943306/3dicons-thumb-down-front-gradient_p1dzvn.png",
+      "3dSlide": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748943352/3dicons-thumb-down-dynamic-gradient_mwwvyx.png"
+    }
+  },
+  {
+    "categoryName": "Shopping & Retail",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748943440/3dicons-lab-front-gradient_z7w4j2.png",
+      "3dSlide": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748943461/3dicons-lab-dynamic-gradient_z4qfaa.png"
+    }
+  },
+  {
+    "categoryName": "Safety & Security",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748943686/3dicons-rocket-front-gradient_k0tad4.png",
+      "3dSlide": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748943685/3dicons-rocket-dynamic-gradient_ijacxt.png"
+    }
+  },
+  {
+    "categoryName": "Professional Business Services",
+    "icon": {
+      "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748943809/3dicons-money-front-gradient_t9b1xf.png",
+      "3dSlide": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748943809/3dicons-money-dynamic-gradient_yiplpc.png"
+    }
+  }
+]
