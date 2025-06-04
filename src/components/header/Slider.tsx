@@ -8,7 +8,6 @@ import { categoryIconMap } from "@/components/icons/IconMap";
 import { useSidebarStore } from "@/stores/useSidebarStore";
 import { useRouter } from "next/navigation";
 import { slugify } from "@/app/lib/slugify";
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
 export default function CategoryCarousel() {
   const { toggleSidebar, closeSidebar } = useSidebarStore();
@@ -59,11 +58,21 @@ export default function CategoryCarousel() {
   };
 
   const scrollLeft = () => {
-    containerRef.current?.scrollBy({ left: -200, behavior: "smooth" });
+    if (containerRef.current) {
+      containerRef.current.scrollBy({
+        left: -200,
+        behavior: "smooth",
+      });
+    }
   };
 
   const scrollRight = () => {
-    containerRef.current?.scrollBy({ left: 200, behavior: "smooth" });
+    if (containerRef.current) {
+      containerRef.current.scrollBy({
+        left: 200,
+        behavior: "smooth",
+      });
+    }
   };
 
   if (loading) return <div className="p-6">Loading...</div>;
@@ -73,16 +82,20 @@ export default function CategoryCarousel() {
       {/* Left Scroll Button */}
       <button
         onClick={scrollLeft}
-        className="absolute left-0 top-1/2 z-20 -translate-y-1/2 p-2 bg-gradient-to-r from-white dark:from-gray-900 to-transparent rounded-r-md"
+        className="absolute left-0 top-1/2 z-20 -translate-y-1/3 p-2 bg-gradient-to-r from-white dark:from-gray-900 to-transparent rounded-r-md"
         aria-label="Scroll Left"
       >
-        <ChevronLeftIcon className="w-6 h-6 text-gray-500 hover:text-black dark:hover:text-white" />
+        <img
+          src="https://res.cloudinary.com/dkgwkp02d/image/upload/v1749025548/left-arrow_gtzcgu.png"
+          alt="Scroll Left"
+          className="w-6 h-6 object-contain"
+        />
       </button>
 
-      <div className="relative overflow-hidden mx-10">
+      <div className="relative  mx-10">
         <div
           ref={containerRef}
-          className="overflow-x-auto custom-scrollbar scroll-smooth cursor-grab"
+          className="overflow-x-auto scroll-smooth custom-scrollbar cursor-grab"
         >
           <motion.div
             animate={controls}
@@ -127,10 +140,14 @@ export default function CategoryCarousel() {
       {/* Right Scroll Button */}
       <button
         onClick={scrollRight}
-        className="absolute right-0 top-1/2 z-20 -translate-y-1/2 p-2 bg-gradient-to-l from-white dark:from-gray-900 to-transparent rounded-l-md"
+        className="absolute right-0 top-1/2 z-20 -translate-y-1/3 p-2 bg-gradient-to-l from-white dark:from-gray-900 to-transparent rounded-l-md"
         aria-label="Scroll Right"
       >
-        <ChevronRightIcon className="w-6 h-6 text-gray-500 hover:text-black dark:hover:text-white" />
+        <img
+          src="https://res.cloudinary.com/dkgwkp02d/image/upload/v1749025548/right-arrow_hqeqgu.png"
+          alt="Scroll Right"
+          className="w-6 h-6 object-contain"
+        />
       </button>
     </div>
   );
