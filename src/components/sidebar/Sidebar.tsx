@@ -33,7 +33,8 @@ export default function Sidebar() {
     for (const cat of categories) {
       if (
         cat.subcategories?.some(
-          (sub: any) => slugify(sub.subcategoryName) === currentSlug
+          (sub) =>
+            slugify(typeof sub === "string" ? sub : sub.subcategoryName) === currentSlug
         )
       ) {
         setOpenCategory(Number(cat.id));
