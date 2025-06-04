@@ -29,7 +29,7 @@ export function CarouselDemo() {
       }}
       plugins={[
         Autoplay({
-          delay: 2000,
+          delay: 5000,
         }),
       ]}
       className="w-full mt-18 mx-auto relative max-w-[1600px]"

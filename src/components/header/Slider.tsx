@@ -89,8 +89,8 @@ export default function CategoryCarousel() {
         <Image
           src="https://res.cloudinary.com/dkgwkp02d/image/upload/v1749025548/left-arrow_gtzcgu.png"
           alt="Scroll Left"
-          width={20} 
-          height={20} 
+          width={24} 
+          height={24} 
           style={{ objectFit: "contain" }}
         />
       </button>
@@ -151,8 +151,8 @@ export default function CategoryCarousel() {
         <Image
           src="https://res.cloudinary.com/dkgwkp02d/image/upload/v1749025548/right-arrow_hqeqgu.png"
           alt="Scroll Right"
-          width={20} 
-          height={20} 
+          width={24} 
+          height={24} 
           style={{ objectFit: "contain" }}
         />
       </button>
