@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
+import Image from "next/image";
 import { useCategoryStore } from "@/stores/useCategoryStore";
 import { useIconStore } from "@/stores/useIconStore";
 import { categoryIconMap } from "@/components/icons/IconMap";
@@ -85,14 +86,16 @@ export default function CategoryCarousel() {
         className="absolute left-0 top-1/2 z-20 -translate-y-1/3 p-2 bg-gradient-to-r from-white dark:from-gray-900 to-transparent rounded-r-md"
         aria-label="Scroll Left"
       >
-        <img
+        <Image
           src="https://res.cloudinary.com/dkgwkp02d/image/upload/v1749025548/left-arrow_gtzcgu.png"
           alt="Scroll Left"
-          className="w-6 h-6 object-contain"
+          width={20} 
+          height={20} 
+          style={{ objectFit: "contain" }}
         />
       </button>
 
-      <div className="relative  mx-10">
+      <div className="relative mx-10">
         <div
           ref={containerRef}
           className="overflow-x-auto scroll-smooth custom-scrollbar cursor-grab"
@@ -114,10 +117,12 @@ export default function CategoryCarousel() {
                   onClick={() => handleCategoryClick(index)}
                 >
                   {category3DIcons[name] ? (
-                    <img
+                    <Image
                       src={category3DIcons[name]}
                       alt={`${name} 3D icon`}
-                      className="h-6 w-6 object-contain shrink-0"
+                      width={20} 
+                      height={20}
+                      style={{ objectFit: "contain" }}
                     />
                   ) : Icon ? (
                     <Icon
@@ -143,10 +148,12 @@ export default function CategoryCarousel() {
         className="absolute right-0 top-1/2 z-20 -translate-y-1/3 p-2 bg-gradient-to-l from-white dark:from-gray-900 to-transparent rounded-l-md"
         aria-label="Scroll Right"
       >
-        <img
+        <Image
           src="https://res.cloudinary.com/dkgwkp02d/image/upload/v1749025548/right-arrow_hqeqgu.png"
           alt="Scroll Right"
-          className="w-6 h-6 object-contain"
+          width={20} 
+          height={20} 
+          style={{ objectFit: "contain" }}
         />
       </button>
     </div>
