@@ -46,6 +46,8 @@ export function CarouselDemo() {
                   <Image
                     src={src}
                     alt={`Slide ${index + 1}`}
+                    width={1600}
+                    height={600}
                     className="w-full h-full bg-[#19ABDC] object-contain object-center"
                     loading="lazy"
                     sizes="(max-width: 768px) 800px, 1600px"
