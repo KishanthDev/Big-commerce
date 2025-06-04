@@ -1,6 +1,8 @@
 import * as React from "react";
 
 import { Card, CardContent } from "@/components/ui/card";
+import Autoplay from "embla-carousel-autoplay"
+
 import {
   Carousel,
   CarouselContent,
@@ -24,6 +26,11 @@ export function CarouselDemo() {
         align: "start",
         loop: true,
       }}
+      plugins={[
+        Autoplay({
+          delay: 2000,
+        }),
+      ]}
       className="w-full mt-18 mx-auto relative max-w-[1600px]"
     >
       <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/70 hover:bg-white rounded-full p-2" />
