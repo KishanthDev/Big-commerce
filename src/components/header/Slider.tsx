@@ -19,29 +19,27 @@ export default function CategoryCarousel() {
   const router = useRouter();
 
   useEffect(() => {
-    if (categories.length === 0) {
-      fetchCategories();
-    }
+    if (categories.length === 0) fetchCategories();
     fetch3DIcons();
   }, [categories.length, fetchCategories, fetch3DIcons]);
 
-  const sortedCategories = [...categories].sort((a, b) => {
-    const nameA = String(a.categoryName).toLowerCase();
-    const nameB = String(b.categoryName).toLowerCase();
-    return nameA.localeCompare(nameB);
-  });
+  const sortedCategories = [...categories].sort((a, b) =>
+    a.categoryName.toLowerCase().localeCompare(b.categoryName.toLowerCase())
+  );
 
-  const allCategory = { categoryName: "All" };
-  const displayCategories = [allCategory, ...sortedCategories];
+  const displayCategories = [{ categoryName: "All" }, ...sortedCategories];
 
   const handleCategoryClick = (index: number) => {
     const clickedCategory = displayCategories[index];
+    const name = clickedCategory.categoryName;
 
-    if (clickedCategory.categoryName === "All") {
+    if (name === "All") {
       toggleSidebar();
-    } else {
-      closeSidebar();
-      setActiveIndex(index);
+      return;
+    }
+
+    closeSidebar();
+    setActiveIndex(index);
 
       const slugCategory = slugify(String(clickedCategory.categoryName));
 
@@ -55,9 +53,8 @@ export default function CategoryCarousel() {
       }
       if (firstSub) {
         router.push(`/subcategory/${slugCategory}`);
-      } else {
-        router.push(`/${slugCategory}`);
-      }
+    } else {
+      router.push(`/${slugCategory}`);
     }
   };
 
@@ -76,13 +73,14 @@ export default function CategoryCarousel() {
             style={{ width: "max-content" }}
           >
             {displayCategories.map((category, index) => {
-              const name = String(category.categoryName).trim();
+              const name = category.categoryName.trim();
               const Icon = categoryIconMap[name];
+              const isActive = activeIndex === index;
 
               return (
                 <div
                   key={`${name}-${index}`}
-                  className="relative flex font-normal text-xs items-center gap-2 px-2 py-3 flex-shrink-0 cursor-pointer select-none"
+                  className="relative flex items-center gap-2 px-2 py-3 font-normal text-xs flex-shrink-0 cursor-pointer select-none"
                   onClick={() => handleCategoryClick(index)}
                 >
                   {category3DIcons[name] ? (
@@ -93,14 +91,12 @@ export default function CategoryCarousel() {
                     />
                   ) : Icon ? (
                     <Icon
-                      className={`h-5 w-5 ${activeIndex === index ? "text-purple-600" : "text-primary"
-                        } shrink-0`}
+                      className={`h-5 w-5 shrink-0 ${isActive ? "text-purple-600" : "text-primary"}`}
                     />
                   ) : null}
 
                   <span
-                    className={`text-primary font-medium ${activeIndex === index ? "text-purple-600" : "text-gray-600"
-                      }`}
+                    className={`font-medium ${isActive ? "text-purple-600" : "text-gray-600"}`}
                   >
                     {name}
                   </span>

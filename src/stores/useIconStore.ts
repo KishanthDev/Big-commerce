@@ -1,5 +1,13 @@
-// stores/useIconStore.ts
 import { create } from "zustand";
+
+interface IconData {
+  categoryName?: string;
+  subCategoryName?: string;
+  icon: {
+    "3d"?: string;
+    "3dSlide"?: string;
+  };
+}
 
 interface IconStoreState {
   category3DIcons: Record<string, string>;
@@ -17,25 +25,28 @@ export const useIconStore = create<IconStoreState>((set) => ({
         fetch("/api/icons/subcategory-3d"),
       ]);
 
-      const [catIcons, subIcons] = await Promise.all([
+      const [catIcons, subIcons]: [IconData[], IconData[]] = await Promise.all([
         catRes.ok ? catRes.json() : [],
         subRes.ok ? subRes.json() : [],
       ]);
 
-      const catMap = catIcons.reduce((acc: any, item: any) => {
-        acc[item.categoryName.trim()] = item.icon["3dSlide"];
+      const catMap: Record<string, string> = catIcons.reduce((acc, item) => {
+        if (item.categoryName && item.icon["3dSlide"]) {
+          acc[item.categoryName.trim()] = item.icon["3dSlide"];
+        }
         return acc;
-      }, {});
+      }, {} as Record<string, string>);
 
-      const subMap = subIcons.reduce((acc: any, item: any) => {
-        acc[item.subCategoryName.trim()] = item.icon["3d"];
+      const subMap: Record<string, string> = subIcons.reduce((acc, item) => {
+        if (item.subCategoryName && item.icon["3d"]) {
+          acc[item.subCategoryName.trim()] = item.icon["3d"];
+        }
         return acc;
-      }, {});
+      }, {} as Record<string, string>);
 
       set({ category3DIcons: catMap, subCategory3DIcons: subMap });
     } catch (error) {
       console.error("Failed to fetch 3D icons", error);
-      // Let it fallback to default icons
     }
   },
 }));
