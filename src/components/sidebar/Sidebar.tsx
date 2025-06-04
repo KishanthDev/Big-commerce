@@ -14,7 +14,7 @@ export default function Sidebar() {
   const { isOpen } = useSidebarStore();
   const { categories, fetchCategories, loading } = useCategoryStore();
   const {
-    category3DIcons,
+    category3DIconsSlide,
     subCategory3DIcons,
     fetch3DIcons,
   } = useIconStore();
@@ -78,9 +78,9 @@ export default function Sidebar() {
                 }}
               >
                 <span className="flex items-center gap-2">
-                  {category3DIcons[name] ? (
+                  {category3DIconsSlide[name] ? (
                     <img
-                      src={category3DIcons[name]}
+                      src={category3DIconsSlide[name]}
                       alt={`${name} 3D`}
                       className="h-5 w-5 object-contain shrink-0"
                     />

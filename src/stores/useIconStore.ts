@@ -12,12 +12,14 @@ interface IconData {
 interface IconStoreState {
   category3DIcons: Record<string, string>;
   subCategory3DIcons: Record<string, string>;
+  category3DIconsSlide: Record<string, string>;
   fetch3DIcons: () => Promise<void>;
 }
 
 export const useIconStore = create<IconStoreState>((set) => ({
   category3DIcons: {},
   subCategory3DIcons: {},
+  category3DIconsSlide: {},
   fetch3DIcons: async () => {
     try {
       const [catRes, subRes] = await Promise.all([
@@ -31,6 +33,14 @@ export const useIconStore = create<IconStoreState>((set) => ({
       ]);
 
       const catMap: Record<string, string> = catIcons.reduce((acc, item) => {
+        if (item.categoryName && item.icon["3d"]) {
+          acc[item.categoryName.trim()] = item.icon["3d"];
+        }
+        return acc;
+      }, {} as Record<string, string>);
+
+
+        const catMapSlide: Record<string, string> = catIcons.reduce((acc, item) => {
         if (item.categoryName && item.icon["3dSlide"]) {
           acc[item.categoryName.trim()] = item.icon["3dSlide"];
         }
@@ -44,7 +54,7 @@ export const useIconStore = create<IconStoreState>((set) => ({
         return acc;
       }, {} as Record<string, string>);
 
-      set({ category3DIcons: catMap, subCategory3DIcons: subMap });
+      set({ category3DIcons: catMap, subCategory3DIcons: subMap , category3DIconsSlide: catMapSlide });
     } catch (error) {
       console.error("Failed to fetch 3D icons", error);
     }
