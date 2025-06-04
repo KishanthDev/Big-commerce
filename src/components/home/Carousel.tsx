@@ -2,6 +2,7 @@ import * as React from "react";
 
 import { Card, CardContent } from "@/components/ui/card";
 import Autoplay from "embla-carousel-autoplay"
+import Image from "next/image";
 
 import {
   Carousel,
@@ -42,12 +43,11 @@ export function CarouselDemo() {
             <div>
               <Card className="overflow-hidden py-0 border-none">
                 <CardContent className="p-0 relative aspect-[16/9] w-full h-[600px] sm:h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center bg-gray-100">
-                  <img
+                  <Image
                     src={src}
                     alt={`Slide ${index + 1}`}
                     className="w-full h-full bg-[#19ABDC] object-contain object-center"
                     loading="lazy"
-                    srcSet={`${src}?w=800 800w, ${src}?w=1600 1600w`}
                     sizes="(max-width: 768px) 800px, 1600px"
                   />
                 </CardContent>
