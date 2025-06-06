@@ -8,21 +8,32 @@ import ImageGridBox from "@/components/Image";
 
 export default function Home() {
   return (
-    <>
-      <div className="relative">
+    <div className="flex flex-col min-h-screen w-full">
+      {/* Carousel Section */}
+      <section className="relative w-full">
         <CarouselDemo />
-        {/* Overlay ImageGridBox but let carousel buttons stay clickable */}
-        <div className="absolute -bottom-650 inset-0 z-10 flex items-center justify-center pointer-events-none">
-          <div className="pointer-events-auto">
-            <ImageGridBox />
-          </div>
-        </div>
-      </div>
+      </section>
 
-      <div className="h-500" />
-      <HeroSection />
-      <StatsSection />
-      <BigCommerceBenefits />
-    </>
+      {/* Image Grid Section */}
+      <section className="w-full px-4 sm:px-6 md:px-8 lg:px-12 py-6 sm:py-8 md:py-10">
+        <div className="max-w-7xl mx-auto">
+          <ImageGridBox />
+        </div>
+      </section>
+
+      {/* Spacer */}
+      <div className="h-8 sm:h-12 md:h-16 lg:h-20" />
+
+      {/* Other Sections */}
+      <section className="w-full">
+        <HeroSection />
+      </section>
+      <section className="w-full">
+        <StatsSection />
+      </section>
+      <section className="w-full">
+        <BigCommerceBenefits />
+      </section>
+    </div>
   );
 }
