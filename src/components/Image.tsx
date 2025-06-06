@@ -27,7 +27,7 @@ export default function ImageGridBox() {
             key={category.id}
             className="rounded-lg border-2 border-gray-200 bg-white p-4 shadow-sm flex flex-col"
           >
-            <h3 className="text-lg font-bold text-center mb-4">
+            <h3 className="text-lg dark:text-black font-bold text-center mb-4">
               {category.categoryName}
             </h3>
 
@@ -63,7 +63,7 @@ export default function ImageGridBox() {
                       />
                     </div>
                     {/* Subcategory name below image */}
-                    <p className="text-sm font-medium text-center">
+                    <p className="text-sm dark:text-black font-medium text-center">
                       {String(subName)}
                     </p>
                   </div>

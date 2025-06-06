@@ -131,7 +131,7 @@ export default function CategoryCarousel() {
                   ) : null}
 
                   <span
-                    className={`font-medium ${isActive ? "text-purple-600" : "text-gray-600"}`}
+                    className={`font-medium ${isActive ? "text-purple-600 dark:text-purple-400" : "text-gray-600 dark:text-white"}`}
                   >
                     {name}
                   </span>
