@@ -9,6 +9,7 @@ import { categoryIconMap } from "@/components/icons/IconMap";
 import { useSidebarStore } from "@/stores/useSidebarStore";
 import { useRouter } from "next/navigation";
 import { slugify } from "@/app/lib/slugify";
+import { slugifyFolderName, formatFileName } from "@/app/lib/file-slugify";
 
 export default function CategoryCarousel() {
   const { toggleSidebar, closeSidebar } = useSidebarStore();
@@ -89,8 +90,8 @@ export default function CategoryCarousel() {
         <Image
           src="https://res.cloudinary.com/dkgwkp02d/image/upload/v1749025548/left-arrow_gtzcgu.png"
           alt="Scroll Left"
-          width={24} 
-          height={24} 
+          width={24}
+          height={24}
           style={{ objectFit: "contain" }}
         />
       </button>
@@ -110,6 +111,10 @@ export default function CategoryCarousel() {
               const Icon = categoryIconMap[name];
               const isActive = activeIndex === index;
 
+              // Prepare folder and file names for 3D icons
+              const folderName = slugifyFolderName(name); // "travel transportation"
+              const fileName = formatFileName(name);      // keep casing and spacing in file name
+
               return (
                 <div
                   key={`${name}-${index}`}
@@ -118,9 +123,11 @@ export default function CategoryCarousel() {
                 >
                   {category3DIcons[name] ? (
                     <Image
-                      src={category3DIcons[name]}
-                      alt={`${name} 3D icon`}
-                      width={20} 
+                      src={name === "All"
+                        ? category3DIcons[name] // use absolute or cloud URL directly for "All"
+                        : `/Icons/${folderName}/${fileName}.svg`}
+                      alt={`${name} icon`}
+                      width={20}
                       height={20}
                       style={{ objectFit: "contain" }}
                     />
@@ -129,6 +136,7 @@ export default function CategoryCarousel() {
                       className={`h-5 w-5 shrink-0 ${isActive ? "text-purple-600" : "text-primary"}`}
                     />
                   ) : null}
+
 
                   <span
                     className={`font-medium ${isActive ? "text-purple-600 dark:text-purple-400" : "text-gray-600 dark:text-white"}`}
@@ -151,8 +159,8 @@ export default function CategoryCarousel() {
         <Image
           src="https://res.cloudinary.com/dkgwkp02d/image/upload/v1749025548/right-arrow_hqeqgu.png"
           alt="Scroll Right"
-          width={24} 
-          height={24} 
+          width={24}
+          height={24}
           style={{ objectFit: "contain" }}
         />
       </button>
