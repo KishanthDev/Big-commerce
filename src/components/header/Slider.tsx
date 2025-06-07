@@ -5,7 +5,6 @@ import { motion, useAnimation } from "framer-motion";
 import Image from "next/image";
 import { useCategoryStore } from "@/stores/useCategoryStore";
 import { useIconStore } from "@/stores/useIconStore";
-import { categoryIconMap } from "@/components/icons/IconMap";
 import { useSidebarStore } from "@/stores/useSidebarStore";
 import { useRouter } from "next/navigation";
 import { slugify } from "@/app/lib/slugify";
@@ -108,7 +107,7 @@ export default function CategoryCarousel() {
           >
             {displayCategories.map((category, index) => {
               const name = category.categoryName.trim();
-              const Icon = categoryIconMap[name];
+              /* const Icon = categoryIconMap[name]; */
               const isActive = activeIndex === index;
 
               // Prepare folder and file names for 3D icons
@@ -121,7 +120,7 @@ export default function CategoryCarousel() {
                   className="relative flex items-center gap-2 px-2 py-3 font-normal text-xs flex-shrink-0 cursor-pointer select-none"
                   onClick={() => handleCategoryClick(index)}
                 >
-                  {category3DIcons[name] ? (
+                
                     <Image
                       src={name === "All"
                         ? category3DIcons[name] // use absolute or cloud URL directly for "All"
@@ -131,11 +130,7 @@ export default function CategoryCarousel() {
                       height={20}
                       style={{ objectFit: "contain" }}
                     />
-                  ) : Icon ? (
-                    <Icon
-                      className={`h-5 w-5 shrink-0 ${isActive ? "text-purple-600" : "text-primary"}`}
-                    />
-                  ) : null}
+                  
 
 
                   <span
