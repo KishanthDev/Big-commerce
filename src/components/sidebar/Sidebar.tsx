@@ -9,6 +9,7 @@ import { categoryIconMap } from "@/components/icons/IconMap";
 import { subCategoryIconMap } from "@/components/icons/subCategoryIconMap";
 import { ChevronDownIcon, ChevronRightIcon } from "lucide-react";
 import { slugify } from "@/app/lib/slugify";
+import { slugifyFolderName, formatFileName } from "@/app/lib/file-slugify";
 
 export default function Sidebar() {
   const { isOpen } = useSidebarStore();
@@ -80,8 +81,8 @@ export default function Sidebar() {
                 <span className="flex items-center gap-2">
                   {category3DIconsSlide[name] ? (
                     <img
-                      src={category3DIconsSlide[name]}
-                      alt={`${name} 3D`}
+                      src={`/Icons/${slugifyFolderName(name)}/${formatFileName(name)}.svg`}
+                      alt={`${name} icon`}
                       className="h-5 w-5 object-contain shrink-0"
                     />
                   ) : categoryIconMap[name] ? (
@@ -90,6 +91,7 @@ export default function Sidebar() {
                       return <Icon className="h-5 w-5 text-blue-500 shrink-0" />;
                     })()
                   ) : null}
+
                   {name}
                 </span>
                 {(sortedSub && sortedSub.length > 0) &&
@@ -111,8 +113,8 @@ export default function Sidebar() {
                       <a
                         key={typeof sub === "string" ? sub : sub.subcategoryName}
                         className={`flex items-center gap-2 px-3 py-2.5 rounded text-sm cursor-pointer transition-colors ${isActive
-                            ? "bg-gray-300 text-blue-700 dark:text-blue-400 dark:bg-gray-700 font-medium"
-                            : "hover:bg-gray-200 dark:hover:bg-gray-600"
+                          ? "bg-gray-300 text-blue-700 dark:text-blue-400 dark:bg-gray-700 font-medium"
+                          : "hover:bg-gray-200 dark:hover:bg-gray-600"
                           }`}
                         onClick={(e) => {
                           e.preventDefault();
@@ -123,8 +125,8 @@ export default function Sidebar() {
                       >
                         {subCategory3DIcons[subName] ? (
                           <img
-                            src={subCategory3DIcons[subName]}
-                            alt={`${subName} 3D`}
+                            src={`/Icons/${slugifyFolderName(cat.categoryName)}/${formatFileName(subName)}.svg`}
+                            alt={`${subName} icon`}
                             className="h-4 w-4 object-contain shrink-0"
                           />
                         ) : subCategoryIconMap[subName] ? (
@@ -133,6 +135,7 @@ export default function Sidebar() {
                             return <SubIcon className={`h-4 w-4 shrink-0 ${isActive ? "text-blue-600" : "text-blue-500"}`} />;
                           })()
                         ) : null}
+
                         {subName}
                       </a>
                     );
