@@ -9,7 +9,6 @@ import { useSidebarStore } from "@/stores/useSidebarStore";
 import { useRouter } from "next/navigation";
 import { slugify } from "@/app/lib/slugify";
 import { slugifyFolderName, formatFileName } from "@/app/lib/file-slugify";
-import { isNull } from "util";
 
 export default function CategoryCarousel() {
   const { toggleSidebar, closeSidebar } = useSidebarStore();
