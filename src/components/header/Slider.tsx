@@ -9,6 +9,7 @@ import { useSidebarStore } from "@/stores/useSidebarStore";
 import { useRouter } from "next/navigation";
 import { slugify } from "@/app/lib/slugify";
 import { slugifyFolderName, formatFileName } from "@/app/lib/file-slugify";
+import { isNull } from "util";
 
 export default function CategoryCarousel() {
   const { toggleSidebar, closeSidebar } = useSidebarStore();
@@ -120,19 +121,25 @@ export default function CategoryCarousel() {
                   className="relative flex items-center gap-2 px-2 py-3 font-normal text-xs flex-shrink-0 cursor-pointer select-none"
                   onClick={() => handleCategoryClick(index)}
                 >
-                
-                    <Image
-                      src={name === "All"
-                        ? category3DIcons[name] // use absolute or cloud URL directly for "All"
-                        : `/Icons/${folderName}/${fileName}.svg`}
-                      alt={`${name} icon`}
-                      width={20}
-                      height={20}
-                      style={{ objectFit: "contain" }}
-                    />
-                  
 
+                  {(() => {
+                    const isAll = name === "All";
+                    const iconSrc = isAll
+                      ? category3DIcons[name] || null 
+                      : `/Icons/${folderName}/${fileName}.svg`;
 
+                    if (!iconSrc) return null; 
+
+                    return (
+                      <Image
+                        src={iconSrc}
+                        alt={`${name} icon`}
+                        width={20}
+                        height={20}
+                        style={{ objectFit: "contain" }}
+                      />
+                    );
+                  })()}
                   <span
                     className={`font-medium ${isActive ? "text-purple-600 dark:text-purple-400" : "text-gray-600 dark:text-white"}`}
                   >
