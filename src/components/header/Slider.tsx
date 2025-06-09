@@ -133,8 +133,8 @@ export default function CategoryCarousel() {
                       <Image
                         src={iconSrc}
                         alt={`${name} icon`}
-                        width={20}
-                        height={20}
+                        width={30}
+                        height={30}
                         style={{ objectFit: "contain" }}
                       />
                     );

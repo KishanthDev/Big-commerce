@@ -10,6 +10,7 @@ import { subCategoryIconMap } from "@/components/icons/subCategoryIconMap";
 import { ChevronDownIcon, ChevronRightIcon } from "lucide-react";
 import { slugify } from "@/app/lib/slugify";
 import { slugifyFolderName, formatFileName } from "@/app/lib/file-slugify";
+import Image from "next/image";
 
 export default function Sidebar() {
   const { isOpen } = useSidebarStore();
@@ -80,10 +81,12 @@ export default function Sidebar() {
               >
                 <span className="flex items-center gap-2">
                   {category3DIconsSlide[name] ? (
-                    <img
+                    <Image
+                      width={35}
+                      height={35}
                       src={`/Icons/${slugifyFolderName(name)}/${formatFileName(name)}.svg`}
                       alt={`${name} icon`}
-                      className="h-5 w-5 object-contain shrink-0"
+                      className="object-contain shrink-0"
                     />
                   ) : categoryIconMap[name] ? (
                     (() => {
@@ -124,10 +127,12 @@ export default function Sidebar() {
                         }}
                       >
                         {subCategory3DIcons[subName] ? (
-                          <img
+                          <Image
+                            width={30}
+                            height={30}
                             src={`/Icons/${slugifyFolderName(cat.categoryName)}/${formatFileName(subName)}.svg`}
                             alt={`${subName} icon`}
-                            className="h-4 w-4 object-contain shrink-0"
+                            className="object-contain shrink-0"
                           />
                         ) : subCategoryIconMap[subName] ? (
                           (() => {
