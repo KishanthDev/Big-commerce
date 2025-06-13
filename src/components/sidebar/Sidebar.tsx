@@ -4,22 +4,15 @@ import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useCategoryStore } from "@/stores/useCategoryStore";
 import { useSidebarStore } from "@/stores/useSidebarStore";
-import { useIconStore } from "@/stores/useIconStore";
-import { categoryIconMap } from "@/components/icons/IconMap";
-import { subCategoryIconMap } from "@/components/icons/subCategoryIconMap";
 import { ChevronDownIcon, ChevronRightIcon } from "lucide-react";
 import { slugify } from "@/app/lib/slugify";
-import { slugifyFolderName, formatFileName } from "@/app/lib/file-slugify";
 import Image from "next/image";
+import icons from "@/data/icons.json";
 
 export default function Sidebar() {
   const { isOpen } = useSidebarStore();
   const { categories, fetchCategories, loading } = useCategoryStore();
-  const {
-    category3DIconsSlide,
-    subCategory3DIcons,
-    fetch3DIcons,
-  } = useIconStore();
+
   const [openCategory, setOpenCategory] = useState<number | null>(null);
 
   const router = useRouter();
@@ -28,8 +21,7 @@ export default function Sidebar() {
 
   useEffect(() => {
     if (categories.length === 0) fetchCategories();
-    fetch3DIcons();
-  }, [categories.length, fetchCategories, fetch3DIcons]);
+  }, [categories.length, fetchCategories]);
 
   useEffect(() => {
     for (const cat of categories) {
@@ -50,6 +42,23 @@ export default function Sidebar() {
 
   const toggleCategory = (categoryId: number) => {
     setOpenCategory((prev) => (prev === categoryId ? null : categoryId));
+  };
+
+  // Find icon URL for a category or subcategory by name
+  const getIconUrl = (categoryName: string, subCategoryName?: string) => {
+    const category = icons.categories.find(
+      (cat) => cat.categoryName.toLowerCase() === categoryName.toLowerCase()
+    );
+    if (!category) return "/Icons/fallback-icon.svg";
+
+    if (subCategoryName) {
+      const subCategory = category.subCategories.find(
+        (sub) => sub.subCategoryName.toLowerCase() === subCategoryName.toLowerCase()
+      );
+      return subCategory?.icon["default"] || "/Icons/fallback-icon.svg";
+    }
+
+    return category.icon["default"] || "/Icons/fallback-icon.svg";
   };
 
   return (
@@ -80,21 +89,13 @@ export default function Sidebar() {
                 }}
               >
                 <span className="flex items-center gap-2">
-                  {category3DIconsSlide[name] ? (
-                    <Image
-                      width={35}
-                      height={35}
-                      src={`/Icons/${slugifyFolderName(name)}/${formatFileName(name)}.svg`}
-                      alt={`${name} icon`}
-                      className="object-contain shrink-0"
-                    />
-                  ) : categoryIconMap[name] ? (
-                    (() => {
-                      const Icon = categoryIconMap[name];
-                      return <Icon className="h-5 w-5 text-blue-500 shrink-0" />;
-                    })()
-                  ) : null}
-
+                  <Image
+                    width={35}
+                    height={35}
+                    src={getIconUrl(name)}
+                    alt={`${name} icon`}
+                    className="object-contain shrink-0"
+                  />
                   {name}
                 </span>
                 {(sortedSub && sortedSub.length > 0) &&
@@ -115,10 +116,11 @@ export default function Sidebar() {
                     return (
                       <a
                         key={typeof sub === "string" ? sub : sub.subcategoryName}
-                        className={`flex items-center gap-2 px-3 py-2.5 rounded text-sm cursor-pointer transition-colors ${isActive
-                          ? "bg-gray-300 text-blue-700 dark:text-blue-400 dark:bg-gray-700 font-medium"
-                          : "hover:bg-gray-200 dark:hover:bg-gray-600"
-                          }`}
+                        className={`flex items-center gap-2 px-3 py-2.5 rounded text-sm cursor-pointer transition-colors ${
+                          isActive
+                            ? "bg-gray-300 text-blue-700 dark:text-blue-400 dark:bg-gray-700 font-medium"
+                            : "hover:bg-gray-200 dark:hover:bg-gray-600"
+                        }`}
                         onClick={(e) => {
                           e.preventDefault();
                           router.push(
@@ -126,21 +128,13 @@ export default function Sidebar() {
                           );
                         }}
                       >
-                        {subCategory3DIcons[subName] ? (
-                          <Image
-                            width={30}
-                            height={30}
-                            src={`/Icons/${slugifyFolderName(cat.categoryName)}/${formatFileName(subName)}.svg`}
-                            alt={`${subName} icon`}
-                            className="object-contain shrink-0"
-                          />
-                        ) : subCategoryIconMap[subName] ? (
-                          (() => {
-                            const SubIcon = subCategoryIconMap[subName];
-                            return <SubIcon className={`h-4 w-4 shrink-0 ${isActive ? "text-blue-600" : "text-blue-500"}`} />;
-                          })()
-                        ) : null}
-
+                        <Image
+                          width={30}
+                          height={30}
+                          src={getIconUrl(cat.categoryName, subName)}
+                          alt={`${subName} icon`}
+                          className="object-contain shrink-0"
+                        />
                         {subName}
                       </a>
                     );

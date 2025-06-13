@@ -124,7 +124,7 @@ export default function CategoryCarousel() {
                   {(() => {
                     const isAll = name === "All";
                     const iconSrc = isAll
-                      ? category3DIcons[name] || null 
+                      ? "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748957507/widget_p4gypn.png"
                       : `/Icons/${folderName}/${fileName}.svg`;
 
                     if (!iconSrc) return null; 
