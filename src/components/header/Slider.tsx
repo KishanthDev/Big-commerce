@@ -4,7 +4,6 @@ import { useRef, useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import Image from "next/image";
 import { useCategoryStore } from "@/stores/useCategoryStore";
-import { useIconStore } from "@/stores/useIconStore";
 import { useSidebarStore } from "@/stores/useSidebarStore";
 import { useRouter } from "next/navigation";
 import { slugify } from "@/app/lib/slugify";
@@ -13,7 +12,6 @@ import { slugifyFolderName, formatFileName } from "@/app/lib/file-slugify";
 export default function CategoryCarousel() {
   const { toggleSidebar, closeSidebar } = useSidebarStore();
   const { categories, fetchCategories, loading } = useCategoryStore();
-  const { category3DIcons, fetch3DIcons } = useIconStore();
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
@@ -21,8 +19,7 @@ export default function CategoryCarousel() {
 
   useEffect(() => {
     if (categories.length === 0) fetchCategories();
-    fetch3DIcons();
-  }, [categories.length, fetchCategories, fetch3DIcons]);
+  }, [categories.length, fetchCategories]);
 
   const sortedCategories = [...categories].sort((a, b) =>
     a.categoryName.toLowerCase().localeCompare(b.categoryName.toLowerCase())
