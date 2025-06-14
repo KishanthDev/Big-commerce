@@ -4,7 +4,7 @@ import clientPromise from "@/lib/mongodb";
 export const GET = async () => {
   try {
     const client = await clientPromise;
-    const db = client.db("bigcommerce");
+    const db = client.db("mydatabase");
     const categories = await db.collection("categories").find({}).toArray();
     console.log("Fetched categories:", categories.length);
 
