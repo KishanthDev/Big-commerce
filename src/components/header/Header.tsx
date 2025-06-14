@@ -1,5 +1,6 @@
 "use client";
-import React from "react";
+
+import React, { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -11,6 +12,14 @@ import { usePathname } from "next/navigation";
 import styles from "./Link.module.css";
 import CategoryCarousel from "./Slider";
 import SearchBar from "@/app/(app)/category/SearchBar";
+
+function SearchBarWithSuspense() {
+  return (
+    <Suspense fallback={<div className="w-64 h-10 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />}>
+      <SearchBar />
+    </Suspense>
+  );
+}
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = React.useState(false);
@@ -63,7 +72,7 @@ const Header = () => {
         </nav>
 
         <div className="hidden md:flex items-center space-x-4">
-          <SearchBar />
+          <SearchBarWithSuspense />
           <Link href="/clerkauth">
             <Button variant="destructive">Signup/Signin</Button>
           </Link>
