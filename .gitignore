@@ -49,3 +49,6 @@ node_modules/
 tests/**
 e2e/**
 
+
+# clerk configuration (can include secrets)
+/.clerk/

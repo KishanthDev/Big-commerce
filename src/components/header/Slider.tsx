@@ -7,7 +7,7 @@ import { useCategoryStore } from "@/stores/useCategoryStore";
 import { useSidebarStore } from "@/stores/useSidebarStore";
 import { useRouter } from "next/navigation";
 import { slugify } from "@/app/lib/slugify";
-import { slugifyFolderName, formatFileName } from "@/app/lib/file-slugify";
+import icons from "@/data/icons.json";
 
 export default function CategoryCarousel() {
   const { toggleSidebar, closeSidebar } = useSidebarStore();
@@ -73,6 +73,18 @@ export default function CategoryCarousel() {
     }
   };
 
+  // Find icon URL for a category by name
+  const getIconUrl = (categoryName: string) => {
+    if (categoryName === "All") {
+      return "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748957507/widget_p4gypn.png";
+    }
+
+    const category = icons.categories.find(
+      (cat) => cat.categoryName.toLowerCase() === categoryName.toLowerCase()
+    );
+    return category?.icon["default"] || "/Icons/fallback-icon.svg";
+  };
+
   if (loading) return <div className="p-6">Loading...</div>;
 
   return (
@@ -104,12 +116,7 @@ export default function CategoryCarousel() {
           >
             {displayCategories.map((category, index) => {
               const name = category.categoryName.trim();
-              /* const Icon = categoryIconMap[name]; */
               const isActive = activeIndex === index;
-
-              // Prepare folder and file names for 3D icons
-              const folderName = slugifyFolderName(name); // "travel transportation"
-              const fileName = formatFileName(name);      // keep casing and spacing in file name
 
               return (
                 <div
@@ -117,27 +124,19 @@ export default function CategoryCarousel() {
                   className="relative flex items-center gap-2 px-2 py-3 font-normal text-xs flex-shrink-0 cursor-pointer select-none"
                   onClick={() => handleCategoryClick(index)}
                 >
-
-                  {(() => {
-                    const isAll = name === "All";
-                    const iconSrc = isAll
-                      ? "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748957507/widget_p4gypn.png"
-                      : `/Icons/${folderName}/${fileName}.svg`;
-
-                    if (!iconSrc) return null; 
-
-                    return (
-                      <Image
-                        src={iconSrc}
-                        alt={`${name} icon`}
-                        width={30}
-                        height={30}
-                        style={{ objectFit: "contain" }}
-                      />
-                    );
-                  })()}
+                  <Image
+                    src={getIconUrl(name)}
+                    alt={`${name} icon`}
+                    width={30}
+                    height={30}
+                    style={{ objectFit: "contain" }}
+                  />
                   <span
-                    className={`font-medium ${isActive ? "text-purple-600 dark:text-purple-400" : "text-gray-600 dark:text-white"}`}
+                    className={`font-medium ${
+                      isActive
+                        ? "text-purple-600 dark:text-purple-400"
+                        : "text-gray-600 dark:text-white"
+                    }`}
                   >
                     {name}
                   </span>

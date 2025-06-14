@@ -10,6 +10,7 @@ import FullScreenToggle from "./FullScreenToggle";
 import { usePathname } from "next/navigation";
 import styles from "./Link.module.css";
 import CategoryCarousel from "./Slider";
+import SearchBar from "@/app/(app)/category/SearchBar";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = React.useState(false);
@@ -17,11 +18,11 @@ const Header = () => {
 
   const navLinks = [
     { label: "Home", path: "/home" },
-    { label: "Sellers", path: "/sellers" },
+    /* { label: "Sellers", path: "/sellers" },
     { label: "Buyers", path: "/buyers" },
     { label: "Advertising", path: "/advertising" },
     { label: "Blog", path: "/blog" },
-    { label: "Contact", path: "/contact" },
+    { label: "Contact", path: "/contact" }, */
   ];
 
   return (
@@ -62,6 +63,10 @@ const Header = () => {
         </nav>
 
         <div className="hidden md:flex items-center space-x-4">
+          <SearchBar />
+          <Link href="/clerkauth">
+            <Button variant="destructive">Signup/Signin</Button>
+          </Link>
           <Link href="/login">
             <Button variant="outline">Log In</Button>
           </Link>

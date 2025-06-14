@@ -88,12 +88,10 @@ export async function GET(req: NextRequest) {
     const formattedListings = listings.map((listing) => ({
       _id: (listing._id as string | number | { toString(): string }).toString(),
       name: listing.name,
-      initial: listing.initial,
-      imageUrl: listing.imageUrl,
+      imageUrl: (listing as any).imageUrl ?? null,
       rating: listing.rating,
       totalRatings: listing.totalRatings,
       address: listing.address,
-      distance: listing.distance,
       phone: listing.phone,
       tags: listing.tags,
       hasWhatsApp: listing.hasWhatsApp,
@@ -104,7 +102,6 @@ export async function GET(req: NextRequest) {
       category: listing.category,
       city: listing.city,
       pincode: listing.pincode,
-      timestamp: listing.timestamp,
     }));
 
     return NextResponse.json({
