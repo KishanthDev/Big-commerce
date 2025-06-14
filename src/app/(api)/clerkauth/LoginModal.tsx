@@ -1,15 +1,21 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useUser, useClerk, useSignIn } from '@clerk/nextjs';
+import { useUser, useClerk } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import LoginForm from './LoginForm';
 import OtpForm from './OtpForm';
 import ModalWrapper from './ModalWrapper';
 
+// Define an interface for Clerk errors
+interface ClerkError {
+  errors?: { message: string }[];
+  message?: string;
+}
+
 const LoginModal: React.FC = () => {
   // State for modal visibility and type
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [modalType, setModalType] = useState<'login' | 'otp'>('login');
   // State for mobile number
   const [mobileNumber, setMobileNumber] = useState('');
@@ -59,8 +65,11 @@ const LoginModal: React.FC = () => {
     } catch (error) {
       console.error('Error initiating OTP login:', error);
       let errorMessage = 'Unknown error';
-      if (typeof error === 'object' && error !== null && 'errors' in error && Array.isArray((error as any).errors)) {
-        errorMessage = (error as any).errors[0]?.message || 'Unknown error';
+      if (error && typeof error === 'object' && 'errors' in error) {
+        const clerkError = error as ClerkError;
+        if (Array.isArray(clerkError.errors) && clerkError.errors[0]?.message) {
+          errorMessage = clerkError.errors[0].message;
+        }
       }
       alert(`Failed to send OTP: ${errorMessage}. Using simulated OTP for testing.`);
       setModalType('otp');
@@ -86,7 +95,7 @@ const LoginModal: React.FC = () => {
         setIsSimulatedLoggedIn(true); // Set logged-in state
         console.log('OTP verified, setting isSimulatedLoggedIn to true');
         alert('OTP verified successfully!');
-        router.push('/category?pincode=573201');
+        router.push('/category?pincode=573201'); // Navigate
         return;
       } else {
         throw new Error('Invalid OTP entered.');
@@ -94,8 +103,8 @@ const LoginModal: React.FC = () => {
     } catch (error) {
       console.error('Error verifying OTP:', error);
       let errorMessage = 'Please try again.';
-      if (typeof error === 'object' && error !== null && 'message' in error) {
-        errorMessage = (error as { message?: string }).message || 'Please try again.';
+      if (error && typeof error === 'object' && 'message' in error) {
+        errorMessage = (error as ClerkError).message || 'Please try again.';
       }
       alert(`Invalid OTP: ${errorMessage}`);
     }
@@ -116,8 +125,11 @@ const LoginModal: React.FC = () => {
     } catch (error) {
       console.error('Error resending OTP:', error);
       let errorMessage = 'Unknown error';
-      if (typeof error === 'object' && error !== null && 'errors' in error && Array.isArray((error as any).errors)) {
-        errorMessage = (error as any).errors[0]?.message || 'Unknown error';
+      if (error && typeof error === 'object' && 'errors' in error) {
+        const clerkError = error as ClerkError;
+        if (Array.isArray(clerkError.errors) && clerkError.errors[0]?.message) {
+          errorMessage = clerkError.errors[0].message;
+        }
       }
       alert(`Failed to resend OTP: ${errorMessage}. Using simulated OTP for testing.`);
       setTimer(49);

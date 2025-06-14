@@ -1,16 +1,39 @@
-// src/app/api/search-list/search/route.ts
-
 import dbConnect from '@/lib/dbConnect';
-import DistrictBusiness from '@/models/DistrictBusiness';
+import DistrictBusiness, { IDistrictBusiness } from '@/models/DistrictBusiness';
 import { NextRequest, NextResponse } from 'next/server';
+import { Types } from 'mongoose';
+
+// Define the MongoDB query type
+interface BusinessQuery {
+  pincode: string;
+  $text?: { $search: string };
+  $or?: Array<{ [key: string]: { $regex: string; $options?: string } }>;
+  category?: { $regex: string; $options?: string };
+  tags?: { $regex: string; $options?: string };
+  name?: { $regex: string; $options?: string };
+  address?: { $regex: string; $options?: string };
+  city?: { $regex: string; $options?: string };
+  isVerified?: boolean;
+  isTrusted?: boolean;
+  rating?: { $gte: number };
+}
+
+// Define the sort options type
+interface SortOptions {
+  [key: string]: 1 | -1 | { $meta: 'textScore' };
+}
+
+// Define the lean result type (extends the model interface)
+interface LeanDistrictBusiness extends Omit<IDistrictBusiness, '_id'> {
+  _id: Types.ObjectId;
+  imageUrl?: string | null; // Include imageUrl as optional
+}
 
 export async function GET(req: NextRequest) {
-
   try {
     await dbConnect();
 
     const { searchParams } = new URL(req.url);
-
     const query = searchParams.get('query');
     const category = searchParams.get('category');
     const tag = searchParams.get('tag');
@@ -32,27 +55,30 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ success: false, error: `Pincode ${pincode} not found in the database` }, { status: 404 });
     }
 
-    const dbQuery: any = { pincode };
+    const dbQuery: BusinessQuery = { pincode };
 
     if (query) {
+      // Sanitize query to prevent regex injection
+      const sanitizedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       try {
-        dbQuery.$text = { $search: `\"${query}\" name:${query}` };
-      } catch (error) {
+        dbQuery.$text = { $search: `\"${sanitizedQuery}\" name:${sanitizedQuery}` };
+      } catch {
+        // If text search fails, fall back to regex
         dbQuery.$or = [
-          { name: { $regex: query, $options: 'i' } },
-          { category: { $regex: query, $options: 'i' } },
-          { tags: { $regex: query, $options: 'i' } },
-          { city: { $regex: query, $options: 'i' } },
-          { address: { $regex: query, $options: 'i' } },
+          { name: { $regex: sanitizedQuery, $options: 'i' } },
+          { category: { $regex: sanitizedQuery, $options: 'i' } },
+          { tags: { $regex: sanitizedQuery, $options: 'i' } },
+          { city: { $regex: sanitizedQuery, $options: 'i' } },
+          { address: { $regex: sanitizedQuery, $options: 'i' } },
         ];
       }
     }
 
-    if (category) dbQuery.category = { $regex: `^${category}$`, $options: 'i' };
-    if (tag) dbQuery.tags = { $regex: tag, $options: 'i' };
-    if (name) dbQuery.name = { $regex: name, $options: 'i' };
-    if (address) dbQuery.address = { $regex: address, $options: 'i' };
-    if (city) dbQuery.city = { $regex: `^${city}$`, $options: 'i' };
+    if (category) dbQuery.category = { $regex: `^${category.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, $options: 'i' };
+    if (tag) dbQuery.tags = { $regex: tag.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), $options: 'i' };
+    if (name) dbQuery.name = { $regex: name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), $options: 'i' };
+    if (address) dbQuery.address = { $regex: address.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), $options: 'i' };
+    if (city) dbQuery.city = { $regex: `^${city.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, $options: 'i' };
     if (sortByVerified === 'true') dbQuery.isVerified = true;
     if (sortByTrusted === 'true') dbQuery.isTrusted = true;
     if (sortByRating) {
@@ -62,7 +88,7 @@ export async function GET(req: NextRequest) {
       }
     }
 
-    let sortOptions: any = {};
+    let sortOptions: SortOptions = {};
     if (sort === 'rating') {
       sortOptions.rating = -1;
     } else if (sort === 'totalRatings-desc') {
@@ -75,7 +101,10 @@ export async function GET(req: NextRequest) {
       sortOptions.createdAt = -1;
     }
 
-    const listings = await DistrictBusiness.find(dbQuery).sort(sortOptions).limit(50).lean();
+    const listings = await DistrictBusiness.find(dbQuery)
+      .sort(sortOptions)
+      .limit(50)
+      .lean<LeanDistrictBusiness[]>();
 
     if (!listings.length) {
       return NextResponse.json({
@@ -86,9 +115,9 @@ export async function GET(req: NextRequest) {
     }
 
     const formattedListings = listings.map((listing) => ({
-      _id: (listing._id as string | number | { toString(): string }).toString(),
+      _id: listing._id.toString(),
       name: listing.name,
-      imageUrl: (listing as any).imageUrl ?? null,
+      imageUrl: listing.imageUrl ?? null,
       rating: listing.rating,
       totalRatings: listing.totalRatings,
       address: listing.address,
@@ -108,12 +137,13 @@ export async function GET(req: NextRequest) {
       success: true,
       data: formattedListings,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json(
       {
         success: false,
         error: 'Failed to fetch listings',
-        message: error.message,
+        message: errorMessage,
       },
       { status: 500 }
     );

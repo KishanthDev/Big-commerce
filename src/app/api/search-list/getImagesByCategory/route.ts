@@ -1,8 +1,26 @@
 import { v2 as cloudinary } from 'cloudinary';
 import { NextRequest, NextResponse } from 'next/server';
 
-// In-memory cache
-const imageCache = new Map();
+// Define Cloudinary resource type
+interface CloudinaryResource {
+  secure_url: string;
+  public_id: string;
+  width: number;
+  height: number;
+}
+
+// Define Cloudinary search response type
+interface CloudinarySearchResponse {
+  resources: CloudinaryResource[];
+}
+
+// Define Cloudinary resources response type
+interface CloudinaryResourcesResponse {
+  resources: CloudinaryResource[];
+}
+
+// In-memory cache with typed values
+const imageCache = new Map<string, CloudinaryResource[]>();
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME!,
@@ -10,7 +28,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET!,
 });
 
-function normalizeCategory(category: string) {
+function normalizeCategory(category: string): string {
   const decoded = decodeURIComponent(category);
   return decoded
     .replace(/near me/gi, '')
@@ -18,25 +36,31 @@ function normalizeCategory(category: string) {
     .trim();
 }
 
-async function withRetry(fn: () => Promise<any>, retries = 3, delay = 1000) {
+async function withRetry<T>(
+  fn: () => Promise<T>,
+  retries = 3,
+  delay = 1000
+): Promise<T> {
   for (let attempt = 1; attempt <= retries; attempt++) {
     try {
       return await fn();
-    } catch (error: any) {
-      if (attempt === retries) throw error;
-      console.warn(`Attempt ${attempt} failed: ${error.message}. Retrying in ${delay}ms...`);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      if (attempt === retries) throw new Error(`Failed after ${retries} attempts: ${errorMessage}`);
+      console.warn(`Attempt ${attempt} failed: ${errorMessage}. Retrying in ${delay}ms...`);
       await new Promise((resolve) => setTimeout(resolve, delay));
     }
   }
+  throw new Error('Unexpected error: withRetry did not return');
 }
 
-async function searchImages(category: string) {
+async function searchImages(category: string): Promise<CloudinaryResource[]> {
   const normalized = normalizeCategory(category);
   console.log(`Searching for: "${normalized}"`);
 
   if (imageCache.has(normalized)) {
     console.log(`Cache hit for "${normalized}"`);
-    return imageCache.get(normalized);
+    return imageCache.get(normalized)!;
   }
 
   const folderPaths = [
@@ -56,7 +80,7 @@ async function searchImages(category: string) {
     try {
       console.log(`Trying path: "${path}"`);
 
-      const folderResult = await withRetry(() =>
+      const folderResult = await withRetry<CloudinarySearchResponse>(() =>
         cloudinary.search.expression(`folder="${path}"`).max_results(50).execute()
       );
 
@@ -65,7 +89,7 @@ async function searchImages(category: string) {
         return folderResult.resources;
       }
 
-      const prefixResult = await withRetry(() =>
+      const prefixResult = await withRetry<CloudinaryResourcesResponse>(() =>
         cloudinary.api.resources({
           type: 'upload',
           prefix: path,
@@ -77,8 +101,9 @@ async function searchImages(category: string) {
         imageCache.set(normalized, prefixResult.resources);
         return prefixResult.resources;
       }
-    } catch (error: any) {
-      console.error(`Search failed for "${path}":`, error.message);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      console.error(`Search failed for "${path}":`, errorMessage);
     }
   }
 
@@ -91,9 +116,9 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const category = searchParams.get('category');
 
-  if (!category) {
+  if (!category || !category.trim()) {
     return NextResponse.json(
-      { success: false, error: 'Category parameter is required' },
+      { success: false, error: 'Valid category parameter is required' },
       { status: 400 }
     );
   }
@@ -101,7 +126,7 @@ export async function GET(req: NextRequest) {
   try {
     const startTime = Date.now();
     const resources = await searchImages(category);
-    const images = resources.map((img: any) => ({
+    const images = resources.map((img: CloudinaryResource) => ({
       url: img.secure_url,
       publicId: img.public_id,
       width: img.width,
@@ -123,11 +148,12 @@ export async function GET(req: NextRequest) {
       cacheHit: imageCache.has(normalizeCategory(category)),
       durationMs: Date.now() - startTime,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json(
       {
         success: false,
-        error: error.message,
+        error: errorMessage,
         details: `Ensure you have images in one of the following folders: ${[
           `Pictures/${normalizeCategory(category)}`,
           `Pictures/${normalizeCategory(category).replace(/ /g, '_')}`,

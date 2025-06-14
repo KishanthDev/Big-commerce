@@ -1,6 +1,25 @@
 import dbConnect from '@/lib/dbConnect';
 import DistrictBusiness from '@/models/DistrictBusiness';
 import { NextRequest, NextResponse } from 'next/server';
+import { Types } from 'mongoose';
+
+// Define the MongoDB query type for DistrictBusiness
+interface BusinessQuery {
+  pincode: string;
+  $or?: Array<{
+    [key: string]: { $regex: string; $options?: string };
+  }>;
+}
+
+// Define the result document type
+interface ResultDoc {
+  _id: Types.ObjectId;
+  name: string;
+  category: string;
+  tags?: string[];
+  city: string;
+  pincode: string;
+}
 
 export async function GET(req: NextRequest) {
   try {
@@ -20,7 +39,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ success: false, error: `Pincode ${pincode} not found in the database` }, { status: 404 });
     }
 
-    const dbQuery: any = { pincode };
+    const dbQuery: BusinessQuery = { pincode };
 
     if (query) {
       dbQuery.$or = [
@@ -30,15 +49,6 @@ export async function GET(req: NextRequest) {
         { city: { $regex: `^${query}`, $options: 'i' } },
       ];
     }
-
-    type ResultDoc = {
-      _id: any;
-      name: string;
-      category: string;
-      tags?: string[];
-      city: string;
-      pincode: string;
-    };
 
     const results = await DistrictBusiness.find(dbQuery)
       .select('name category tags city pincode')
@@ -93,12 +103,13 @@ export async function GET(req: NextRequest) {
         names,
       },
     });
-  } catch (error: any) {
-    console.error('Search error:', error.message);
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    console.error('Search error:', errorMessage);
     return NextResponse.json({
       success: false,
       error: 'Failed to perform search',
-      message: error.message,
+      message: errorMessage,
     }, { status: 500 });
   }
 }
