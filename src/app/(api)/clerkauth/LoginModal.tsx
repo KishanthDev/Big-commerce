@@ -24,7 +24,13 @@ const LoginModal: React.FC = () => {
   // State for resend timer
   const [timer, setTimer] = useState(49);
   // State to simulate logged-in state
-  const [isSimulatedLoggedIn, setIsSimulatedLoggedIn] = useState(false);
+  const [isSimulatedLoggedIn, setIsSimulatedLoggedIn] = useState(() => {
+    // Initialize from localStorage
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('isSimulatedLoggedIn') === 'true';
+    }
+    return false;
+  });
 
   // Clerk hooks
   const { isSignedIn } = useUser();
@@ -35,9 +41,14 @@ const LoginModal: React.FC = () => {
   // Hardcoded OTP for testing
   const HARDCODED_OTP = '123456';
 
+  // Persist isSimulatedLoggedIn to localStorage
+  useEffect(() => {
+    localStorage.setItem('isSimulatedLoggedIn', isSimulatedLoggedIn.toString());
+  }, [isSimulatedLoggedIn]);
+
   // Debug state changes
   useEffect(() => {
-    console.log('isSimulatedLoggedIn:', isSimulatedLoggedIn, 'isSignedIn:', isSignedIn);
+    console.log('LoginModal - isSimulatedLoggedIn:', isSimulatedLoggedIn, 'isSignedIn:', isSignedIn);
   }, [isSimulatedLoggedIn, isSignedIn]);
 
   // Timer effect for OTP resend
@@ -142,8 +153,10 @@ const LoginModal: React.FC = () => {
     try {
       await signOut();
       setIsSimulatedLoggedIn(false); // Reset state
+      localStorage.removeItem('isSimulatedLoggedIn'); // Clear localStorage
       console.log('Logged out, isSimulatedLoggedIn set to false');
       alert('Logged out successfully!');
+      router.push('/'); // Navigate to home
     } catch (error) {
       console.error('Error signing out:', error);
       alert('Failed to sign out.');
@@ -154,7 +167,6 @@ const LoginModal: React.FC = () => {
     <div className="flex items-center space-x-4">
       {(isSignedIn || isSimulatedLoggedIn) ? (
         <div className="flex items-center space-x-4">
-          <p className="text-green-600 text-sm font-medium">Successfully logged in!</p>
           <button
             className="bg-blue-500 text-white font-medium py-2 px-4 rounded-md hover:bg-blue-600 transition-colors"
             onClick={handleLogout}

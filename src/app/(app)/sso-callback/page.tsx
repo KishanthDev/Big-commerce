@@ -10,11 +10,11 @@ export default function SSOCallback() {
 
   useEffect(() => {
     handleRedirectCallback({
-      redirectUrl: '/dashboard',
-      afterSignInUrl: '/dashboard',
-      afterSignUpUrl: '/dashboard',
+      redirectUrl: '/home',
+      afterSignInUrl: '/home',
+      afterSignUpUrl: '/home',
     }).then(() => {
-      router.push('/dashboard');
+      router.push('/home');
     });
   }, [handleRedirectCallback, router]);
 

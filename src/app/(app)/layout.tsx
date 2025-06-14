@@ -1,5 +1,10 @@
 import AuthLayout from "@/components/layouts/AuthLayout";
+import { ClerkProvider } from "@clerk/nextjs";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <AuthLayout>{children}</AuthLayout>;
+  return (
+    <ClerkProvider>
+      <AuthLayout>{children}</AuthLayout>
+    </ClerkProvider>
+  );
 }

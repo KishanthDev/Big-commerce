@@ -3,7 +3,6 @@
 import React, { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { DarkModeToggle } from "./ModeToggle";
@@ -12,6 +11,7 @@ import { usePathname } from "next/navigation";
 import styles from "./Link.module.css";
 import CategoryCarousel from "./Slider";
 import SearchBar from "@/app/(app)/category/SearchBar";
+import LoginModal from "@/app/(api)/clerkauth/LoginModal";
 
 function SearchBarWithSuspense() {
   return (
@@ -56,11 +56,10 @@ const Header = () => {
               <Link
                 href={path}
                 key={label}
-                className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
-                  isActive
+                className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${isActive
                     ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
                     : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
-                }`}
+                  }`}
               >
                 {label}
                 {!isActive && (
@@ -73,20 +72,7 @@ const Header = () => {
 
         <div className="hidden md:flex items-center space-x-4">
           <SearchBarWithSuspense />
-          <Link href="/clerkauth">
-            <Button variant="destructive">Signup/Signin</Button>
-          </Link>
-          <Link href="/login">
-            <Button variant="outline">Log In</Button>
-          </Link>
-          <Link href="/signup">
-            <Button
-              variant="blue"
-              className="bg-blue-600 text-white hover:bg-blue-700"
-            >
-              Sign Up free
-            </Button>
-          </Link>
+            <LoginModal />
           <FullScreenToggle />
           <DarkModeToggle />
         </div>
@@ -125,11 +111,10 @@ const Header = () => {
               <Link
                 href={path}
                 key={label}
-                className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${
-                  isActive
+                className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${isActive
                     ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
                     : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer relative group`
-                }`}
+                  }`}
               >
                 {label}
                 {!isActive && (
@@ -138,6 +123,7 @@ const Header = () => {
               </Link>
             );
           })}
+          <LoginModal />
         </motion.div>
       )}
     </motion.div>
