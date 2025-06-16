@@ -1,9 +1,10 @@
-'use client';
 
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { debounce } from 'lodash';
-import { MapPin, Clock, X } from 'lucide-react';
+"use client";
+
+import React, { useState, useEffect, useCallback, useRef } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { debounce } from "lodash";
+import { Clock, X } from "lucide-react";
 import {
   Command,
   CommandEmpty,
@@ -11,15 +12,15 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from '@/components/ui/command';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
+} from "@/components/ui/command";
+import { Button } from "@/components/ui/button";
+import LocationModal from "./LocationModal";
 
 // Define interface for search result items
 interface SearchResultItem {
   id: string;
   name: string;
-  type: 'business' | 'category' | 'tag' | 'city' | 'name';
+  type: "business" | "category" | "tag" | "city" | "name";
   pincode: string;
   category?: string;
 }
@@ -41,8 +42,9 @@ interface ApiResponse {
 }
 
 const SearchBar: React.FC = () => {
-  const [searchQuery, setSearchQuery] = useState<string>('');
-  const [pincode, setPincode] = useState<string>('');
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [pincode, setPincode] = useState<string>("");
+  const [city, setCity] = useState<string>("");
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [results, setResults] = useState<SearchResults>({
     businesses: [],
@@ -59,34 +61,45 @@ const SearchBar: React.FC = () => {
   const searchParams = useSearchParams();
   const searchRef = useRef<HTMLDivElement>(null);
 
-  // Load recent searches, pincode, and URL parameters on mount
+  // Load recent searches, pincode, city, and URL parameters on mount
   useEffect(() => {
-    const storedSearches = JSON.parse(localStorage.getItem('recentSearches') || '[]') as string[];
-    const storedPincode = localStorage.getItem('pincode') || '';
-    const urlPincode = searchParams?.get('pincode') || '';
-    const query = searchParams?.get('query') || '';
+    const storedSearches = JSON.parse(localStorage.getItem("recentSearches") || "[]") as string[];
+    const storedPincode = localStorage.getItem("pincode") || "";
+    const storedCity = localStorage.getItem("city") || "";
+    const urlPincode = searchParams?.get("pincode") || "";
+    const urlCity = searchParams?.get("city") || "";
+    const query = searchParams?.get("query") || "";
 
     setRecentSearches(storedSearches);
     setSearchQuery(query);
     setPincode(storedPincode || urlPincode);
+    setCity(storedCity || urlCity);
   }, [searchParams]);
 
-  // Save pincode to localStorage whenever it changes
+  // Save pincode and city to localStorage whenever they change
   useEffect(() => {
     if (pincode) {
-      localStorage.setItem('pincode', pincode);
+      localStorage.setItem("pincode", pincode);
     } else {
-      localStorage.removeItem('pincode');
+      localStorage.removeItem("pincode");
     }
-  }, [pincode]);
+    if (city) {
+      localStorage.setItem("city", city);
+    } else {
+      localStorage.removeItem("city");
+    }
+  }, [pincode, city]);
 
-  // Update URL when pincode changes, preserving one existing parameter if present
+  // Update URL when pincode or city changes, preserving one existing parameter if present
   useEffect(() => {
-    if (pincode && !pincodeError && searchParams) {
+    if (pincode && !pincodeError && searchParams && /^\d{6}$/.test(pincode)) {
       const currentParams = new URLSearchParams();
-      currentParams.set('pincode', pincode);
+      currentParams.set("pincode", pincode);
+      if (city) {
+        currentParams.set("city", city);
+      }
 
-      const allowedParams = ['name', 'category', 'tag', 'city', 'query'];
+      const allowedParams = ["name", "category", "tag", "query"];
       const existingParam = allowedParams.find((param) => searchParams.has(param));
       if (existingParam) {
         const paramValue = searchParams.get(existingParam);
@@ -100,8 +113,10 @@ const SearchBar: React.FC = () => {
       if (currentUrl !== existingUrl) {
         router.push(currentUrl, { scroll: false });
       }
+    } else if (!pincode && !pincodeError) {
+      setPincodeError("Please select a valid pin");
     }
-  }, [pincode, pincodeError, router, searchParams]);
+  }, [pincode, city, pincodeError, router, searchParams]);
 
   const saveRecentSearch = (query: string) => {
     if (!query) return;
@@ -110,25 +125,25 @@ const SearchBar: React.FC = () => {
     updatedSearches.unshift(query);
     updatedSearches = updatedSearches.slice(0, 5);
     setRecentSearches(updatedSearches);
-    localStorage.setItem('recentSearches', JSON.stringify(updatedSearches));
+    localStorage.setItem("recentSearches", JSON.stringify(updatedSearches));
   };
 
   const clearRecentSearches = () => {
     setRecentSearches([]);
-    localStorage.removeItem('recentSearches');
+    localStorage.removeItem("recentSearches");
   };
 
   const validatePincode = useCallback(
     debounce((pin: string) => {
-      const effectivePincode = pin || (searchParams?.get('pincode') || '');
+      const effectivePincode = pin || (searchParams?.get("pincode") || "");
       if (!effectivePincode || !/^\d{6}$/.test(effectivePincode)) {
-        setPincodeError('Please enter a valid 6-digit pincode');
+        setPincodeError("Please enter a valid 6-digit pincode");
         return;
       }
       setIsLoading(true);
       setPincodeError(null);
       fetch(`/api/search-list/search?pincode=${encodeURIComponent(effectivePincode)}`, {
-        cache: 'no-store',
+        cache: "no-store",
       })
         .then((response) => {
           if (!response.ok) {
@@ -137,7 +152,7 @@ const SearchBar: React.FC = () => {
           return response.json() as Promise<ApiResponse>;
         })
         .then((result) => {
-          if (!result.success && result.error?.includes('Pincode')) {
+          if (!result.success && result.error?.includes("Pincode")) {
             setPincodeError(`Pincode ${effectivePincode} not found in the database`);
           } else {
             setPincodeError(null);
@@ -147,8 +162,8 @@ const SearchBar: React.FC = () => {
           }
         })
         .catch((error: unknown) => {
-          const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-          console.error('Error validating pincode:', errorMessage);
+          const errorMessage = error instanceof Error ? error.message : "Unknown error";
+          console.error("Error validating pincode:", errorMessage);
           setPincodeError(`Failed to validate pincode: ${errorMessage}`);
         })
         .finally(() => {
@@ -160,7 +175,7 @@ const SearchBar: React.FC = () => {
 
   const fetchResults = useCallback(
     debounce((query: string, pin: string) => {
-      const effectivePincode = pin || (searchParams?.get('pincode') || '');
+      const effectivePincode = pin || (searchParams?.get("pincode") || "");
       if (!query || !effectivePincode) {
         setResults({
           businesses: [],
@@ -176,8 +191,11 @@ const SearchBar: React.FC = () => {
       setIsLoading(true);
       setError(null);
       const queryParams = new URLSearchParams({ q: query, pincode: effectivePincode });
+      if (city) {
+        queryParams.set("city", city);
+      }
       fetch(`/api/search-list/search?${queryParams.toString()}`, {
-        cache: 'no-store',
+        cache: "no-store",
       })
         .then((response) => {
           if (!response.ok) {
@@ -199,13 +217,13 @@ const SearchBar: React.FC = () => {
               cities: [],
               names: [],
             });
-            setError(result.error || 'No results found for your search.');
+            setError(result.error || "No results found for your search.");
           }
         })
         .catch((error: unknown) => {
-          const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-          console.error('Error fetching search results:', errorMessage);
-          setError('Failed to load results. Please try again.');
+          const errorMessage = error instanceof Error ? error.message : "Unknown error";
+          console.error("Error fetching search results:", errorMessage);
+          setError("Failed to load results. Please try again.");
           setResults({
             businesses: [],
             categories: [],
@@ -218,19 +236,21 @@ const SearchBar: React.FC = () => {
           setIsLoading(false);
         });
     }, 300),
-    [searchParams]
+    [searchParams, city]
   );
 
   useEffect(() => {
-    validatePincode(pincode);
+    if (pincode) {
+      validatePincode(pincode);
+    }
     fetchResults(searchQuery, pincode);
   }, [searchQuery, pincode, fetchResults, validatePincode]);
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const effectivePincode = pincode || (searchParams?.get('pincode') || '');
+    const effectivePincode = pincode || (searchParams?.get("pincode") || "");
     if (!effectivePincode || !/^\d{6}$/.test(effectivePincode)) {
-      setPincodeError('Please enter a valid 6-digit pincode');
+      setPincodeError("Please enter a valid 6-digit pincode");
       return;
     }
     if (pincodeError) {
@@ -239,11 +259,14 @@ const SearchBar: React.FC = () => {
     if (searchQuery) {
       saveRecentSearch(searchQuery);
       const currentParams = new URLSearchParams();
-      currentParams.set('pincode', effectivePincode);
-      currentParams.set('query', searchQuery);
+      currentParams.set("pincode", effectivePincode);
+      if (city) {
+        currentParams.set("city", city);
+      }
+      currentParams.set("query", searchQuery);
       router.push(`/category?${currentParams.toString()}`);
       setIsSearchOpen(false);
-      setSearchQuery('');
+      setSearchQuery("");
       if (!pincode && effectivePincode) {
         setPincode(effectivePincode);
       }
@@ -251,9 +274,9 @@ const SearchBar: React.FC = () => {
   };
 
   const handleSelect = (item: SearchResultItem) => {
-    const effectivePincode = pincode || (searchParams?.get('pincode') || '');
+    const effectivePincode = pincode || (searchParams?.get("pincode") || "");
     if (!effectivePincode || !/^\d{6}$/.test(effectivePincode)) {
-      setPincodeError('Please enter a valid 6-digit pincode');
+      setPincodeError("Please enter a valid 6-digit pincode");
       return;
     }
     if (pincodeError) {
@@ -261,26 +284,29 @@ const SearchBar: React.FC = () => {
     }
     saveRecentSearch(item.name);
     const currentParams = new URLSearchParams();
-    currentParams.set('pincode', effectivePincode);
+    currentParams.set("pincode", effectivePincode);
+    if (city) {
+      currentParams.set("city", city);
+    }
     switch (item.type) {
-      case 'business':
-        currentParams.set('name', item.name);
+      case "business":
+        currentParams.set("name", item.name);
         break;
-      case 'category':
-        currentParams.set('category', item.name);
+      case "category":
+        currentParams.set("category", item.name);
         break;
-      case 'tag':
-        currentParams.set('tag', item.name);
+      case "tag":
+        currentParams.set("tag", item.name);
         break;
-      case 'city':
-        currentParams.set('city', item.name);
+      case "city":
+        currentParams.set("city", item.name);
         break;
-      case 'name':
-        currentParams.set('name', item.name);
+      case "name":
+        currentParams.set("name", item.name);
         break;
     }
     router.push(`/category?${currentParams.toString()}`);
-    setSearchQuery('');
+    setSearchQuery("");
     setIsSearchOpen(false);
     if (!pincode && effectivePincode) {
       setPincode(effectivePincode);
@@ -293,35 +319,20 @@ const SearchBar: React.FC = () => {
         setIsSearchOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
     <div className="flex items-center gap-2 w-full max-w-4xl">
-      <div className="flex flex-col gap-1 w-32">
-        <div className="flex items-center border border-gray-300 rounded-md overflow-hidden dark:border-gray-600">
-          <MapPin className="h-5 w-5 text-gray-500 mx-2 dark:text-gray-400" />
-          <Input
-            type="text"
-            placeholder="Enter pincode"
-            value={pincode}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              const value = e.target.value;
-              if (/^\d{0,6}$/.test(value)) {
-                setPincode(value);
-                setPincodeError(null);
-              }
-            }}
-            className={`w-full border-none focus:ring-0 dark:bg-gray-800 dark:text-gray-200 ${
-              pincodeError ? 'border-red-500 dark:border-red-400' : ''
-            }`}
-            aria-label="Enter pincode"
-          />
-        </div>
-        {pincodeError && (
-          <p className="text-xs text-red-500 dark:text-red-400">{pincodeError}</p>
-        )}
+      <div className="flex flex-col gap-1 w-auto">
+        <LocationModal
+          onPincodeChange={(newPincode: string, newCity?: string) => {
+            setPincode(newPincode);
+            setCity(newCity || "");
+            setPincodeError(null);
+          }}
+        />
       </div>
       <div className="relative flex-1" ref={searchRef}>
         <form onSubmit={handleSearch} className="w-full">
@@ -339,7 +350,7 @@ const SearchBar: React.FC = () => {
                   <Button
                     variant="ghost"
                     size="icon"
-                    onClick={() => setSearchQuery('')}
+                    onClick={() => setSearchQuery("")}
                     className="h-6 w-6 dark:hover:bg-gray-700"
                   >
                     <X className="h-4 w-4 dark:text-gray-400" />
@@ -373,17 +384,20 @@ const SearchBar: React.FC = () => {
                             <CommandItem
                               key={index}
                               onSelect={() => {
-                                const effectivePincode = pincode || (searchParams?.get('pincode') || '');
+                                const effectivePincode = pincode || (searchParams?.get("pincode") || "");
                                 if (!effectivePincode || !/^\d{6}$/.test(effectivePincode)) {
-                                  setPincodeError('Please enter a valid 6-digit pincode');
+                                  setPincodeError("Please enter a valid 6-digit pincode");
                                   return;
                                 }
                                 if (pincodeError) return;
                                 setSearchQuery(search);
                                 saveRecentSearch(search);
                                 const currentParams = new URLSearchParams();
-                                currentParams.set('pincode', effectivePincode);
-                                currentParams.set('query', search);
+                                currentParams.set("pincode", effectivePincode);
+                                if (city) {
+                                  currentParams.set("city", city);
+                                }
+                                currentParams.set("query", search);
                                 router.push(`/category?${currentParams.toString()}`);
                                 setIsSearchOpen(false);
                                 if (!pincode && effectivePincode) {
