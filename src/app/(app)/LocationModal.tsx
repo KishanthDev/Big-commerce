@@ -12,7 +12,6 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { usePathname, useRouter } from "next/navigation";
 
 const GEOCODING_API_URL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
 const API_KEY = "AIzaSyCQNqAUkIYa-5HS5iPypurBC6QCT-YjKS8"
@@ -32,8 +31,6 @@ interface BackendApiResponse {
 }
 
 export default function LocationModal({ onPincodeChange }: LocationModalProps) {
-    const pathname = usePathname()
-    const router = useRouter()
     const [city, setCity] = useState("");
     const [pincode, setPincode] = useState("");
     const [searchQuery, setSearchQuery] = useState("");

@@ -73,6 +73,7 @@ const SearchBar: React.FC = () => {
 
   // Load recent searches, pincode, city, and URL parameters on mount
   useEffect(() => {
+    /////hjhjh
     if (pathname !== "/category") return;
     const storedSearches = JSON.parse(localStorage.getItem("recentSearches") || "[]") as string[];
     const storedPincode = localStorage.getItem("pincode") || "";
