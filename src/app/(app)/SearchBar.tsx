@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { debounce } from "lodash";
 import { Clock, X } from "lucide-react";
 import {
@@ -42,6 +42,16 @@ interface ApiResponse {
 }
 
 const SearchBar: React.FC = () => {
+  const pathname = usePathname();
+
+  const handlePincodeChange = (pincode: string, city?: string) => {
+    if (pathname !== "/category") {
+      router.push(`/category?pincode=${pincode}`);
+    } else {
+      // Already on /category — just update query param without full reload
+      router.replace(`/category?pincode=${pincode}`);
+    }
+  };
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [pincode, setPincode] = useState<string>("");
   const [city, setCity] = useState<string>("");
@@ -63,6 +73,7 @@ const SearchBar: React.FC = () => {
 
   // Load recent searches, pincode, city, and URL parameters on mount
   useEffect(() => {
+    if (pathname !== "/category") return;
     const storedSearches = JSON.parse(localStorage.getItem("recentSearches") || "[]") as string[];
     const storedPincode = localStorage.getItem("pincode") || "";
     const storedCity = localStorage.getItem("city") || "";
@@ -92,6 +103,7 @@ const SearchBar: React.FC = () => {
 
   // Update URL when pincode or city changes, preserving one existing parameter if present
   useEffect(() => {
+    if (pathname !== "/category") return;
     if (pincode && !pincodeError && searchParams && /^\d{6}$/.test(pincode)) {
       const currentParams = new URLSearchParams();
       currentParams.set("pincode", pincode);
@@ -327,11 +339,7 @@ const SearchBar: React.FC = () => {
     <div className="flex items-center gap-2 w-full max-w-4xl">
       <div className="flex flex-col gap-1 w-auto">
         <LocationModal
-          onPincodeChange={(newPincode: string, newCity?: string) => {
-            setPincode(newPincode);
-            setCity(newCity || "");
-            setPincodeError(null);
-          }}
+          onPincodeChange={handlePincodeChange}
         />
       </div>
       <div className="relative flex-1" ref={searchRef}>

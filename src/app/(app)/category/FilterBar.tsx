@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -74,9 +73,7 @@ const FilterBar = ({
 
   return (
     <>
-      <div  
-        className="dark:bg-gray-800 p-4 mt-20 rounded-lg w-full flex justify-between items-center mx-auto bg-white shadow-md"
-      >
+      <div className="dark:bg-gray-800 p-4 mt-4 rounded-lg w-full flex justify-between items-center mx-auto bg-white">
         <div className="flex flex-wrap items-center gap-3 mx-auto">
           <div className="relative">
             <Button
@@ -93,14 +90,14 @@ const FilterBar = ({
               <ChevronDown className="h-4 w-4" />
             </Button>
             {isDropdownOpen && (
-              <div className="absolute z-50 mt-2 bg-white rounded-md shadow-lg w-40 dark:bg-gray-700">
+              <div className="absolute z-50 mt-2 bg-white rounded-md shadow-lg w-40 dark:bg-gray-800 text-gray-900 dark:text-gray-100">
                 <Button
                   onClick={() => {
                     setSortOption('default');
                     setStagedSortOption('default');
                     setIsDropdownOpen(false);
                   }}
-                  className="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600"
+                  className="block w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-600 bg-transparent text-inherit"
                 >
                   Default
                 </Button>
@@ -110,7 +107,7 @@ const FilterBar = ({
                     setStagedSortOption('rating');
                     setIsDropdownOpen(false);
                   }}
-                  className="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600"
+                  className="block w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-600 bg-transparent text-inherit"
                 >
                   Rating
                 </Button>
@@ -178,14 +175,14 @@ const FilterBar = ({
               <ChevronDown className="h-4 w-4" />
             </Button>
             {isRatingDropdownOpen && (
-              <div className="absolute z-50 mt-1 w-32 bg-white rounded-md shadow-lg dark:bg-gray-700">
+              <div className="absolute z-50 mt-2 w-32 bg-white rounded-md shadow-lg dark:bg-gray-800 text-gray-900 dark:text-gray-100">
                 <Button
                   onClick={() => {
                     setRatingSort(null);
                     setStagedRatingSort(null);
                     setIsRatingDropdownOpen(false);
                   }}
-                  className="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600"
+                  className="block w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-600 bg-transparent text-inherit"
                 >
                   All
                 </Button>
@@ -197,7 +194,7 @@ const FilterBar = ({
                       setStagedRatingSort(value);
                       setIsRatingDropdownOpen(false);
                     }}
-                    className="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600"
+                    className="block w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-600 bg-transparent text-inherit"
                   >
                     {value}+
                   </Button>
@@ -212,30 +209,12 @@ const FilterBar = ({
           >
             <SlidersHorizontal className="h-4 w-4" /> All Filters
           </Button>
-
-          {/* {(sortOption !== 'default' ||
-            topRatedSort ||
-            sortByVerified ||
-            sortByTrusted ||
-            ratingSort ||
-            selectedPincode !== '560062' ||
-            selectedCity) && (
-            <Button
-              onClick={clearAllFilters}
-              className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md"
-            >
-              Clear All
-            </Button>
-          )} */}
         </div>
       </div>
 
       {showAllFilters && (
         <>
-          <div
-            className="fixed inset-0"
-            onClick={() => setShowAllFilters(false)}
-          />
+          <div className="fixed inset-0" onClick={() => setShowAllFilters(false)} />
           <div
             className={`fixed top-0 right-0 h-full w-80 bg-white dark:bg-gray-800 shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
               showAllFilters ? 'translate-x-0' : 'translate-x-full'

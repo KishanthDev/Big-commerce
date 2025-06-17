@@ -10,7 +10,7 @@ import FullScreenToggle from "./FullScreenToggle";
 import { usePathname } from "next/navigation";
 import styles from "./Link.module.css";
 import CategoryCarousel from "./Slider";
-import SearchBar from "@/app/(app)/category/SearchBar";
+import SearchBar from "@/app/(app)/SearchBar";
 import LoginModal from "@/app/(api)/clerkauth/LoginModal";
 
 function SearchBarWithSuspense() {
@@ -57,8 +57,8 @@ const Header = () => {
                 href={path}
                 key={label}
                 className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${isActive
-                    ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
-                    : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
+                  ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
+                  : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer ${styles.underlineHover}`
                   }`}
               >
                 {label}
@@ -72,7 +72,7 @@ const Header = () => {
 
         <div className="hidden md:flex items-center space-x-4">
           <SearchBarWithSuspense />
-            <LoginModal />
+          <LoginModal />
           <FullScreenToggle />
           <DarkModeToggle />
         </div>
@@ -112,8 +112,8 @@ const Header = () => {
                 href={path}
                 key={label}
                 className={`text-black dark:text-white font-medium px-2 py-1 rounded-sm transition-all ${isActive
-                    ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
-                    : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer relative group`
+                  ? "border border-blue-500 bg-blue-50 dark:bg-blue-900 cursor-default"
+                  : `hover:text-blue-500 dark:hover:text-blue-500 cursor-pointer relative group`
                   }`}
               >
                 {label}
