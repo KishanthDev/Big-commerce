@@ -8,8 +8,8 @@ import { ThumbsUp, Star, Phone, MessageSquare, MessageCircle, MapPin, ExternalLi
 import Image from "next/image";
 import FilterBar from "./FilterBar";
 
-function debounce<T extends (...args: any[]) => void>(func: T, delay: number): (...args: Parameters<T>) => void {
-  let timeout: ReturnType<typeof setTimeout>;
+function debounce<T extends (...args: unknown[]) => void>(func: T, delay: number): (...args: Parameters<T>) => void {
+  let timeout: ReturnType<typeof setTimeout> | undefined;
   return (...args: Parameters<T>) => {
     clearTimeout(timeout);
     timeout = setTimeout(() => func(...args), delay);
@@ -37,7 +37,6 @@ type Listing = {
   pincode?: string;
   phone?: string;
   category?: string;
-  [key: string]: any;
 };
 
 export default function CategoryContent() {
@@ -62,28 +61,46 @@ export default function CategoryContent() {
   const selectedCity = searchParams?.get("city");
   const selectedPincode = searchParams?.get("pincode") || "560062";
 
+  type FetchParams = {
+    query?: string | null;
+    category?: string | null;
+    tag?: string | null;
+    name?: string | null;
+    address?: string | null;
+    city?: string | null;
+    pincode: string;
+  };
+
+  type SortFields = {
+    sortByVerified?: boolean;
+    sortByTrusted?: boolean;
+    ratingSort?: number | null;
+  };
+
   const fetchListings = useCallback(
-    debounce(async (params, sort, sortFields) => {
-      try {
-        setLoading(true);
+    debounce(
+      async (...args: unknown[]) => {
+        const [params, sort, sortFields] = args as [FetchParams, string | null, SortFields];
+        try {
+          setLoading(true);
 
-        const queryParams = new URLSearchParams();
-        if (params.query) queryParams.append("query", params.query);
-        if (params.category) queryParams.append("category", params.category);
-        if (params.tag) queryParams.append("tag", params.tag);
-        if (params.name) queryParams.append("name", params.name);
-        if (params.address) queryParams.append("address", params.address);
-        if (params.city) queryParams.append("city", params.city);
-        queryParams.append("pincode", params.pincode);
+          const queryParams = new URLSearchParams();
+          if (params.query) queryParams.append("query", params.query);
+          if (params.category) queryParams.append("category", params.category);
+          if (params.tag) queryParams.append("tag", params.tag);
+          if (params.name) queryParams.append("name", params.name);
+          if (params.address) queryParams.append("address", params.address);
+          if (params.city) queryParams.append("city", params.city);
+          queryParams.append("pincode", params.pincode);
 
-        if (sort) queryParams.append("sort", sort);
-        if (sortFields.sortByVerified) queryParams.append("sortByVerified", "true");
-        if (sortFields.sortByTrusted) queryParams.append("sortByTrusted", "true");
-        if (sortFields.ratingSort) queryParams.append("sortByRating", sortFields.ratingSort);
+          if (sort) queryParams.append("sort", sort);
+          if (sortFields.sortByVerified) queryParams.append("sortByVerified", "true");
+          if (sortFields.sortByTrusted) queryParams.append("sortByTrusted", "true");
+          if (sortFields.ratingSort) queryParams.append("sortByRating", String(sortFields.ratingSort));
 
-        const response = await fetch(`/api/search-list/getListings?${queryParams.toString()}`, {
-          cache: "no-store",
-        });
+          const response = await fetch(`/api/search-list/getListings?${queryParams.toString()}`, {
+            cache: "no-store",
+          });
 
         if (!response.ok) {
           setListings([]);
@@ -93,8 +110,8 @@ export default function CategoryContent() {
         const result = await response.json();
 
         if (result.success && Array.isArray(result.data) && result.data.length > 0) {
-          const imagePromises = result.data.map((listing: any) =>
-            fetch(`/api/search-list/getImagesByCategory?category=${encodeURIComponent(listing.category)}`, {
+          const imagePromises = result.data.map((listing: Listing) =>
+            fetch(`/api/search-list/getImagesByCategory?category=${encodeURIComponent(listing.category ?? "")}`, {
               cache: "no-store",
             })
               .then((res) => res.json().then((data) => ({ category: listing.category, data })))
@@ -106,17 +123,17 @@ export default function CategoryContent() {
             imageResults.map(({ category, data }) => [category, data])
           );
 
-          const listingsWithImages = result.data.map((listing: any) => ({
+          const listingsWithImages = result.data.map((listing: Listing) => ({
             ...listing,
-            images: imageMap[listing.category]?.images || [],
-            imageError: imageMap[listing.category]?.images?.length
+            images: imageMap[listing.category ?? ""]?.images || [],
+            imageError: imageMap[listing.category ?? ""]?.images?.length
               ? null
               : `No images found for ${listing.category}`,
           }));
 
           setListings(listingsWithImages);
           const initialSelectedIndices: { [key: number]: number } = {};
-          listingsWithImages.forEach((_: any, index: number) => {
+          listingsWithImages.forEach((_: Listing, index: number) => {
             initialSelectedIndices[index] = 0;
           });
           setSelectedImageIndices(initialSelectedIndices);
@@ -184,7 +201,7 @@ export default function CategoryContent() {
     } catch (error) {
       console.error("Error writing to localStorage:", error);
     }
-  
+
     const categoryRoutes = {
       "Best Hospitals": "/template?websiteIdentifier=Health%26Medical-Hospital-560038",
       "Best Clinics": "/template?websiteIdentifier=Health%26Medical-Clinics-560038",

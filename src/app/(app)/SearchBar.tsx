@@ -44,7 +44,7 @@ interface ApiResponse {
 const SearchBar: React.FC = () => {
   const pathname = usePathname();
 
-  const handlePincodeChange = (pincode: string, city?: string) => {
+  const handlePincodeChange = (pincode: string) => {
     if (pathname !== "/category") {
       router.push(`/category?pincode=${pincode}`);
     } else {
