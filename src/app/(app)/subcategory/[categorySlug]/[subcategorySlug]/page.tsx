@@ -9,6 +9,7 @@ import Image from "next/image";
 import StarRating from "@/components/icons/StarRating";
 import Link from "next/link";
 import { Category, Subcategory } from "@/types/cat";
+import Breadcrumb from "@/components/breadcrumb/Breadcrumbs";
 
 interface CategoryPageProps {
   params: Promise<{ subcategorySlug: string }>;
@@ -94,9 +95,10 @@ export default function CategoryPage({ params }: CategoryPageProps) {
 
   return (
     <div className="h-full p-5 bg-gray-100 dark:bg-black">
-      <h1 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-        {String(subcategoryName)} Businesses in {parentCategory.categoryName}
-      </h1>
+      <div className="mt-18 mb-3" >
+        <Breadcrumb />
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{String(subcategoryName)} Businesses in {parentCategory.categoryName}</h1>
+      </div>
       <FiltersBar />
       {businesses.length === 0 ? (
         <p className="text-gray-600 dark:text-gray-300">

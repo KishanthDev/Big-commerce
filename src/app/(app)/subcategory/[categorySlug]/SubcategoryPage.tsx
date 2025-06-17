@@ -11,6 +11,7 @@ import { subCategoryIconMap } from "@/components/icons/subCategoryIconMap";
 import StarRating from "@/components/icons/StarRating";
 import type { Category } from "@/types/cat";
 import { FiltersBar } from "@/components/filter/FiltersBar";
+import Breadcrumb from "@/components/breadcrumb/Breadcrumbs";
 
 interface SubcategoryPageProps {
   categorySlug: string;
@@ -50,10 +51,11 @@ export default function SubcategoryPage({
   if (!currentCategory) return <div className="p-6">Category not found</div>;
 
   return (
-    <div className="h-full p-6 bg-gray-100 dark:bg-black text-gray-900 dark:text-white">
-      <h1 className="text-2xl font-bold mb-6">
-        Explore {currentCategory.categoryName} Subcategories
-      </h1>
+    <div className="h-full p-5 bg-gray-100 dark:bg-black text-gray-900 dark:text-white">
+      <div className="mt-18 mb-3">
+        <Breadcrumb />
+        <h1 className="text-2xl font-bold">Explore {currentCategory.categoryName} Subcategories</h1>
+      </div>
       <FiltersBar />
       {currentCategory.subcategories &&
       currentCategory.subcategories.length > 0 ? (
