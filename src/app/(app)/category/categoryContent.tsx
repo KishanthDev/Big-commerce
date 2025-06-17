@@ -102,48 +102,48 @@ export default function CategoryContent() {
             cache: "no-store",
           });
 
-        if (!response.ok) {
-          setListings([]);
-          return;
+          if (!response.ok) {
+            setListings([]);
+            return;
+          }
+
+          const result = await response.json();
+
+          if (result.success && Array.isArray(result.data) && result.data.length > 0) {
+            const imagePromises = result.data.map((listing: Listing) =>
+              fetch(`/api/search-list/getImagesByCategory?category=${encodeURIComponent(listing.category ?? "")}`, {
+                cache: "no-store",
+              })
+                .then((res) => res.json().then((data) => ({ category: listing.category, data })))
+                .catch(() => ({ category: listing.category, data: { images: [], searchedPaths: [] } }))
+            );
+
+            const imageResults = await Promise.all(imagePromises);
+            const imageMap = Object.fromEntries(
+              imageResults.map(({ category, data }) => [category, data])
+            );
+
+            const listingsWithImages = result.data.map((listing: Listing) => ({
+              ...listing,
+              images: imageMap[listing.category ?? ""]?.images || [],
+              imageError: imageMap[listing.category ?? ""]?.images?.length
+                ? null
+                : `No images found for ${listing.category}`,
+            }));
+
+            setListings(listingsWithImages);
+            const initialSelectedIndices: { [key: number]: number } = {};
+            listingsWithImages.forEach((_: Listing, index: number) => {
+              initialSelectedIndices[index] = 0;
+            });
+            setSelectedImageIndices(initialSelectedIndices);
+          } else {
+            setListings([]);
+          }
+        } finally {
+          setLoading(false);
         }
-
-        const result = await response.json();
-
-        if (result.success && Array.isArray(result.data) && result.data.length > 0) {
-          const imagePromises = result.data.map((listing: Listing) =>
-            fetch(`/api/search-list/getImagesByCategory?category=${encodeURIComponent(listing.category ?? "")}`, {
-              cache: "no-store",
-            })
-              .then((res) => res.json().then((data) => ({ category: listing.category, data })))
-              .catch(() => ({ category: listing.category, data: { images: [], searchedPaths: [] } }))
-          );
-
-          const imageResults = await Promise.all(imagePromises);
-          const imageMap = Object.fromEntries(
-            imageResults.map(({ category, data }) => [category, data])
-          );
-
-          const listingsWithImages = result.data.map((listing: Listing) => ({
-            ...listing,
-            images: imageMap[listing.category ?? ""]?.images || [],
-            imageError: imageMap[listing.category ?? ""]?.images?.length
-              ? null
-              : `No images found for ${listing.category}`,
-          }));
-
-          setListings(listingsWithImages);
-          const initialSelectedIndices: { [key: number]: number } = {};
-          listingsWithImages.forEach((_: Listing, index: number) => {
-            initialSelectedIndices[index] = 0;
-          });
-          setSelectedImageIndices(initialSelectedIndices);
-        } else {
-          setListings([]);
-        }
-      } finally {
-        setLoading(false);
-      }
-    }, 1000),
+      }, 1000),
     []
   );
 
@@ -237,10 +237,13 @@ export default function CategoryContent() {
     fetchListings(params, null, {});
   };
 
-  if (loading) {
-    return <div className="p-6">Loading...</div>;
+  if (listings.length===0) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        Loading...
+      </div>
+    );
   }
-
   return (
     <div className="h-full p-5 bg-white dark:bg-black">
       {/* Filter Bar */}
@@ -384,8 +387,8 @@ export default function CategoryContent() {
                             badge === "Trust"
                               ? "bg-yellow-400 text-black text-xs"
                               : badge === "Verified"
-                              ? "bg-blue-500 text-white text-xs"
-                              : "bg-gray-100 text-gray-800 text-xs"
+                                ? "bg-blue-500 text-white text-xs"
+                                : "bg-gray-100 text-gray-800 text-xs"
                           }
                         >
                           {badge}
