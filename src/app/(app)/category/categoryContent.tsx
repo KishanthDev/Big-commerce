@@ -237,9 +237,9 @@ export default function CategoryContent() {
     fetchListings(params, null, {});
   };
 
-  if (listings.length===0) {
+  if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen  flex items-center justify-center">
         Loading...
       </div>
     );
