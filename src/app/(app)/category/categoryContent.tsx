@@ -242,7 +242,7 @@ export default function CategoryContent() {
   }
 
   return (
-    <div className="h-full p-5 bg-gray-100 dark:bg-black">
+    <div className="h-full p-5 bg-white dark:bg-black">
       {/* Filter Bar */}
       {listings.length > 0 && (
         <div className="mb-6">

@@ -73,7 +73,7 @@ const FilterBar = ({
 
   return (
     <>
-      <div className="dark:bg-gray-800 p-4 mt-4 rounded-lg w-full flex justify-between items-center mx-auto bg-white">
+      <div className="dark:bg-gray-800 p-4 mt-20 rounded-lg w-full flex justify-between items-center mx-auto bg-white">
         <div className="flex flex-wrap items-center gap-3 mx-auto">
           <div className="relative">
             <Button
