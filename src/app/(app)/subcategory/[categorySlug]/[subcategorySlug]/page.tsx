@@ -3,7 +3,7 @@
 import { use, useEffect, useState } from "react";
 import { slugify } from "@/app/lib/slugify";
 import { useCategoryStore } from "@/stores/useCategoryStore";
-import { FiltersBar } from "@/components/filter/FiltersBar";
+import FilterBar from "@/components/filter/FiltersBar";
 import { Heart, MapPin, Phone, Share2 } from "lucide-react";
 import StarRating from "@/components/icons/StarRating";
 import Link from "next/link";
@@ -119,7 +119,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
           {String(subcategoryName)} Businesses in {categoryName}
         </h1>
       </div>
-      <FiltersBar />
+      <FilterBar />
       {error ? (
         <p className="text-red-500">{error}</p>
       ) : businesses.length === 0 ? (

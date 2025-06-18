@@ -10,7 +10,7 @@ import { slugify } from "@/app/lib/slugify";
 import { subCategoryIconMap } from "@/components/icons/subCategoryIconMap";
 import StarRating from "@/components/icons/StarRating";
 import type { Category } from "@/types/cat";
-import { FiltersBar } from "@/components/filter/FiltersBar";
+import FilterBar from "@/components/filter/FiltersBar";
 import Breadcrumb from "@/components/breadcrumb/Breadcrumbs";
 
 interface SubcategoryPageProps {
@@ -56,7 +56,7 @@ export default function SubcategoryPage({
         <Breadcrumb />
         <h1 className="text-2xl font-bold">Explore {currentCategory.categoryName} Subcategories</h1>
       </div>
-      <FiltersBar />
+      <FilterBar />
       {currentCategory.subcategories &&
       currentCategory.subcategories.length > 0 ? (
         <div className="space-y-6">
