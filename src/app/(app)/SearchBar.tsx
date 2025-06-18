@@ -43,15 +43,6 @@ interface ApiResponse {
 
 const SearchBar: React.FC = () => {
   const pathname = usePathname();
-
-  const handlePincodeChange = (pincode: string) => {
-    if (pathname !== "/category") {
-      router.push(`/category?pincode=${pincode}`);
-    } else {
-      // Already on /category — just update query param without full reload
-      router.replace(`/category?pincode=${pincode}`);
-    }
-  };
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [pincode, setPincode] = useState<string>("");
   const [city, setCity] = useState<string>("");
@@ -339,9 +330,7 @@ const SearchBar: React.FC = () => {
   return (
     <div className="flex items-center gap-2 w-full max-w-4xl">
       <div className="flex flex-col gap-1 w-auto">
-        <LocationModal
-          onPincodeChange={handlePincodeChange}
-        />
+        <LocationModal />
       </div>
       <div className="relative flex-1" ref={searchRef}>
         <form onSubmit={handleSearch} className="w-full">

@@ -16,10 +16,6 @@ import { Input } from "@/components/ui/input";
 const GEOCODING_API_URL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
 const API_KEY = "AIzaSyCQNqAUkIYa-5HS5iPypurBC6QCT-YjKS8"
 
-interface LocationModalProps {
-    onPincodeChange: (pincode: string, city?: string) => void;
-}
-
 interface BackendApiResponse {
     success: boolean;
     data?: {
@@ -30,7 +26,7 @@ interface BackendApiResponse {
     error?: string;
 }
 
-export default function LocationModal({ onPincodeChange }: LocationModalProps) {
+export default function LocationModal() {
     const [city, setCity] = useState("");
     const [pincode, setPincode] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
@@ -95,17 +91,26 @@ export default function LocationModal({ onPincodeChange }: LocationModalProps) {
         setError("");
     };
 
-    const handleSelectLocation = (location: string, city: string, pincode: string | undefined, isPincodeQuery: boolean) => {
+    const handleSelectLocation = (
+        location: string,
+        city: string,
+        pincode: string | undefined,
+        isPincodeQuery: boolean,
+        skipUpdate = false // ✅ NEW PARAM
+    ) => {
         if (!pincode && isPincodeQuery) {
             setError("No valid pincode returned from the server. Please try another pincode.");
             return;
         }
+
         setCity(city);
         setPincode(pincode || "");
-        if (pincode) {
-            onPincodeChange(pincode, city);
+
+        if (!skipUpdate && pincode) {
             setIsOpen(false);
-        } else {
+        }
+
+        if (!pincode) {
             setError(
                 isPincodeQuery
                     ? "The entered pincode could not be validated. Please try another pincode."
@@ -113,6 +118,7 @@ export default function LocationModal({ onPincodeChange }: LocationModalProps) {
             );
         }
     };
+
 
     const handleSearchLocation = () => {
         if (!searchQuery.trim()) {
@@ -159,18 +165,27 @@ export default function LocationModal({ onPincodeChange }: LocationModalProps) {
                 .then((data) => {
                     console.log("Google Maps API Response for address:", data);
                     if (data.results && data.results.length > 0) {
-                        const location = data.results[0].formatted_address;
                         const pincodeComponent = data.results[0].address_components.find(
-                            (component: { types: string[] }) => component.types.includes("postal_code")
+                            (component: { types: string[] }) =>
+                                component.types.includes("postal_code")
                         );
                         const cityComponent = data.results[0].address_components.find(
-                            (component: { types: string[] }) => component.types.includes("locality")
+                            (component: { types: string[] }) =>
+                                component.types.includes("locality")
                         );
 
-                        const newPincode = pincodeComponent?.long_name || "";
-                        const newCity = cityComponent?.long_name || "";
-                        handleSelectLocation(location, newCity, newPincode, false);
-                    } else {
+                        const detectedCity = cityComponent?.long_name || "";
+                        const detectedPincode = pincodeComponent?.long_name || "";
+
+                        handleSelectLocation(
+                            "Current Location",
+                            detectedCity,
+                            detectedPincode,
+                            false,
+                            true // ✅ skip API call
+                        );
+                    }
+                    else {
                         setError("No results found for your search. Please try a different query.");
                     }
                 })
