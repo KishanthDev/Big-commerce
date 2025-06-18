@@ -10,6 +10,7 @@ import Link from "next/link";
 import { Category, Subcategory } from "@/types/cat";
 import Breadcrumb from "@/components/breadcrumb/Breadcrumbs";
 import CategoryImageSlider from "./CategoryImageSlider";
+import Pagination from "@/components/ui/Pagination";
 
 interface CategoryPageProps {
   params: Promise<{ subcategorySlug: string }>;
@@ -35,6 +36,14 @@ interface Business {
 }
 
 export default function CategoryPage({ params }: CategoryPageProps) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalItems, setTotalItems] = useState(0);
+  const itemsPerPage = 10;
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
   const { categories, fetchCategories, loading: loadingCategories } = useCategoryStore();
   const [businesses, setBusinesses] = useState<Business[]>([]);
   const [loadingBusinesses, setLoadingBusinesses] = useState(true);
@@ -85,12 +94,17 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         const res = await fetch(
           `/api/search-list/business-search?pincode=573201&category=${encodeURIComponent(
             categoryName
-          )}&subcategory=${encodeURIComponent(String(subcategoryName))}`
+          )}&subcategory=${encodeURIComponent(
+            String(subcategoryName)
+          )}&limit=${itemsPerPage}&page=${currentPage}`
         );
+
         const data = await res.json();
         if (data.success) {
           setBusinesses(data.data.businesses || []);
-        } else {
+          setTotalItems(data.data.totalCount || 0);
+        }
+        else {
           setError(data.error || "Failed to fetch businesses.");
         }
       } catch (err) {
@@ -101,7 +115,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
     };
 
     fetchBusinesses();
-  }, [categoryName, subcategoryName]);
+  }, [categoryName, subcategoryName,currentPage]);
 
   if (loadingCategories || loadingBusinesses) {
     return <div className="min-h-screen flex justify-center items-center">Loading...</div>;
@@ -201,6 +215,12 @@ export default function CategoryPage({ params }: CategoryPageProps) {
           ))}
         </div>
       )}
+      <Pagination
+        currentPage={currentPage}
+        totalItems={totalItems}
+        itemsPerPage={itemsPerPage}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 }
