@@ -5,11 +5,11 @@ import { slugify } from "@/app/lib/slugify";
 import { useCategoryStore } from "@/stores/useCategoryStore";
 import { FiltersBar } from "@/components/filter/FiltersBar";
 import { Heart, MapPin, Phone, Share2 } from "lucide-react";
-import Image from "next/image";
 import StarRating from "@/components/icons/StarRating";
 import Link from "next/link";
 import { Category, Subcategory } from "@/types/cat";
 import Breadcrumb from "@/components/breadcrumb/Breadcrumbs";
+import CategoryImageSlider from "./CategoryImageSlider";
 
 interface CategoryPageProps {
   params: Promise<{ subcategorySlug: string }>;
@@ -142,15 +142,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                 </button>
               </div>
 
-              <div className="sm:w-1/3 w-full h-56 sm:h-auto relative">
-                <Image
-                  src="https://res.cloudinary.com/ds6mdqjnx/image/upload/v1748946852/sampleimage_qgrwbl.jpg"
-                  alt={business.name}
-                  className="object-cover w-full h-full"
-                  fill
-                  sizes="(max-width: 640px) 100vw, 33vw"
-                />
-              </div>
+              <CategoryImageSlider categoryName={categoryName ?? ""} altText={business.name} />
 
               <div className="flex-1 p-6 flex flex-col justify-between">
                 <div>
