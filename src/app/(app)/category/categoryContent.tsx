@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { ThumbsUp, Star, Phone, MessageSquare, MessageCircle, MapPin, ExternalLink, ChevronLeft, ChevronRight, Heart, Share2 } from "lucide-react";
 import Image from "next/image";
 import FilterBar from "./FilterBar";
+import CategoryPageSkeleton from "@/components/ui/SkeletonCard";
+
 
 function debounce<T extends (...args: unknown[]) => void>(func: T, delay: number): (...args: Parameters<T>) => void {
   let timeout: ReturnType<typeof setTimeout> | undefined;
@@ -239,9 +241,7 @@ export default function CategoryContent() {
 
   if (loading) {
     return (
-      <div className="min-h-screen  flex items-center justify-center">
-        Loading...
-      </div>
+      <CategoryPageSkeleton/>
     );
   }
   return (

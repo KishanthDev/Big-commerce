@@ -11,6 +11,8 @@ import { Category, Subcategory } from "@/types/cat";
 import Breadcrumb from "@/components/breadcrumb/Breadcrumbs";
 import CategoryImageSlider from "./CategoryImageSlider";
 import Pagination from "@/components/ui/Pagination";
+import CategoryPageSkeleton  from "@/components/ui/SkeletonCard";
+
 
 interface CategoryPageProps {
   params: Promise<{ subcategorySlug: string }>;
@@ -115,11 +117,13 @@ export default function CategoryPage({ params }: CategoryPageProps) {
     };
 
     fetchBusinesses();
-  }, [categoryName, subcategoryName,currentPage]);
+  }, [categoryName, subcategoryName, currentPage]);
+
 
   if (loadingCategories || loadingBusinesses) {
-    return <div className="min-h-screen flex justify-center items-center">Loading...</div>;
-  }
+  return <CategoryPageSkeleton />;
+}
+
 
   if (!subcategory || !parentCategory) {
     return <div className="p-6">Subcategory not found</div>;
