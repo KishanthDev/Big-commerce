@@ -18,8 +18,8 @@ export default function CategoryCarousel() {
   const router = useRouter();
 
   useEffect(() => {
-    if (categories.length === 0) fetchCategories();
-  }, [categories.length, fetchCategories]);
+    fetchCategories();
+  }, []);
 
   const sortedCategories = [...categories].sort((a, b) =>
     a.categoryName.toLowerCase().localeCompare(b.categoryName.toLowerCase())
@@ -132,11 +132,10 @@ export default function CategoryCarousel() {
                     style={{ objectFit: "contain" }}
                   />
                   <span
-                    className={`font-medium ${
-                      isActive
+                    className={`font-medium ${isActive
                         ? "text-purple-600 dark:text-purple-400"
                         : "text-gray-600 dark:text-white"
-                    }`}
+                      }`}
                   >
                     {name}
                   </span>

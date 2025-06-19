@@ -4,11 +4,11 @@
 export type Subcategory =
   | string
   | {
-      id?: string;
-      subcategoryName: string;
-      imageUrl?: string; // Optional image URL
-      [key: string]: unknown; // Allow additional properties
-    };
+    id?: string;
+    subcategoryName: string;
+    imageUrl?: string; // Optional image URL
+    [key: string]: unknown; // Allow additional properties
+  };
 
 // Main Category type matching your store
 export interface Category {
@@ -22,6 +22,7 @@ export interface Category {
 export interface CategoryState {
   categories: Category[];
   loading: boolean;
+  isFetched: boolean;
   error: string | null;
   fetchCategories: () => Promise<void>;
 }

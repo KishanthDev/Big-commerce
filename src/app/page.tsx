@@ -9,10 +9,8 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    if (categories.length === 0) {
       fetchCategories();
-    }
-  }, [categories.length, fetchCategories]);
+  }, []);
 
   useEffect(() => {
     if (!loading && categories.length > 0) {
