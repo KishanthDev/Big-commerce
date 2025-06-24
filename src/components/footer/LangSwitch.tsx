@@ -35,7 +35,7 @@ export default function LocaleSwitcher() {
 
     // Split the pathname into segments
     const segments = pathname.split('/');
-    
+
     // Check if the first segment is a valid locale
     if (segments[1] && locales.some((l) => l.code === segments[1])) {
       segments[1] = newLocale; // Replace existing locale
@@ -45,7 +45,7 @@ export default function LocaleSwitcher() {
 
     // Reconstruct the path
     const newPath = segments.join('/') || '/';
-    
+
     // Preserve query parameters and hash
     const queryString = searchParams.toString();
     const hash = window.location.hash;
@@ -82,17 +82,16 @@ export default function LocaleSwitcher() {
       </Button>
 
       {isOpen && (
-        <div className="absolute left-0 z-10 mt-2 w-40 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-800">
+        <div className="absolute left-0 bottom-full mb-2 z-10 w-40 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-800">
           <div className="py-1">
             {locales.map((option) => (
               <button
                 key={option.code}
                 onClick={() => changeLocale(option.code)}
-                className={`block w-full px-4 py-2 text-left text-sm ${
-                  locale === option.code
+                className={`block w-full px-4 py-2 text-left text-sm ${locale === option.code
                     ? 'bg-gray-400 hover:bg-gray-500 text-gray-900 dark:bg-gray-700 dark:text-white'
                     : 'text-black hover:bg-gray-500 dark:text-gray-200 dark:hover:bg-gray-600'
-                }`}
+                  }`}
               >
                 {option.name}
               </button>
@@ -100,6 +99,7 @@ export default function LocaleSwitcher() {
           </div>
         </div>
       )}
+
     </div>
   );
 }
