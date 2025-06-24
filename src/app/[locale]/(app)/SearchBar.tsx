@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/command";
 import { Button } from "@/components/ui/button";
 import LocationModal from "./LocationModal";
+import { useLocale } from "next-intl";
 
 interface SearchResultItem {
   id: string;
@@ -42,6 +43,7 @@ const PINCODE = "573201";
 const SearchBar: React.FC = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const locale = useLocale()
   const searchRef = useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [city, setCity] = useState<string>("");
@@ -70,7 +72,7 @@ const SearchBar: React.FC = () => {
         currentParams.set(existingParam, searchParams.get(existingParam)!);
       }
       // Only redirect to /category if explicitly required
-      const targetPath = redirectToCategory ? `/category?${currentParams.toString()}` : `/?${currentParams.toString()}`;
+      const targetPath = redirectToCategory ? `/${locale}/category?${currentParams.toString()}` : `/${locale}/?${currentParams.toString()}`;
       router.push(targetPath, { scroll: false });
     },
     [router, searchParams]
@@ -98,7 +100,7 @@ const SearchBar: React.FC = () => {
       }
       setIsLoading(true);
       try {
-        const result = await fetchApi(`/api/search-list/search?pincode=${encodeURIComponent(PINCODE)}`);
+        const result = await fetchApi(`/api/search-list/search?pincode=${encodeURIComponent(PINCODE)}&lang=${locale}`);
         setPincodeError(result.success ? null : `Pincode ${PINCODE} not found in the database`);
       } catch (error) {
         setPincodeError(`Failed to validate pincode: ${error instanceof Error ? error.message : "Unknown error"}`);
@@ -119,7 +121,7 @@ const SearchBar: React.FC = () => {
       setIsLoading(true);
       try {
         const queryParams = new URLSearchParams({ q: query, pincode: PINCODE, ...(city && { city }) });
-        const result = await fetchApi(`/api/search-list/search?${queryParams.toString()}`);
+        const result = await fetchApi(`/api/search-list/search?${queryParams.toString()}&lang=${locale}`);
         setResults(result.success && result.data ? result.data : { businesses: [], categories: [], tags: [], cities: [], names: [] });
       } catch {
         setResults({ businesses: [], categories: [], tags: [], cities: [], names: [] });

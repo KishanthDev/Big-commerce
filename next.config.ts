@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true",
+import initializeBundleAnalyzer from '@next/bundle-analyzer';
+import createNextIntlPlugin from 'next-intl/plugin';
+
+const withBundleAnalyzer = initializeBundleAnalyzer({
+  enabled: process.env.BUNDLE_ANALYZER_ENABLED === 'true',
 });
+
+const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
   images: {
@@ -23,4 +28,4 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
 };
 
-export default withBundleAnalyzer(nextConfig);
+export default withBundleAnalyzer(withNextIntl(nextConfig));

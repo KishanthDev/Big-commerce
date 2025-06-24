@@ -1,60 +1,54 @@
 import { create } from "zustand";
 
 interface IconData {
-  categoryName?: string;
-  subCategoryName?: string;
+  categoryName: string;
   icon: {
-    "3d"?: string;
+    "3d": string;
     "3dSlide"?: string;
   };
+  subCategories: {
+    subCategoryName: string;
+    icon: {
+      "3d": string;
+    };
+  }[];
 }
 
 interface IconStoreState {
   category3DIcons: Record<string, string>;
-  subCategory3DIcons: Record<string, string>;
   category3DIconsSlide: Record<string, string>;
+  subCategory3DIcons: Record<string, string>;
   fetch3DIcons: () => Promise<void>;
 }
 
 export const useIconStore = create<IconStoreState>((set) => ({
   category3DIcons: {},
-  subCategory3DIcons: {},
   category3DIconsSlide: {},
+  subCategory3DIcons: {},
   fetch3DIcons: async () => {
     try {
-      const [catRes, subRes] = await Promise.all([
-        fetch("/api/icons/category-3d"),
-        fetch("/api/icons/subcategory-3d"),
-      ]);
+      const response = await fetch("/api/icons");
+      const data: IconData[] = response.ok ? await response.json() : [];
 
-      const [catIcons, subIcons]: [IconData[], IconData[]] = await Promise.all([
-        catRes.ok ? catRes.json() : [],
-        subRes.ok ? subRes.json() : [],
-      ]);
+      const catMap: Record<string, string> = {};
+      const catMapSlide: Record<string, string> = {};
+      const subMap: Record<string, string> = {};
 
-      const catMap: Record<string, string> = catIcons.reduce((acc, item) => {
-        if (item.categoryName && item.icon["3d"]) {
-          acc[item.categoryName.trim()] = item.icon["3d"];
+      data.forEach((category) => {
+        if (category.categoryName && category.icon["3d"]) {
+          catMap[category.categoryName.trim()] = category.icon["3d"];
         }
-        return acc;
-      }, {} as Record<string, string>);
-
-
-        const catMapSlide: Record<string, string> = catIcons.reduce((acc, item) => {
-        if (item.categoryName && item.icon["3dSlide"]) {
-          acc[item.categoryName.trim()] = item.icon["3dSlide"];
+        if (category.categoryName && category.icon["3dSlide"]) {
+          catMapSlide[category.categoryName.trim()] = category.icon["3dSlide"];
         }
-        return acc;
-      }, {} as Record<string, string>);
+        category.subCategories.forEach((sub) => {
+          if (sub.subCategoryName && sub.icon["3d"]) {
+            subMap[sub.subCategoryName.trim()] = sub.icon["3d"];
+          }
+        });
+      });
 
-      const subMap: Record<string, string> = subIcons.reduce((acc, item) => {
-        if (item.subCategoryName && item.icon["3d"]) {
-          acc[item.subCategoryName.trim()] = item.icon["3d"];
-        }
-        return acc;
-      }, {} as Record<string, string>);
-
-      set({ category3DIcons: catMap, subCategory3DIcons: subMap , category3DIconsSlide: catMapSlide });
+      set({ category3DIcons: catMap, category3DIconsSlide: catMapSlide, subCategory3DIcons: subMap });
     } catch (error) {
       console.error("Failed to fetch 3D icons", error);
     }

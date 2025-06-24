@@ -7,14 +7,13 @@ import { useCategoryStore } from "@/stores/useCategoryStore";
 export default function Home() {
   const { loading, fetchCategories, categories } = useCategoryStore();
   const router = useRouter();
-
   useEffect(() => {
       fetchCategories();
   }, []);
 
   useEffect(() => {
     if (!loading && categories.length > 0) {
-      router.push("/home");
+      router.push('/home');
     }
   }, [loading, categories, router]);
   if (loading) return <p>Loading...</p>;

@@ -10,7 +10,7 @@ import FullScreenToggle from "./FullScreenToggle";
 import { usePathname } from "next/navigation";
 import styles from "./Link.module.css";
 import CategoryCarousel from "./Slider";
-import SearchBar from "@/app/(app)/SearchBar";
+import SearchBar from "@/app/[locale]/(app)/SearchBar";
 import LoginModal from "@/app/(api)/clerkauth/LoginModal";
 
 function SearchBarWithSuspense() {
