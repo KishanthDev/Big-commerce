@@ -133,9 +133,8 @@ const Footer = () => {
                 {section.title}
               </h2>
               <ul
-                className={`space-y-2 pl-4 ${
-                  openSections[index] ? "block " : "hidden"
-                } md:block`}
+                className={`space-y-2 pl-4 ${openSections[index] ? "block " : "hidden"
+                  } md:block`}
               >
                 {section.links.map((link, idx) => (
                   <li key={idx}>
@@ -174,7 +173,8 @@ const Footer = () => {
             data-testid="instagram-icon"
             className="text-2xl cursor-pointer hover:text-gray-400"
           />
-        <LocaleSwitcher/>
+          <LocaleSwitcher />
+          <Link className="hover:underline" href="/emp">Employee</Link>
         </div>
 
         <div className="text-center text-xs mt-6 text-gray-300">
