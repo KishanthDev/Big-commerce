@@ -3,12 +3,10 @@
 import { useEffect, useState, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import { useLocale } from "next-intl";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Star, Phone, MessageSquare } from "lucide-react";
 import CategoryPageSkeleton from "@/components/ui/SkeletonCard";
 import FilterBar from "@/components/filter/FiltersBar";
 import CategoryImageSlider from "../subcategory/[categorySlug]/[subcategorySlug]/CategoryImageSlider";
+import ListingCard from "@/components/category/ListingCard";
 
 type Listing = {
   _id: string;
@@ -103,51 +101,25 @@ export default function CategoryContent() {
       ) : (
         <div className="space-y-6">
           {listings.map((listing) => (
-            <div key={listing._id} className="border p-4 rounded-md bg-white shadow">
-              <div className="flex flex-col sm:flex-row">
-                <CategoryImageSlider categoryName={listing.category} altText={listing.category} />
-                <div className="sm:w-2/3 w-full sm:pl-4 mt-4 sm:mt-0">
-                  <h2 className="text-xl font-bold">{listing.name}</h2>
-                  <div className="flex flex-row sm:items-center gap-2">
-                    <p className="text-sm text-gray-600">{listing.address}</p>
-                    <p className="text-sm text-gray-600">{listing.city}</p>
-                  </div>
-                  <div className="flex items-center gap-2 mt-2 flex-wrap">
-                    <Badge>
-                      {listing.rating} <Star className="w-3 h-3 ml-1" />
-                    </Badge>
-                    <span className="text-sm">({listing.totalRatings} ratings)</span>
-                    {listing.isTrusted && (
-                      <Badge className="bg-yellow-500 text-white">Trusted</Badge>
-                    )}
-                    {listing.isPopular && (
-                      <Badge className="bg-gray-500 text-white">Popular</Badge>
-                    )}
-                    {listing.isVerified && (
-                      <Badge className="bg-blue-500 text-white">Verified</Badge>
-                    )}
-                  </div>
-                  <p className="text-sm mt-2">{listing.category}</p>
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {(Array.isArray(listing.tags) ? listing.tags : []).map(
-                      (tag: string, i: number) => (
-                        <Badge key={i} variant="secondary">
-                          {tag}
-                        </Badge>
-                      )
-                    )}
-                  </div>
-                  <div className="mt-4 flex items-center gap-4">
-                    <p className="text-sm flex items-center gap-1 bg-green-500 text-white px-2 py-1 rounded">
-                      <Phone className="w-4 h-4" /> {typeof listing.phone === "string" ? listing.phone : listing.phone?.en || ""}
-                    </p>
-                    <Button className="bg-blue-500 hover:bg-blue-600 text-white">
-                      <MessageSquare className="w-4 h-4 mr-1" /> Enquire
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ListingCard
+              key={listing._id}
+              id={listing._id}
+              title={listing.name}
+              rating={listing.rating}
+              ratingCount={listing.totalRatings}
+              address={listing.address}
+              city={listing.city}
+              phone={typeof listing.phone === "string" ? listing.phone : listing.phone?.en || ""}
+              tags={Array.isArray(listing.tags) ? listing.tags : listing.tags?.tags || []}
+              imageComponent={
+                <CategoryImageSlider
+                  categoryName={listing.category ?? ""}
+                  altText={listing.category}
+                />
+              }
+              visitLink="#"
+              mapLink={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(listing.address)}`}
+            />
           ))}
         </div>
       )}

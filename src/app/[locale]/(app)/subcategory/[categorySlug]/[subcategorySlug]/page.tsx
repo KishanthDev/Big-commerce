@@ -4,14 +4,12 @@ import { use, useEffect, useState } from "react";
 import { slugify } from "@/app/lib/slugify";
 import { useCategoryStore } from "@/stores/useCategoryStore";
 import FilterBar from "@/components/filter/FiltersBar";
-import { Heart, MapPin, Phone, Share2 } from "lucide-react";
-import StarRating from "@/components/icons/StarRating";
-import Link from "next/link";
 import { Category, Subcategory } from "@/types/cat";
 import Breadcrumb from "@/components/breadcrumb/Breadcrumbs";
 import CategoryImageSlider from "./CategoryImageSlider";
 import Pagination from "@/components/ui/Pagination";
-import CategoryPageSkeleton  from "@/components/ui/SkeletonCard";
+import CategoryPageSkeleton from "@/components/ui/SkeletonCard";
+import ListingCard from "@/components/category/ListingCard";
 
 
 interface CategoryPageProps {
@@ -121,8 +119,8 @@ export default function CategoryPage({ params }: CategoryPageProps) {
 
 
   if (loadingCategories || loadingBusinesses) {
-  return <CategoryPageSkeleton />;
-}
+    return <CategoryPageSkeleton />;
+  }
 
 
   if (!subcategory || !parentCategory) {
@@ -147,75 +145,24 @@ export default function CategoryPage({ params }: CategoryPageProps) {
       ) : (
         <div className="space-y-6">
           {businesses.map((business) => (
-            <div
+            <ListingCard
               key={business.id}
-              className="relative flex flex-col sm:flex-row bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow"
-            >
-              <div className="absolute top-4 right-4 flex gap-2 z-10">
-                <button aria-label="Share" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-colors">
-                  <Share2 className="w-5 h-5" />
-                </button>
-                <button aria-label="Like" className="text-gray-600 dark:text-gray-300 hover:text-red-500 transition-colors">
-                  <Heart className="w-5 h-5" />
-                </button>
-              </div>
-
-              <CategoryImageSlider categoryName={categoryName ?? ""} altText={business.name} />
-
-              <div className="flex-1 p-6 flex flex-col justify-between">
-                <div>
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-                    {business.name}
-                  </h2>
-                  <div className="flex items-center gap-2">
-                    <StarRating rating={business.rating} />
-                    <span className="text-gray-800 dark:text-gray-300 text-sm">
-                      ({business.totalRatings})
-                    </span>
-                  </div>
-                  <p className="mt-3 text-gray-700 dark:text-gray-300">{business.address}</p>
-
-                  <div className="flex flex-wrap gap-2 mt-4">
-                    {business.tags.map((tag, index) => (
-                      <span
-                        key={index}
-                        className="bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-300 text-sm px-2 py-1 rounded-full"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex justify-between items-end mt-6 flex-wrap gap-4">
-                  <div className="flex items-center gap-6 text-sm text-gray-600 dark:text-gray-300">
-                    <a href={`tel:${business.phone}`} className="flex items-center gap-1 hover:text-blue-600 transition-colors">
-                      <Phone className="w-4 h-4" />
-                      {business.phone}
-                    </a>
-                    {business.city && (
-                      <a
-                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                          business.address
-                        )}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1 hover:text-blue-600 transition-colors"
-                      >
-                        <MapPin className="w-4 h-4" />
-                        {business.city}
-                      </a>
-                    )}
-                    <Link
-                      href="#"
-                      className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition"
-                    >
-                      Visit
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
+              id={business.id}
+              title={business.name}
+              rating={business.rating}
+              ratingCount={business.totalRatings}
+              address={business.address}
+              city={business.city}
+              phone={business.phone}
+              tags={business.tags}
+              imageComponent={
+                <CategoryImageSlider
+                  categoryName={business.category ?? ""}
+                  altText={business.category}
+                />
+              } visitLink="#"
+              mapLink={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(business.address)}`}
+            />
           ))}
         </div>
       )}
