@@ -72,7 +72,7 @@ const SearchBar: React.FC = () => {
         currentParams.set(existingParam, searchParams.get(existingParam)!);
       }
       // Only redirect to /category if explicitly required
-      const targetPath = redirectToCategory ? `/${locale}/category?${currentParams.toString()}` : `/${locale}/?${currentParams.toString()}`;
+      const targetPath = redirectToCategory ? `/category?${currentParams.toString()}` : `/?${currentParams.toString()}`;
       router.push(targetPath, { scroll: false });
     },
     [router, searchParams]

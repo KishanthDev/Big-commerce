@@ -1,7 +1,7 @@
 'use client';
 
 import { useLocale, useTranslations } from 'next-intl';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { Globe } from 'lucide-react';
 import { Button } from '../ui/button';
@@ -11,27 +11,48 @@ export default function LocaleSwitcher() {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const t = useTranslations('LocaleSwitcher');
 
+  // Define supported locales
   const locales = [
     { code: 'en', name: t('english') },
-    { code: 'de', name: t('german') },
-    { code: 'fr', name: t('french') },
+    { code: 'hi', name: t('hindi') },
+    { code: 'ka', name: t('kannada') },
     { code: 'ta', name: t('tamil') },
-    // Add more locales as needed
   ];
 
+  // Find the current locale or default to the first one
   const currentLocale = locales.find((l) => l.code === locale) || locales[0];
 
+  // Function to change the locale in the URL
   const changeLocale = (newLocale: string) => {
-    const segments = pathname.split('/');
-    if (segments[1] && locales.some(l => l.code === segments[1])) {
-      segments[1] = newLocale;
-    } else {
-      segments.splice(1, 0, newLocale);
+    // Validate the new locale
+    if (!locales.some((l) => l.code === newLocale)) {
+      console.warn(`Invalid locale: ${newLocale}`);
+      return;
     }
+
+    // Split the pathname into segments
+    const segments = pathname.split('/');
+    
+    // Check if the first segment is a valid locale
+    if (segments[1] && locales.some((l) => l.code === segments[1])) {
+      segments[1] = newLocale; // Replace existing locale
+    } else {
+      segments.splice(1, 0, newLocale); // Insert new locale
+    }
+
+    // Reconstruct the path
     const newPath = segments.join('/') || '/';
-    router.replace(newPath);
+    
+    // Preserve query parameters and hash
+    const queryString = searchParams.toString();
+    const hash = window.location.hash;
+    const finalPath = `${newPath}${queryString ? `?${queryString}` : ''}${hash}`;
+
+    // Navigate to the new URL
+    router.replace(finalPath);
     setIsOpen(false);
   };
 
@@ -61,7 +82,7 @@ export default function LocaleSwitcher() {
       </Button>
 
       {isOpen && (
-        <div className="absolute left-0 z-10 mt-2 w-40  rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-800">
+        <div className="absolute left-0 z-10 mt-2 w-40 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-800">
           <div className="py-1">
             {locales.map((option) => (
               <button

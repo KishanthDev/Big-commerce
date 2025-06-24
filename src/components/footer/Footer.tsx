@@ -9,6 +9,7 @@ import {
   FaInstagram,
 } from "react-icons/fa";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import LocaleSwitcher from "./LangSwitch";
 
 const Footer = () => {
   const [openSections, setOpenSections] = useState<Record<number, boolean>>({});
@@ -173,6 +174,7 @@ const Footer = () => {
             data-testid="instagram-icon"
             className="text-2xl cursor-pointer hover:text-gray-400"
           />
+        <LocaleSwitcher/>
         </div>
 
         <div className="text-center text-xs mt-6 text-gray-300">

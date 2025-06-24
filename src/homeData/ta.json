@@ -1,3 +1,8 @@
 {
-    "data":"sgs"
+    "LocaleSwitcher": {
+        "english": "ஆங்கிலம் - EN",
+        "tamil": "தமிழ் - TA",
+        "kannada": "கன்னடம் - KN",
+        "hindi": "ஹிந்தி - HI"
+    }
 }
