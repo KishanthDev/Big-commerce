@@ -1,129 +1,57 @@
 import { NextRequest } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
-import DistrictBusiness, { IDistrictBusiness } from '@/models/DistrictBusiness';
+import DistrictBusiness from '@/models/DistrictBusiness';
 
-interface SearchResult {
-  id: string;
-  name: string;
-  rating: number;
-  totalRatings: number;
-  address: string;
-  phone: string;
-  tags: string[];
-  hasWhatsApp: boolean;
-  hasEnquiry: boolean;
-  isTrusted: boolean;
-  isVerified: boolean;
-  isPopular: boolean;
-  category: string;
-  subcategory?: string;
-  pincode: string;
-  city?: string;
-}
+
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
+
   const pincode = searchParams.get('pincode');
   const category = searchParams.get('category');
   const subcategory = searchParams.get('subcategory');
-  const limit = searchParams.get('limit');
-  const page = searchParams.get('page');
+  const lang = searchParams.get('lang') || 'en';
+  const page = parseInt(searchParams.get('page') || '1');
+  const limit = parseInt(searchParams.get('limit') || '0');
 
   if (!pincode) {
-    return Response.json(
-      { success: false, error: 'Pincode parameter is required' },
-      { status: 400 }
-    );
+    return Response.json({ success: false, error: 'Pincode is required' }, { status: 400 });
   }
 
   try {
     await dbConnect();
-    console.log('MongoDB connected for business search');
+    const query: Record<string, unknown> = { pincode };
 
-    const pincodeExists: IDistrictBusiness | null = await DistrictBusiness.findOne({
-      pincode,
-    }).lean();
+    if (category) query['category.en'] = { $regex: `^${category}$`, $options: 'i' };
+    if (subcategory) query[`subcategory.${lang}`] = { $regex: `(^|,\\s*)${subcategory}(\\s*,|$)`, $options: 'i' };
 
-    if (!pincodeExists) {
-      return Response.json(
-        {
-          success: false,
-          error: `Pincode ${pincode} not found in the database`,
-        },
-        { status: 404 }
-      );
-    }
+    const skip = limit > 0 ? (page - 1) * limit : 0;
+    const totalCount = await DistrictBusiness.countDocuments(query);
+    const raw = await DistrictBusiness.find(query).skip(skip).limit(limit).lean();
 
-    const dbQuery: {
-      pincode: string;
-      category?: { $regex: string; $options: string };
-      subcategory?: { $regex: string; $options: string };
-    } = { pincode };
-
-    if (category) {
-      dbQuery.category = { $regex: `^${category}$`, $options: 'i' };
-    }
-
-    if (subcategory) {
-      dbQuery.subcategory = {
-        $regex: `(^|,\\s*)${subcategory}(\\s*,|$)`,
-        $options: 'i',
-      };
-    }
-
-    const pageNumber = parseInt(page || '1', 10);
-    const pageSize = parseInt(limit || '0', 10);
-    const skip = pageSize > 0 ? (pageNumber - 1) * pageSize : 0;
-
-    const totalCount = await DistrictBusiness.countDocuments(dbQuery);
-
-    let query = DistrictBusiness.find(dbQuery).lean();
-    if (pageSize > 0) {
-      query = query.skip(skip).limit(pageSize);
-    }
-
-    const results: IDistrictBusiness[] = await query;
-
-    const businesses: SearchResult[] = results.map((doc) => ({
+    const businesses = raw.map((doc) => ({
       id: doc._id.toString(),
-      name: doc.name || '',
+      name: (doc.name as Record<string, string>)?.[lang] || (doc.name as Record<string, string>)?.en || '',
       rating: doc.rating || 0,
       totalRatings: doc.totalRatings || 0,
-      address: doc.address || '',
-      phone: doc.phone || '',
-      tags: doc.tags || [],
-      hasWhatsApp: doc.hasWhatsApp || false,
-      hasEnquiry: doc.hasEnquiry || false,
-      isTrusted: doc.isTrusted || false,
-      isVerified: doc.isVerified || false,
-      isPopular: doc.isPopular || false,
-      category: doc.category || '',
-      subcategory: doc.subcategory || undefined,
-      pincode: doc.pincode || '',
-      city: doc.city || undefined,
+      address: (doc.address as Record<string, string>)?.[lang] || (doc.address as Record<string, string>)?.en || '',
+      phone: doc.phone,
+      tags: (doc.tags as Record<string, string[]>)?.[lang] || [],
+      hasWhatsApp: doc.hasWhatsApp,
+      hasEnquiry: doc.hasEnquiry,
+      isTrusted: doc.isTrusted,
+      isVerified: doc.isVerified,
+      isPopular: doc.isPopular,
+      category: doc.category?.en || '',
+      subcategory: (doc.subcategory as Record<string, string>)?.[lang] || '',
+      pincode: doc.pincode,
+      city: (doc.city as Record<string, string>)?.[lang] || '',
     }));
 
-    return Response.json(
-      {
-        success: true,
-        data: {
-          businesses,
-          totalCount,
-        },
-      },
-      { status: 200 }
-    );
-  } catch (error: unknown) {
-    const errorMessage =
-      error instanceof Error ? error.message : 'Unknown server error';
-    console.error('Business search failed:', errorMessage);
-    return Response.json(
-      {
-        success: false,
-        error: 'Failed to perform business search',
-        message: errorMessage,
-      },
-      { status: 500 }
-    );
+    return Response.json({ success: true, data: { businesses, totalCount } });
+  } catch (e) {
+    const error = e instanceof Error ? e.message : 'Unknown error';
+    console.error('Search error:', error);
+    return Response.json({ success: false, error }, { status: 500 });
   }
 }
