@@ -174,7 +174,7 @@ const Footer = () => {
             className="text-2xl cursor-pointer hover:text-gray-400"
           />
           <LocaleSwitcher />
-          <Link className="hover:underline" href="/emp">Employee</Link>
+          <Link className="hover:underline" href="/employee">Employee</Link>
         </div>
 
         <div className="text-center text-xs mt-6 text-gray-300">
