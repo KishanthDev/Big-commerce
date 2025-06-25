@@ -1,110 +1,125 @@
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
-import DistrictBusiness from '@/models/DistrictBusiness';
+import DistrictBusiness, { IDistrictBusiness } from '@/models/DistrictBusiness';
 
-interface LocalizedString {
-  [lang: string]: string;
-}
-
-interface DistrictBusinessDoc {
-  _id: string;
-  name: LocalizedString;
-  category: LocalizedString;
-  tags?: { [lang: string]: string[] };
-  city?: LocalizedString;
+interface SearchResult {
+  id: string;
+  name: string;
+  type: 'business' | 'category' | 'tag' | 'city' | 'name';
   pincode: string;
+  category?: string;
 }
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const pincode = searchParams.get('pincode');
   const lang = searchParams.get('lang') || 'en';
+  const q = searchParams.get('q');
 
   if (!pincode) {
-    return Response.json(
-      { success: false, error: 'Pincode parameter is required' },
-      { status: 400 }
-    );
+    return NextResponse.json({ success: false, error: 'Pincode parameter is required' }, { status: 400 });
   }
 
   try {
     await dbConnect();
     console.log('MongoDB connected for search');
 
-    const pincodeExists = await DistrictBusiness.findOne({ pincode }).lean();
+    const pincodeExists: IDistrictBusiness | null = await DistrictBusiness.findOne({ pincode }).lean();
     if (!pincodeExists) {
-      return Response.json(
-        { success: false, error: `Pincode ${pincode} not found in the database` },
-        { status: 404 }
-      );
+      return NextResponse.json({ success: false, error: `Pincode ${pincode} not found in the database` }, { status: 404 });
     }
 
-    const dbQuery = { pincode };
+    const dbQuery: { pincode: string; $or?: Record<string, unknown>[] } = { pincode };
+
+    if (q) {
+      const regex = new RegExp(q, 'i');
+      dbQuery.$or = [
+        { [`name.${lang}`]: regex },
+        { [`category.${lang}`]: regex },
+        { [`tags.${lang}`]: regex },
+        { [`subcategory.${lang}`]: regex },
+        { [`city.${lang}`]: regex },
+      ];
+    }
+
     const results = await DistrictBusiness.find(dbQuery)
-      .select(`name category tags city pincode`)
+      .select('name category tags city pincode subcategory')
       .limit(20)
-      .lean<DistrictBusinessDoc[]>();
+      .lean();
 
-    console.log(`Search found ${results.length} results for pincode ${pincode}`);
+    console.log(`Search found ${results.length} results for pincode ${pincode} and query "${q}"`);
 
-    const businesses = results.map((doc) => ({
+    const getLocalizedString = (field: Record<string, string> | undefined): string =>
+      field?.[lang] || field?.['en'] || '';
+
+    const getLocalizedArray = (field: Record<string, string[]> | undefined): string[] =>
+      Array.isArray(field?.[lang]) ? field![lang]! : [];
+
+    const businesses: SearchResult[] = results.map((doc) => ({
       id: doc._id.toString(),
-      name: doc.name?.[lang] || doc.name?.en || '',
-      category: doc.category?.en || '',
-      type: 'business' as const,
+      name: getLocalizedString(doc.name),
+      category: getLocalizedString(doc.category),
+      type: 'business',
       pincode: doc.pincode,
     }));
 
-    const categories = [...new Set(results
-      .map((doc) => doc.category?.en)
-      .filter(Boolean)
-    )].map((name) => ({
-      id: name!,
-      name: name!,
+    const unique = <T>(arr: T[]): T[] => [...new Set(arr)];
+
+    const categories = unique(
+      results.map((doc) => getLocalizedString(doc.category)).filter(Boolean)
+    ).map((name) => ({
+      id: name,
+      name,
       type: 'category' as const,
       pincode,
     }));
 
-    const tags = [...new Set(results
-      .flatMap((doc) =>
-        Array.isArray(doc.tags?.[lang]) ? doc.tags[lang] : []
-      )
-      .filter(Boolean)
-    )].map((name) => ({
-      id: name!,
-      name: name!,
+    const tags = unique(
+      results.flatMap((doc) => getLocalizedArray(doc.tags)).filter(Boolean)
+    ).map((name) => ({
+      id: name,
+      name,
       type: 'tag' as const,
       pincode,
     }));
 
-    const cities = [...new Set(results
-      .map((doc) => doc.city?.[lang])
-      .filter(Boolean)
-    )].map((name) => ({
-      id: name!,
-      name: name!,
+    const cities = unique(
+      results.map((doc) => getLocalizedString(doc.city)).filter(Boolean)
+    ).map((name) => ({
+      id: name,
+      name,
       type: 'city' as const,
       pincode,
     }));
 
-    const names = [...new Set(results
-      .map((doc) => doc.name?.[lang])
-      .filter(Boolean)
-    )].map((name) => ({
-      id: name!,
-      name: name!,
+    const names = unique(
+      results.map((doc) => getLocalizedString(doc.name)).filter(Boolean)
+    ).map((name) => ({
+      id: name,
+      name,
       type: 'name' as const,
       pincode,
     }));
 
-    return Response.json({
+    return NextResponse.json({
       success: true,
-      data: { businesses, categories, tags, cities, names },
+      data: {
+        businesses,
+        categories,
+        tags,
+        cities,
+        names,
+      },
     });
-  } catch (err: unknown) {
-    const error = err as Error;
-    return Response.json(
-      { success: false, error: 'Server error', message: error.message || 'Unknown error' },
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    console.error('Search error:', errorMessage);
+    return NextResponse.json(
+      {
+        success: false,
+        error: 'Failed to perform search',
+        message: errorMessage,
+      },
       { status: 500 }
     );
   }

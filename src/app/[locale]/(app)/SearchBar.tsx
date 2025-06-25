@@ -43,7 +43,7 @@ const PINCODE = "573201";
 const SearchBar: React.FC = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const locale = useLocale()
+  const locale = useLocale();
   const searchRef = useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [city, setCity] = useState<string>("");
@@ -59,23 +59,21 @@ const SearchBar: React.FC = () => {
   const [pincodeError, setPincodeError] = useState<string | null>(null);
 
   const updateUrlParams = useCallback(
-    (params: Record<string, string>, redirectToCategory: boolean = true) => {
+    (params: Record<string, string>) => {
       const currentParams = new URLSearchParams();
-      Object.entries({ pincode: PINCODE, ...params }).forEach(([key, value]) => {
+      // Always include pincode and language
+      currentParams.set("pincode", PINCODE);
+      currentParams.set("lang", locale);
+      // Add provided parameters (e.g., name, category, tag, city)
+      Object.entries(params).forEach(([key, value]) => {
         if (value) {
           currentParams.set(key, value);
         }
       });
-      const allowedParams = ["name", "category", "tag", "query"];
-      const existingParam = allowedParams.find((param) => searchParams?.has(param));
-      if (existingParam && searchParams?.get(existingParam)) {
-        currentParams.set(existingParam, searchParams.get(existingParam)!);
-      }
-      // Only redirect to /category if explicitly required
-      const targetPath = redirectToCategory ? `/category?${currentParams.toString()}` : `/?${currentParams.toString()}`;
-      router.push(targetPath, { scroll: false });
+      // Navigate to /category with the updated parameters
+      router.push(`/category?${currentParams.toString()}`, { scroll: false });
     },
-    [router, searchParams]
+    [router, locale]
   );
 
   useEffect(() => {
@@ -108,7 +106,7 @@ const SearchBar: React.FC = () => {
         setIsLoading(false);
       }
     }, 300),
-    [fetchApi]
+    [fetchApi, locale]
   );
 
   const fetchResults = useCallback(
@@ -120,8 +118,13 @@ const SearchBar: React.FC = () => {
       }
       setIsLoading(true);
       try {
-        const queryParams = new URLSearchParams({ q: query, pincode: PINCODE, ...(city && { city }) });
-        const result = await fetchApi(`/api/search-list/search?${queryParams.toString()}&lang=${locale}`);
+        const queryParams = new URLSearchParams({
+          q: query,
+          pincode: PINCODE,
+          lang: locale,
+          ...(city && { city }),
+        });
+        const result = await fetchApi(`/api/search-list/search?${queryParams.toString()}`);
         setResults(result.success && result.data ? result.data : { businesses: [], categories: [], tags: [], cities: [], names: [] });
       } catch {
         setResults({ businesses: [], categories: [], tags: [], cities: [], names: [] });
@@ -129,7 +132,7 @@ const SearchBar: React.FC = () => {
         setIsLoading(false);
       }
     }, 300),
-    [city, fetchApi]
+    [city, fetchApi, locale]
   );
 
   useEffect(() => {
@@ -144,12 +147,13 @@ const SearchBar: React.FC = () => {
       return;
     }
     if (searchQuery) {
-      updateUrlParams({ query: searchQuery, ...(city && { city }) }, true);
+      updateUrlParams({ query: searchQuery, ...(city && { city }) });
       setIsSearchOpen(false);
       setSearchQuery("");
     } else {
-      router.push("/", { scroll: false });
+      router.push(`/?pincode=${PINCODE}&lang=${locale}`, { scroll: false });
     }
+    setResults({ businesses: [], categories: [], tags: [], cities: [], names: [] });
   };
 
   const handleSelect = useCallback(
@@ -158,16 +162,17 @@ const SearchBar: React.FC = () => {
         setPincodeError("Invalid pincode");
         return;
       }
-      const params: Record<string, string> = { ...(city && { city }) };
+      const params: Record<string, string> = {};
       if (item.type === "business" || item.type === "name") params.name = item.name;
       else if (item.type === "category") params.category = item.name;
       else if (item.type === "tag") params.tag = item.name;
       else if (item.type === "city") params.city = item.name;
-      updateUrlParams(params, true);
+      updateUrlParams(params);
       setSearchQuery("");
       setIsSearchOpen(false);
+      setResults({ businesses: [], categories: [], tags: [], cities: [], names: [] });
     },
-    [pincodeError, city, updateUrlParams]
+    [pincodeError, updateUrlParams]
   );
 
   useEffect(() => {
