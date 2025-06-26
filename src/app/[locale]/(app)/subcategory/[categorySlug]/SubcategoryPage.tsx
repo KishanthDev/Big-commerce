@@ -13,6 +13,7 @@ import ListingCard from "@/components/category/ListingCard";
 interface SubcategoryPageProps {
   categorySlug: string;
   initialCategory: Category;
+  locale?: string; // Add locale prop
 }
 
 export const findCategoryBySlug = (
@@ -25,6 +26,7 @@ export const findCategoryBySlug = (
 export default function SubcategoryPage({
   categorySlug,
   initialCategory,
+  locale = "en", // Default to "en" if not provided
 }: SubcategoryPageProps) {
   const [currentCategory, setCurrentCategory] = useState(initialCategory);
   const { categories, loading, fetchCategories } = useCategoryStore();
@@ -100,7 +102,7 @@ export default function SubcategoryPage({
                 tags={business.highlights}
                 imageUrl={business.gallery[0]}
                 icon={IconComponent ? <IconComponent className="w-5 h-5 text-blue-500" /> : undefined}
-                visitLink={`/subcategory/${categorySlug}/${subSlug}`}
+                visitLink={`/${locale}/subcategory/${categorySlug}/${subSlug}`} // Fixed: Include locale
               />
             );
           })}

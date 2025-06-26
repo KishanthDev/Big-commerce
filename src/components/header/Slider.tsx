@@ -5,7 +5,7 @@ import { motion, useAnimation } from "framer-motion";
 import Image from "next/image";
 import { useCategoryStore } from "@/stores/useCategoryStore";
 import { useSidebarStore } from "@/stores/useSidebarStore";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { slugify } from "@/app/lib/slugify";
 import icons from "@/data/icons.json";
 
@@ -16,6 +16,10 @@ export default function CategoryCarousel() {
   const containerRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
   const router = useRouter();
+  const params = useParams();
+  
+  // Get locale from params, default to 'en' if not available
+  const locale = (params?.locale as string) || 'en';
 
   useEffect(() => {
     fetchCategories();
@@ -49,9 +53,11 @@ export default function CategoryCarousel() {
     }
 
     if (firstSub) {
-      router.push(`/subcategory/${slugCategory}`);
+      // Include locale in the URL
+      router.push(`/${locale}/subcategory/${slugCategory}`);
     } else {
-      router.push(`/${slugCategory}`);
+      // Include locale in the URL
+      router.push(`/${locale}/${slugCategory}`);
     }
   };
 

@@ -16,7 +16,7 @@ export default async function Page({
   params: Promise<PageParams>;
 }) {
   const { categorySlug, locale } = await params;
-  
+
   const categories = fallback as unknown as Category[];
 
   const foundCategory = categories.find(
@@ -33,6 +33,7 @@ export default async function Page({
     <SubcategoryPage
       categorySlug={categorySlug}
       initialCategory={foundCategory}
+      locale={locale} // Pass the locale to the SubcategoryPage component
     />
   );
 }
