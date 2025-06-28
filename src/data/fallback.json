@@ -70,7 +70,7 @@
   },
   {
     "id": 2,
-    "categoryName": "Health & Medical",
+    "categoryName": "Health and Medical",
     "description": null,
     "subcategories": [
       {
@@ -113,7 +113,7 @@
   },
   {
     "id": 5,
-    "categoryName": "Shopping & Retail",
+    "categoryName": "Shopping and Retail",
     "description": null,
     "subcategories": [
       {
@@ -162,7 +162,7 @@
   },
   {
     "id": 8,
-    "categoryName": "Travel & Transportation",
+    "categoryName": "Travel and Transportation",
     "description": null,
     "subcategories": [
       {
@@ -210,7 +210,7 @@
       },
       {
         "id": 12,
-        "subcategoryName": "Colleges & Universities",
+        "subcategoryName": "Colleges and Universities",
         "categoryId": 3,
         "imageUrl": "https://res.cloudinary.com/ds6mdqjnx/image/upload/v1747839011/Pictures/college_university/college_university_xoyemv.jpg"
       },
@@ -378,7 +378,7 @@
   },
   {
     "id": 12,
-    "categoryName": "Entertainment & Media",
+    "categoryName": "Entertainment and Media",
     "description": null,
     "subcategories": [
       {
@@ -415,7 +415,7 @@
   },
   {
     "id": 11,
-    "categoryName": "Government & Community",
+    "categoryName": "Government and Community",
     "description": null,
     "subcategories": [
       {
@@ -446,7 +446,7 @@
   },
   {
     "id": 13,
-    "categoryName": "Sports & Recreation",
+    "categoryName": "Sports and Recreation",
     "description": null,
     "subcategories": [
       {
@@ -483,7 +483,7 @@
   },
   {
     "id": 14,
-    "categoryName": "Pets & Animals",
+    "categoryName": "Pets and Animals",
     "description": null,
     "subcategories": [
       {
@@ -520,7 +520,7 @@
   },
   {
     "id": 16,
-    "categoryName": "Safety & Security",
+    "categoryName": "Safety and Security",
     "description": null,
     "subcategories": [
       {
@@ -551,7 +551,7 @@
   },
   {
     "id": 15,
-    "categoryName": "Computers & Mobile",
+    "categoryName": "Computers and Mobile",
     "description": null,
     "subcategories": [
       {

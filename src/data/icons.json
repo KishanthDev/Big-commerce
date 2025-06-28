@@ -98,7 +98,7 @@
       ]
     },
     {
-      "categoryName": "Health & Medical",
+      "categoryName": "Health and Medical",
       "icon": {
         "default": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1749289009/health_and_medical_vvdybd.svg",
         "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748944064/3dicons-tea-cup-front-gradient_xyauqi.png",
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "categoryName": "Shopping & Retail",
+      "categoryName": "Shopping and Retail",
       "icon": {
         "default": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1749289025/shopping_retail_wiqngg.svg",
         "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748943440/3dicons-lab-front-gradient_z7w4j2.png",
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "categoryName": "Travel & Transportation",
+      "categoryName": "Travel and Transportation",
       "icon": {
         "default": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1749289028/Travel_and_transportation_j79t8u.svg",
         "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748943190/3dicons-chat-front-gradient_nkcb8t.png",
@@ -262,7 +262,7 @@
           }
         },
         {
-          "subCategoryName": "Colleges & Universities",
+          "subCategoryName": "Colleges and Universities",
           "icon": {
             "default": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1749289000/college_and_university_fnjoep.svg",
             "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748945605/3dicons-lock-dynamic-gradient_qm7slb.png"
@@ -465,7 +465,7 @@
       ]
     },
     {
-      "categoryName": "Entertainment & Media",
+      "categoryName": "Entertainment and Media",
       "icon": {
         "default": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1749289003/entertainment_and_media_smtoh6.svg",
         "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748933206/3dicons-play-front-gradient_wg92jj.png",
@@ -510,7 +510,7 @@
       ]
     },
     {
-      "categoryName": "Government & Community",
+      "categoryName": "Government and Community",
       "icon": {
         "default": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1749289007/government_and_community_qdoxq7.svg",
         "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748943985/3dicons-crown-front-gradient_onocgo.png",
@@ -548,7 +548,7 @@
       ]
     },
     {
-      "categoryName": "Sports & Recreation",
+      "categoryName": "Sports and Recreation",
       "icon": {
         "default": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1749289026/sports_and_recreation_jwlkjf.svg",
         "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748942536/3dicons-gym-front-gradient_kc7fy1.png",
@@ -593,7 +593,7 @@
       ]
     },
     {
-      "categoryName": "Pets & Animals",
+      "categoryName": "Pets and Animals",
       "icon": {
         "default": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1749289014/pet_animals_yhz7e9.svg",
         "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748944256/3dicons-snowman-front-gradient_dv7qaj.png",
@@ -638,7 +638,7 @@
       ]
     },
     {
-      "categoryName": "Safety & Security",
+      "categoryName": "Safety and Security",
       "icon": {
         "default": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1749289021/safety_and_security_al7cvb.svg",
         "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748943686/3dicons-rocket-front-gradient_k0tad4.png",
@@ -676,7 +676,7 @@
       ]
     },
     {
-      "categoryName": "Computers & Mobile",
+      "categoryName": "Computers and Mobile",
       "icon": {
         "default": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1749289000/computers_and_mobiles_hhxsvw.svg",
         "3d": "https://res.cloudinary.com/dkgwkp02d/image/upload/v1748874102/3dicons-computer-front-gradient_r5e24c.png",
